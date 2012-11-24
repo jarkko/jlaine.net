@@ -1,0 +1,7 @@
+---
+layout: post
+title: Plan your RailsConf sessions
+---
+All the cool kids are heading to "RailsConf":http://conferences.oreillynet.com/rails/ in less than a month from now. Dr. Nic Williams, the man who's obviously found a way to stretch the concept of time as we know it, has now whipped up "MyConfPlan":http://myconfplan.com, a free service you can use to plan your conferences and share the plans with others.
+
+Check the site up! "My very preliminary and incomplete plan for RailsConf is open for review":http://myconfplan.com/conferences/RailsConf2007/users/jarkko.

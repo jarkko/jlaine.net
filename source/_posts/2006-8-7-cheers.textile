@@ -1,0 +1,7 @@
+---
+layout: post
+title: Cheers!
+---
+Late as always:
+
+Congrats "Rails":http://weblog.rubyonrails.org/2006/7/26/rails-is-2-years-old and thank you, "David":http://www.loudthinking.com, for having been able to share the "two years of beauty and passion":http://www.loudthinking.com/arc/000594.html. There's nothing better than a guilty pleasure. Here's for many more years to come!

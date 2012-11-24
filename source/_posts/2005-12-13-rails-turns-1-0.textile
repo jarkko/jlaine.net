@@ -1,0 +1,12 @@
+---
+layout: post
+title: Rails turns 1.0
+---
+<filter:code lang="ruby">
+Attempting remote installation of 'rails'
+Successfully installed rails-1.0.0
+</filter:code>
+
+...with a "new web page":http://www.rubyonrails.com/ and all.
+
+Congrats, "David":http://www.loudthinking.com and the whole community!

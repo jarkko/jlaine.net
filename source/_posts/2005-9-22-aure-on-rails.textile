@@ -1,0 +1,15 @@
+---
+layout: post
+title: Aure on Rails
+---
+One of the mythic figures behind "ArsDigita":http://www.assureconsulting.com/articles/arsdigitahis.shtml, Aurelius Prochazka has stepped into the Rails world and started a "typo":http://typo.leetsoft.com/trac/ -driven "weblog":http://www.aurelius.com/.
+
+ArsDigita was one of the most influential companies in the early days of my web hacker career (or shall we say, studies). It seemed to be so different from the traditional dotcom shops. It had a "human voice":http://web.archive.org/web/19981212012633/http://arsdigita.com/. It was honest. Although I was too young for the dotcom boom (and not quite as "obsessed":http://unicast.org/stuff/arsdigita/ about ArsDigita as "Guan":http://unicast.org/), I followed the (at that time sliding) chapters of AD very closely.
+
+One of the things I remember best about the "battle":http://www.waxy.org/random/arsdigita/ between "Philip Greenspun":http://philip.greenspun.com/ and the VC's is this comment made by Gary Jin in Lars Pind's ""Goodbye ArsDigita":http://pinds.com/blog/one-entry?entry_id=2867" :
+
+bq. ArsDigita WAS something special. While other company sent cute, young female recruiters deep into the hallways of UCLA Enginner, aD send down "Aure":http://www.aure.com/ and the problem sets. Instead of sugar coat problems, aD had public shame. If something is bad, people would say, "it sucked!" There was vision, the brain and yes, plenty egos as well. It was an awesome place to be...while it lasted.
+
+So imagine my reaction when Aure today appeared to the Rails mailing list and "told":http://www.aurelius.com/articles/2005/09/21/my-first-rails-mailing-list-post he was building a user/group management framework on top of Rails. And in his own, non-apologetic way, no less :-)
+
+Welcome on board, Aure!

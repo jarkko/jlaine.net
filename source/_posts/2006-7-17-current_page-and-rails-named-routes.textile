@@ -1,0 +1,13 @@
+---
+layout: post
+title: current_page? and Rails named routes
+---
+"current_page?":http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#M000386 is a nifty Rails helper that can be used to check whether a URL points to the current page. This is very useful in navigation lists where you'd want the link to the current page to be styled differently from other items. However, if you're using "named routes":http://wiki.rubyonrails.org/rails/pages/NamedRoutes in Rails (and you should, keep it DRY, man), <code>current_page?</code> doesn't work correctly. The reason for this is that <code>request.request_uri</code> (which <code>current_page?</code> uses internally to get the current URL) doesn't contain the domain name, whereas <code>your_named_route_url</code><sup><a href="#fn1">1</a></sup> will return the whole URL, including the domain name and the port.
+
+While this small incompatibility is being fixed, you can circumvent it by using <code>hash_for_your_named_route_url</code> instead. It is just about the same magical method as <code>your_named_route_url</code>, with one difference. It returns the params hash instead of running it through <code>url_for</code> and returning the URL as a string. Thus <code>current_page?</code> will work happily with it.
+
+fn1. <code>your_named_route_url</code> will return the url you have specified in routes.rb by a route like:
+
+<pre>
+map.your_named_route '', :controller => 'default', :action => 'index'
+</pre>

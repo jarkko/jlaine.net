@@ -1,0 +1,26 @@
+---
+layout: post
+title: ! 'Note to self: when autotest fails...'
+---
+I just run into the following error when running autotest within a Rails app:
+
+<pre><code>
+/Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:402:in `to_constant_name': Anonymous modules have no name to be referenced by (ArgumentError)
+	from /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:214:in `qualified_name_for'
+	from /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:477:in `const_missing'
+	from /Users/jarkko/Sites/koulutusweb/vendor/plugins/rspec/lib/spec/example/example_group_factory.rb:7:in `reset'
+	from /Users/jarkko/Sites/koulutusweb/vendor/plugins/rspec/lib/spec/example/example_group_factory.rb:59
+	from /Library/Ruby/Site/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /Library/Ruby/Site/1.8/rubygems/custom_require.rb:27:in `require'
+	from /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:496:in `require'
+	from /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:342:in `new_constants_in'
+	 ... 59 levels...
+	from /Library/Ruby/Gems/1.8/gems/rspec-1.0.8/lib/spec/runner/command_line.rb:17:in `run'
+	from /Library/Ruby/Gems/1.8/gems/rspec-1.0.8/bin/spec:3
+	from /usr/bin/spec:19:in `load'
+	from /usr/bin/spec:19
+</code></pre>
+
+It turned out I had typed "sudo gem update zentest" to get the latest version of the gem. However, the correct way would have been to use the camel-cased version ZenTest. The funny thing is, that if you run the command in lower case (like I'm use to do with RubyGems), you _will_ get ZenTest, it's just version 3.5.0 (as opposed to 3.8 that I supposedly got).
+
+So here's hoping that the next time I do the same mistake, this page will pop up from the big G.

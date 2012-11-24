@@ -1,0 +1,11 @@
+---
+layout: post
+title: Fernando
+---
+There was "something in the air":http://developer.apple.com/iphone/program/ that night,<br />
+the stars were bright, Fernando.
+
+"They":http://pragprog.com/ were "shining":http://blog.toolshed.com/2008/10/iphone-nda-lift.html "there":http://pragprog.com/screencasts/v-bdiphone/writing-your-first-iphone-application for "you":http://pragmaticstudio.com/iphone/ and "me":http://pragdave.blogs.pragprog.com/pragdave/2008/10/the-iphone-book.html,<br />
+for "liberty":http://furbo.org/2008/10/01/redacted/, Fernando.
+
+- Björn Ulvaeus

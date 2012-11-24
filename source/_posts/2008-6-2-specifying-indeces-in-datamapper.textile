@@ -1,0 +1,49 @@
+---
+layout: post
+title: Specifying indeces in DataMapper
+---
+I've been working with "Merb":http://merbivore.com/ and "DataMapper":http://datamapper.org/ in the context of a new project for a week now, and the experience has been both pleasant and interesting. On one hand the stack is solid and super-fast (like, desktop app fast), on the other there are a lot of things that catch you if you don't manage to remove the Rails hat off your head. The youth of the frameworks still shows (especially in DataMapper which has recently seen a major refactoring to make it more modular the same way Merb was reworked a bit earlier) but at the same time I get the chance to help with some really cool up-and-coming open source software. If you don't consider that a plus, maybe you should still wait a couple months before you consider these critters for a production app.
+
+One clear symptom of the young age of both Merb and DataMapper is the lack of documentation. They both have documentation sections on their respective websites and there are other efforts such as Merbunity going on, but you still have to have the guts to dive into the source code if you want to find out how some of the less common use cases work.
+ 
+Here's a short piece on how to declare indeces for your DataMapper models. I plan to continue publishing this kind of tutorials for other functionality as well, and to contribute them back to the "official" docs when appropriate.
+
+h2. The big difference
+
+The big conceptual different between ActiveRecord and DataMapper is that in ActiveRecord, the place where the properties of database tables are defined are the migration files. The actual tables are then built according to the migrations and the actual model classes build their property to methods from the database schema.
+
+In DataMapper, the properties are defined in the actual model file. DM has so called auto migrations that compare the model file and the database schema, and modify the schema if the two don't match.
+
+Here's an example DataMapper model:
+
+<pre><code class="ruby">class User
+  include DataMapper::Resource
+
+  property :id,         Integer, :serial => true
+  property :first_name, String
+  property :last_name,  String
+  property :bio,        Text
+  property :single,     Boolean
+end
+</code></pre>
+
+Seems clean, doesn't it. Looking at a model it is clear what properties it has and what methods it supports. But what about indeces? In AR migrations, you would use the @create_index@ method. In DataMapper, @index@ is an option given to the @property@ method:
+
+<pre><code class="ruby">property :last_name,    String, :index => true
+</code></pre>
+
+Or, if you want the index to be unique:
+
+
+<pre><code class="ruby">property :last_name,    String, :unique_index => true
+</code></pre>
+
+OK, but what if you need multi-column composite indeces? Easy. Instead of @true@, give the index a name using a symbol:
+
+<pre><code class="ruby">property :last_name,     String, :index => :name
+property :first_name,    String, :index => :name
+</code></pre>
+
+This will create an index called @index_products_name@ for the table, spanning columns @last_name@ and @first_name@. *The columns are added to the index in order of appearance*, so in this case the indexing order would be _last name, first name_. If you want to change that order, just change the order of you @property@ calls in the model call definition.
+
+There you have it! No rocket surgery, but something I had to dive into the source code to find out.

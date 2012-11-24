@@ -1,0 +1,87 @@
+---
+layout: post
+title: Using Rails AJAX helpers to create safe state-changing links
+---
+A few months ago there was "a":http://www.loudthinking.com/arc/000454.html "heated":http://37signals.com/svn/archives2/google_web_accelerator_hey_not_so_fast_an_alert_for_web_app_designers.php "discussion":http://jlaine.net/blog/56/google-web-accelerator-considered-harmful going on about Google Web Accelerator prefetching links and at the same time wreaking havoc in web apps that used plain GET links to change the state of an application. A few "tricks":http://david.backpackit.com/pub/37983 came up on how one could block GWA from accessing given pages, but in the end, using GET requests for operations such as deleting records in your app remained dangerous.
+
+The traditional means to avoid the perils of GWA and friends are two-fold: either use only form buttons (and thus POST requests) to commit these mission-critical actions, or link to a confirmation page that does the same. Unfortunately, these solutions are less than optimal. Using dozens of forms in a web page (think "delete" links in a product listing) makes the code a bit messy and a plethora of delete buttons doesn't make the page look very nice, either. The problem with a confirmation page is that it adds one more step to the process and thus "makes the user think":http://sensible.com/buythebook.html one more time. One part of the beauty of OS X compared to Windows is that it doesn't try to intervene in every action I make. I like to adhere to the same standards so I want to leave confirmation pages for situations where I really, _really_ think they are crucial.
+
+If you're using "Ruby on Rails":http://www.rubyonrails.com to build your next killer web app, consider yourself lucky. In the following paragraphs, I'm going to teach you how to use the Ã¼bercool "AJAX helpers":http://rails.rubyonrails.com/classes/ActionView/Helpers/JavaScriptHelper.html in Rails to create action links that are both slick, accessible and about as safe as you can get in the wild wide web.
+
+OK, let's assume you have an app ready that uses the following <code>link_to</code> helper call to destroy an item from your collection of "sock monkeys":http://www.sock-monkey.com/sockmonkey.html:
+
+<macro:code lang="ruby">
+<%= link_to "Delete", :controller => "monkey", 
+                   :action => "delete", :id => monkey.id %>
+</macro:code>
+
+This would serve you well, that is, until your uncle Enoch finds an abandoned Google Web Accelerator from the trash bin and your beloved monkeys start evaporating in the thin air. So what's to the rescue? "<code>link_to_remote</code>":http://rails.rubyonrails.com/classes/ActionView/Helpers/JavaScriptHelper.html#M000395!
+
+<macro:code lang="ruby">
+<%= link_to_remote "Delete", 
+  :url => {:controller => "monkey", 
+           :action => "delete", 
+           :id => monkey.id},
+  :update => "monkeys" %>
+</macro:code>  
+
+Now we're talking! You're from this day on using AJAX in your app. Your monkeys are now destroyed without a refresh of a page, and no GET request is ever made. And as your <code>delete</code> action renders the monkey list when called by AJAX, the list updates itself as if magically. As simple as that. But wait! Aunt Marge (your unpaid tester) yells something behind her AS/400. She can't use your app, nothing happens in her _lynx_ even though she tries to follow the link. Crap. No javascript.
+
+Fortunately <code>link_to_remote</code> has a fallback system:
+
+<macro:code lang="ruby">
+<%= link_to_remote "Delete", 
+  {:url => {:controller => "monkey", 
+           :action => "delete", 
+           :id => monkey.id},
+  :update => "monkeys"},
+  {:href => url_for(:controller => "monkey",
+                    :action => "delete",
+                    :id => monkey.id)} %>
+</macro:code>
+
+Using the _href_ parameter makes <code>link_to_remote</code> to include a (tada!) _href_ attribute in the anchor tag it creates. You can use <code>url_for</code> to create the address for it just like in normal links.
+
+Ok, time for a little retrospective. What does our little link widget really do? In normal case, when the user has a modern browser with javascript enabled, when clicked, it calls the delete action with an "_XMLHttpRequest_":http://developer.apple.com/internet/webcontent/xmlhttpreq.html, and upon success updates the element with id "monkeys" in the current page. If javascript is disabled, the browser will follow the traditional href link to the delete page.
+
+Note that both the AJAX url and the old-fashioned href point to the same action. This is intentional. It gives us the possibility to do pretty powerful things with a tiny little action. We'll take a look at that action, <code>MonkeyController::delete</code>, next.
+
+<macro:code lang="ruby">
+def delete
+  if request.xhr?
+    # ... deletion code here ...
+    render :partial => "monkey", :collection => @monkeys
+  elsif request.post?
+    # ... deletion code here ...
+    redirect_to :action => "list"
+  else # we assume this is a get message
+    render :action => "delete_confirmation"
+  end
+end
+</macro:code>
+
+The <code>delete</code> function above handles three kinds of requests. If it's called by AJAX (remember the normal case above?), it deletes the monkey and renders the list of remaining monkeys that will then be displayed in the calling page. If the action is called by a POST request (we'll get into when this happens in just a few seconds), the monkey is also deleted but this time, the browser is redirected to the original monkey list page with an external redirect. In third case, when this action is called by a GET request, we show the user a confirmation page by rendering them delete_confirmation.rhtml (only the important parts of the template are shown here):
+
+<macro:code lang="ruby">
+<%= form_tag :controller => "monkey",
+             :action => "delete" %>
+<%= hidden_field_tag "id", @params[:id] %>
+<%= submit_tag "Really, please get rid of the monkey" %>
+<%= end_form_tag %>
+</macro:code>
+
+This is the page shown to old-world users with javascript disabled that clicked on the delete link on the monkey list page, resulting in calling the <code>delete</code> action with a GET request. This page is effectively, as you can see, a form that points to the same old <code>delete</code> method. We need to pass the monkey id in the form and we use the convenient hidden_field_tag helper method for that. Requests from this form page constitute the second case of calling <code>delete</code>, making request.post? return true (because POST is the default method for form_tag).
+
+h3. Why is this method cool?
+
+You can use what kind of text or image links on your pages you ever want to, just like with normal links. That's got to be nicer than a battery of submit buttons that look all different in different browsers. Even cooler, you don't have to stuff your users through the tunnel of indifferent confirmation pages. Just one click, and away they go!
+
+But that's not all, folks! The approach is also accesible. People with text browsers or screen readers (or the paranoid with javascript disabled) will be presented a traditional link followed by (sigh!) a confirmation page, for their own safety.
+
+h3. Why is this method safe?
+
+No critical action is made with a GET request. In the most common case the deletion is made through an XMLHttpRequest, which is a) using POST method and b) launched by javascript so robots or Accelerators or other villains couldn't even invoke it. The fallback method, on the other hand, uses the traditional confirmation page idea, forcing the user to submit a POST form before the actual deletion is made.
+
+So, here'ya go! A complete system for deleting monkeys. Well, maybe not complete but you get the idea. And all with just a single controller method. And like with all AJAX helpers in Rails, it's really easy to turn a traditional, link- or form-based approach to full-blown AJAX goodness in a matter of minutes.
+
+*Disclaimer:* The point of this article is not to teach all the goodies of link_to_remote or other AJAX helpers in Rails. There's a lot "better(AJAX on Rails video)":http://www.rubyonrails.com/media/video/rails-ajax.mov "resources":http://mir.aculo.us/ for that and I intentionally left the code barebones simple. You'd certainly want to give the user some kind of indication that an AJAX process is underway, for example. Search the Rails "wiki":http://wiki.rubyonrails.com/ and "API docs":http://rails.rubyonrails.com/ for more info.

@@ -1,0 +1,58 @@
+---
+layout: post
+title: Where have all the <strike>flowers</strike> designers gone?
+---
+"Do you know any Jason Frieds", "asks":http://pinds.com/articles/2005/11/22/do-you-know-any-jason-frieds Lars Pind. Just one, unfortunately. Lars is looking for interaction designers. However, I'd like to extend the question a bit. Where have all the (good) web designers gone? I recently missed a project because the client couldn't find a talented freelance web designer to work on the ui side of the application. The gig went instead to a larger corporation that could "take care" of the interface design, too.
+
+Now my definition of a web designer is maybe quite strict. A graphics artist sending a Photoshop comp to a developer is not a web designer. A designer that slices her comp to 26 level nested tables in Dreamweaver is not a web designer. So who is?
+
+A web designer who calls herself professional should both have and use all of the following skills:
+
+
+h5. Top-notch graphics design
+
+Both good eye and knowledge of the principles of graphics design, especially typography is crucial for any designer, and web design is no exception. The skills also need to be put into production so the usual graphics programs like Photoshop should work as a natural extension of one's arm.
+
+h5. Standards-based (X)HTML and CSS
+
+Many extremely talented designers fall short on this point, as seen in the recent  "Disney Store UK debacle":http://www.molly.com/2005/11/03/an-open-letter-to-disney-store-uk/. Web design is much more than meets the eye.
+
+h5. Information architecture
+
+How should the site be structured, what about the search? In my opinion information architecture can not be separated from web design.
+
+h5. Usability and accessibility
+
+Long neglected, often forgotten. The latter now often needs to be taken care of by the law, if nothing else rings a bell.
+
+h5. Programming
+
+Pure static websites are slowly becoming history. Almost every designer needs to be able to work with some kind of template languages. Also, a web designer with no JavaScript skills whatsoever will soon be obsolete.
+
+h5. Interaction design
+
+Whether Web 2.0 is here or not, web applications are becoming increasingly common, which calls for a lot more disciples of "Alan Cooper":http://www.cooper.com/content/company/executives.asp, just like Lars's post implies.
+
+h5. Writing
+
+No kidding. Just like in almost any other territory, writing skills are "essential":http://www.37signals.com/svn/archives2/hiring_tip.php for a web designer. "Markets are conversations.":http://www.cluetrain.com/book/markets.html "Good designers decorate, great designers communicate.":http://www.cameronmoll.com/archives/000628.html Even in written text.
+
+h5. Entrepreneurship and project management
+
+Pure selfishness, I don't want great talents to drown into corporate behemoths.
+
+h5. Ability and will to learn new things constantly and fast
+
+In "A Recipe for Learning Web Design":http://digital-web.com/articles/a_recipe_for_learning_web_design/, "D. Keith Robinson":http://www.7nights.com/asterisk/ tells how he's worked with fresh university graduates whose skills have been out-of-date upon graduation. This is not something that applies only in web design, but it is characteristic of it. It is no coincidence that top web designers are very active in writing and reading blogs.
+
+h4. The problem with education
+
+The problem with finding people with all these skills is that they are all self-taught and thus anything but abundant. The current offering in university class education is far from great.
+
+Often enough, it's not even clear who should teach web design. Art colleges teach design but many of the technical aspects go far beyond their scope. CompSci departments tend to think web design and development is not real software development and thus not worth much effort. The one unit in "my university":http://www.tut.fi/public/index.cfm?mainsel=1603&sel=1603&Show=1499&siteid=32&CFID=7667970&CFTOKEN=99092533 teaching HTML+CSS is the Hypermedia Lab, but again, they work under the department of mathematics and are much more interested in semantic web than web design.
+
+So the field is about as fragmented as it gets. In fact, I only know two institutions that teach such a broad curriculum ("Georgian College":http://www.georgianc.on.ca in Barrie, Ontario Canada, with the unparalleled "Lisa McMillan":http://www.lisamcmillan.com/ holding the threads[1]; and "Hyper Island":http://www.hyperisland.se/ in Sweden).
+
+What am I missing here? Are all the (few) superstars coming from one field and then self-taught in other parts of the puzzle, or is there more real contenders in the academic field that just haven't learned their SEO(Search Engine Optimization)? A niche for new private universities, currently very rare in Europe? What's the situation in your country?
+
+fn1. See the "November 2005 issue":http://treehousemagazine.com/catalog/treehouse-nov-2005/ of the "Treehouse Magazine":http://treehousemagazine.com/ for an illuminating interview with McMillan.

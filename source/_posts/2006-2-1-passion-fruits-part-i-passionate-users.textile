@@ -1,0 +1,29 @@
+---
+layout: post
+title: Passion Fruits, part I. Passionate Users
+---
+As you might have read from yesterday's "teaser":http://jlaine.net/articles/2006/01/31/heads-up-for-passion, I'll start a series of articles about passion in web, business and life in general. Although Kathy Sierra's blog "Creating Passionate Users":http://headrush.typepad.com/creating_passionate_users/ has been a tremendous inspiration for the articles, they will not be restricted to just users. But for starters, we'll take the easy route and just snatch two thirds of the name of Kathy's blog.
+
+The first question is, why would you want passionate customers? Isn't it enough that your customers just wisely and cool-headedly choose what you're offering?
+
+Yes and no. There are a few reasons why you should love your passionate users like no one else.
+
+h4. 1. They will go to the end of the world just to get your products.
+
+The single best success story of having passionate users is, not surprisingly, "Apple":http://www.apple.com. I can't come up with any other company that would be so deeply loved by its customers. While most people hate (or even worse, couldn't care less about) their computers, Appleists adore Macs. While that might seem like a strange kind of cult to outside, to Apple--especially before the iPod era--they've been worth their weight (and they're mostly healthy, non-obese people) in gold.
+
+In the late eighties, Apple was--nicely put--in deep shit. They had kicked Steve Jobs out, taken MBAs in to replace him, and in the process done some pretty brain-dead decisions. Sales where going a-tumblin' down and all that kept them going was the crowd of users that declined to use any other type of computer. It turned out the best way in the end, but I would be lying if I said it wasn't a close call.
+
+h4. 2. They're your best salesmen
+
+Even though the evangelistic attitude of Apple users annoy a lot of outsiders, it also turns many of them into customers. It's hard not to think that there must be _something_ inside that blind enthusiasm people show towards products of a single company.
+
+If you've read the "Cluetrain Manifesto":http://www.cluetrain.com/ (you have, don't you), you know that in the place called _internet_, traditional marketing has little to no place to prosper. What matters multitudes more is human voice and conversation, and what could be more powerful and authentic source of that than thrilled, pleased customers. Heck, how do you think Jason Fried earned his Audi S4 with all but zero marketing budget?
+
+h3. How to get them?
+
+There's no single answer to this and honestly, I can only guess. There are a few obvious "tricks" like honesty, under-promising and over-delivering, being true to who you really are and keeping your human face even when you grow. However, it's not nearly as simple. Apple has done quite a few things to piss of its customers. It's sued rumor sites leaking information about Apple products, but the faithful have stayed. It's released clearly unfinished products (the latest batch of 15" PowerBooks, anyone?), and even that hasn't been enough to wipe off the glow from its image.
+
+So there just has to be _something_ in you that makes your customers love you. What it is, you have to figure out by yourself. There's no one-size-fits-all recipe. Obvious places to start are "Creating Passionate Users":http://headrush.typepad.com/creating_passionate_users/ and 37signals' "Signal vs. Noise":http://37signals.com/svn/. The Signals have collected some heat lately, too, but better flamed than mediocre and forgotten.
+
+Next week, 1-3-10 rule squared and a few other obsessed observations.

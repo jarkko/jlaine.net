@@ -1,0 +1,11 @@
+---
+layout: post
+title: A Track of Two
+---
+If you're into photography, here's a couple of quick links that might be of interest:
+
+# Scott Bourne and Alex Lindsay, of "MacBreak Weekly":http://www.twit.tv/mbw and many other fames, have started a new podcast under the "Pixelcorps.tv":http://www.pixelcorps.tv/ umbrella: "This Week in Photography":http://twipphoto.com/. The guys are really great podcasters and the content is kind of semi-advanced so that it's not boring even if you're fairly competent (even pro, I would say) but also not overwhelmingly technical. Great stuff during long exercises like a track of two[1]. The third episode of TWIP discussed the state of Aperture and namely the lack of announcement of version 2 during the "PMA":http://www.pmai.org/index.cfm/ci_id/33573.htm. That gives us a nice segue to the next topic:
+# "Aperture 2":http://www.apple.com/aperture/ is here! Downloading it right now and have high hopes for the performance. Especially creating previews and exporting photos leaves a lot to be desired in 1.5, and if the first comments around the 'net are to be trusted, the newcomer should be vastly better in this regard.
+
+
+fn1. A track of two (or "kakkosen latu" in Finnish) is a term that came from a two-hour cross-country skiing (preferably classic) exercise and is now a synonym for any longer training pass (run, ski, hike, whatever) of around or over two hours.

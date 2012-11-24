@@ -1,0 +1,7 @@
+---
+layout: post
+title: Back
+---
+I'm back home after giving three days of intensive Ruby and Rails training in UK. Comments are also back up. That's mainly because this blog is now running "Typo":http://typo.leetsoft.com where comment spam handling is a lot easier than in textpattern.
+
+Those of you who already were subscribed to my FeedBurner feed shouldn't have any problems, but I'm still trying to figure out a way to make the old textpattern-style feed urls (e.g. "http://jlaine.net/?rss=1") to redirect to FeedBurner. The problem is that they map to the index page which is cached in typo so it's kind of hard to do the redirect in Ruby. I also haven't found a working way in lighttpd to do redirects based on the query string. I guess it should be possible in apache running in front of lighty, but again haven't yet figured out to do it through the webmin panel. If anyone knows how to do it in TxD, please drop me a note. 

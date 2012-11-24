@@ -1,0 +1,11 @@
+---
+layout: post
+title: Letting the users choose
+---
+My friend "Martin":http://www.workingwithrails.com/person/5152-martin-sadler just posted a "case study":http://weblog.workingwithrails.com/2007/10/24/oakley-rails on "Working With Rails":http://workingwithrails.com/ about how "Oakley":http://oakley.com/ has been migrating their web presence onto Rails. I'm a big fan of Oakley products. They're a company that puts an enormous effort to make seemingly simple products better and better. In orienteering, where you really need some shield for your eyes (unlike in, say, pole vault), glasses with replaceable lenses with different colors for different weather conditions are a must. I've been using the "M Frames":http://oakley.com/mframe for a couple of seasons, and refill my lens stock pretty much every time I visit US.
+
+Martin's interview with "Ken Loh":http://kenloh.com/ - the guy running the web group at Oakley - reveals an interesting point. The guys who actually build their apps got to choose the platform themselves. This is not too surprising for an innovative company such as Oakley, but it does show a clear contrast to the big E word, something "Khoi Vinh":http://www.subtraction.com/archives/2007/1019_if_it_looks_.php and "Jason Fried":http://www.37signals.com/svn/posts/669-why-enterprise-software-sucks have lately talked about:
+
+bq. The people who buy enterprise software arenâ€™t the people who use enterprise software. Thatâ€™s where the disconnect begins. And it pulls and pulls and pulls until the user experience is split from the buying experience so severely that the software vendors are building for the buyers, not the users. The experience takes a back seat to the feature list, future promises, and buzz words.
+
+(Jason Fried: "Why Enterprise Software Sucks":http://www.37signals.com/svn/posts/669-why-enterprise-software-sucks)

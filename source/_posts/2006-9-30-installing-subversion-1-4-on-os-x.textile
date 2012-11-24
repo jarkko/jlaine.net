@@ -1,0 +1,22 @@
+---
+layout: post
+title: Installing subversion 1.4 on OS X
+---
+*UPDATE, 1.11.2006* I updated the script to build neon (and thus subversion) with SSL support.
+
+I just got my MacBook Pro back from a repair where its faulty hard drive was replaced. All the data was migrated but the system folder was for some reason rebuilt so I lost the installed Developer Tools, and along with that, subversion.
+
+I installed the latest Developer Tools from "developer.apple.com":http://developer.apple.com, but for some reason they don't include subversion anymore. My next attempt was to install subversion from darwinports, but that didn't succeed either. It seems that the ports version of subversion depends on apr-1.2.2, but all the mirror sites only have apr versions 1.2.6 and 1.2.7. I probably could've hacked it to use one of them, but then I figured the ports version would be kind of old anyway, since subversion was just updated to version 1.4. Thus, I decided to build it from scratch.
+
+The problem with installing subversion from scratch is that it depends on a few other packages (included in the subversion-deps package) that need to be built as well, separately. So I hacked together a shell script that downloads the current subversion and subversion-deps packages and compiles and installs them:
+
+"subversion-1.4-install-all.sh":http://jlaine.net/assets/2006/11/1/subversion-1.4-install-all.sh
+Usage:
+
+<filter:code>
+sudo sh subversion-1.4-install-all.sh
+</filter:code>
+
+(use sudo here to avoid writing your password multiple times during the course of the script)
+
+*Disclaimer* The script worked fine on both my MBP and a G4 PowerBook. It should probably work fine on any *nix, but use at your own risk. If it doesn't work, I will only return the price of the script.

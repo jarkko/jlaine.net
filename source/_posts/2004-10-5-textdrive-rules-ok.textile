@@ -1,0 +1,5 @@
+---
+layout: post
+title: TextDrive rules OK
+---
+"TextDrive":http://textdrive.com announced a new "2GB/40GB hosting plan":http://textdrive.com/plans/ and I got into the hook immediately. Well, actually I was kind of needing the extra hardrive space so a 100% increase with 50 extra bucks wasn't that bad. Besides, if (or when 8) I get slashdotted, I've now got 4 times as much bandwidth to abuse. Oh, and did I mention TextDrive runs "Rails":http://www.rubyonrails.org? Oh, the beautiful life...

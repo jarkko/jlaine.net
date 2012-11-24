@@ -1,0 +1,36 @@
+---
+layout: post
+title: Beginning Ruby on Rails E-Commerce is Shipping!
+---
+Dear Rails Enthusiast,
+
+We just got email from our editor Keir where he said he'd got his 
+hands on our new book, Beginning Rails E-Commerce. His mail didn't
+include the words ""f*cking awesome":http://headrush.typepad.com/creating_passionate_users/2006/11/two_simple_word.html", but instead "superb" and
+"a work of art", which we think are almost as good.
+
+This means that the book will hit the shelves before you can say
+"Heinemeier", so be sure to get yours while it's still hot.
+
+We wanted to make our book such that you can "read" it while you're
+sitting in front of your computer. It's completely project-driven,
+meaning the content is divided by task, and that you can build
+the sample application in small iterations, learning the
+background details on the fly.
+
+As one of the core philosophies of Rails is to support best
+practices, we decided to do that as well. Most of the tasks are
+written test-driven, giving you a glimpse of the ease with which
+TDD can be used in Rails and the power it brings compared to a
+traditional, ad-hoc web application development process.
+
+We hope you enjoy the book as much as we enjoyed the journey of
+writing it.
+
+Buy the book
+* "Directly from Apress":http://www.apress.com/book/bookDisplay.html?bID=10178
+* or "from Amazon.com":http://www.amazon.com/Beginning-Ruby-Rails-E-Commerce-Professional/dp/1590597362/
+
+Best,
+
+Christian Hellsten and Jarkko Laine

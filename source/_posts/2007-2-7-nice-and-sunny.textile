@@ -1,0 +1,5 @@
+---
+layout: post
+title: Nice and Sunny
+---
+<a href="http://www.flickr.com/photos/jarkko/382558796/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/150/382558796_6105a440df_o.png" width="305" height="205" alt="Sunny" /></a>

@@ -1,0 +1,99 @@
+---
+layout: post
+title: Keeping your lighttpd up on TextDrive, part II
+---
+A few weeks ago I wrote about starting your lighttpd process automatically on server reboot. I promised then that I'd come back with a solution for keeping the process up even if it dies. Well, I'm about as late as it gets, but here I am anyway, with a hopefully helpful bit of advice.
+
+h3. Meet daedalus.rb
+
+Daedalus is a pure-ruby script for monitoring processes and restarting them if needed. It's part of FreeBSD "sysutils":http://www.freebsd.org/es/ports/sysutils.html but to be honest it's really hard to find these days. Fortunately Jason Hoffman of TextDrive has graciously put up a "copy":http://svn.textdrive.com/repos/scripts/daedalus-1.2.tar.bz2 on their Subversion server so your best bet is to just go and grab it from there. Then just unpack the archive in your home directory.
+
+<pre><code>
+~# wget http://svn.textdrive.com/repos/scripts/daedalus-1.2.tar.bz2
+~# tar jxvf daedalus-1.2.tar.bz2
+~# cd daedalus
+</code>
+</pre>
+
+Now you'll have a subdir called _daedalus_ in your home directory. If you look around, you'll find a few interesting files in there. <code>daedalus.rb</code> is the actual ruby script that does the monitoring. To save some hassle later on, open the script and change the locations of log and pid files to something residing under your home folder (around line 362):
+
+<pre><code>
+$options['logfile'] = '/home/[YOU]/var/log/daedalus.log'
+$options['pidfile'] = '/home/[YOU]/var/run/daedalus.pid'
+</code></pre>
+
+Be sure that those folders exist, too ;-)
+
+After this, you're ready to start configuring your daedalus. In <code>examples</code> you have a file called <code>daedalus.conf</code> which you can use as a template for your own configuration. I created another subfolder <code>config</code> under daedalus and put my config files in there. Open up the config file in the editor of your choice:
+
+<pre><code>
+~/daedalus# mv examples config
+~/daedalus# emacs config/daedalus.conf
+</code></pre>
+
+Inside the config file you find a few configuration examples separated by empty lines. You can comment them all out since we're not going to need them. Instead copy this to the beginning of the file:
+
+<pre><code>
+name: lighttpd
+checkcommand: /bin/ps axww
+checkregex: /lighttpd/
+onfailcommand: /usr/local/sbin/lighttpd -f /usr/home/[YOU]/sites/rails/config/lighttpd.conf
+checkinterval: 30
+aftercommandwait: 15
+</code></pre>
+
+Here's what the above means: 
+
+* _name_ is just a name for the configuration. 
+* _checkcommand_ is the command daedalus executes in order to find out if your target is working or not. In local monitoring it's most often "/bin/ps axww". Be sure to include the two w's in there, you'll be sorry one day if you don't[1].
+* _checkregex_: this is the regular expression daedalus will try to find from the output of _checkcommand_. So <code>/lighttpd/</code> means that we're looking for...er... lighttpd. Brilliant! If you're not yet familiar with regular expressions, here's a "resource":http://www.regular-expressions.info/ with a "tutorial":http://www.regular-expressions.info/ that might help you.
+* _onfailcommand_: if the given expression is not found, daedalus will execute this command. In our case this will be the command you're starting lighttpd with in the first place.
+* _checkinterval_: this is the polling interval in seconds. So 300 would mean that daedalus checks for this particular process every five minutes.
+* _aftercommandwait_: how long (in seconds) daedalus will wait after a failed check and relaunch. If you know that your process takes a while to launch, you might want to shoot this up a bit.
+
+Modify the config file to your needs and that's it! You are ready to launch daedalus for the first time:
+
+<pre><code>
+~# /usr/local/bin/ruby /home/[YOU]/daedalus/daedalus.rb -c /home/[YOU]/daedalus/config/daedalus.conf
+</code></pre>
+
+You can now take a peek at <code>home/[YOU]/log/daedalus.log</code> with <code>tail -f</code> and see what it's doing (if anything). Try to kill the process you're monitoring and check that daedalus is able to restart it. After that make sure that your daedalus daemon is started on every bootup, otherwise it won't help you very long ("part I":http://jlaine.net/blog/48/running-your-own-lighttpd-on-textdrive-and-keeping-it-alive-too-part-i of this tutorial will tell you how to do that).
+
+h3. But what if it just freezes?
+
+There can (and will, sooner or later) be situations when your web server just hangs. It seems to be running so daedalus won't notice anything but it doesn't serve the pages it should either. Now we'll get real pragmatic and see how daedalus can help us to solve even this problem.
+
+h4. Create an uptime test action
+
+_(This advice is for Rails but you can easily emulate it in any environment.)_
+
+Create an action in a suitable controller that will somehow test that the db connection works and then return "success". I e.g. have an action _uptime_ in my PageController:
+
+<pre><code>
+def uptime
+      render_text "success" if @pages = Page.find_all
+end
+</code></pre>
+
+After you have something along those lines working in your web service, add another configuration to your daedalus.conf file:
+
+<pre><code>
+name: lighttpd-external
+checkcommand: /usr/local/bin/curl http://www.yourdomain.com/page/uptime
+checkregex: /^success$/
+onfailcommand: killall lighttpd; /usr/local/sbin/lighttpd -f /path/to/your/rails-app/config/lighttpd.conf
+checkinterval: 300
+aftercommandwait: 30
+</code></pre>
+
+Configure it according to your needs and restart the daedalus daemon. After that you should be fairly safe with lighttpd.
+
+h3. Getting really paranoid
+
+All Black Sabbath fans can take this approach one step further. Start another daedalus daemon (with another config file) that monitors the first one and starts it up again if needed. Then add another configuration to the first instance and voilÃ¡, you have a redundant array of daedalus processes monitoring not only your web services but each other, too. Implementing this will be left as an exercise for the reader.
+
+That's about it. If you have followed through "part I":http://jlaine.net/blog/48/running-your-own-lighttpd-on-textdrive-and-keeping-it-alive-too-part-i and this second take, your lighttpd should survive quite a lot. If you have recommendations for making this approach better, please leave a comment.
+
+Thanks to Jason Hoffman and "Dave Goodlad":http://david.goodlad.ca/ for help in setting daedalus.rb up initially.
+
+fn1. ps ax will only print certain amount of letters to every line. If your command is very long (like lighttpd command often is), ps ax might cut the line which can cause the following regexp check to fail. I spent quite a bit of time tracking this down. The two w's will cause ps to output even very long lines so using them is a good precaution for later headache.

@@ -1,0 +1,11 @@
+---
+layout: post
+title: Rails gets more exposure in Finland
+---
+Only about a week before my lecture, ""_Ruby on Rails - Web applications with a glimpse in the eye_":http://jlaine.net/blog/40/not-your-average-speaker", "Assemblix.net":http://assemblix.net, a major developer newsletter in Finland publishes an above-the-fold "article":http://assemblix.net/kirje/60 about "Rails":http://rubyonrails.com. The article goes briefly through the MVC pattern implementation of Rails. The conclusion states that "??some people have sung the praises of Rails while others think that the same can be accomplished with [replace-with-your-favourite-tool]??" (translation mine). 
+
+I would like to point out that the magic of Rails is not _what_ can be done with it, but rather _how_ it can be done: extraordinary fast, keeping the focus on the end product instead of implementation details, and - most importantly - always with a smile on your face.
+
+However, I find the article a major breakthrough in the given newsletter and the developer community in Finland in general. This is to my knowledge the first editorial article in Assemblix breaking the mold of Java-Windows-PHP, the emphasis having been on the first two.
+
+So I salute the editors of Assemblix, although one could say the buzz around Rails makes it impossible to go wrong with such an article. Anyway, it's great to get more publicity for Rails here in the land of reindeers and "aurora borealis":http://virtual.finland.fi/finfo/english/aurora_borealis.html, too.

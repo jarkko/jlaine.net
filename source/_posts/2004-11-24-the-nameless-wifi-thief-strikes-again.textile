@@ -1,0 +1,9 @@
+---
+layout: post
+title: The Nameless WiFi Thief Strikes Again
+---
+I seem to have a tendency to find a hotel room right on the edge of an open wireless signal. Last time I was in Leiden my laptop could detect the signal by itself and keeping the Powerbook in right position meant unlimited surfing.
+
+This time, in the same town but in another hotel, the situation is a bit worse. The hotel hasn't yet finished its WiFi project so I had already given up on surfing when the owner of the hotel called me today. She told me that the guy living in a room below me had left a message this morning telling that he had surfed the whole night using an open signal.
+
+I of course had to find the signal, too, and I found it strongest in the middle of the first floor aisle. I could stretch the signal all the way to the door of my room, but never quite to my room. Until I got the brilliant idea that if the signal is stronger in the first floor, it has to be at its strongest on my hotel room floor. Well, unfortunately the best coverage seems to on the floor of my closet, and I have to lie on the floor outside the closet with my hands inside. Not quite comparable with an Aeron chair, is it?

@@ -1,0 +1,24 @@
+---
+layout: post
+title: Integrating Simulation with .LRN &#8212; an OpenACS Microgrant Proposal
+---
+h4. Background
+
+Simulation is an OpenACS package originally developed by "Collaboraid":http:/collaboraid.biz for project "RechtenOnline":http:www.rechtenonline.nl, a consortium of Dutch law faculties. As Collaboraid was having a lack of resources last fall, I was hired to finish the system. Version 1.0 of system was released in the end of November and a revised version 1.0.1 just before Christmas.
+
+Simulation is a package which can be used to simulate virtually any common workflows and processes. The most common example used by the original clients is the setting of a new law, with multiple students playing different roles in the process. Simulation is based on the newer, Finite State Machine Workflow package of OpenACS.
+
+h4. The Proposal
+
+My proposal is to integrate the Simulation package with .LRN because the target audience of the two is clearly orthogonal.
+
+h4. Why would .LRN benefit
+
+Integrating Simulation with .LRN would give it another member in its already extensive set of collaborative tools.
+
+h4. The Deliverable
+
+Simulation package will be possible to be installed as a part of .LRN and they will work seamlessly together. I will also create all the needed portlet packages for both normal users and simulation administrators. All the code will be committed to the OpenACS codebase (as simulation already is). As a part of this project I will also take care that the end-user documentation of Simulation will be taken to a level expected from a .LRN package.
+
+Tampere, January 6th 2005,
+Jarkko Laine

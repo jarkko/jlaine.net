@@ -1,0 +1,7 @@
+---
+layout: post
+title: Changeset
+---
+Changeset "2848":http://dev.rubyonrails.org/changeset/2848:
+
+bq. Added <code>redirect_to :back</code> as a short-hand for <code>redirect_to(request.env["HTTP_REFERER"])</code>

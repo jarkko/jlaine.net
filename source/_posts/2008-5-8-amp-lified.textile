@@ -1,0 +1,124 @@
+---
+layout: post
+title: ! '&amp;lified'
+---
+*UPDATE* Now "ampersand even has its own blog":http://ampersand.gosedesign.net/.
+
+Ampersand has received a lot of "press":http://www.typography.com/ask/showBlog.php?blogID=98 "lately":http://www.kottke.org/08/05/ampersands and I decided to put my oar in as well.
+
+My recent history with ampersand is kind of embarrassing, to say the least. I was giving a Ruby class in UK a few years back and during a class, I asked a participant whether there is some other term for the _at sign_ in English. "Sure", she said, "it's ampersand." To this day I'm not sure whether she thought I said _et sign_, or genuinely mixed up "asperand":http://en.wikipedia.org/wiki/Asperand and "ampersand":http://en.wikipedia.org/wiki/Ampersand. But for quite some time after that, I happily treated @ as ampersand.
+
+But neither linguistics or typography is the topic of today's article. Let's rather talk about ampersand (the real one) in Ruby.
+
+In Ruby, an ampersand denotes a block parameter. But let's not get ahead of ourselves. A little background might be in place.
+
+One of the coolest features in Ruby are _code blocks_, or _closures_. -They are basically anonymous functions, but as pretty much everything in Ruby, they are also objects.- They are anonymous functions, that have little use just by themselves. However, you can turn them into @Proc@ objects either with the @Proc.new@ constructor or using the @lambda@ kernel method. The common best practice to mark code blocks is to use the curly braces with one-liners and @do..end@ with blocks that span multiple lines:
+
+<pre><code class="ruby">yell = lambda { puts "AAARGH!!!" }
+whisper = Proc.new do
+ puts "whee"
+end
+yell.call
+whisper.call
+</code></pre>
+
+âž¥
+
+<pre><code class="ruby">AAARGH!!!
+whee</code></pre>
+
+Maybe the most useful application of @Proc@ objects in Ruby are block parameters. Anyone with some knowledge of Ruby is familiar with the following:
+
+<pre><code class="ruby">>> arr = %w(apple orange kiwi)
+=> ["apple", "orange", "kiwi"]
+>> arr.each {|i| puts i[0,2]}
+ap
+or
+ki
+=> ["apple", "orange", "kiwi"]</code></pre>
+
+As you can see, in this case you need to use neither @Proc.new@ nor @lambda@ with the block; it's converted to a @Proc@ object implicitly. But as the method receives just a @Proc@ object as its parameter, you could also say something like this, right:
+
+<pre><code class="ruby">>> put_two = lambda {|i| puts i[0,2]}
+=> #<Proc:0x00329060@(irb):41>
+>> arr.each(put_two)</code></pre>
+
+Err, not quite. It turns out Ruby methods can take two kinds of parametersâ€”a number of normal parameters and a block parameter. In the code above the interpreter will think that the @put_two@ @Proc@ object is passed as a normal parameter to the @each@ call, and since @each@ doesn't take any normal parameters, you will get an error:
+
+<pre><code class="ruby">>> arr.each(put_two)
+ArgumentError: wrong number of arguments (1 for 0)
+	from (irb):42:in `each'
+	from (irb):42</code></pre>
+	
+And this is what brings us back to the ampersand:
+
+<pre><code class="ruby">>> arr.each(&put_two)
+ap
+or
+ki
+=> ["apple", "orange", "kiwi"]</code></pre>
+
+So *the ampersand is used to tell the interpreter that the following reference is the block parameter of the method*.
+
+One fairly common idiom in the Rails world is this kind of construct:
+
+<pre><code class="ruby">>> arr.map(&:length)</code></pre>
+
+It is effectively the same as
+
+<pre><code class="ruby">>> arr.map {|i| i.length }
+=> [5, 6, 4]</code></pre>
+
+However, if you start a plain irb session, you will notice something isn't quite right:
+
+<pre><code class="ruby">>> arr.map(&:length)
+TypeError: wrong argument type Symbol (expected Proc)
+	from (irb):2</code></pre>
+	
+That's right. The cool shorthand method that worked so nicely in your Rails app doesn't work in plain Ruby. That's because there is some Rails magic behind the @&:method@ call. This magic is e.g. the reason why "Ezra has prohibited using the shortcut in Merb framework code":http://goruco2008.confreaks.com/06_zygmuntowicz.html.
+
+But let's have a closer look at what's actually happening behind the scenes in the shortcut. The thing that's different from our earlier calls is that there is a colon between the ampersand and the word "length". This means that we're not using a variable or method called @length@, but the symbol @:length@. If you're not familiar with Ruby symbols (or even if you are), reading "Josh's recent article on symbols":http://blog.hasmanythrough.com/2008/4/19/symbols-are-not-pretty-strings is a worthwhile read.
+
+Now that we know that we're trying to pass a symbol as the block parameter to a method (and that it's not really working, as the error above indicates), we need a way to convert it to a @Proc@ object like expected by the method. Ruby has a slew of type conversion methods that are called implicitly whenever it's clear that a certain type of object is needed. Inside a string for example, @to_s@ is called automatically for every object that is not a string itself:
+
+<pre><code class="ruby">>> "Nice array: " + arr
+TypeError: can't convert Array into String
+	from (irb):6:in `+'
+	from (irb):6
+>> "Nice array: #{arr}"
+=> "Nice array: appleorangekiwi"
+>> "Nice array: " + arr.to_s
+=> "Nice array: appleorangekiwi"</code></pre>
+
+In the same vein, since a block parameter of a method needs to be a @Proc@ object, @to_proc@ is called automatically for all other objects in an effort to get a hold of a proc.  So could it work if we just added a @to_proc@ method to the @Symbol@ class? Let's find out!
+
+<pre><code class="ruby">class Symbol
+  def to_proc
+    lambda {|i| i.send(self)}
+  end
+end</code></pre>
+
+-Here we make @to_proc@ a lambda function that will use the @send@ method to call the method with the same name as the @Symbol@ object in question (self) for the element that's passed to it.- _(That got too confusing so let's just use examples)_.  So
+
+<pre><code class="ruby">arr.send(:length)</code></pre>
+
+is the same as
+
+<pre><code class="ruby">arr.length</code></pre>
+
+And thus
+
+<pre><code class="ruby">:length.to_proc</code></pre>
+
+would become
+
+<pre><code class="ruby">lambda {|i| i.send(:length)}</code></pre>
+
+Now, let's see how our new method performs:
+
+<pre><code class="ruby">>> arr.map(&:reverse)
+=> ["elppa", "egnaro", "iwik"]</code></pre>
+
+Perfect!
+
+While @Symbol#to_proc@ is a clever and perhaps an elegant hack, it's still kind of a hack. So should you use it in your code? I tend to side with Ezra on this. If you're writing framework code, you should probably err on the side of readability and common usage, and thus avoid "magical shortcuts" like these. But in application code, why not. I certainly do.

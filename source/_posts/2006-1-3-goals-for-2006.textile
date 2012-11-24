@@ -1,0 +1,35 @@
+---
+layout: post
+title: Goals for 2006
+---
+'Tis the time of the year, so I'll contribute my effort, too. These are my goals for 2006.
+
+h4. 1. Graduate
+
+The last 6.5 years of simultaneous studying, sports training and running a business have been great and giving, but there comes a time when you just got to cut the air. My thesis should be ready this spring so hopefully by the summer I will be carrying the propeller hat of an MSc.
+
+Which leads to the next goal...
+
+h4. 2. Live off "Rails":http://www.rubyonrails.org
+
+In the ongoing winter the only reason I haven't done full-time Ruby on Rails development has been my thesis. I love Rails. I love running my own business. Heck, I'm even writing a thesis about small businesses in open-source communities. I used to buy the "work a couple of years for someone else first" statement, but after being more than a year very close to the heart of the Rails movement and reading a lot about startups (most importantly, "many":http://paulgraham.com/start.html "essays":http://paulgraham.com/hiring.html by "Paul Graham":http://paulgraham.com.), I believe I will learn more by doing it myself. Besides, running free is currently the only way to work on Rails in Finland.
+
+h4. 3. Be fit
+
+This is a goal very close to my heart after being without running for a month because of "ITB(Iliotibial Band Syndrome)":http://www.time-to-run.com/injuries/thebig5/itb.htm. I changed my orienteering club for the next season and my training motivation has been very high, so getting rid of the injury is on the top of my wish list. If the recovery goes ok, I'm awaiting some "very fine":http://www.jukola2006.net/index.php?lang=en "moments":http://www.10mila.se/2006/index.asp?page=&avd=1&lang=1 during the next summer.
+
+h4. 4. Get things done
+
+I'm looking for less things, not more. Less but better things. Things done better, to satisfy the "maximizer":http://www.baylor.edu/strengths/index.php?id=25460#%20q26 in me. Finish the "GTD":http://amazon.com/o/ASIN/0142000280/ref=nosim/jlainenet-20. Make my business more than a hobby. Reaching goal #1 is a major part in making this happen.
+
+h4. 5. Have fun
+
+This is a corollary from all of the goals above. Doing what I love and know best (sports and web/Rails development) must mean even more fun than before. If you say "Unprofessional", I say "Bullocks". I'm holding strongly of the opinion that happy people do the job better. #1 goal of my "consultancy":http://odesign.fi is to always have fun, whatever I do. Being happy and having fun also means that I will be a nicer person towards others.
+
+So, that's pretty much it. I probably forgot something greater than life, but bear with me.
+
+Oh, and one more thing:
+
+h4. The great bonus goal of 2006: Buy a new car
+
+I hope reaching the other goals will allow this, because my '88 Ford Escort might not stand another winter anymore. I was recently left with a broken handle in my hand after trying to open the left back door, and a "jumpstart pack":http://www.softwareandstuff.com/h-tol_2n1jumpr.html is a constant visitor under the hood, so some kind of update is more than due.

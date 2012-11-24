@@ -1,0 +1,9 @@
+---
+layout: post
+title: Welcome Cairo
+---
+I just upgraded my "browser of choice":http://www.caminobrowser.org/ to the "latest nightly build":http://ftp.mozilla.org/pub/mozilla.org/camino/nightly/latest-trunk/. Camino 1.0.3 has been anything but stable recently so I wondered the latest bugfixes can hardly make it worse. I got the spark from "Mr. Hicks":http://www.hicksdesign.co.uk who had a "comparison":http://www.hicksdesign.co.uk/journal/cairo-beats-safari between how the new "Cairo rendering engine":http://en.wikipedia.org/wiki/Cairo_%28graphics%29, Safari and the old Camino render light text on a dark background.
+
+Of course, it will come with some other new goodies, too, like (finally) a RSS feed icon in the address bar, "nice rounded corners":http://www.actsofvolition.com/archives/2006/december/cairocornersin and automatic spell checking in forms.
+
+So far the build of December 19 has been rock-solid (for a whopping hour ;-), so no complaints. And the new text rendering *is* nice.

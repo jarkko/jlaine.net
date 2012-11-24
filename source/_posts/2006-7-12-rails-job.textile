@@ -1,0 +1,41 @@
+---
+layout: post
+title: Rails Job
+---
+My friends at "Starnet Systems":http://www.starnet.fi/ are looking for a full-time Rails developer to join their international development team. See the full job posting and my translation below:
+
+h4. We're looking for a Web Application Developer to join our product development team in "JyvÃ¤skylÃ¤":http://www.jkl.fi/lang/.
+
+We're awaiting skills in database-backed web applications (e.g. PHP, Python, Java, .NET), basic knowledge in web technologies (XHTML, XML, CSS, DOM, Javascript, AJAX) and experience in Unix/Linux environments and networks. University degree and knowledge in agile software development methodologies, Ruby programming language and Ruby on Rails framework are considered a plus.
+
+Your tasks will include:
+
+* Designing and programming web-based applications using Ruby on Rails.
+* Designing and maintaining databases.
+* Systems support.
+* Working as a part of a skilled team.
+
+This is a full-time position. If you're ready to acquire new and apply old knowledge in responsible projects, send your application and resume to Hermanni HyytiÃ¤lÃ¤ (hermanni.hyytiala at starnet.fi).
+
+h4. Etsimme tuotekehitystiimiimme JyvÃ¤skylÃ¤Ã¤n: WEB-SOVELLUSKEHITTÃ„JÃ„Ã„
+(Web Application developer).
+
+Odotamme sinulta tietokantapohjaista Web-ohjelmointiosaamista (esimerkiksi PHP, Python,
+Java, .NET), Web-teknologioiden perustuntemusta (HTML, XHTML, XML, CSS, Javascript, DOM, AJAX)
+sekÃ¤ kokemusta Unix/Linux -ympÃ¤ristöistÃ¤ ja tietoverkoista. Korkeakoulututkinto, agiilien
+ohjelmistokehitysmenetelmien, Ruby-ohjelmointikielen tai Ruby On Rails -ohjelmointikirjaston
+tuntemus katsotaan eduksi.
+
+TehtÃ¤viisi tulee kuulumaan muun muassa:
+
+* web-pohjaisten sovellusten suunnittelu ja ohjelmointi kÃ¤yttÃ¤en Ruby On Rails -ohjelmointikirjastoa
+* tietokantojen suunnittelu ja yllÃ¤pito
+* jÃ¤rjestelmÃ¤tuki
+* työskentely osana taitavaa tiimiÃ¤
+
+Olet valmiina kokopÃ¤ivÃ¤iseen työhön sopimuksen mukaan sekÃ¤ oppimaan uutta ja soveltamaan
+vanhaa vastuullisissa projekteissa.
+
+LÃ¤hetÃ¤ hakemuksesi ja ansioluettelosi Hermanni HyytiÃ¤lÃ¤lle osoitteella hermanni.hyytiala (a) starnet.fi
+
+(posted with the new "TextMate Blogging Bundle":http://macromates.com/blog/archives/2006/06/19/blogging-from-textmate/)

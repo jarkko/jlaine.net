@@ -1,0 +1,18 @@
+---
+layout: post
+title: Ship Early and Often?
+---
+Joel Spolsky "asks":http://www.joelonsoftware.com/items/2005/11/02.html:
+
+bq. Does ship-early-and-often really work for a huge company doing massive PR pushes that's going to get millions of people checking out their early release?<br /><br />I don't think it does.
+
+He's probably right and David Heinemeier Hansson is on the same lines (as far as Open Source products are involved) in my "interview":http://jlaine.net/blog/83/interview-with-david-heinemeier-hansson. However, I think Joel's got something wrong:
+
+bq. Oh well. I don't remember Microsoft ever shipping anything quite this half-baked. Maybe that means that they're moving firmly into the "agile" camp: ship early and often.
+
+This is a clear misjudgement of agile or <acronym title="Extreme Programming">XP</acronym> methods. Like the pals at "37signals":http://37signals.com say, "create half a product, not a half-assed product". So the idea is not to release a half-baked product early. It is to first create a product that does _only_ the thing that's most crucial for it, and does it _well_.
+
+Otherwise the post is a good reminder of tarpits you expose yourself to if you start a company with a huge VC investment: You got loads of money and have to spend them somehow. You can't hire enough talent overnight to spend your budget. So the obvious target for the money become the ever-welcoming ad agencies. So you spend a million -- no, make that two -- to get a few walls covered with your URL at Times Square. And in a New York minute[1] your server is melted down by people discovering what you got to offer. And that ain't much. And they get pissed. And you get some pretty negative coverage. Not exactly what you wanted. So beware. This has happened. But it ain't got nothing to do with agility.
+
+
+fn1. My friends just moved to Upper East Side so I can't get enough of the Big Apple right now. And Joel lives there. And you gotta love city with 'Apple' in its name. So shut up.

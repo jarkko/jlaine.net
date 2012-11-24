@@ -1,0 +1,9 @@
+---
+layout: post
+title: Desktop Manager sacked for Virtue
+---
+I've been an avid user of "Desktop Manager":http://wsmanager.sourceforge.net/ ever since I learned about it. I've been a bit frustrated with some of its shortcomings, tho. The most annoying thing is that I have often a hard time finding a given window from the four desktops.
+
+h3. A new kid in town
+
+"Virtue":http://virtuedesktops.sourceforge.net/ is built on the shoulders of Desktop Manager and tries to get around the biggest cons of its predecessor. With Virtue you can click on an application icon and you'll be swapped into the right desktop automatically. That alone made me switch to using it. There should be a lot more in it, but I haven't yet had time to dive into other details. All in all, Virtue is a great addition to the arsenal of any hard core OS X user.

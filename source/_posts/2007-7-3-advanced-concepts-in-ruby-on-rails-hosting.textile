@@ -1,0 +1,9 @@
+---
+layout: post
+title: Advanced Concepts in Ruby on Rails Hosting
+---
+I've recently been looking into "Starfish":http://rufy.com/starfish/doc/ to provide more speed for "our":http://dotherightthing.com upcoming email alert functionality. While reading "Lucas' blog":http://tech.rufy.com/ I noticed that he's back blogging about their experiences at MOG. This time he's writing a series about Rails deployment which seems really interesting. Three parts so far, more to come:
+
+* " Advanced Concepts in Ruby on Rails Hosting Part I":http://tech.rufy.com/2007/06/advanced-concepts-in-ruby-on-rails.html
+* "Advanced Concepts in Ruby on Rails Hosting Part II":http://tech.rufy.com/2007/06/advanced-concepts-in-ruby-on-rails_25.html
+* "Advanced Concepts in Ruby on Rails Hosting Part III":http://tech.rufy.com/2007/07/advanced-concepts-in-ruby-on-rails.html

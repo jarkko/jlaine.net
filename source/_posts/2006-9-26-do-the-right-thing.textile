@@ -1,0 +1,28 @@
+---
+layout: post
+title: Do the Right Thing
+---
+When I was young (really young), my aunt told me we shouldn't buy  "NestlÃ©":http://en.wikipedia.org/wiki/Nestle products. The company was distributing free baby milk formula samples in third world countries, causing the mothers' own breast milk supply to dry up. The mothers would end up not being able to breast-feed their own children and thus spending all their money (if they had any) on the artificial formula. This "wasn't the only reason for the boycott":http://en.wikipedia.org/wiki/Nestl%C3%A9_boycott but that was what I was told back then. So I started to boycott NestlÃ©. Since I had no money to spend elsewhere, I convinced my family to be the executioners in my boycott.
+
+!>http://web.archive.org/web/20021203005411/http://www.greenpeace.org/esso/disloyalty_card_small.gif(StopEsso Disloyalty Card)!
+
+A few years later I was working on a website project for "Greenpeace":http://www.greenpeace.org/international/ when I stumbled upon the "StopEsso":http://web.archive.org/web/20021203005411/http://www.stopesso.org/ project.
+
+The "greenhouse effect":http://en.wikipedia.org/wiki/Greenhouse_effect and its connection to "global warming":http://en.wikipedia.org/wiki/Global_warming were by then a "known and proven phenomenon":http://en.wikipedia.org/wiki/Scientific_opinion_on_climate_change. Almost everyone agreed, including some of the "most vocal former opponents":http://en.wikipedia.org/wiki/John_Christy. Well, except "one company":http://en.wikipedia.org/wiki/Exxon_Mobil and - coincidentally - one president[1].
+The message of the StopEsso project was sad:
+
+bq. Exxon _[ExxonMobil, whose brands include Esso and Mobil]_ is doing more than any oil company to block international action on global warming. While the rest of the world tries to stop global warming, Exxon spends millions of dollars sabotaging US participation in the Kyoto Protocol, the international agreement to reduce climate-changing gases. We need to stop Exxon to stop global warming.
+
+I had never been a green fundamentalist, nor even an activist. I support green values but don't like people throwing stones at each other or burning fox cages no matter what the cause. But reading that text really hit the nerve. Our Esso credit card never got renewed. I've never voluntarily filled up at Esso stations ever since. I wanted to make an impact, even if a small one. Dammit, I wanted to _do the right thing_.
+
+At the same time it seemed that NestlÃ© hadn't really changed their habits. Shipping millions of liters of still water thousands of kilometers to a country with endless ground water supplies clearly indicates they just don't care. In 2004, "the largest ice cream manufacturer in Finland was bought by NestlÃ©":http://www.valio.fi/channels/konserni/eng/tanaan/uutiset/unnamed_350.html. It has made the boycott really hard (I'm an ice cream connoisseur) but I'm trying to stay true to my heart.
+
+Even though I feel these incidents have made _me_ do the right thing, my hands  still feel tied. The power of word-of-mouth is strong, but still local. Internet has helped to get to the information, but the information is still fragmented and doesn't necessarily have the impact  it would deserve on a company. If there are more companies as unethical (and I would be kidding myself believing there aren't), where would I find that information?
+
+It should thus come as no surprise that I was fertile ground when two crazy guys from southern California, "Ryan":http://www.ryanmickle.com/ and "Rod":http://rod.innovatebig.com/,  wanted me to build world's first social responsibility exchange with them -- a site that would bring the power back to the people, for good. I knew right away this was what I wanted to do.
+
+*Meet "dotherightthing.com":http://www.dotherightthing.com.*
+
+The site will be open for public in a few months. In the meantime, sign up at "dotherightthing.com":http://www.dotherightthing.com to get the most recent news about the project. You might even end up as a member of a private beta... and don't forget to subscribe to the "RSS feed":http://dotherightthing.com/index.php/feed/.
+
+fn1. Partly due to their lobbying, it took four years and a movie by an ex-vice president for a layman to even acknowledge the problem, not to mention to take action.

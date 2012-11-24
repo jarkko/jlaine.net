@@ -1,0 +1,5 @@
+---
+layout: post
+title: Rails Recipes Beta is out
+---
+The second English book about Rails, "Rails Recipes":http://pragmaticprogrammer.com/titles/fr_rr is out. Not in print, but in the PragProgs' excellent beta book format, which means that you can get the beta pdf (+ lifetime updates for the first edition) now and the printed version when it's ready. Obviously you can also buy just the pdf version. The book consists now of about twenty recipes but will grow to more than 70 during the spring. If "Agile Web Development with Rails":http://pragmaticprogrammer.com/titles/rails/index.html got you rolling on Rails, the new book will hone your skills to the extreme with proven advice for anything from user interface to "continuous integration":http://en.wikipedia.org/wiki/Continuous_integration. Highly recommended!

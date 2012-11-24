@@ -1,0 +1,9 @@
+---
+layout: post
+title: ! 'Usability tip: Display the city name first in a time zone drop-down list'
+---
+There's a lot of sites where you have to select your time zone as part of the registration process. The zones are often displayed like this: "(GMT+02:00) Helsinki". That sucks.
+
+Given that the time zone lists always have dozens of items, it's really annoying to scroll down to items further down the list. Fortunately, browser makers have been wise enough to implement keyboard navigation for drop-down lists. Therefore, when selecting a country, I can type "fin" and hit _enter_, and be quite sure Finland is selected.
+
+With the time zone lists like above, I can't use the keyboard. Or I could, but I would have to type everything until the "H" in "Helsinki" and that would pretty much cancel the benefits of using the keyboard. So if you need to implement time zone lists, do put the city name first and the time zone only after that. Sure, it's a minor annoyance but they tend to add up.

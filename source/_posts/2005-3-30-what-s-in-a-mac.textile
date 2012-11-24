@@ -1,0 +1,17 @@
+---
+layout: post
+title: What's in a Mac?
+---
+"David Heinemeier Hansson":http://www.loudthinking.com of "Ruby on Rails":http://rubyonrails.com fame has yet again stirred a hor€est by "stating":http://www.loudthinking.com/arc/000433.html that he would "??have a hard time imagining hiring a programmer who was still on Windows for 37signals.??"
+
+While David's tone is (more or less intentionally) pretty provocative, most of the angry commenters seem to have taken his thoughts totally backwards:
+
+bq. Great programmers are made by talent, not by the tools and platform they choose, damn it. Saying anything remotely otherwise is incredibly ignorant. ... Like I said, talent. I really don't see any link between the above and the choice of tools.
+
+Well, David never said great programmers are made of the tools. But as anyone who's read "Pragmatic Programmer: From Journeyman to Master":http://www.pragmaticprogrammer.com/ppbook/index.shtml knows, great hackers are passionate about the tools they use. That's why David is concerned about the "covers both needs just fine" attitude a few of the commenters advocate.
+
+I wouldn't be as harsh as David. I can imagine there are reasons why people really want to have a Windows PC. But if a developer is not passionate about making herself more productive, how could she be passionate about the project I would be hiring her for?
+
+What surprises me most, tho, is that still - in 2005 - the most common reason for avoiding a Mac seems to be the price. Well, let me tell you something. Powerbooks start at €1500 here in Finland, probably the most expensive corner of Europe. Believe me, you *will* have a hard time finding a comparative PC laptop at that price, let alone half of it.
+
+And to Simen Brekken, who's starting to love his 12" PowerBook but thinks it's too slow: it doesn't need a new CPU. It needs more RAM. Running Photoshop, Indesign and Illustrator simultaneously is nothing spectacular for G4, as long as it has 1GB or more RAM.

@@ -20,6 +20,7 @@ module Jekyll
       # first pass processes, but does not yet render post content
       entries.each do |f|
         if Post.valid?(f)
+          puts "reading post #{f.inspect}"
           post = Post.new(self, self.source, dir, f)
 
           # Monkeypatch:

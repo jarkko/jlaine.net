@@ -1,0 +1,11 @@
+---
+layout: post
+title: Patent wars&#8212;a doomsday scenario?
+---
+One of the major arguments of software patent proponents has been that the patents would only be a defensive shield for their owners. The latest "patent war":http://www.theregister.co.uk/2005/07/18/amazon_patent_suit/ between Amazon.com and Cendant shows "again":http://www.theregister.co.uk/1999/10/25/amazon_sues_barnes_noble_over/ how much the claim holds true (from "El Reg":http://www.theregister.co.uk):
+
+bq. In his defense, Bezos argues that patents are defensive and should never be used, and illustrated this when Amazon.com "sued":http://www.theregister.co.uk/2002/03/08/amazon_settles_1click_patent_dispute/ rival bookseller Barnes and Noble for infringing on its notorious One Click patent.
+In fact Bezos hates patents so much he has applied for 15 in his own name of which eight have been granted; as patent-watcher TheoDP noticed recently, one Amazon patent was granted "after five rejections":http://slashdot.org/article.pl?sid=05/07/13/232259 over four years. And as patent '399 shows, he was busy filing before Amazon.com had sold a single book.
+Clearly, the world needs more crusaders against patent abuse like Jeff Bezos.
+
+("The whole article":http://www.theregister.co.uk/2005/07/18/amazon_patent_suit/)

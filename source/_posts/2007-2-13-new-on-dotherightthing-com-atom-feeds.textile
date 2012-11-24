@@ -1,0 +1,40 @@
+---
+layout: post
+title: ! 'New on dotherightthing.com: Atom feeds'
+---
+We just went live with a "three week tuneup":http://gettingreal.37signals.com/ch15_One_Month_Tuneup.php at "dotherightthing.com":http://dotherightthing.com. The main update is the introduction of a wide variety of "Atom feeds":http://en.wikipedia.org/wiki/Atom_feed. I just wrote an "in-depth article about all the different feeds available on the dotherighthing.com blog":, but let me get a bit more geeky here.
+
+We're using "Ruby on Rails":http://www.rubyonrails.org and the "Simply Restful":http://ryandaigle.com/articles/2006/08/01/whats-new-in-edge-rails-simply-restful-support-and-how-to-use-it stuff in it so adding an Atom representation for a resource like entry, company or user is dead simple: just add a new response type with respond_to:
+
+<pre><code>  respond_to do |type|
+    type.html do
+      # normal stuff
+    end
+    type.atom do
+      # render the atom feed
+    end
+  end
+</code></pre>
+
+Now, when someone requests the action with type atom (e.g. "http://dotherightthing.com/companies/starbucks.atom":http://dotherightthing.com/companies/starbucks.atom), the code inside @type.atom@ will be executed. However, the niceties don't stop there. The new "resource_feeder":http://www.ryandaigle.com/articles/2006/09/14/whats-new-in-edge-rails-get-your-rss-atom-feeds-for-free plugin makes everything even easier. We don't need to setup a specific template for the feeds at all, all we have to do is to specify some options that don't match the standard and then call render_atom_feed_for:
+
+<pre><code>  feed_options = { :feed => 
+                      {:title => "dotherightthing.com #{params[:sort]} entries",
+                       :link => entries_url(:sort => params[:sort])},
+                   :item => {:description => :body_html},
+                   :class => Entry }
+
+                   ...
+
+  type.atom do
+    render_atom_feed_for(@entries, feed_options)
+  end
+</code></pre>
+
+And that's it! 
+
+Another great thing about Simply Restful is that all the url's are extremely logical. A user profile can be viewed at "http://dotherightthing.com/users/jarkko":http://dotherightthing.com/users/jarkko, a feed for his content is at "http://dotherightthing.com/users/jarkko.atom":http://dotherightthing.com/users/jarkko.atom. The same is true for companies: "http://dotherightthing.com/companies/apple":http://dotherightthing.com/companies/apple â†’ "http://dotherightthing.com/companies/apple.atom":http://dotherightthing.com/companies/apple.atom.
+
+Gotta love the RESTful features in Rails!
+
+Don't forget to check out "the variety of feeds":http://blog.dotherightthing.com/index.php/2007/02/13/three-week-tuneup-rssatom-feeds/ we offer at "dotherightthing.com":http://dotherightthing.com/.

@@ -1,0 +1,46 @@
+---
+layout: post
+title: Rails developers wanted in Stockholm
+---
+My friend "Peter":http://marklunds.com/ just started as the CTO of Adocca, a company building a large community site on "Rails":http://www.rubyonrails.com. They're now looking to hire several talented programmers experienced with or willing to learn Rails. So if you're living in (or willing to move to) the Stockholm region, and want to jump on the Rails bandwagon, read on for the full announcement:
+
+<blockquote><p>
+We are building a new major community site with many cutting edge
+features using the latest in web technologies. We now need to expand
+our staff with several Rails programmers as well as designers and
+system administrators.</p>
+
+The project is very ambitious and fast paced and has many talented
+people involved. There is a stock option program offered to employees.
+
+Our development is done with Mac OS X and we deploy to Red Hat
+Enterprise Linux and MySQL 5.
+
+We are located in a very attractive office at "Muenchen Bryggeriet"
+overlooking the water and the old town in central Stockholm.
+
+Required Skills:
+
+* Experience with HTML, CSS, and JavaScript
+* Experience in object oriented development (for example in
+Java, .NET, or PHP)
+* Proficiency in relational databases and SQL
+* An interest in new web technologies such as AJAX
+* Comfortability working on the command line in a Unix environment
+* Is keen on software quality and believes in simplicity and
+automated testing
+* Strong written and oral communication skills in english
+* A basic understanding of website usability
+
+Desired Skills:
+
+* Experience with Ruby and/or Ruby on Rails 
+* Experience with developing complex high traffic websites 
+* Experience with MySQL  
+* System administration skills, preferrably with Linux 
+* Willingness and ability to write technical documentation 
+* Ability to design nice looking and user friendly web pages 
+
+</blockquote>
+
+If you're interested, contact Peter (peter_marklund AT fastmail dot fm) and ask for more info.

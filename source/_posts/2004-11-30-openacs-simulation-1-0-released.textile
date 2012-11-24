@@ -1,0 +1,9 @@
+---
+layout: post
+title: OpenACS Simulation 1.0 released
+---
+I'm proud to announce that we've released the version 1.0 of Simulation package for "OpenACS":http://openacs.org/ (Open Architecture Community System).
+
+The major part of the package was developed by the nice folks at "Collaboraid":http://collaboraid.biz and my job was to finish the project and to make minor modifications to the system to get it ready for launch.
+
+The Simulation package was developed for and financed by "Project RechtenOnline":http://www.rechtenonline.nl, a Dutch project to facilitate and improve virtual learning in law schools across the country.

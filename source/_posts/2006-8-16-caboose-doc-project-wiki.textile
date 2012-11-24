@@ -1,0 +1,5 @@
+---
+layout: post
+title: Caboose Doc Project Wiki
+---
+If you have ideas on how to best use the funds raised by the "Caboose":http://blog.caboo.se/ "Documentation Project":http://blog.caboo.se/pages/documentation_drive effort, please post them to the new Caboose "Documentation Wiki page":http://caboose.stikipad.com/documentation at "Stikipad":http://www.stikipad.com.

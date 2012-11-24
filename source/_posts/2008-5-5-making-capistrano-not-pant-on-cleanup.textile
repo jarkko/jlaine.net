@@ -1,0 +1,27 @@
+---
+layout: post
+title: Making capistrano not suffocate on cleanup
+---
+When trying to deploy an app on the production server, the @deploy:cleanup@ task always died for me like this:
+
+<pre><code>  * executing `deploy:cleanup'
+  * executing "ls -x /opt/sites/mysite/releases"
+    servers: ["myserver"]
+    [myserver] executing command
+    command finished
+ ** keeping 3 of 4 deployed releases
+  * executing "rm -rf /opt/sites/mysite/releases/20080220092659"
+    servers: ["myserver"]
+    [myserver] executing command
+ ** [out :: myserver] sudo: no passwd entry for app!
+ ** [out :: myserver] 
+    command finished
+command "rm -rf /opt/sites/mysite/releases/20080220092659" failed on myserver
+</code></pre>
+
+Turns out capistrano is for some reason trying to use a user called _app_ in the cleanup task even though the @:user@ parameter is set to something else in @config/deploy.rb@. The solution was to set the @:runner@ parameter as well:
+
+<pre><code class="ruby">set :runner, 'someotheruser'
+</code></pre>
+
+Don't ask me why that worked. It seems a bit counterintuitive that the cleanup task uses the @runner@ param rather than @user@. Found the hint towards the solution "here":http://groups.google.com/group/capistrano/browse_thread/thread/0d396a96d1946ba3.

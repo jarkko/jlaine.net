@@ -1,0 +1,16 @@
+---
+layout: post
+title: Upgrading MySQL on OS X for Rails
+---
+So I stumbled upon a problem with my Rails app. Or with MySQL, to be precise. I needed to use date() functions in a query to compare timestamps. I know, I could've done it some other way but I like to keep things simple. The only problem was that my laptop was running MySQL 4.0 which (imagine that!) didn't support date().
+
+I hesitated a bit if I wanted to go through the update process just for this but because I from now treat problems, not symptoms, I decided to dive straight into it.
+
+I installed the latest MySQL with DarwinPorts and moved my old databases to the new folder (this wasn't what I initially tried to do but it was how I got things working in the end. Besides, fighting with MySQL isn't, despite the headline, the meat of this story). Then I changed the StartupItem in /Library to point to the new mysql.server script and the server was up.
+
+The problems started (oh well, continued) when I tried to use my Rails app. I got the same errors as when I tried to use the old mysql client with the new server. I finally figured out that the reason for this was that the MySQL/Ruby bindings were compiled for the old server. I banged my head against a wall for a while before I found out from Jason's "OS X tutorials":http://manuals.textdrive.com/read/chapter/3#page7 that gem install needs two extra dashes before giving the configure options to it. Finally I got it all working so here's the command you need to get MySQL/Ruby bindings for a DarwinPorts-installed MySQL server:
+<pre><code>
+sudo gem install mysql -- \\
+--with-mysql-include=/opt/local/include/mysql/ \\
+--with-mysql-lib=/opt/local/lib/mysql/
+</code></pre>

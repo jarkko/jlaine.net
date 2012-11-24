@@ -1,0 +1,9 @@
+---
+layout: post
+title: Training
+---
+I'm writing this in a train (my favorite work place -- only the wifi is missing) back from two days of Rails training with the guys from "Reforge":http://www.reforge.fi. As "Geoff":http://nubyonrails.com/articles/2006/02/10/london-carson-workshops, I probably learned as much or more during the training as the students. We spent most of the second day writing unit tests and trying out interface and test driven development while coding the "most important part of their upcoming application":http://www.37signals.com/svn/archives2/product_roadmaps_are_dangerous.php?49. We even tried out the "Rails Selenium plugin":http://blog.viney.net.nz/articles/2006/02/09/selenium-testing, which turned out to be great.
+
+I was very pleasantly surprised by how much the guys appreciated the value of testing in both theory _and_ practice. They're sure going to succeed with that attitude (and Rails :).
+
+That said, while my rough schedule is pretty much fixed for March already, there's still some place for short training and consulting gigs. So if you want to get your team a flying start in Rails development, drop "me":mailto:jarkko@jlaine.net a mail and we'll arrange a session. 

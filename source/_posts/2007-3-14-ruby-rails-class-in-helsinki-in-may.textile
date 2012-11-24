@@ -1,0 +1,9 @@
+---
+layout: post
+title: Ruby/Rails class in Helsinki in May
+---
+I will give the first-ever open "Finnish Ruby/Rails class":http://rubyonrails.fi/2007/3/11/ruby-ja-rails-koulutus-toukokuussa-helsingiss May 8-11 in Helsinki. The class will have 4 intensive days of learning (2 for Ruby and 2 for Rails) the basics of the "#1 technology to know in 2007":http://computerworld.com/action/article.do?command=viewArticleBasic&articleId=9011969&intsrc=hm_ts_head.
+
+The class will be very affordable (€500 + 22% VAT) to make it possible for even freelancers and small business employees to get comfortable with Ruby and Rails. The seats are very limited (only 10 slots sold openly), so be quick or prepare to wait for the next opportunity.
+
+Read the "more detailed Finnish d€ion of the class on rubyonrails.fi":http://rubyonrails.fi/2007/3/11/ruby-ja-rails-koulutus-toukokuussa-helsingiss. 

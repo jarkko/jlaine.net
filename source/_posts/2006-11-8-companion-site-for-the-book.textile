@@ -1,0 +1,9 @@
+---
+layout: post
+title: Companion site for the book
+---
+I set up a companion site for the book at "railsecommerce.com":http://www.railsecommerce.com. If you can't access it yet (it's still traveling around the DNS servers of the world), it can also be found at "jlaine.net:8010":http://jlaine.net:8010.
+
+The site already has the sample code for the book, and will also sport the errata and a few sample chapters as soon as I get the system up and running. We will also be writing articles about all things related to Rails and E-Commerce on the site.
+
+Check the site out and don't forget to subscribe to the Atom feed!

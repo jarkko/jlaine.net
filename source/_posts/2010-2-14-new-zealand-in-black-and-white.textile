@@ -1,0 +1,13 @@
+---
+layout: post
+title: New Zealand SVG Map in Black and White
+---
+<a href="http://www.flickr.com/photos/jarkko/3273520632/" title="High Tide by supervillain, on Flickr"><img src="http://farm4.static.flickr.com/3312/3273520632_e0a3af6af4.jpg" width="500" height="151" alt="High Tide" /></a>
+
+We had the luxury of spending six weeks around New Zealand in last February and March, including a visit to "Webstock '09":http://www.webstock.org.nz/. This year's conference is about to start within hours, and while I won't be able to attend this time, I will celebrate the event by publishing the SVG New Zealand map I produced for the travelogue book of our trip (click the map to get to the SVG version):
+
+!http://img.skitch.com/20100214-cm236x5ccawk4g624ibibmkuq9.png(New Zealand map)!:http://dl.dropbox.com/u/3101464/New_Zealand_location_map_bw.svg
+
+The map is based on "this map":http://commons.wikimedia.org/wiki/File:New_Zealand_location_map.svg on Wikipedia Commons, converted to the only true Kiwi colors, #000 and #FFF.
+
+Since the original SVG file is published under the "Creative Commons":http://en.wikipedia.org/wiki/en:Creative_Commons "Attribution-Share Alike 3.0 Unported":http://creativecommons.org/licenses/by-sa/3.0/deed.en license, that's what I'm going with as well. So do what you want with the map, but don't forget the virus.

@@ -1,0 +1,9 @@
+---
+layout: post
+title: Heads up for Passion
+---
+I'm a huge fan of Kathy Sierra's "Creating Passionate Users":http://headrush.typepad.com/creating_passionate_users/ blog, as well as passion in _everything_. As a tribute to _CPU_, I will tomorrow start a series of posts about passion in web and business. Until then, you'll have to do with a quote from Kathy's latest "article":http://headrush.typepad.com/creating_passionate_users/2006/01/death_by_riskav.html:
+
+bq. ...if you're not doing something that someone hates, it's probably mediocre.
+
+So true. Be hated. Be loved.

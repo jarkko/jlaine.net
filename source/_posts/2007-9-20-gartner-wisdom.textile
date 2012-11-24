@@ -1,0 +1,14 @@
+---
+layout: post
+title: Gartner Wisdom
+---
+In a "Computerworld article":http://www.computerworld.com/action/article.do?command=viewArticleBasic&taxonomyId=12&articleId=9037398&intsrc=hm_topic telling about Steve Jobs and Apple fighting iPhone unlocking (emphasis mine):
+
+bq. Carolina Milanesi, a Gartner Inc. analyst who was at the London presentation, said she wondered if it matters much in the long run whether Apple stays a step ahead of hackers, as Jobs said it must do. "At the moment, as a consumer, you need to be very careful about unlocking the iPhone, and know how you want to use it," she said. _"If you unlock it, you are not going to have a flat rate, and you will not have access to the 7,500 hot spots."_
+
+Huh? A 384Kbps (much more than iPhone can handle) flat rate plan runs around €10/month in Finland. And you have access to each and every wifi hotspot in the world with iPhone.
+
+bq. "If you unlock and then use the Internet and e-mail, you may be surprised€r first bill," she added, referring to the pay-as-you-go data rates charged by most carriers in the country and elsewhere in Europe.
+
+What the fsck does that have to do with iPhone? You pay what and how you pay regardless of the phone. You probably know what your existing contract charges for data if you're contemplating buying and unlocking an iPhone.
+

@@ -1,0 +1,11 @@
+---
+layout: post
+title: Microsoft provides free IE6 virtual machine for web developers
+---
+When developing "dotherightthing.com":http://dotherightthing.com, it's been a real PITA to develop for Internet Explorer. I'm working on a Mac and have to do the Windows testing on the _gf_'s laptop. After I installed IE7 on the box, there was no easy way to run version 6 on it anymore. However, IE6 and IE7 both have their quirks which are, of course, completely different from one another.  As sad as it might be, IE6 is still the most popular browser on the market, so the situation was untenable.
+
+I tried to use a standalone IE6 from the "Browser Archive":http://browsers.evolt.org/, but unfortunately I couldn't even login to our dev system using it. It seems that it really isn't that standalone and gets the cookies somehow mixed up (or doesn't accept them at all, dunno), so the value of it was practically zero.
+
+Luckily, for once something really useful from the MS land: "IE6 and IE7 Running on a Single Machine":http://blogs.msdn.com/ie/archive/2006/11/30/ie6-and-ie7-running-on-a-single-machine.aspx: free Virtual PC 2004 + a virtual machine for testing on IE6. Haven't yet tested it but it sounds cool enough for small teams that don't want to spend on Parallels + a Windows license or another Windows machine just for debugging the IE6 hell.
+
+(via "Assemblix":http://assemblix.net/)

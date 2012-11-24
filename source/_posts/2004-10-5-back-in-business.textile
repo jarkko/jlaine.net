@@ -1,0 +1,11 @@
+---
+layout: post
+title: Back in Business
+---
+OK, I'm back after an eventful weekend at the coast. I run two competitions on the Saturday and then we had the housewarming party of my friend in Turku.
+
+The first race was the Finnish Relay League final, I ran in our second team since I was feeling really tired after the military games. The race went still quite ok.
+
+On the afternoon we had the first-ever SonniTonni, club championships in 1000m on the track. I finished second at 2:43, a very good time considering the hard schedule during the previous days.
+
+Anyway, we are moving to a new flat these days, so my posts will still be pretty irregular for a few days. I hope I can still dig into my "Rails":http://www.rubyonrails.org project soon again. 

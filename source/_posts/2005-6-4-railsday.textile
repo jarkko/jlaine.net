@@ -1,0 +1,7 @@
+---
+layout: post
+title: Railsday
+---
+So here it is, the first ever "Railsday":http://www.railsday.com/ 24h coding contest, starting tomorrow at 8AM Finnish time. Unfortunately I won't be participating since I will be fighting for Finnish championship in sprint orienteering at the same time. Luckily the organisers have already announced that there will be rerun so maybe I will be able to cut my teeth some day, too.
+
+On other news, I will fly down to Copenhagen next Wednesday. What a three days it will be. I'll first take part in the first ever "Building of Basecamp workshop":http://37signals.com/workshop/ in Europe. After that it's time for "Reboot7":http://reboot.dk,  a "_meetup for the practical visionaries who are building tomorrow one little step at a time_". Besides making new contacts I will also meet some old "OpenACS":http://openacs.org friends like "Lars Pind":http://pinds.com and "Guan Yang":http://unicast.org/ for whom I have a great respect. Can't wait to get on the plane :-)

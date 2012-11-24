@@ -1,0 +1,5 @@
+---
+layout: post
+title: rubyonrails.fi is running
+---
+Finally, "rubyonrails.fi":http://rubyonrails.fi/ has seen the light of day. It's still pretty rudimentary, sporting the default Mephisto theme, but already has its first articles published. We also set up a "Finnish Rails wiki":http://finnishrails.stikipad.com/wiki/show/HomePage, which will hopefully be accessible through wiki.rubyonrails.fi in the near future. So if you speak Finnish and are interested in Rails, head on over and fill the blog and wiki with questions.

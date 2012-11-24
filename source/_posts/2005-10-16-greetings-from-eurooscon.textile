@@ -1,0 +1,17 @@
+---
+layout: post
+title: Greetings from EuroOSCON
+---
+A few impressions from the first ever "E€ Open Source Convention":http://conferences.oreillynet.com/eu€/ in Amsterdam.
+
+* The main street between central station and central square was really full with people. Stuffed.
+* I got into my smoke-free room on the third attempt. First I was handed a smoking room, then a smoke-free room with nonfunctional key and finally everything went fine. Good excercise.
+* I went through the two last hours of my presentation on the spot in the grand ballroom. My Rails tutorial has been attracting most people of all the tutorials (yay!) so it was moved there instead of Amsterdam room.
+!http://static.flickr.com/28/53065004_549ba2a54d_m.jpg(Welcome to EuroOSCON)!:http://www.flickr.com/photos/jarkko/53065004/in/set-1150619/
+
+* The hotel _is_ poshy. You thought the breakfast buffÃ© on the Baltic sea ferries costs something. Think again. Having breakfast in the wintergarden here makes you 22€ poorer.
+* I'm feeling both pretty excited and surprisingly little nervous about the tutorial. I guess the practice is starting to pay dividends.
+* The free conference wifi doesn't stretch all the way to my room so I ended up paying 12.50€ per day to Swisscom. The whole conference would have been 60€ but I'm here only for 3 days so where's the bargain?
+* I won't be wearing an "AJAX Amsterdam":http://english.ajax.nl/indexns.html shirt during my presentation. I contemplated buying one in the airport but then the whole idea struck me as a bit too corny so I let it for Paul Everitt in his "Model-Driven AJAX tutorial":http://conferences.oreillynet.com/cs/eurooscon/view/e_sess/7233.
+
+I created a "Flickr set":http://www.flickr.com/photos/jarkko/sets/1150619/ for the convention and will be updating it during the week. Stay tun

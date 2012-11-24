@@ -1,0 +1,27 @@
+---
+layout: post
+title: Reboot woes
+---
+h2. Wednesday
+
+Had a nice (and expensive) dinner in Cafe Ketchup in Copenhagen Tivoli with lots of Danish bloggers and "Scoble":http://radio.weblogs.com/0001011/. The night turned adventurous when I tried to get out of the already closed Tivoli. After banging the gates for a while with some locals a nice bartender let us out through the emergency exit of his bar. Now that's a good idea for maximizing your daily income: close the area before the restaurants inside it shut down.
+
+h2. Thursday
+
+Building of Basecamp day. The workshop turned out to be as great as rumoured. I can't say I heard that much completely new stuff (ok, I've probably followed "37signals":http://37signals.com, "Basecamp":http://www.basecamphq.com and "Rails":http://rubyonrails.com a _bit_ closer than average) but hearing all that in a single workshop, in such a coherent manner was probably worth the juicy price.
+
+In the evening we joined the pre-reboot party at someone's own (!) pub. Saw for the first time a lot of online friends and enjoyed the generous free beverages. The evening ended with a dinner in supposedly the oldest restaurant in Copenhagen, Lille Apoteket. Get one of the steaks if you ever stumble upon the place, at least the pepper steak was excellent.
+
+h2. Friday
+
+h3. Keynotes
+
+"Doc Searls":http://www.searls.com/ was really great, you should definitely see him speaking some time. "Scoble":http://radio.weblogs.com/0001011/ was, well, a bit unorganized compared to Searls and I didn't get much more out of his speech than that I should blog. OK, I will.
+
+h3. Calacanis
+
+I have to admit, I wasn't that familiar with "Jason Calacanis":http://calacanis.weblogsinc.com/ before, but he turned out to be a great speaker, too, articulating the power of blogging a *lot* better than Scbole. Here's his own "post":http://calacanis.weblogsinc.com/entry/1234000243046277/ about the talk.
+
+After Calacanis, David Axmark of "MySQL":http://www.mysql.com fame talked about how to make money with Open Source software. The topic was really up my alley, maybe a bit too much, since I didn't find anything really new from his speech. Maybe his quite monotonic presentation had something to do with that, too.
+
+The lunch was predated by a talk by "Ben Cerveny":http://www.ludicorp.com/team_member.php?id=7, an interface designer behind e.g. "Flickr":http://www.flickr.com/ and Quake. The presentation on Game theory was a disappointment for me as I had waited quite a bit more. It all just went flying high past me, don't really know why. Lars offers one "explanation":http://www.pinds.com/blog/one-entry?entry%5fid=39969 with comments from Ben. 

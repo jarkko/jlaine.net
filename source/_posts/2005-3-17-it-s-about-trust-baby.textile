@@ -1,0 +1,9 @@
+---
+layout: post
+title: It's about trust, baby
+---
+O'Reilly Network has a great "interview":http://www.oreillynet.com/pub/a/network/2005/03/10/basecamp.html with Jason Fried, president of "37signals":http://www.37signals.com. Something Jason says in the interview really resonates with me (also quoted by "DHH":http://www.loudthinking.com/arc/000420.html):
+
+bq. If you don't trust your developer to choose the right environment, then how can you trust him to build the best application? Trust is critical here. And, further, why would you dare impact your developer's morale by throwing him or her into a language where he can't be as productive or as satisfied? You only get good work from people who enjoy doing the work. I'll take a happy average programmer over a disgruntled, frustrated master programmer any day.
+
+I don't understand how any other attitude would make any sense, and still this globe is full of CTO's "knowing" what's the best for their developers. I'm privileged to work with clients like "Aaltonen Shoefactory":http://www.aaltonenshoe.com who trust in my opinion to choose the best tools and solutions for my and, ultimately, _their_ needs. A great *thank you* for that.

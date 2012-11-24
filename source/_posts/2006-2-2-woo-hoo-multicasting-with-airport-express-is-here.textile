@@ -1,0 +1,5 @@
+---
+layout: post
+title: Woo hoo! Multicasting with Airport Express is here
+---
+I've somehow missed this: Andy Budd "reports":http://www.andybudd.com/archives/2006/01/streaming_music_to_multiple_speakers_using_itunes/index.php that you can now stream your iTunes music to multiple Airport Express stations simultaneously. This means that you can saturate the music needs of your whole home from a single iTunes collection. No more having to decide whether you want the music played from the living room or bedroom speakers. Reeeally nice.

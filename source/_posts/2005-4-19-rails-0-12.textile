@@ -1,0 +1,29 @@
+---
+layout: post
+title: Rails 0.12
+---
+I've long suspected that "David Heinemeier Hansson":http://www.loudthinking.com is some kind of mindreader. This morning, when "Rails":http://www.rubyonrails.com "0.12":http://feeds.feedburner.com/RidingRails?m=59 came out, I'm even more convinced about that.
+
+h4. Eager loading of associations.
+
+This is a very cool addition to the arsenal of ActiveRecord. You can now select which associated objects get loaded automatically when you use find to get a bunch of things from the database.
+
+h5. Example:
+
+<pre><code>for model in Model.find(:all, 
+                  :include => :products) do
+  puts "Title:            " + 
+     model.title
+  puts "Number of models: " + 
+     model.comments.size
+end</code></pre>
+
+In the olden days, this kind of code would have meant N+1 sql queries where N is the number of models. And now? One. Uno. Ett. The magical _include_ clause in the <code>find</code> call causes Rails to automatically craft a join query that fetches not only the model objects but also all the product objects associated to them.
+
+h4. Even better AJAX support
+
+This is what got me thinking about DHH's supernaturality. Last week I was playing around with the new AJAX stuff and noticed that there was no way to specify the "normal" href attribute in the AJAX-powered links and forms, for those people who don't have a browser supporting ajax (mainly people with disabilities). Well, I didn't even have time to write a ticket about it when it's already fixed.
+
+Not convinced yet? Ok. How about this. I'm writing a simple intranet for our club and thought that it would be cool to have a simple bulletin board on the front page where people could just leave quick, non-threaded messages with AJAX. The problem was that even when the writer can see her note in no time, others can't. So <code>periodically_call_remote</code> to help, updating the given part of the page periodically.
+
+OK, but stop listening to me. Go read the "full post":http://feeds.feedburner.com/RidingRails?m=59 about the enhancements yourself.

@@ -1,0 +1,5 @@
+---
+layout: post
+title: Understanding MVC
+---
+Amy Hoy of "_OnLAMP Tutorial for Designers' Brains_":http://www.slash7.com/flashback/2005/01/oreilly_onlamp.html#more fame has written a great "writeup":http://www.slash7.com/flashback/2005/02/mvc_the_most_ve.html on MVC(Model-View-Controller) pattern and how it relates to "Rails":http://rubyonrails.com. So, if you've always wondered what the heck it means that Rails is a full-stack framework, go read it. Now.

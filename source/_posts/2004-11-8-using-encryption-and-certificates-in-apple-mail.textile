@@ -1,0 +1,9 @@
+---
+layout: post
+title: Using encryption and certificates in Apple Mail
+---
+When I for a few years ago was still in PC land, there was a neat little app called PGP(Pretty Good Privacy). It uses a public key method to encrypt/decrypt mail messages. The problem with the app was that I never got around to coupling it well with a mail application. Besides, I never knew which messages I should sign or encrypt and which not, and these reasons together effectively made me not to use PGP at all.
+
+Enter Mac world. I started getting mails with *Signed* tags on them. I checked the Mail.app help to find out how I could do the same. The cool thing was that OS X Mail has indeed built-in support for digital signatures and encrypting and provides a switch to encrypt a message when appropriate. Unfortunately, despite saying how easy things were, the help file never told how to get things up and running in the first place. The procedure for this isn't hard, it just can't be done inside Mail.app, so a "step-by-step guide for getting a mail certificate working":http://freerange.bipedz.net/blog/Computers/MacOSX/Panther/2003.10.26.HowtoEncryptMail.html came in very handy.
+
+Go ahead, check it out. I find this a very useful and cool feature of Mail.app that has for some reason been neglected by the Apple marketing (and help/tip writing) staff.

@@ -1,0 +1,32 @@
+---
+layout: post
+title: In Search of the Best OS X Feedreader
+---
+I'm a news junkie, and not the "only one":http://jeffcroft.com/blog/archives/2004/12/rss_owns_me.php. Unfortunately, I haven't found a working feedreader I'd unconditionally love.
+
+First there was NetNewsWire. Nice, but didn't feel quite right. Then came Shrook, with the great feature of ordering the feeds according to the latest entry. Rulers marking the time from the posting, 1 hour, 1 day etc. _Very cool_.
+
+When Shrook 2 was announced, I was in heaven. The first version was already great, if not quite there, so I could hardly wait for the next revision, which seemed to promise me the moon. And what did I get? Blah. Squeesh. Bummer. A christmas tree.
+
+Now the creators of Shrook didn't obviously recognise that if people wanted to slice and dice and organize their feeds in what way ever, they would choose NNW. Putting all the features on earth in one product can make it great, but few can make the software simple, intuitive and super-powerful simultaneously. Shrook 2, unfortunately, failed miserably. Only looking at the "interface":http://www.fondantfancies.com/shrook/ makes me feel sick.
+
+I don't want four equally wide panes in a feed reader. I want a decent way to navigate between feeds and articles but _the most important thing in the window is the article_. In Shrook 2 this wasn't anymore the case, so I looked elsewhere and found NewsFire.
+
+"NewsFire":http://www.newsfirerss.com/ hits the market segment that other feedreader manufacturers seem to have totally forgotten: people who want a clean, lean, fast and intuitive way to read their news. I currently subscribe to about 75 feeds and the figure is increasing. There's no way I can easily follow them with NNW's static subscription order. You say organize them in folders. I say balderdash. I subscribe to a few mailing lists that Mail.app automatically filters in their own folders. I _never_ read them. Out of sight, out of mind.
+
+Dave Watanabe, the creator of NewsFire, seems to have an excellent sense of how my mind is working. The feeds are organized just like in the original Shrook (although the timeline rules are missing), so the most current feeds are always shown first. That's _the way it should be_. Plus, the user interface is really simple in any way, so the app is a real joy to use.
+
+So where's the catch? It crashes. NewsFire and "Quicksilver":http://quicksilver.blacktree.com/, two mighty good applications, seem to have two things in common. They are both ground-breakingly innovative and user-centered â€”Â and they both crash after 10 minutes to 2 hours after their launch. What really pushed me to find another solution until NewsFire matures (yes, I have reported the bug) was that when it crashes, NewsFire always loses the sense of which posts I have already read.
+
+Today I downloaded both "NetNewsWire 2":http://ranchero.com/netnewswire/beta.php and "PulpFiction":http://freshlysqueezedsoftware.com/products/pulpfiction/, two apps that both have quite a few major proponents. Here's a few quick observations:
+
+h3. NetNewsWire
+* It now has in-built webkit so you don't have to switch to safari to read the full posts.
+* While many of the shortcomings in the 1.X have been addressed, the most important flaw to me, static order of the subcriptions in the left panel, is still there (as far as I can tell), making it an instant no-go for me.
+
+h3. PulpFiction
+* The UI is clearly innovative, more post- than feed-centric, making it look more like Mail.app.
+* The posts can be sorted by date, which is great (and natural), but it's harder to keep track of whole feeds than with other readers.
+* Because of the previous point, didn't really click to me.
+
+Anyone (Dave?), relieve me from my pains. Why does NewsFire crash? Why can't any other of the players understand how the feeds should be served? Any products I've missed? Anyone? I'm sinking...

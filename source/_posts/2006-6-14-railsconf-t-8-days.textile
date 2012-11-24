@@ -1,0 +1,17 @@
+---
+layout: post
+title: RailsConf, T-8.days
+---
+Instead of getting back to my backlog of blog posts, let's look ahead. After the Christmas of every orienteer, "Jukola relay":http://www.jukola2006.net/index.php?lang=en, I will jump to a plane and fly to Chicago for the first-ever "RailsConf":http://railsconf.org.
+
+!http://nubyonrails.com/images/typo_graphs/countdown_railsconf.png(Countdown to RailsConf)!
+
+(I snatched the countdown pic from "Geoff":http://nubyonrails.com/, go see his "post about the graphic":http://nubyonrails.com/articles/2006/06/11/countdown-to-railsconf)
+
+I will travel together with "Lauri Jutila":http://reforge.fi/ on Monday and we should be at O'Hare at around noon (SAS flight SK0945 from Stockholm). We'll stay the first two nights in "Sheraton Suites Elk Grove Village":http://www.starwoodhotels.com/sheraton/search/hotel_detail.html?propertyID=91 and move to the conference hotel on Wednesday.
+
+I will stay in Chicago (alone) until Thursday June 29th. My plans are to crash to some B&B or hostel near downtown Chicago after the conference ends and do touristing, running and (maybe) bike trips from there around the city. If you're staying in Chicago for longer than just the conf, ping me and we can hook up.
+
+I also contacted and got a very warm response from the "Chicago Area Orienteering Club":http://www.chicago-orienteering.org/. I'll run a sprint-O event on Wednesday 21st, just before the conf, and they also promised me some maps where I can go training during my stay. I was even invited to a dinner by a local orienteer whose wife happens to be Finnish. Clark is renting out very nice "historic apartments around Chicago":http://www.aptschicago.com/, so if you're looking for a place to stay there for longer periods, get in contact with him.
+
+I'm really excited about the whole trip. It'll be my first visit to US and there are so many people I've known for a long time from the Rails community but whom I've never met in person. See you all in Chitown!

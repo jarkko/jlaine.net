@@ -1,0 +1,21 @@
+---
+layout: post
+title: Flash in registration &mdash; Not at all great
+---
+I could write a whole entry complaining about the (nonexis€ac support of the two Finnish [sic!] makers of heart rate monitors and sports wrist computers, "Polar":http://www.polar.fi and "Suunto":http://www.suunto.com. I'll save that for later, however.
+
+I felt a sense of hope when I found "Polar Running Coach":http://www.polarrunningcoach.com, a web-based software for maintaining the data collected by a Polar monitor. Maybe -- just maybe -- they would have been able to create an applet that is able to command the USB infrared port used to get the data out of my "Polar S710":http://www.polar.fi/polar/channels/eng/segments/products/S710i.html. Unfortunately, I never got far enough to find out.
+
+Someone at Polar seems to have thought it'd be neat to use Macromedia Flash for the registration process of the Running Coach. It's not. It's stupid as hell. It totally highlights the biggest usability and accessibility problems in Flash.
+
+"But hey, 95% percent have Flash player, how could we possibly go wrong with? Besides, with it we can build as great-looking drop-down widgets as we want to. How cool is that?"
+
+Here's how my registration ended:
+
+!http://photos13.flickr.com/17763350_79e7fc7c0c.jpg!:http://www.flickr.com/photo_zoom.gne?id=17762636&size=o
+
+Now how cool is that? Especially after spending about ten minutes filling in information about myself. Note that there are no links I could use to back up to the previous step. And as the wizard is made in Flash, I can't use my beloved back button because it will throw me in vaults out of the whole registration process. Complete bummer.
+
+Oh, but we still have the cool drop-downs, don't we? Using the standard html form widgets I can type "f", "i" and "n" after I click on a country drop-down menu and I can be pretty sure I have Finland selected. Here, I end up to Namibia (via Falkland Islands and Iceland). You know, sometimes reinventing the wheel just results in an inferior wheel.
+
+It goes without saying that I don't really feel like trying again, despite the pretty please. However, the outcome is that I have a €350 heart rate monitor but am unable to download and analyze the data collected with it. The Mac OS Classic version of the old software (that I've never been able to launch on OS X) doesn't really cut it.. C'mon Polar, you've always been a forerunner. Please start taking us other pioneers into account, too.

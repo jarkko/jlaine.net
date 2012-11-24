@@ -1,0 +1,83 @@
+---
+layout: post
+title: Installing Ruby MySQL driver on OS X
+---
+Just noticed that I hadn't installed the native Ruby mysql driver after getting the laptop back from repair. The reason it took a few days is that Rails just happily churns away with it's built-in pure-ruby driver. However, the native binary driver is considerably faster and more stable, so you should never go into production without it. It won't hurt having it installed on all your dev boxes, too.
+
+However, installing the native driver on OS X wasn't as easy as one would assume. If you have the MySQL binary OS X version from "MySQL.com":http://www.mysql.com, it's installed under /usr/local/mysql, and the gem can't find it there. You can fix this by hinting the gem install command about the location of MySQL:
+
+<filter:code>sudo gem install mysql -- --with-mysql-dir=/usr/local/mysql
+</filter:code>
+
+Unfortunately, this resulted in errors:
+
+<filter:code>Probutanol:~ jarkko$ sudo gem install mysql -- --with-mysql-dir=/usr/local/mysql/ 
+Attempting local installation of 'mysql'
+Local gem file not found: mysql*.gem
+Attempting remote installation of 'mysql'
+Select which gem to install for your platform (i686-darwin8.6.1)
+ 1. mysql 2.7.1 (mswin32)
+ 2. mysql 2.7 (ruby)
+ 3. mysql 2.6 (ruby)
+ 4. mysql 2.5.1 (ruby)
+ 5. Cancel installation
+> 2
+Building native extensions.  This could take a while...
+mysql.c: In function Ã¢Init_mysqlÃ¢:
+mysql.c:2015: error: Ã¢ulongÃ¢ undeclared (first use in this function)
+mysql.c:2015: error: (Each undeclared identifier is reported only once
+mysql.c:2015: error: for each function it appears in.)
+mysql.c:2015: error: parse error before numeric constant
+mysql.c:2018: error: parse error before numeric constant
+</filter:code>
+
+Googling around helped, and "Bob Silva came to the rescue":http://i.nfectio.us/articles/2006/09/12/running-rails-on-os-x-with-mysql-5-0-24: you can fix the errors by adding the following line to the mysql.c file of the mysql gem (/opt/local/lib/ruby/gems/1.8/gems/mysql-2.7/mysql.c for me):
+
+<filter:code>#define ulong unsigned long
+</filter:code>
+
+However, just adding it and re-running the gem install command doesn't work. It turns out the mysql.c file is recreated by the extconf.rb configuration, so you need to do a bit of handiwork:
+
+<filter:code>cd /opt/local/lib/ruby/gems/1.8/gems/mysql-2.7
+sudo ruby extconf.rb install mysql -- --with-mysql-dir=/usr/local/mysql/
+</filter:code>
+
+Now add the line above to the created mysql.c file, and after that compile and install the driver by hand:
+
+<filter:code>sudo make
+sudo make install
+</filter:code>
+
+That's it, the driver should be installed. You can check it by running the gem list command:
+
+<filter:code>$ gem list
+
+*** LOCAL GEMS ***
+
+...
+
+mysql (2.7)
+    MySQL/Ruby provides the same functions for Ruby programs that the
+    MySQL C API provides for C programs.
+
+...
+</filter:code>
+
+Note that you might have the native driver installed even if you don't have the gem (e.g. via darwinports). You can check whether the library is installed in irb:
+
+<filter:code>$ irb
+irb(main):001:0> require 'mysql'
+=> true
+</filter:code>
+
+If it's not installed, you will get something like this:
+
+<filter:code>$ irb 
+irb(main):001:0> require 'rubygems'
+=> true
+irb(main):002:0> require 'mysql'
+LoadError: no such file to load -- mysql
+        from /opt/local/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:21:in `require__'
+        from /opt/local/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:21:in `require'
+        from (irb):2
+</filter:code>

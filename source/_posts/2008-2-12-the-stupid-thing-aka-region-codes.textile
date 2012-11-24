@@ -1,0 +1,9 @@
+---
+layout: post
+title: The best of times, the worst of times
+---
+I'm kind of sad that Blu-ray has taken the lead in the next generation digital video disc race, and that has little to do with the fact that "I don't really like Sony":http://en.wikipedia.org/wiki/Sony_BMG#Controversy. The reason "the lurking death of HD DVD":http://arstechnica.com/news.ars/post/20080211-best-buy-netflix-join-hd-dvd-dogpile.html makes me really sad is that while it has smaller capacity than BD, it has one thing really going for it: *it's void of one of the pests of modern times: regional codes.*
+
+"Jeremy Keith recently wrote":http://adactio.com/journal/1404 about DVD's and Wii games that he bought during his Christmas trip to US _that he cannot use_ because they are limited to be played only by a player with the US region code. Now, there are region code-free players available, but that only makes the whole scheme more pointless.
+
+Now, with HD DVD being free of the region codes, we could have gotten rid of them once and for all. However, with Blu-ray seemingly winning the war, we seem to be stuck with the same hassle into the unforeseeable future. And people wonder why Pirate Bay is the #1 movie distribution channel in Europe these days...

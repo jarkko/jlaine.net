@@ -1,0 +1,7 @@
+---
+layout: post
+title: Langaton Tampere
+---
+It seems that my "wee hometown":http://en.wikipedia.org/wiki/Tampere is getting a "citizen wireless network":http://www.langatontampere.fi/ (only in Finnish, unfortunately), based on sharing your own wifi and getting free access to the network using other people's access points in exchange. Pretty cool, especially since it's opening already this month and I didn't even know about it.
+
+(via "Kalamuki":http://kalamuki.net/2007/08/21/langaton-tampere)

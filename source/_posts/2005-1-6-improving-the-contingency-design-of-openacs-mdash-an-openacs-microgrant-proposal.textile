@@ -1,0 +1,25 @@
+---
+layout: post
+title: Improving the Contingency Design of OpenACS &mdash; an OpenACS Microgrant Proposal
+---
+h4. Background
+
+The _admin backend_ is a major part of a web framework like OpenACS. As Philip Greenspun once noted, roughly half of all the pages in a dynamic website are more or less admin pages. Making administrating a system a pleasure is vital for any system, including OpenACS.
+
+"37signals":http://37signals.com published a book called "Defensive Design for the Web":http://37signals.com/book/index.php last spring. The book was lately selected as "the best web design book of 2004":http://www.37signals.com/svn/archives/000999.php. ??Defensive Design for the Web?? is about improving the contingency design of a website, including e.g. error messages, help and forms. The book also provides a heuristics to analyze the contingency level of a service.
+
+h4. The Proposal
+
+I will go through all the major OpenACS components, including core and .LRN, and analyze their contingency design level with the help of heuristics developed by 37signals. As a result of this analysis, I will improve the administrative and end-user visible interfaces to the point where they will score at least 80% of the applicable parts of the test.
+
+h4. The deliverable
+
+A system that is slicker and more pleasurable to use out-of-the-box. The UI of OpenACS has gotten a lot better lately, but has still room for improvement.
+
+Concrete improvements include e.g.:
+* Real double-click protection. Adding functions to ad_form that disable buttons when one is clicked and give a visual clue that the process has started. Current double-click protection protects from duplicate entries but results often in user-visible errors.
+* Improved error pages.
+* Improved "inter-page" notification/error message delivery and display system.
+
+Tampere, January 6th 2005,
+Jarkko Laine

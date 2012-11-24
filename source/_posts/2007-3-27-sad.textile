@@ -1,0 +1,11 @@
+---
+layout: post
+title: Sad
+---
+There are few authors whose writings literally change your life. For me, "Kathy Sierra":http://headrush.typepad.com/creating_passionate_users/ has been one of them. She's been the leading teacher in how we can cross the chasm between software and emotions, vendors and clients, hackers and users, male and female hackers, the list goes on. I've seen Kathy talk in person and it's hard to imagine a nicer personality.
+
+It was thus with great shock and sadness when I read about the "death threats that Kathy has been getting":http://headrush.typepad.com/creating_passionate_users/2007/03/as_i_type_this_.html. It made me sick. It made me cry.
+
+The "comments made about growing a thick skin and getting used to this":http://radar.oreilly.com/archives/2007/03/support_for_kathy_sierra.html turned my stomach even worse. This is not about trolling, this is about threatening to kill and sexually harass someone. There is just no excuse in the world for that.
+
+I hope we can now show the power of the community to fight the abusers and show there's no place for such behaviour in the blogosphere.

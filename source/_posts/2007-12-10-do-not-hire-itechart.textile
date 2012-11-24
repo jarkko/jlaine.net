@@ -1,0 +1,12 @@
+---
+layout: post
+title: Do NOT hire iTechArt
+---
+It's annoying enough that quite a few spam messages creep through Google Groups filters to the many mailing lists I'm subscribed to. Fortunately, SpamSieve has learned to bash them quite effectively. Today, however, spam on Rails-Core and Rails-Spinoffs hit the new low (right in there with people advertising pirate copies of the first AWDWR(Agile Web Development with Rails) book on the Rails mailing lists a while back).
+
+A company apparently specialized (among many other technologies, oh the irony) in Ruby on Rails development and outsourcing, iTechArt, considered it appropriate to advertise their services by _spamming pretty much every Ruby and Rails-related mailing list on Google Groups_. I not only think it's pretty darn stupid to crap in your own cubicle (so to speak), I also think it's worth giving them a lesson. So anyone considering outsourcing or buying Ruby or Rails development, please:
+
+# Do *not* hire iTechArt.
+# If you receive a proposal from them, let them know you won't hire spammers.
+
+In any case, if you're a blogger, please spread the word. iTechArt is not worth anyone's money.

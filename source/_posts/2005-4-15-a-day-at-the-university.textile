@@ -1,0 +1,11 @@
+---
+layout: post
+title: A day at the university
+---
+Wednesday was a really good day in many ways. I was giving my first lecture ever about "Rails":http://www.rubyonrails.com and it went real smooth. The audience consisted of about 30 students of "Programming Hypermedia" class given at the "Hypermedia Lab":http://matriisi.ee.tut.fi/hypermedia/en/ of "Tampere University of Technology":http://www.tut.fi/public/index.cfm?siteid=32. As it was my first real public presentation both about Rails and in general, I was a bit nervous about how it would go. Turned out I really was equipped to give such a talk. The students seemed to be genuinely interested. I got many good questions (like "how does it scale?") and could even answer them ("share nothing, baby!").
+
+It seemed that some of the people in the audience had really been burned by their php assignments so my 45-minute demo of setting up a blog with rss feed hopefully hit the target.
+
+So the conclusion is: I really know Rails reasonably well, so well that I can give presentations and demos on it without losing my audience. So if you're interested in Rails and would like it to be presented to your team or the whole office, drop "me":mailto:jarkko@odesign.fi a line and we will put up a workshop to share the love.
+
+"But wait!", you say. "What other things made the past Wednesday so great?" Well, Liverpool tied with Juventus and went on with 2-1 in aggregate goals to the semifinals of "UEFA Chapions League":http://www.uefa.com/competitions/ucl/index.html, not less because of the rock-solid defense led by the Finn "Sami HyypiÃ¤":http://www.finland-football.net/hyypia.asp.

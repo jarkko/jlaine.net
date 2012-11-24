@@ -1,0 +1,13 @@
+---
+layout: post
+title: EyeTV 610 coming
+---
+When visiting "Lars":http://pinds.com last week I got a glimpse of a Mac Mini turned into a PVR(Personal Video Recorder). We haven't had a working video recorder since 1999 and although (and because) we almost never have time to watch TV it'd be great to be able to timeshift the few truly interesting broadcasts. I already have a Mac Mini with all the bells and whistles lying in my shelf so all I needed is a TV tuner for it.
+
+The best known tv boxes for Mac are made by "Elgato":http://www.elgato.com, a German company with close ties to Cupertino (they say). Their most popular model has been "EyeTV 200":http://www.elgato.com/index.php?file=products_eyetv200, which powers both "David's":http://www.loudthinking.com and Lars's living rooms.
+
+Finland is already in the digital age, however, and about to pull the analog plug totally in 2007. Therefore EyeTV 200 would not be an ideal choice for my needs. Elgato is fortunately running in the front field even with digital PVR's, providing a wide range of products for different "DVB(Digital Video Broadcasting)":http://www.dvb.org signals. We have cable-tv in our house so "EyeTV 610":http://www.elgato.com/index.php?file=products_eyetv610 is the model I chose. It has an interface for a conax card reader and an updatable firmware so it shouldn't become obsolete too soon. For those of you who know Finnish, here's a "raving review":http://www.macsanomat.com/nayta.php?id=2536 of the 610.
+
+I can't wait for getting to play with the system after holidays. EyeTV uses a system called "tvtv":http://www.tvtv.co.uk, which is similar to "TiVo's":http://www.tivo.com program guide and can be used to time recordings over the internet. The guide is already working in the biggest countries in Europe and should be available in Finland in late summer.
+
+Ha! There'll soon be one "thing":http://www.43things.com/things/view/19545 less in my "43things":http://www.43things.com/ "list":http://www.43things.com/people/view/jarkko.

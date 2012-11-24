@@ -1,0 +1,9 @@
+---
+layout: post
+title: Recruiting
+---
+"Joel Spolsky":http://www.joelonsoftware.com/items/2005/06/15.html:
+
+bq. Recruiting has to be done at the Bill and Steve level, not at the Gretchen level. No matter how good a recruiter you are, you can't compensate for working at a company that people don't want to work for; you can't compensate for being the target of eight years of fear and loathing from the slashdot community, which very closely overlaps the people you're trying to recruit, and you can't compensate for the fact that a company with a market cap of $272 billion "just ain't going to see their stock price go up":http://blogs.apress.com/archives/000449.php?author=gary_cornell.
+
+Plus a "follow-up":http://www.joelonsoftware.com/items/2005/06/17.html.

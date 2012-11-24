@@ -1,0 +1,44 @@
+---
+layout: post
+title: ! 'Hidden Rails Goodies: blank?'
+---
+When submitting forms in a web app, you often need to check whether a variable is set _and_ not an empty string, because unfilled text input fields will be set but empty. In OpenACS there was a procedure called <code>exists_and_not_null</code> for this.
+
+In Ruby you could do something like:
+
+<filter:code lang="ruby">
+if params[:string] and !params[:string].empty?
+</filter:code>
+
+However, that is both laborious and risky. If the variable happened to be something else than a string, calling <code>empty?</code> would bomb.
+
+Fortunately, Rails defines a pretty much undocumented method <code>blank?</code>. <code>blank?</code> is defined in the <code>Object</code> class so every possible class in a Rails app will respond to it. By default, <code>blank?</code> returns true only for <code>nil</code>, <code>false</code>, an empty array or hash and "" (an empty string, after stripping the whitespace). Of course, you can overwrite the method in your own classes to make <code>blank?</code> behave as you please for them.
+
+<filter:code lang="ruby">
+>> 5.blank?
+=> false
+>> o = Object.new
+=> #<Object:0x10f8c6c>
+>> o.blank?
+=> false
+>> n = nil
+=> nil
+>> n.blank?
+=> true
+>> n = ""
+=> ""
+>> n.blank?
+=> true
+>> f = false
+=> false
+>> f.blank?
+=> true
+</filter:code>
+
+So using <code>blank?</code> you can replace the code above by
+
+<filter:code lang="ruby">
+unless params[:string].blank?
+</filter:code>
+
+and you're good to go. Enjoy!

@@ -1,0 +1,17 @@
+---
+layout: post
+title: Globalize Gotcha
+---
+I'm working for the first time on a project that uses the "Globalize Rails plugin":http://www.globalize-rails.org/wiki/. It rocks. It's about as close to an unobtrusive I18N(internationalization)/L10N(localization) framework as it gets. I've used a couple of approaches before, both self-written and third party, but they don't get even close to the ease of deployment with Globalize.
+
+There is one gotcha with Globalize, though, which is probably worth sharing: it overwrites Rails code. This isn't such a surprise since runtime extensibility is one of the founding Ruby principles. It does, however, break the backwards-compatibility.
+
+One specific thing that bit me was that after starting to use Globalize, _assert_template_ didn't work anymore. Suddenly it started to get the whole path for the template, as opposed to relative from the template root which is the default Rails behaviour. So assertions like
+
+<filter:code lang="ruby">
+assert_template "admin/books/new"
+</filter:code>
+
+won't work anymore. You _could_ of course put the absolute path in your assertion but that would break the portability of the app. I guess it would work with constants like RAILS_ROOT, but using it in every assert_template call would be just plain ugly.
+
+There is a pending "patch in Rails Trac to accept regexps as assert_template arguments":http://dev.rubyonrails.org/ticket/4235, which would make the problem go away, but until it gets applied to the trunk, I'll just comment out the assert_template calls.

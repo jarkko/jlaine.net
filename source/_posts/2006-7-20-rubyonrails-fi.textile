@@ -1,0 +1,7 @@
+---
+layout: post
+title: rubyonrails.fi
+---
+A few months ago I registered rubyonrails.fi to get wider adoption for Ruby and Rails in Finland, but haven't really so far got it off the ground. The idea of the site in my mind would not be to duplicate stuff in "rubyonrails.org":http//www.rubyonrails.org but to bring together the Finnish Rubyists and build a real community for them. The interest in Rails and Ruby is growing rapidly in Finland and I feel lacking a central spot for that interest is slowing down the adoption.
+
+The initial features I'd like to have on the site would be the pretty traditional blog, mailing list/forum and a wiki. I set up a Basecamp project for the site, so if you'd like to get involved, drop me a mail and I'll setup a user account for you. I hope a few active contributors would help to get my head out of my procrastinating ass.

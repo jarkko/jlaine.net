@@ -1,0 +1,7 @@
+---
+layout: post
+title: London Calling
+---
+I'm out for London on February 7th. On Wednesday 8th I'll participate in the "Carson Workshops Summit: The Future of Web Apps":http://www.carsonworkshops.com/summit/index.html in Kensington with "Lars":http://pinds.com/articles/2006/01/11/in-london-evening-of-feb-7th, "Peter":http://marklunds.com/ (+ his colleague I've not yet met) and  "Dirk":http://www.dirkgomez.de/.
+
+I'll be staying 'til Thursday night in "Kensington Hilton":http://www.hilton.co.uk/kensington (why does that sound like "Bangkok Hilton":http://en.wikipedia.org/wiki/Bangkok_Hilton?). If you wanna hook up, there's still places left to the 800-seat summit. With "DHH":http://www.loudthinking.com, "Shaun Inman":http://shauninman.com/plete/ and many others on the speaker list, it's surely going to be a great event. With a touch of luck we might even get to play with David's new "toy":http://www.loudthinking.com/arc/000555.html...

@@ -1,0 +1,29 @@
+---
+layout: post
+title: Hello Chicago
+---
+!http://nubyonrails.com/images/typo_graphs/countdown_railsconf.png(Countdown to RailsConf)!
+
+What does a Finn do when he gets to US for the first time in his life in the midsummer week? Watches hockey, of course. I have to admit I fell asleep during the second period, though, at about 4AM Finnish time.
+
+Entering the country was much more convenient than I thought.
+
+The clerk at the passport control: What are you here for, mister Lane?<br />
+Me: Line-eh. I'm here for a conference.<br />
+Clerk: So what do you do, mister Lane?<br />
+Me: I'm a web hacker (oops, think, man, think!)<br />
+Clerk: Oh, a web developer?<br />
+Me: Yes, that is correct.<br />
+Clerk: Ok, left index finger, please... right index finger, please... look at the camera, please... have a good day, sir.
+
+Customs clerk: What kind of food do you carry?<br />
+Me: Just some Finnish rye bread.<br />
+Clerk: OK, thank you and welcome to US.
+
+Renting a car was whole nuther story. We had just winged the reservation and thought we would compare the prices and pick the cheapest supplier. It turned out to be a lot harder than we thought. All the car rentals at O'Hare are placed quite a bit away from the airport so the companies have shuttle busses bringing customers to and from the terminal. There is a phone at the terminal that can be used to contact all the companies, _but we couldn't get it to work for any of them_. So we just walked to the bus stop and jumped to the first bus, which happened to belong to AVIS.
+
+At the counter we were served by a lady who seemed to prefer to do anything else than give us a car for a good price. We withdrew from the counter to consider our options. We were in the middle of a fenced area long way from everything else. We could have taken the shuttle bus back to the terminal but that didn't sound too pleasant either. Fortunately AVIS provides a wifi network at the service center and while a real internet connection is not free, avis.com is exempt from any fees. We did a reservation through the net and got the same car for $50 less than what the price was at the counter.
+
+So here we are now, everything ok. We spent most of Tuesday hanging around Woodfield mall, buying some stuff and getting my MacBook battery replaced (it was suddenly dying a few seconds after unplugging it even with a full battery) at the local AppleStore. Lauri will go golfing today, while I will do some training in the morning and then have lunch with Joe Sackett, the secretary of "CAOC":http://www.chicago-orienteering.org/. Later today I'll run a local sprint-O competition further south from O'Hare. Somewhere in between we'll need to move our bags to Wyndham O'Hare.
+
+(posted with the new "TextMate Blogging Bundle":http://macromates.com/blog/archives/2006/06/19/blogging-from-textmate/)

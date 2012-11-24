@@ -1,0 +1,11 @@
+---
+layout: post
+title: Scaling your Frontend &ndash; Graphics in the Era of Retina Screens
+---
+Here's my deck from the Tampere Web Dev meetup on the 10th of November, 2012.
+
+<script async class="speakerdeck-embed" data-id="f2dd78000d670130372a1231381d9beb" data-ratio="1.37081659973226" src="//speakerdeck.com/assets/embed.js"></script>
+
+Thanks to Thomas Fuchs for "retinafy.me":http://retinafy.me and "Thijs van der Vossen":http://www.fngtps.com/2012/reasonable-ways-to-use-high-resolution-images-on-retina-displays/.
+
+If you enjoyed the talk, you might consider signing up for my up-and-coming eBook, "Forgotten SVG":http://forgottensvg.com.

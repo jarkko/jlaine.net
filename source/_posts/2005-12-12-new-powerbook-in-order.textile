@@ -1,0 +1,19 @@
+---
+layout: post
+title: New PowerBook in Order
+---
+I've now officially joined the "path":http://daringfireball.net/2005/11/full_metal_jacket of "many":http://www.hicksdesign.co.uk/journal/the-new-beast and ordered me a "new PowerBook":http://www.apple.com/powerbook/ today. I've been happily trotting along with my 15-inch, 667MHz, TiBook until this fall. However, there seems to be some magic connection between expiring AppleCare (or maybe it was the update to Tiger) and slowly deteriorating performance, and the last straw was the dying battery two weeks ago, just before an excruciating 16-hour bus drive to Lapland. Waiting for an Intel model really isn't an option since a) I need the damn thing now, and b) I don't think there'll be a _stable_ Intel Inside version of PowerBook until 2007.
+
+So I gave up. I guess the 15-inch model would've done it for me, too, but being a living-off-the-powerbook type and after reading about the overheating and "horizontal line":http://15inpbscreen.appleplace.com/ problems of the 15 inch models, I decided I would go all the road with the 17" beast.
+
+I chose the 100GB 7200RPM hard drive option since I noticed clear speed improvements when I upgraded the hard drive of my current machine. The option was free so it really wasn't a hard decision to trade the extra 20GB of space for the additional speed. I just hope I will get the "Seagate Momentus":http://seagate.com/cda/products/discsales/marketing/detail/1,1081,669,00.html drive ("see a discussion about the drives here":http://daringfireball.net/2005/11/fmj_addenda), otherwise I'm going to get the drive replaced for too much noice.
+
+My PowerBook will come with the standard 512MB RAM which I will replace myself with a pair of "1GB Kingston Value RAM":http://www.ec.kingston.com/ecom/configurator/partsinfo.asp?ktcpartno=KTA-PB533/1G modules. They sell here in Finland at around 90€ each, so my DIY work will be worth almost 400 Euros!!!
+
+Of course there's no escaping of the robbery 450€ for the AppleCare extension, but I feel it's better to play safe with this kind of machine. With a replaced display, power adapter and dvd player, _the plan_ has certainly been worth it for the current round.
+
+The whole bunch will be decorated with a "Marware Screen Protector":http://www.marware.com/cgi-bin/WebObjects/Marware.woa/6/wa/selectedCategory?catalogCatID=126 and a stunning "Freitag sleeve":http://www.freitag.ch/_photoadmin/viewframe_europa.ph€uct_ID=84. One of the creators of "map.search.ch":http://map.search.ch/ had such a sleeve in "The Building of Basecamp workshop":https://workshop.37signals.com/ in Copenhagen, and I fell immediately in love with it.
+
+This doesn't mean I'm going to scrap my current €I think I'll eventually get a new battery for it from "Newertech,":http://www.newertech.com/ along with a second battery for the new beast. It's still too good a machine (with a brand new display, too) to get retired, it's just that my current needs for a work horse are a bit over its capacity.
+
+Phew! Talk about a Xmas present.

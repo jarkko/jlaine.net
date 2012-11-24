@@ -1,0 +1,51 @@
+---
+layout: post
+title: More Rails goodness
+---
+Rails version 0.9.4.1 is out and ohmigod. The framework is going forward so fast I have trouble following up with all the new stuff. Here's the greatest of "the latest":http://weblog.rubyonrails.com/archives/2005/01/17/rails-094-caching-filters-sqlite3/: "Caching":http://ap.rubyonrails.com/classes/ActionController/Caching.html.
+
+Well, yeah, caching is no news as such. It's the way David implemented it (just like other things) in Rails that can't stop astounding me. It's so simple it almost makes me cry. Want to "cache some whole pages":http://ap.rubyonrails.com/classes/ActionController/Caching/Pages.html your controller is serving? Just do this:
+
+<pre><code>
+  class WeblogController < ActionController::Base
+    caches_page :show, :new
+  end
+</code></pre>
+
+Phew, that was all good and well. But what if you have some personalized content? You can't cache whole pages then, can you? That's right, dear Watson. But you can cache the actions. Using "_action caching_":http://ap.rubyonrails.com/classes/ActionController/Caching/Actions.html means that the request will go trough Action Pack so all the filters are processed before the page gets served. That way you can use authentication and other magic in your pages without having to give up the glory of caching. Here's an example of controller that uses both page _and_ action caching, stolen straight from the api docs:
+
+<pre><code>
+  class ListsController < ApplicationController
+    before_filter :authenticate, :except => :public
+    caches_page   :public
+    caches_action :show, :feed
+  end
+</code></pre>
+
+This controller has a public action and two private actions that need authentication -- and thus action-level caching.
+
+The most granular way to do caching in Rails is "_fragment caching_":http://ap.rubyonrails.com/classes/ActionController/Caching/Fragments.html. It's what the two higher-level caching schemes use internally. Using fragment caching is a gem when you have pages that have both highly dynamic and pretty static parts. The downside is that it's a bit more work and you have to do it in templates. Here's an example of fragment caching:
+
+<pre><code>
+  <b>Hello <%= @name %></b>
+  <% cache(binding) do %>
+    All the topics in the system:
+    <%= render_collection_of_partials "topic", Topic.find_all %>
+  <% end %>
+</code></pre>
+
+There. But, wait! What if the content changes in between. Will the users be served old stinkin' cheese ever after. Glad you asked. It turns out David _did_ notice this possibility. That's why controllers now have methods like <code>expire_page</code>, <code>expire_action</code> and <code>expire_fragment</code>, for all you busy bees who can't settle with the content you once created. Here's an action where the cache for page _show_ is flushed:
+
+<pre><code>
+  class WeblogController < ActionController::Base
+    def update
+      List.update(@params["list"]["id"], @params["list"])
+      expire_page :action => "show", :id => @params["list"]["id"]
+      redirect_to :action => "show", :id => @params["list"]["id"]
+    end
+  end
+</code></pre>
+
+OK, enough rambling. Now, go create some apps swift as an arrow.
+
+Oh, one more thing. Rails can use a bunch of different methods to store the cache. But that's "another story":http://ap.rubyonrails.com/classes/ActionController/Caching/Fragments.html.

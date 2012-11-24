@@ -1,0 +1,30 @@
+---
+layout: post
+title: How to quickly fix Safari 5 Reader typography
+---
+I really like the clutter-free reading experience the new "Reader":http://www.apple.com/safari/whats-new.html#reader feature in "Safari 5":http://www.apple.com/safari/ brings. However, what I don't like too much is the standard html rendering it uses for typography. The full fix for this would be to write a Safari extension to run the whole text through "LaTeX":http://www.latex-project.org/ or the very least through the "Knuth & Plass":http://www.bramstein.com/projects/typeset/ algorithm.
+
+However, a quick fix for the horrible justified text is this:
+
+Open the contents of Applications/Safari.app:
+
+!http://img.skitch.com/20100609-8tynrxcjdgwt16bcr69fq1rsge.png!
+
+Then open Resources/Reader.html in a text editor.
+
+Around line 82 there is a CSS rule for @.page@. Update it to left-align the paragraphs:
+
+<code class="css"><pre>
+.page {
+    font: 20px Palatino, Georgia, Times, "Times New Roman", serif;
+    line-height: 160%;
+    text-align: left !important;
+}
+</pre>
+</code>
+
+Use @!important@ as well, just to make sure. Save the file (you might need to type in your password here), and you're done!
+
+If you dislike Palatino, you can of course edit the CSS to your heart's content. For me, the biggest beef were the <a href="http://en.wikipedia.org/wiki/River_(typography)">rivers</a> flowing through the text when using the default justified alignment.
+
+!http://dl.dropbox.com/u/3101464/safari-reader-small.png!:http://dl.dropbox.com/u/3101464/safari-reader.png

@@ -1,0 +1,15 @@
+---
+layout: post
+title: Hate to say...
+---
+h3. December 2007
+
+bq. For gawd's sake, what did they smoke in your company's Christmas party?
+
+_(A text message I sent to my buddy Thomas who works in Sampo Pankki in reference to the news that the bank (recently bought by Danske Bank) would deploy a new "security" system (that uses a Java applet) in their online banking solution)._
+
+h3. April 2008
+
+bq. The latest reactions inclule [sic] 52-year old male customer returing to the bank with an axe after hearing that his account is empty, money exchange company Forex stopping accepting payment cards from Sampo Bank and Sampo Bank customers not being able to buy train tickets online.
+
+("Finnish Sampo Bankâ€™s ICT problems cause extreme reactions in their clientele":http://janne.blogit.kauppalehti.fi/2008/04/03/finnish-sampo-banks-ict-problems-cause-extreme-reactions-in-their-clientele/)

@@ -1,0 +1,45 @@
+---
+layout: post
+title: Sonera's at it again
+---
+<strong>[UPDATE]</strong> Now the people in the Nordic have followed the lead of "fuckyourogers.com":http://fuckyourogers.com:
+
+* "iPhone: Yes please - Sonera: No thank you":http://www.facebook.com/group.php?gid=22113926713
+* "Bedre Telia abonnement til iPhone 3G":http://www.facebook.com/group.php?gid=16689679566&ref=nf
+* "Billigere iPhone til Norge!":http://www.facebook.com/group.php?gid=31332232832
+* "Telia dödar iPhone med kassa abonnemang.":http://www.facebook.com/group.php?gid=21660696603
+
+Sonera, the poor man's AT&T, the old Finnish national telcom that got "famous" in the dawn of the century by "buying thin German air for $7.5 Billions":http://robots.cnnfn.com/2000/08/17/europe/german_umts/index.htm (and later writing it off as worthless), is on fire again. The company that's nowadays merged with its Swedish counterpart Telia, "announced":http://www.teliasonera.com/press/pressreleases/item.page?prs.itemId=360269 a while ago that they will be the ones bringing the "3G iPhone":http://www.apple.com/iphone/ to the Northern Europe. I guess some warning bells should have been in place considering the company is pretty much the only one that still doesn't offer a reasonable unlimited data plan for its GSM customers. However, initially the excitement over iPhone finally (officially) reaching this corner of the world took over and I even considered becoming a Sonera client.
+
+Today, the truth was revealed when the "iPhone 3G plans":http://www.sonera.fi/iphone were announced. _Not a single plan has unlimited data_. Not even the €90/month Large plan (which has 1GB/month of data). The small and medium plans come with measly 100 and 250 MB a month. Considering that watching a few YouTube movies consumes pretty much the whole monthly quota, the plans seem nothing but laughable[1].
+
+<strong>[UPDATE]</strong> Here's the whole pricing table:
+
+|_Plan_|_Small_|_Medium_|_Large_|
+|_Price_|31,69 €/month + 159 €/8 GB or 245 €/16 GB iPhone| 51,49 €/month + 79 €/8 GB or 165 €/16 GB iPhone|89,99 €/month + 1 €/8 GB or 85 €/16 GB iPhone |
+|_Includes_|
+|(min/month)|100|250|1000|
+|SMS messages/month|100|250|1000|
+|Data (MB/month)|100|250|1000|
+|Home Run hotspot usage|yes|yes|yes|
+|_Additional calls_|
+|Starting a call| 	0,049 € 	|0,049 € 	|0,049 € 	|
+|Cost/min| 	0,079 € 	|0,079 € 	|0,079 € 	|
+|Additional text msg| 	0,079 € 	|0,079 € 	|0,079 € 	|
+|Data/MB| 1,49 € 	|1,49 € 	|1,49 €|
+
+
+
+Now, the plans might have been ok 5 years ago[2], but they totally overlook the platform what iPhone has become in the countries it's been on sale so far. An iPhone is not just a phone anymore, it's a whole new computing platform, which pretty much needs an unlimited data plan.
+
+One huge selling point for the new phone will no doubt be "Mobile Me":http://www.apple.com/mobileme/. The chance to automatically and wirelessly sync your life between your computers and your phone sounds almost too good to be true. With €1.49/MB for the over quota data transfer, the syncing doesn't exactly sound like a realistic option anymore.
+
+Fortunately everything is not lost for us. You _can_ buy the phone from Sonera even without the ridiculous plans. The 8GB and 16GB models cost €429 and €519 respectively if you don't take any real plan with them. You *do* have to sign up for a custom plan for 24 months, though, but the cheapest comes at €1.99/month and thus only adds €48 to the total cost of ownership. That might just about cut it for me, but for the masses? Not so much. I hope I'll be wrong, but to me it seems that Sonera is once again going to kill something that would've had potential to be something disruptive.
+
+Oh well, I hear they're going to sell cheap unlocked iPhones in Italy...
+
+*[UPDATE]* Gruber links to "The Unofficial Apple Weblog's entry about Rogers unveiling their plans":http://www.tuaw.com/2008/06/27/rogers-announces-iphone-rates-in-canada/ as well, "stating that 'they suck'":http://daringfireball.net/linked/2008/06/27/rogers-canada. However, compared to the offering from Sonera, Rogers' plans seem to be downright cheap (even the cheapest plan comes with 400MB of data and 150 mins of weekday calls compared to 100MB and 100 mins all the time). Thanks also to Vesa for the comment about Rogers' plans.
+
+fn1. The prices seem even more laughable considering that pretty much every other operator offers unlimited data plans starting from €10/month.
+
+fn2. Even though we did, in fact, have unlimited GPRS plans in here back then, something which was unheard of in the Middle Europe where I used to live those days.

@@ -1,0 +1,11 @@
+---
+layout: post
+title: Speaking at Frozen Rails
+---
+!http://img.skitch.com/20100323-qaibjnb3ahyjk79i89kc8rsg8u.png!
+
+The first-ever Ruby/Rails conference in Finland, "Frozen Rails":http://frozenrails.eu, is going to take place May 7th in Helsinki. The speaker lineup is top notch, including three "Rails core team":http://rubyonrails.org/core members and the inimitable "Chris Wanstrath":http://defunkt.github.com/. For an unknown reason, in the midst of these high profile guys, a random guy from Tampere has ended up in the speaker list. Yours truly has the honorable (and somewhat frightening) job to wrap up the conference with an ending talk.
+
+My talk is tentatively titled "Of Perfection, Perfectionism and Perfect Web Apps". It will be less of a technical talk and more a critical, personal, humorous and hopefully entertaining performance about the previous decade spent writing various kinds of web sites and apps.
+
+If you still haven't secured your ticket, hurry up! The 99€ "early bird price":http://frozenrails.eu/information#pricing goes out tonight.

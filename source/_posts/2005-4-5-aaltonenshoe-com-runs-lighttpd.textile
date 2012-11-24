@@ -1,0 +1,9 @@
+---
+layout: post
+title: Aaltonenshoe.com runs lighttpd
+---
+My latest Rails project, "Aaltonenshoe.com":http://aaltonenshoe.com is now running on a lighttpd/fastcgi setting. Moving the setup over from an Apache/CGI one was a matter of minutes with the help of Jason's "Having one's own lighttpd and running it, too":http://weblog.textdrive.com/article/31/having-ones-own-lighttpd-and-running-it-too
+
+After I got the port from Jason, I made a few small changes to the llighttpd config file I was using on my local dev server, went to Webmin (Apache => Aliases and Redirects) and pointed aaltonenshoe.com to aaltonenshoe.com:8504. Saving those settings resulted in an error in webmin but that was fixed by Jason very fast.
+
+My conclusion: The site now runs very, *very* fast without any caching.

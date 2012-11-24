@@ -1,0 +1,9 @@
+---
+layout: post
+title: Dave and Dave
+---
+This is too funny: "Martin Fowler":http://martinfowler.com/ just pointed to a PDF "article":http://martinfowler.com/ieeeSoftware/accChange.pdf about "Agile Development":http://en.wikipedia.org/wiki/Agile_software_development written by Dave Thomas. The article has a picture of the writer (Thomas) but to me it looked something totally else than the "picture":http://www.pragmaticprogrammer.com/contact.html of "Dave Thomas":http://blogs.pragprog.com/cgi-bin/pragdave.cgi I've had in my head.
+
+I wondered this in #rubyonrails irc channel and some bright lad noticed that the "Dave Thomas":http://www.davethomas.net/ who'd written the article was not the same Dave Thomas we knew at all. In fact he is an Australian Computer Science professor.
+
+This is a funny coincidence, even more because PragDave is one of the original signers of the "Agile Manifesto":http://agilemanifesto.org/ and the other Dave is the founding director of "AgileAlliance.com":http://agilealliance.com/home. Or at least that's what the "article":http://martinfowler.com/ieeeSoftware/accChange.pdf says. Hope they haven't mixed up the two, I certainly would.

@@ -1,0 +1,9 @@
+---
+layout: post
+title: MapQuestioning
+---
+Dave Winer "reports":http://archive.scripting.com/2005/01/27#When:8:52:35AM about a News.com "article":http://news.com.com/MapPoint+users+in+for+long+and+winding+road/2100-1012_3-5552305.html?tag=nl which describes how Norwegians wanting to go from Haugesund to Trondheim are "routed":http://mappoint.msn.com/(mrhnz1ixqxpjzei3tudrwinr)/directions.aspx?&StartName=Haugesund%2c+Rogaland%2c+Norway&StartLocation=59.40634%2c5.28529&EndName=Trondheim%2c+SÃ¸r-TrÃ¸ndelag%2c+Norway&EndLocation=63.43092%2c10.39206&DataSetLangID=EUR%2c409&RouteType=Quickest&RouteUnit=Miles through England, Belgium, Germany, Denmark and Sweden. Well, according to MapQuest you wouldn't want to live in Finland, either, because we *have no friggin' roads!*
+
+!/images/28.gif (MapQuest Route from Turku to Vaasa)!:http://mappoint.msn.com/(mrhnz1ixqxpjzei3tudrwinr)/directions.aspx?&EndName=Vaasa%2c+LÃ¤nsi%2c+Finland&EndLocation=63.09568%2c21.61061&StartName=Turku%2c+LÃ¤nsi%2c+Finland&StartLocation=60.45269%2c22.25119&DataSetLangID=EUR,409&RouteType=Quickest&RouteUnit=Miles
+
+And you still wondered, why _msn.fi is the most popular net site in Finland_ (you didn't think it's got something to do with the fact that it's the default start page for Finnish Internet Explorer, did you?)...

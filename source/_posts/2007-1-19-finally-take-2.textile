@@ -1,0 +1,5 @@
+---
+layout: post
+title: ! 'Finally, take #2'
+---
+"Rails 1.2 is here":http://weblog.rubyonrails.org/2007/1/19/rails-1-2-rest-admiration-http-lovefest-and-utf-8-celebrations

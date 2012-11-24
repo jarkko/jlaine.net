@@ -1,0 +1,9 @@
+---
+layout: post
+title: ! 'PeepCode: RJS Templates'
+---
+If you're doing any Ajax development on Rails and haven't yet dug into RJS Templates, you're missing out pretty badly. Unfortunately the documentation for them has been sparse at best. The first even fairly comprehensive material that I found about them was in Jens-Christian Fischer's unofficial "Rails Reference":http://blog.invisible.ch/files/rails-reference-1.1.html. Then came Cody Fauser's O'Reilly ebook "RJS Templates for Rails":http://www.oreilly.com/catalog/rjsrails/ that brought a bit more meat around the bones. Now, for all you "show, don't tell" people (to which I belong), my friend Geoff (of "Nuby on Rails":http://nubyonrails.com and "Rails Podcast":http://podcast.rubyonrails.org/ fame) has started a new service called "PeepCode":http://peepcode.com, which provides quality screencasts about Rails development. And, lo and behold, the first part of the series is "RJS Templates":http://peepcode.com/articles/2006/08/13/rjs-templates:
+
+bq. This 50 minute Quicktime video tutorial shows you how to use the basic RJS methods from scratch. You&rsquo;ll be adding to your skills and using RJS to make more responsive and interactive applications.
+
+Go try it out! There is a free 2-minute sample available.

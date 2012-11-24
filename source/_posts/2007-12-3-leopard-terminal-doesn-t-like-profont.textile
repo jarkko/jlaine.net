@@ -1,0 +1,20 @@
+---
+layout: post
+title: Leopard Terminal doesn't like ProFont
+---
+My clear favorite among monospaced fonts has so far been ProFont, 9pt with no antialiasing. I don't think antialiasing works well for small type and I have yet to see as clear and crisp a font as ProFont. However... this is what a terminal window looks like after I updated to Leopard:
+
+!http://jlaine.net/assets/2007/12/2/Leopard_Terminal_with_ProFont-1.jpg(Leopard Terminal fucks royally up strings with slashes with ProFont)!
+
+Not cool. Here's exactly the same window after switching the font to Bitstream Vera Sans Mono:
+
+!http://jlaine.net/assets/2007/12/2/Leopard_Terminal_with_Vera_Sans_Mono.jpg(In Vera Sans Mono everything's fine)!
+
+Also not cool because of the ugliness but at least all the characters are shown. Anyone got an idea what's happening with ProFont? Everything worked just pristine in Terminal in Tiger, and still does if I run iTerm.
+
+*[UPDATE, Dec 3 2007]*
+
+I played around with the different ProFont distributions a bit, and the only one that doesn't break as above is the bitmap ATM version of the font. However, as you can see it's just plain ugly with small text size (notice the pixelated k, : and ~).
+
+!http://jlaine.net/assets/2007/12/3/terminal-profont-bitmap.jpg!
+

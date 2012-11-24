@@ -1,0 +1,18 @@
+---
+layout: post
+title: TextMate is here!!!
+---
+*UPDATE [041007]:* I'm now the licensee #75. Who're you :op
+
+The long and rainy fall has turned a lot brighter today, as the highly anticipated "TextMate":http://macromates.com is finally here. It's admittedly still a bit raw apple (pun intended) but still easily comes even with the huge buzz it was laden beforehand.
+
+Some very handy features:
+* Handling of projects ala Dreamweaver
+* _Very_ easily extendable with the built-in macro and snippet features
+* Comes pre-installed with syntax highlighting package for Ruby, Rails, and many more languages. Besides that, writing your own language bundle is a breeze.
+* Considering its features, TextMate is very lightweight
+* Most importantly, TM just feels right. It just sits a lot more naturally on my desktop than BBEdit, not to mention Emacs which I otherwise love.
+
+OK, enough of that. If you are a lucky one equipped with an OS X box, go get a copy, "right now":http://macromates.com, thank you very much. If you're at all like me and fall in love with the editor, you'd be happy to shell out the forty bucks for the candy (who said a text editor should cost hundreds of dollars).
+
+As a final carrot, I'll be sharing a few macro and snippet examples on this very forum. Stay tuned!

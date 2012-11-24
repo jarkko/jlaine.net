@@ -1,0 +1,5 @@
+---
+layout: post
+title: Best video capture device for Mac?
+---
+My dad's in a process of moving our whole collection of old VHS videos to DVD. They have an iMac G5 with a dvd burner so afaik all that'd be needed would be a good firewire video capture device. Does anyone of you have any experience with such things? It would need to support analog video and audio input and be easy to setup.

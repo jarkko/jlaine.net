@@ -1,0 +1,18 @@
+---
+layout: post
+title: Integrating S5 with OpenACS/Wimpypoint &#8212; an OpenACS Microgrant Proposal
+---
+h4. Background
+
+"S^5^ (A Simple Standards-Based Slide Show System)":http://www.meyerweb.com/eric/tools/s5/ is a standards-based slide-show presentation system developed by CSS guru "Eric Meyer":http://www.meyerweb.com. It's fully based on XHTML, CSS and W3C DOM, thus making it work in virtually all modern web browsers. An S^5^ presentation consists of a single XHTML file, so for users of browsers that don't support standards the presentation is presented as a plain web page, without losing anything of the content. S^5^ is licensed under a "Creative Commons Attribution-ShareAlike 2.0 License":http://creativecommons.org/licenses/by-sa/2.0/
+
+h4. So where's the benefit?
+
+Wimpypoint is a great tool in conjunction to .LRN. It makes it possible to integrate lecture slides to other course material. However, as it presents every slide as an individual html page, using it for presenting is kind of clunky. An S^5^ presentation, on the other hand, consists of a single page and supports all the usual slide-navigating keys (see the "introductory slide show":http://www.meyerweb.com/eric/tools/s5/s5-intro.html for examples), making it responsive to the point where it competes head-to-head with desktop products like Apple Keynote and Microsoft Powerpoint. Additionally, because of the single-file paradigm S^5^ makes it a whole lot easier to export a presentation for offline situations.
+
+h4. The Deliverable
+
+The Wimpypoint package will use S^5^ as its primary presentation mechanism. The old mechanism can be kept as an alternative method for backwards-compatibility if needed. Wimpypoint will also sport an export function which will export the presentation and all related files as a zip (or equiv.) package for offline presenting. Also the templating system of Wimpypoint will be integrated with S^5^. I will also do everything that is needed for fully integrating the revised package with .LRN.
+
+Tampere, January 6th 2005,
+Jarkko Laine

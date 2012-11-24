@@ -1,0 +1,11 @@
+---
+layout: post
+title: Not your average speaker
+---
+I will not be presenting at "OSCON":http://conferences.oreillynet.com/os2005/ like "others":http://www.loudthinking.com/arc/000416.html nor even at a "Java Users Group":http://jamisbuck.org/jamis/blog.cgi/programming/ruby/Rails%20Presentation_20050218124909.tx but I *will* be giving a guest lecture on "Rails":http://rubyonrails.com for students of _Programming Hypermedia_ at the "Hypermedia Lab":http://matriisi.ee.tut.fi/hypermedia/en/ of "Tampere University of Technology":http://www.tut.fi/public/index.cfm?siteid=32.
+
+Yes, I'm thrilled. And already tense as hell. It will be my first real talk if you don't count the seminars in school. But, standing on the shoulders of giants (and talking about something I've fell in love with), I feel I just can't fail.
+
+Oh, and the last October's edition of "Design In-Flight":http://www.designinflight.com/, the excellent design magazine distributed as pdf, "D. Keith Robinson":http://7nights.com/asterisk/ has a take for first-time speakers.
+
+Stay tuned. The lecture will be on April 13th. I hope I can get someone to tape the two-hour session but even if not, I will make the slides and notes available here. And if you happen to be in Tampere on that inevitably glorious day, why won't you sneak in the hall S3 and give it a whirl. Maybe you'll be bitten, too.

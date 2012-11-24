@@ -1,0 +1,9 @@
+---
+layout: post
+title: Brushed metal look
+---
+John Gruber on "Brushed Metal look":http://daringfireball.net/2004/10/does_brushed_metal_matter:
+
+bq. Letâ€™s say I have a Safari window and an iChat window open side-by-side, with no overlap. I think the Safari window is active, but itâ€™s actually the iChat window. I type Cmd-T to open a new tab in Safari, but instead, I get the Font Panel in iChat.
+
+Agreed. Just closed an iChat window instead of a Safari window with Cmd-w. Thankfully I have autologging enabled in iChat.

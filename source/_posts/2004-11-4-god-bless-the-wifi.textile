@@ -1,0 +1,7 @@
+---
+layout: post
+title: God bless the WiFi
+---
+I'm writing this in Leiden, Netherlands, where I've been this week working on a simulation/virtual city project built on "OpenACS":http://openacs.org/. If you ever visit this city and stay at "Hotel De Doelen":http://www.dedoelen.com/, make sure your room is on the canalside. Not only are the rooms bigger, quieter and more comfortable (I stayed one night on the other side of the hotel), but someone also has an open wireless network that can just be reached with my PowerBook. It's a two-years-old model with the plain non-extreme airport card, so it needs a bit better signal than newer laptops, but I still can get online by putting the computer real close to the outer wall.
+
+I guess this is one of the upsides of very dense population. We'll probably have to wait for some time in Finland, although the commercial wifi networks are getting some foothold in the bigger cities.

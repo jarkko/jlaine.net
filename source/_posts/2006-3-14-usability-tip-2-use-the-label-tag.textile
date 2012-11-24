@@ -1,0 +1,20 @@
+---
+layout: post
+title: ! 'Usability tip #2: Use the label tag!'
+---
+Many otherwise great web sites/applications, like "Basecamp":http://www.basecamphq.com and "IconBuffet":https://www.iconbuffet.com/, seem to share one very annoying shortcoming: "their":http://odesign.clientsection.com/login "forms":https://www.iconbuffet.com/account/login don't use "_label_":http://www.w3schools.com/tags/tag_label.asp elements.
+
+Even if you think "accessibility is for documents":http://37signals.com/svn/archives2/fly_on_the_wall_week_of_march_10.php (which it isn't), please use _labels_ in your forms. They are not just for blind people.
+
+The _big thing_ for me in using labels is that they effectively make the clickable area of the form element a lot bigger. Which one would you prefer pushing? The male (without label) or the female (with label)?
+
+<form name="test" action="test">
+<input type="radio" name="sex" id="male" /> MALE<br/>
+<input type="radio" name="sex" id="female" /> <label for="female">FEMALE (with label)</label><br/>
+</form>
+
+(Of course if you use Safari you don't care because Safari doesn't support the label element.)
+
+I think using real form labels is a huge usability enhancement in addition to helping accessibility.
+
+For gawd's sake, using the Rails' form helpers to construct the form automatically uses labels, so it shouldn't be too hard for two of the more prominent Rails showcases to use it. 

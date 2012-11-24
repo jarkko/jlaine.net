@@ -1,0 +1,19 @@
+---
+layout: post
+title: A Week of Ruby/Rails/BDD/Ajax Training in December
+---
+After my last Ruby on Rails workshop held last year I've often been asked when there is going to be another one. Here it comes.
+
+December 1st to 5th, we will join forces with "Antti Tarvainen":http://tarvainen.wordpress.com/ from "Leonidas":http://leonidasoy.com/ and give "a week of one-day workshops":http://rapidstraining.fi/ in Helsinki with separate but closely related themes:
+
+# Beginning Ruby
+# Beginning Rails
+# Advanced Ruby
+# BDD(Behaviour-Driven Development) on Rails
+# Advanced Ajax on Rails
+
+You can choose as many of the days to attend to as you want to (a smörgåsbord if I may), but _if you will join us for the whole week, the last day will be on us_. The early bird price is 500€/day, with group and alumni discounts available. The price includes a plentiful lunch buffet (of course), kick-ass course materials and some goodies we'll disclose a bit later. The course will be held in Finnish.
+
+I'm really excited about the course. The last time I gave a Ruby workshop was real fun and I learned a ton from it. One thing I understood while attending Pragmatic Studios is that having more than one teacher really makes a big difference, since instead of a monologue you give the students a real _discussion_ about the topics. I know Antti from a while back and know from his classes at TUT that he's a great instructor, so I really look forward to being able to teach together with him.
+
+Read more and register yourself for the classes from our brand-new "Rapids Training":http://rapidstraining.fi/ website. Hope to see you all in December!

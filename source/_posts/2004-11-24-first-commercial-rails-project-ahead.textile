@@ -1,0 +1,9 @@
+---
+layout: post
+title: First commercial Rails project ahead
+---
+I'm proud to announce my first commercial "Ruby on Rails":http://www.rubyonrails.org project, which is AFAIK also the first ever in Finland. I will be developing a simple content management system for a firm in the fashion industry (whose name I cannot yet publish) that offers the firm an easy way to publish new product lines and product pages.
+
+The system will  allow them to connect products with as many product lines they want to. It will also contain an extranet with which they can inform their b2b clients about their stock situation.
+
+I will start the project in the beginning of December and the system should be ready for launch before you open your New Year Veuve Cliquet's.

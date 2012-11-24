@@ -1,0 +1,9 @@
+---
+layout: post
+title: Small matters
+---
+bq. And from an eco-effective perspective, the greatest innovations in energy supply are being made by small-scale plants at the local level. For example, in our work with one utility in Indiana, it appears that producing power at the scale of one small plant for every three city blocks is dramatically more effective than more centralized production. The shorter distances reduce the power lost in high-voltage transmission to insignificant levels.
+
+p>.  -- "William McDonough":http://www.mcdonough.com/ & "Michael Braungart":http://www.braungart.com/ in "Cradle to Cradle--Remaking the Way We Make Things":http://www.mcdonough.com/cradle_to_cradle.htm
+
+It seems that the world wide web is not the only environment where there are significant benefits in not only being but also acting small.

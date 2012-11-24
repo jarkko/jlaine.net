@@ -1,0 +1,31 @@
+---
+layout: post
+title: Google Web Accelerator Considered Harmful
+---
+There's risen a "helluva":http://37signals.com/svn/archives2/google_web_accelerator_hey_not_so_fast_an_alert_for_web_app_designers.php "discussion":http://groups-beta.google.com/group/Google-Web-Accelerator about Google's new service, Google Web Accelerator. The main point of the discussion is that GWA preloads all the links on a web page (even a password-protected one), possibly deleting items in a web app or otherwise wreaking havoc.
+
+h3. What is Google Web Accelerator?
+
+GWA is a service that preloads all the links on a web page a user requests (note that this is not what their "Webmaster Help":http://webaccelerator.google.com/webmasterhelp.html indicates or what many people "claim":http://37signals.com/svn/archives2/google_web_accelerator_hey_not_so_fast_an_alert_for_web_app_designers.php#comments). This will theoretically (and also in practice, in many cases) make surfing a lot leaner for the user because a page behind a link is already preloaded and she will get it in front of her face in an instant when she clicks the link.
+
+h3. Clouds in paradise
+
+The problem with GWA is that it follows the user everywhere, even to password-protected admin sections of web apps that have traditionally been safe harbour from e.g. web crawlers clicking links they shouldn't. It seems that only links GWA will not prefetch are SSL-encoded (i.e. https://) pages. Unfortunately most of today's web applications can't use SSL because of added certificate and hardware costs.
+
+When the user then loads a CMS admin page with a delete link for each article, GWA happily follows each link leaving you nothing but an empty system. Not exactly what you expected a "web accelerator" to accelerate.
+
+h3. So who's to blame
+
+It has been a known (but often forgotten/ignored) fact that GET method (i.e. normal links)  shouldn't be used to change a state of a web app. However, as Simon Willison quotes in a "blog entry":http://simon.incutio.com/archive/2005/05/06/bad, "[SHOULD NOT] mean[s] that there may exist valid reasons in particular circumstances when the particular behavior is acceptable or even useful". The fact that a link has been on a password-protected admin page has widely been considered as one of those "particular circumstances".
+
+It'd be easy to run around bashing the stupid developers but I doubt many of us is really pure enough to throw the first stone (even if they think so). Even if it's been stupid and relentless to use links to perform critical actions, it's just the fact of life. No matter how much malicious pleasure the current situation might give certain people, it just doesn't help anyone very much to put all the blame on the application developers. It's a total pipedream that all the developers in the world would wake up overnight and go fix their "broken" apps. And the one who suffers the most is always the end user who might lose some invaluable content in the process.
+
+h3. Lessons learned
+
+This has been a good reminder for us that we should take the security considerations seriously even if we don't store mission-critical data in our apps. Simon's "post":http://simon.incutio.com/archive/2005/05/06/bad reminds that even if using POST forms for actions like deleting items might save us from Web Accelerator it doesn't protect us from "cross-site request forgery attacks":http://www.squarefree.com/securitytips/web-developers.html#CSRF. They are really not a part of this post but it's a good example of how we can learn more from these issues than what the first impression might suggest.
+
+But as web developers have a lot to learn from this, so does Google. It doesn't operate in a vacuum. It doesn't operate in a perfect world. It doesn't operate in a web where everyone obeys the rules to the letter. They should've known better. But no hard feelings, if they only take this to the heart: you need not only cooperate with the standards. You also need to cooperate with the world surrounding you.
+
+*P.S.* There's also another issue with GWA, Google storing possibly extremely private data on their servers (as "Thomas Baekdal":http://www.baekdal.com/ notes in the comments of the SvN "post":http://37signals.com/svn/archives2/google_web_accelerator_hey_not_so_fast_an_alert_for_web_app_designers.php#comments), but that's a topic for another post...
+
+*P.P.S.* There's already "a trick":http://david.backpackit.com/pub/37983 for protecting your Rails actions from GWA.

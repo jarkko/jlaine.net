@@ -1,0 +1,21 @@
+---
+layout: post
+title: Not (yet) a criminal. Or am I?
+---
+"Reports say":http://bigpicture.typepad.com/comments/2005/10/drm_crippled_cd.html that Sony has come up with a new DRM system for cd's. Not only does the new system "use spyware technology on Windows":http://blogs.zdnet.com/Spyware/index.php?p=690 to enforce the DRM, they also started a pissing contest with Apple on who's fault is it that people can't copy songs from the "CD's" (they don't adhere to the "Redbook":http://en.wikipedia.org/wiki/Red_Book_(audio_CD_standard  standard and can't thus actually be called CD's).
+
+The most outrageous thing in the whole debacle is that the DRM doesn't kick in on Macs:
+
+bq. If you think that this cannot get any dumber, you would be wrong. The coup de grace of this exercise in corporate stupidity is this:<br /><br/>"If you have a Mac computer you can copy the songs using your iTunes Player as you would normally do."<br /><br/>Words simply fail me . . .
+
+So not only is Sony extremely hostile to its own customers, it's also dumb as hell business-wise. With the _new_ system people who own e.g. a Sony Vaio laptop, can't easily copy stuff from their legally purchased "CD's". However, people with Macintoshes churn away with a big smile on their face without ever noticing there's some DRM on the "CD". And the whole point of Sony was to put pressure on Apple. Yeah, _they_ fail me, too.
+
+h4. Meanwhile in Finland
+
+I could just bypass this whole thing by just saying "Hey, too bad, I have a Mac" if it wasn't for the new "Finnish copyright law":http://jlaine.net/blog/80/copyright-demonstration-in-helsinki-tomorrow. The law specifically bans circumventing DRM systems. The consensus seems to be that a system that even my grandma could break is not DRM, anything beyond that is.
+
+So is the new parasite hiding on Sony "CD's" DRM or not? You could argue that it is, because you need some minor knowledge to get music from it to iTunes _on Windows_. However, on Mac you just can't trip into that trap so it's disputable whether it can be called a DRM system at all. So I might not be criminal even if I copy such a disc on my Mac[1].
+
+But wait, there *is* more. The same law also bans _discussing_ circumventing DRM openly. So at least now I _am_ a criminal. Oh, but so is everyone else talking and writing about Macs since they are from this point on clearly a tool used to circumvent DRM. So _you can't talk about them legally_. Oh please, dear police, come and get me, right now. I'm in my office. Actually, come get me from the Zip restaurant, between 1 and 1:30PM, I will be having lunch there then. You'll save a bit of tax-payed gas that way.
+
+fn1. Not that I would ever buy such a fucker. I'm on a mission now, together with many commenters in the "original post":http://bigpicture.typepad.com/comments/2005/10/drm_crippled_cd.html. I will never, ever buy a Sony product as long as their attitude towards consumers is at the current level. Supersize that.

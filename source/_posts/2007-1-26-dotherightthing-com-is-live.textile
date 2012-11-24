@@ -1,0 +1,15 @@
+---
+layout: post
+title: dotherightthing.com is live
+---
+*[UPDATE]* Should have knocked the wood a few times more. We were on Kottke and TechCrunch just about the same time, and man, that shows. A new server is on its way, but before that, please bare with us.
+
+Almost forgot to blog about this in the heat of everything: "we're live!":http://dotherightthing.com
+
+It's a terrific feeling, to see something you built in real use. I'm very happy and proud for the whole team. Thanks guys!
+
+It's nice to see that after the initial shyness people have started posting their own stories, too. We were also mentioned yesterday in "Treehugger":http://www.treehugger.com/files/2007/01/dotherightthing.php and "got hugg":http://www.hugg.com/story/dotherightthing-Social-Networking-Meets-Corporate-Social-Performance/. Those created some nice traffic but we're still waiting for the big hit to come, though, so fingers crossed the system won't melt down.
+
+If you haven't yet visited the site, check it out. I personally feel it has a huge potential to be the place where people go before purchasing stuff to see how the seller or producer treats its customers, employees, environment and the community. Our goal is also to get companies to participate in the discussion, in a true "cluetrain fashion":http://www.cluetrain.com. And the more people participate, the more useful the site is for everyone. And the sooner to sign up, the bigger chance you have to grab a really cool username ;-)
+
+When the situation cools down a bit, I will start a series of articles about the technology and other background details behind the site. So stay tuned!

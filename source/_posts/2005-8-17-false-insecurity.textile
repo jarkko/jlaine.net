@@ -1,0 +1,11 @@
+---
+layout: post
+title: False insecurity
+---
+"Consumer Reports":http://www.consumerreports.org has published a new "report":http://www.consumerreports.org/main/content/display.jsp?FOLDER%3C%3Efolder_id=760009&ASSORTMENT%3C%3East_id=333133&bmUID=1123738529881%94 about internet security among consumers. One of the gists of the account is that Macs are still safer than Windows PC's:
+
+bq. Macs are safer than Windows PCs for some online hazards. Only 20 percent of Mac owners surveyed reported detecting a virus in the past two years, compared with 66 percent of Windows PC owners.
+
+What's interesting is that every fifth Mac user in the USA has detected a virus even though there is not a single Mac virus out in the wild at the moment. The jury is still out on what viruses these guys *have* detected but I'm pretty sure it's not a Mac virus. Polyconsumption, perhaps.
+
+("via":http://www.tietokone.fi/uutta/uutinen.asp?news_id=24432&tyyppi=1)

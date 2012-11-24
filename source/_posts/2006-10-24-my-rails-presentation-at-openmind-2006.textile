@@ -1,0 +1,122 @@
+---
+layout: post
+title: My Rails Presentation at Openmind 2006
+---
+I'm here today to talk about Ruby on Rails. I'm sure many of you have heard about Rails before, but for those who haven't, Rails is a full-stack Model-View-Controller web application framework suitable for rapid application development, meaning it includes everything from an object-relational mapping layer called ActiveRecord to ActionController to ActionView.
+
+I'm not going to give you a full introduction to Rails, since the time doesn't permit that. Instead, I'm going to frame this talk by telling why Rails is reaching its tipping point.
+
+The Tipping Point is a best seller book by Malcolm Gladwell. It gives an interesting explanation of why change so often happens as quickly and as unexpectedly as it does. Not following a straight line but a hockey stick curve like this example depicting the success rate of podcasting shows. The point where a steady and slow trend abruptly skyrockets (or plummets) is called _the tipping point_.
+
+For example, why did crime drop so dramatically in New York City in the mid-1990's? And why word-of-mouth is so powerful? If you haven't read the book, I strongly recommend it. You know, Santa Claus is coming and everything...
+
+Gladwell presents three things that must be in order for any phenomenon to reach its tipping point:
+
+# The law of the few
+# Context
+# Stickiness
+
+If any of these three (which we'll go into in detail in a minute) is lacking, it's hard or impossible to reach the tipping point.
+
+Presenting Rails in this context is by no means an original idea, actually I got the idea from a blog post by David Geary, who is - a bit ironically - a Java guru (author of Graphic Java and Core JSF) turned into a Rails addict.
+
+h2. The Law of the Few
+
+In the end, every success story is about people. And not just any people but the right kind of people.
+
+According to Gladwell, to be successful, any phenomenon needs three kinds of people: salesmen, connectors and mavens.
+
+h3. Salesmen
+
+Salesmen are the kind of people that can sell you a whole kitchen when you were just going to buy a new coffeemaker.
+
+The creator of Rails, David Heinemeier Hansson, is a natural-born salesman. Not only does he look like a Gant model, he's a mesmerizing talker, always being genuinely excited about all the stuff he's talking about. He's also not afraid to poke the beehive to create the needed buzz. Some people think he's arrogant, but he's just very true to himself doing his own, great, admittedly opinionated stuff. And... as Don Norman puts it: "If someone doesn't really hate your product, it's mediocre." You don't wanna be mediocre if you want to tip.
+
+But it's not enough to have a salesman like DHH to spread the word. There are two other kinds of needed people, too. In the case of Rails, the two are often combined in the same people but the needed characteristics are quite a bit different.
+
+h3. Mavens
+
+Mavens are people that love to acquire knowledge about different topics and to share that information with others. They're the people that have more than a thousand subscriptions in their feed readers. For Rails, quite a bunch of high profile mavens got excited about Rails early on and let the world know about it. Tim O'Reilly probably doesn't need an introduction, and neither does Dave Thomas. James Duncan Davidson, the creator of Ant and formerly part of the Java team at Sun, is now a hard core Rails guy. Mike Clark, Jason Hunter, Bruce Tate, Dion Almaer, Stuart Holloway, Justin Gehtland, Glenn Vanderburg, and the aforementioned David Geary are all some of the biggest Rails evangelists now. You wouldn't think that seeing the books they've written previously. 
+
+h3. Connectors
+
+The last group of people crucial for the success of a product is connectors. They are the hubs of word-of-mouth epidemics, the people that know "everybody". I myself have 47 connections in LinkedIn, which I think is ok, the average for people I know is more like 20. The conference chair at O'Reilly, Nat Torkington, has 325 connections. He's the kind of connector that is crucial for spreading the Rails virus.
+
+h2. Context
+
+Whether there are the right people advocating the cause, a product like Rails just can't tip if the context is wrong. The context strongly affects how people react to different stimuli. The Tipping Point describes a study where researchers at the Princeton University told seminary students to prepare a short talk about a given topic and go present it in a nearby building. Between the two buildings there was a man who was obviously in agony and in the need of help. The purpose of the study was to see who would stop and help.
+
+Some people were given the good samaritan as the topic, others got some random topics.
+
+After the talk was ready, the instructor said to some students that they're already late and that they should hurry up. To others, they said that they still have some time but that they can as well head over now.
+
+It turned out only 10 percent of those who were said being in a hurry stopped and helped the guy, as opposed to 63 percent of the students who had plenty of time. It didn't make any difference whatsoever what the topic of the speech or the background of the student was. Indeed, many students rushing to give a talk about the good samaritan actually stepped over the fellow in agony.
+
+_That's the power of context._
+
+For Rails, the context we're currently in is very favourable. As David Geary puts it, "Java was once developed as a simple alternative to overly-complex C++. But that was ten years ago. Now enterprise Java has grown into a behemoth that consists of layer upon layer of complexity." This is a comparison of the amount of books needed to grasp the same amount of stuff you need with Rails in Java. As Jason Hunter puts it, "Java has opened the door for simpler alternatives." And of these, Rails is certainly one of the strongest contenders.
+
+If we approach the thing from another direction, PHP, the situation is also getting ripe for change. PHP is cool for simple hacks but a really bad match for anything that needs to be better structured and maintained. Flat namespace, anyone? However, the rigid Java frameworks just don't cut it for the most of the disgruntled PHP hackers, so Rails is in a really good position even in this context.
+
+h2. Stickiness
+
+And now for the part that talks about the Rails itself.
+
+Good, so Rails has some marvelous people advocating it, and the time seems to be right for it. But it's all for naught if the message doesn't stick with the listener. It's not enough to have the perfect salesmen and context for a product to really tip. People have tried that: to use a huge amount of marketing effort to sell something which doesn't really have any content. It's called a bubble.
+
+So what's making Rails stick? I think the most important thing in life... errr... stickyness, is love. Love, passion and happiness are what really drive people forward. And they are what Ruby and Rails are optimized for. Not sucking each and every cycle of the cpu to make the code run faster, but making the programmer happy, passionate, and thus more productive. Don't know about you but I would be happy to shell out a few bucks for a faster server if that would make my programmers happier and more productive.
+
+Currently, there are many people that are working on some "enterprisy" platform in their day job and then learning Rails by night. A month later they're starting their own moonlighting companies, earning money by doing the stuff they love and are passionate about. If I would be a CTO at their day job, I would pay really close attention to this trend.
+
+Most people hesitant about Rails are that only until they really use it. After that, most of them are hooked. Not everybody, Rails is opinionated and not for everyone, but more important than the amount of hooked people is the level of passion they feel about Rails.
+
+So what is it in Rails that makes it stick with the hackers?
+
+One thing that appeals to many hackers is the beauty of the Rails code (which is mostly thanks to Ruby). Actually the reason for DHH to write Rails on Ruby was because he "was unable to write beautiful code in PHP" :
+
+<filter:jscode lang="ruby">User.find_by_name("jarkko").posts
+
+class User
+  has_many :posts
+  validates_presence_of :email
+end
+</filter:jscode>
+
+That's all very clean and should be understandable even for people never heard about Ruby or Rails.
+
+Another, related principle in Rails is _convention over configuration_:
+
+<filter:jscode lang="ruby">class User
+  set_table_name "users"
+  primary_key "id"
+  
+  has_many :posts, :class_name => "Post"
+  belongs_to :group, :class_name => "Group", :foreign_key => "group_id"
+end
+</filter:jscode>
+
+This is all fine and good. You can specify everything in detail just like you did before with framework X (except that you don't need to do the XML situps). But imagine for a while it could be even easier. Imagine, what if it could look like this:
+
+<filter:jscode lang="ruby">class User  
+  has_many :posts
+  belongs_to :group
+end
+</filter:jscode>
+
+With Rails, it does, as long as we adhere to the common Rails conventions (which would be sane for a greenfield application anyway). Why make everything equally hard and ugly, when we can make the thing much more fun for the most of the users, for the most of the time? But like you could see from the previous slide, you don't _have_ to follow all the standards, you're just strongly encouraged to do so.
+
+h3. Killer AJAX support
+
+Rails core team is the home of the creators of two of the most prominent AJAX frameworks: Prototype and script.aculo.us. It has built in support and helpers to create Ajax calls and responses as easy as not to, without necessarily writing a line of actual Javascript.
+
+h3. The Ruby itself
+
+* Dynamic Typing
+* Reads out beautifully
+* Introspection
+* Open classes
+* Execute code in class definitions
+
+In a word, Ruby just rocks. It's the bread and butter. If you haven't try it out.
+
+It's all that stuff (and a lot more) that makes Rails so great, and sticky. But don't just take my word for it. Go ahead and test it yourself. There's prebuilt packages for both OS X and Windows you can just install with one click and start using it. The web is full of tutorials on getting started. There's also a couple of books published about Ruby and Rails. You can find them easily from amazon.com. One of them is especially close to my heart (because I wrote it): a "shameless plug for our book that just went into print":http://www.amazon.com/Beginning-Ruby-Rails-E-Commerce-Professional/dp/1590597362/.

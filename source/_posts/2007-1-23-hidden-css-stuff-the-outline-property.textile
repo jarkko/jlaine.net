@@ -1,0 +1,28 @@
+---
+layout: post
+title: ! 'Hidden CSS stuff: the outline property'
+---
+Anyone worth calling herself a web developer has probably used some kind of an image replacement technique during her career. You know, replacing a page header text with an image, still keeping the HTML structure semantic and accessible.
+
+One of the most common image replacement technique is called the "Revised Phark technique":http://www.mezzoblue.com/tests/revised-image-replacement/#phark2, named after "Mike &laquo;Phark&raquo; Rundle":http://phark.typepad.com/. The idea of the technique is that using the text-indent CSS property the heading text is placed so far away from the visible area that it is never shown:
+
+<pre><code>#replace {
+  text-indent: -5000px;
+  background: url(/background.png) 0 0 no-repeat;
+}
+</code></pre>
+
+The good thing about this technique is that it doesn't require any extraneous elements to get the effect, thus making it very straight-forward and easy to grasp. On the other hand, it doesn't work for the odd people that keep CSS on but images off. I can't think of a reason to do that (except for mobile browsers but they can be treated with a separate stylesheet), so I wouldn't consider it a big issue.
+
+However, there is an annoying issue if you use use the Phark technique with an anchor element, something you very often do with the main page header. When you click on the link, it will have a dotted narrow border that will go on to the edge of the screen:
+
+<a href="http://www.flickr.com/photos/jarkko/366928823/" title="Photo Sharing"><img src="http://farm1.static.flickr.com/162/366928823_d5486f8cd0_o.png" width="529" height="263" alt="Outline issue with the Phark method" /></a>
+
+A few days ago I was reading Andy Clarke's excellent "Transcending CSS":http://www.amazon.com/Transcending-CSS-Design-Voices-Matter/dp/0321410971/ and on page 279 it mentioned the outline CSS property of which I'd never heard. I wasn't very impressed about its usefulness, but somehow it got me thinking. What if that's the blot on the Phark landscape? And lo and behold, it was!
+
+Just by adding
+
+<pre><code>  outline: 0;
+</code></pre>
+
+to the css rule used for the image replacement fixed it. No more those "What the hell is there on the left where I can't get?" moments on my pages.

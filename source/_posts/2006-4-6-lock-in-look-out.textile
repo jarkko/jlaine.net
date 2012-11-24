@@ -1,0 +1,23 @@
+---
+layout: post
+title: Lock in, Look out
+---
+I was sitting in a workshop panel in an "open source seminar":http://ossi.coss.fi/ossi/index.php?id=95 given by "my research group":http://ossi.coss.fi/ossi/ this Tuesday. The idea behind the afternoon workshop was to collaboratively create a simple business plan for a company entering the "corporate wiki" market, competing with companies like "SocialText":http://www.socialtext.com/.
+
+The end result was that it's not critical in the end whether the system is built on open source or not. Using open source can give an edge but the stack is still just a tool. I agree with all this.
+
+However, the final conclusion was that making the company succeed they should get a big client and build such hooks to the system that the client can never get out of the deal. That, people argued my resistance, was how all the successful software companies did it. To paraphrase Jason Fried, "F for give me a fucking break." Granted, the conclusion was a kind of tongue-in-cheek one, but I just couldn't help feeling like shoving "Kathy Sierra":http://headrush.typepad.com/ down their throats. Fortunately for everyone, including Kathy, she wasn't present.
+
+Sure, you can get by very well with this kind of strategy. Just look at Microsoft. But the world changes, my friend. When things get worse, you need people who love you, people who go to the end of the world to find your products. Remember Lotus, and its once infamous Notes mail and intranet system? It was once on _every_ enterprise desktop. There wasn't many options back then and Lotus did everything to create "customer lock-in":http://www.joelonsoftware.com/articles/fog0000000032.html to the system. And they were successful. For a while.
+
+But people hated Notes. I have with my own eyes seen "Notes sucks!" "Dymo":http://global.dymo.com/enUS/Home/default.html labels stuck on people's monitors. So when the field evolved and companies started to have more options, some of which were very open in nature, they weren't very fond of sticking with Notes anymore, even though the migration away from it was very painful. So Lotus tripped and ended up in the arms of IBM, and even though the Big Blue still tries to push Notes, I know of very few companies that are moving _towards_ using it.
+
+The lesson: Be nice and honest to customers, both current and prospective. People aren't stupid, they can see true your plots. Buy "Getting Real":https://gettingreal.37signals.com/ (featuring yours truly) _and_ "The Cluetrain Manifesto":http://www.cluetrain.com/ and take them to the heart.
+
+And no, everyone else is not trying to fuck their customers. Asserting that is just like a cheating athlete assuring himself that everyone else is taking drugs, too. When you start justifying your ploys by lying to yourself, you're in pretty deep shit. "Nat Torkington":http://radar.oreilly.com/nat/ has an "interesting discussion":http://radar.oreilly.com/archives/2006/04/doc_searls_business_as_moralit.html with "Doc Searls":http://docsearls.com/ about Business as Morality. There Doc depicts an image of Flickr as a company that understands how to succeed really long term: not by locking in customers but by _creating passionate users with excellent products and service_:
+
+bq. At eTech, I saw a preview of a browser-based Photoshop/Album organizing/print product front-end service. The biggest thing the creator wanted to show was how generous Flickr is. "Watch this," he said, before using Flickr's API to suck all 6000+ of my photos from Flickr into his product. All the metadata, all the tags and associations, were intact. His point: Flickr isn't a silo. Their closed and proprietary stuff doesn't extend, not is it used, to lock up customer or user data. It's wide open. Free-range. Most of all, however, it is a "good citizen". It is generous where it counts.
+
+P.S. As it turns out, according to "Paul Graham":http://www.paulgraham.com, having few big clients might not be that good "a plan for a startup":http://www.paulgraham.com/start.html anyway:
+
+bq. Start by writing software for smaller companies, because it's easier to sell to them. It's worth so much to sell stuff to big companies that the people selling them the crap they currently use spend a lot of time and money to do it. And while you can outhack Oracle with one frontal lobe tied behind your back, you can't outsell an Oracle salesman. So if you want to win through better technology, aim at smaller customers.

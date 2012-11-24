@@ -1,0 +1,26 @@
+---
+layout: post
+title: Ruby/Rails/BDD training in Helsinki in April
+---
+*Note* The actual class will be taught in Finnish
+
+Two years ago we joined forces with Helsinki Polytechnic Stadia to organize a Ruby/Rails class for both students of the school and a couple of attendees from the business world. The class was a success.
+
+Now we're doing it again. The name of the school has changed to "Metropolia":http://www.metropolia.fi/, and the venue of the class from Arabia to Leppävaara, but the theme of the class will remain the same: teach both newbie and intermediate Ruby hackers to real wizards that can confidently write their ideas in Ruby.
+
+Because of the joined effort, we are able to keep the price (like really) low, at €700 + VAT for the whole 4-day course. That should make the class affordable even for freelancers and individuals who're just dabbling with Ruby and Rails.
+
+There will be some differences as well. We'll use more time to teach TDD/BDD and Ajax-related stuff, because of their increased importance lately. Most of the 4th (BDD) day will be taught by "Antti Tarvainen":http://tarvainen.wordpress.com/, a Rails and Agile wizard from "Leonidas":http://www.leonidasoy.com/ who is also famous for his Rails workshop at the Tampere University of Technology.
+
+The program of the class:
+
+# *Monday, April 6th* Basics of Ruby, including what's new in Ruby 1.9.
+# *Tuesday, April 7th* Introduction to Ruby on Rails, based on Rails 2.2.
+# *Wednesday, April 8th* Ajax development on Rails, Protype, script.aculo.us and accessible Ajax.
+# *Thursday, April 9th* Test-Driven and Behaviour-Driven Development on Rails; RSpec and Cucumber.
+
+Since alumni of our previous classes already snitched part of the spots on the class, we only have a couple places left for sale in the open. It thus pays off to be quick. As an added bonus for the fast ones, you'll receive an extra 100€ discount if you register within a week, that is before February 26th.
+
+You can register by sending email directly to "me":mailto:jarkko@jlaine.net .
+
+Welcome to have some fun with us and challenge yourself to learn new exciting skills at the same time!

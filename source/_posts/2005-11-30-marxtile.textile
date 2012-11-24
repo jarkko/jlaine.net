@@ -1,0 +1,13 @@
+---
+layout: post
+title: Marxtile
+---
+In case you hadn't heard before, here's some serious news: "Joyent":http://www.joyent.com/ is acquiring the ground of my virtual home, "TextDrive":http://www.textdrive.com/. At the same time TextDrive has broadened its buffet and is now also offering hosting for "Business":http://www.textdrive.com/hosting/business and a wide range of "Dedicated hosting plans":http://www.textdrive.com/hosting/dedicated. This all is decorated with a brand-spanking new "website redesign":http://justinfrench.com/index.php?id=142.
+
+The obvious question is: what's in it for me? For starters, the business plans sound tempting for someone (like me) who hasn't got the dough to go dedicated but still would prefer a bit more stable environment than the traditional shared hosting. The second thing I can hardly wait is that the "Joyent Mail":http://www.joyent.com/product/ will become the standard webmail client for TxD before the new year.
+
+One consequence of this acquisition is that "Dean Allen and John Gruber are joining forces":http://businesslogs.com/news/joyent_acquires_textdrive.php. Or, as "Gruber self says":http://businesslogs.com/news/joyent_acquires_textdrive.php#5052:
+
+bq. You know something's weird when the authors of Textile and Markdown now work for the same company.
+
+Indeed.

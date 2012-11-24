@@ -1,0 +1,10 @@
+---
+layout: post
+title: Get your pan ready!
+---
+It's hard to write a full book for a seasoned Rails hacker nowadays. Most of every tutorial-like tome will be fluff and even if there are some useful tidbits to gather, they're often hard to find among the sea of surely useful but hardly nouvelle information. That's why I really enjoy reading concise, to-the-point articles about specific solutions, and there is a genre of books that are chock-full of those nifty solutions: the cookbook style books. "Chad's":http://chadfowler.com/ "Rails Recipes":http://www.pragprog.com/titles/fr_rr/, "Lucas's":http://tech.rufy.com/ and "Leonard's":http://www.crummy.com/ "Ruby Cookbook":http://www.oreilly.com/catalog/rubyckbk/ and "Rob's":http://blog.tupleshop.com/ "Rails Cookbook":http://www.oreilly.com/catalog/9780596527310/ have often made my day when even the mighty G has failed.
+
+And now, fresh from the "pragmatic oven":http://www.pragprog.com/, prepared with tenderness and love by "Mike Clark":http://clarkware.com/cgi/blosxom and a slew of contributors, comes "Advanced Rails Recipes":http://www.pragprog.com/titles/fr_arr. From a quick look through the beta PDF (available for purchase now through the "beta book program":http://pragmaticprogrammer.com/frequently-asked-questions/beta-books), this will surely be one of the most useful Rails books for an advanced hacker ever written. Mike has managed to gather a respectful pile of recipes from experienced Rails people like "Ezra":http://brainspl.at/, "PJ and Chris":http://errtheblog.com/, "Adam":http://therealadam.com/, "Giles":http://gilesbowkett.blogspot.com/ and many, many more. Getting access to all these people's heads within one book is something really unique and privileged.
+
+*Disclaimer*: Advanced Rails Recipes contains a recipe written by me, "Validating Required Form 
+Fields Inline". However, I don't get any royalties from the book sales so this recommendation is an honest review of the book. I really think it's that good.

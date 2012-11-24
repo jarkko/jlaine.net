@@ -1,0 +1,7 @@
+---
+layout: post
+title: Rails Blob
+---
+*Warning!* Only for geeks/ruby heads.
+
+If you've been sick like me or somehow else missed the "rise":http://railsblob.blogspot.com/2006/08/my-new-blob.html and "fall":http://railsblob.blogspot.com/2006/08/rip-rails-blob.html of "Rails Blob":http://railsblob.blogspot.com/ (R.I.P.), you'd better check it out. It's pretty weird how hysterically funny pieces people can write with the help of typos and (a lot of) inside wisdom.

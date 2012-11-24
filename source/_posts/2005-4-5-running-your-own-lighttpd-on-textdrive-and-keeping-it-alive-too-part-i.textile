@@ -1,0 +1,19 @@
+---
+layout: post
+title: Running your own lighttpd (on TextDrive) and keeping it alive, too (Part I)
+---
+Now that TextDrive "supports":http://weblog.textdrive.com/article/31/having-ones-own-lighttpd-and-running-it-too "lighttpd":http://lighttpd.net/ and I'm eventually moving all my sites to a lighttpd/fastcgi setup, I'm confronted with a new problem: the webserver process is now mine and I'm the one responsible for keeping it running.
+
+The first thing to remember (and to fix) is that my lighttpd process is *not* started automatically at server bootup. This is fortunately easy to fix:
+
+# Login to webmin (e.g. "http://webmin.bidwell.textdrive.com":http://webmin.bidwell.textdrive.com) and click  _Scheduled Cron Jobs_ under _System_. *Important:* you can't use usermin as it doesn't seem to have the necessary privileges to schedule cron jobs. So do yourself a favor and dive right into webmin.
+# Click _Create a new scheduled cron job_.
+# Type your lighttpd startup command in the _Command_ field. For example, <code>/usr/local/sbin/lighttpd -f /usr/home/[yourname]/sites/[yoursite]/config/lighttpd.conf</code>. Remember that you need to use the whole paths in your command, otherwise all hell can break loose.
+# Select _Simple schedule_ and _When system boots_ from the drop-down menu.
+# Submit the form clicking _Create_.
+
+Congrats! Your lighttpd service should now survive the unfortunate days when "_a pair of redundant UPS units fail_".
+
+We're not quite there yet, though. As sure as people die some day, processes die too. Wouldn't it be even nicer if we could somehow monitor that our beloved lighttpd is up and running at all times? _Hint: yes, it would._
+
+So, next we're going to wrap up a Ruby script that keeps a keen eye on our webserver. But that's a great topic for a sequel (I'll never get to write sequels unless I break my stories in multiple parts). So go ahead and implement your own reboot-surviving lighttpd machine. More to come later.

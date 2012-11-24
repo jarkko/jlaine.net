@@ -1,0 +1,244 @@
+---
+layout: post
+title: From Rails Ajax helpers to Low Pro, Part 3 (+ some announcements)
+---
+_This is the third part of my introduction to Low Pro series, something that has been taken... hmmm... a while. The two first parts can be found here:_
+
+* "Part 1":http://jlaine.net/2007/8/3/from-rails-ajax-helpers-to-low-pro-part-i
+* "Part 2":http://jlaine.net/2007/8/6/from-rails-ajax-helpers-to-low-pro-part-2
+
+_Coincidentally, all these pieces are also part of my new ebook, "Unobtrusive Prototype":http://peepcode.com/products/unobtrusive-prototypejs-draft, straight from the Peepcode oven. If you liked the articles, you might really enjoy the book. It will have all the code rewritten for Rails 2.1 (as has this article btw), it is professionally edited unlike my rumblings here, and has a much wider coverage of Low Pro, including writing your own Behaviors and event delegation._
+
+_I also managed to give a "tutorial":http://en.oreilly.com/railseurope2008/public/schedule/detail/3584 on the topics covered in the book in "RailsConf Europe":http://en.oreilly.com/railseurope2008/public/content/home in Berlin last week. The "tutorial slides can be found at Slideshare":http://www.slideshare.net/supervillain/accessible-ajax-on-rails-presentation/, where they also got a short featured treatment._
+
+<div style="width:425px;text-align:left" id="__ss_578598">
+<object style="margin:0px" width="425" height="355">
+<param name="movie" value="http://static.slideshare.net/swf/ssplayer2.swf?doc=railsconfeurope2008-1220336237309478-9&stripped_title=accessible-ajax-on-rails-presentation" />
+<param name="allowFullScreen" value="true"/>
+<param name="allowScriptAccess" value="always"/>
+  <embed src="http://static.slideshare.net/swf/ssplayer2.swf?doc=railsconfeurope2008-1220336237309478-9&stripped_title=accessible-ajax-on-rails-presentation" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355">
+  </embed>
+</object>
+</div>
+
+_I moved the "sample code for the articles and the book":http://github.com/jarkko/unobtrusive_book_code/ to "my GitHub account":http://github.com/jarkko. The "Chapter 5 branch":http://github.com/jarkko/unobtrusive_book_code/tree/chapter-5 should be pretty much where this article starts at. If you're not into git (yet), just click the "Download" button on the page to suck a zip file of the whole source code to your box._
+
+h3. Going DRY with multiple elements
+
+Now that we have taken care of adding items to our to-do lists, let's have a look at the the action of ticking items done and undone. The @index.html.erb@ view uses the Rails' partial mechanism to display the lists of items. Here's how the @_item.html.erb@ partial looks like:
+
+<pre><code class="builder"><% @item = item %>
+<li id="<%= item.state %>_<%= item.id %>">
+  <%= check_box("item[]", :done, :id => "#{item.state}_box_#{item.id}") %>
+  <label for="<%= "#{item.state}_box_#{item.id}" %>">
+    <%= item.description %>
+  </label>
+  <%= observe_field("#{item.state}_box_#{item.id}", 
+                    :url => item_path(item), 
+                    :method => :put) %>
+</li>
+</code></pre>
+
+@observe_field@ is a Rails helper that attaches an Javascript observer to the field in question. Whenever the field is changed (or every _n_ seconds, if the time n is given as a parameter to the @observe_field@ call), an Ajax call (in this case to @item_path(item)@) is made. In our app, the responding @update@ action will then update the state of the item in the database and return Javascript that will move the item to the correct list on the page.
+
+Here's an example of what the list of items looks like to the browser:
+
+<pre><code class="html"><li id="undone_1">
+<input id="undone_box_1" name="item[1][done]" type="checkbox" value="1" />
+<input name="item[1][done]" type="hidden" value="0" />
+<label for="undone_box_1">
+  Buy carrots
+</label>
+<script type="text/javascript">
+//<![CDATA[
+new Form.Element.EventObserver('undone_box_1',
+                  function(element, value) {
+                    new Ajax.Request('/items/1', 
+                                     {asynchronous:true, 
+                                      evalScripts:true, 
+                                      method:'put', 
+                                      parameters:value + '&authenticity_token=' +
+                encodeURIComponent('8d829cfcccdf4d2b494891ef47cc95893faa361e')})})
+//]]>
+</script>
+</li>
+<li id="undone_2">
+<input id="undone_box_2" name="item[2][done]" type="checkbox" value="1" />
+<input name="item[2][done]" type="hidden" value="0" />
+<label for="undone_box_2">
+  Return bottles to recycling
+</label>
+<script type="text/javascript">
+//<![CDATA[
+new Form.Element.EventObserver('undone_box_2', 
+                  function(element, value) {
+                    new Ajax.Request('/items/2', 
+                                     {asynchronous:true, 
+                                       evalScripts:true, method:'put', 
+                                       parameters:value + '&authenticity_token=' +
+                encodeURIComponent('8d829cfcccdf4d2b494891ef47cc95893faa361e')})})
+//]]>
+</script>
+</li>
+</code></pre>
+
+Imagine a list that has a couple dozen items. Not exactly DRY, is it, especially compared to how clean the source code of a Rails app tends to be?
+
+Even if we set aside all the objections for the ugly code above, there is still the issue of the form not working at all without Javascript. Not good.
+
+Let's again start our round of refactoring by making the checkboxes work without javascript. For that, we'll remove the @observe_field@ call from the partial:
+
+<pre><code class="builder"><% @item = item %>
+<li id="<%= item.state %>_<%= item.id %>">
+  <%= check_box("item[]", :done, :id => "#{item.state}_box_#{item.id}") %>
+  <label for="<%= "#{item.state}_box_#{item.id}" %>">
+    <%= item.description %>
+  </label>
+</li>
+</code></pre>
+
+Now, to make our form work again, we need to figure out what it's supposed to do and where we should send it to. Thinking restfully, by submitting a form with multiple items checked or unchecked, we are modifying a _to-do list_. Let's thus create a simple controller for the imaginary List resource (remember, resources don't need to map directly to ActiveRecord models).
+
+<pre><code>script/generate controller Lists</code></pre>
+
+Then add the necessary route to @config/routes.rb@
+
+<pre><code class="ruby">  map.resources :items
+  map.resource :list
+</code></pre>
+
+For simplicity's sake, let's pretend our app can only handle a single to-do list (it's our personal to-do list app, after all) and use the single form of resource routes with it.
+
+In our to-do list page, we currently have a form that's unable to submit anything. Let's add a submit button to it and also change the form in @app/views/items/index.html.erb@ to point to the lists controller:
+
+<pre><code class="builder"><% form_for :list, :url => list_path, :html => {:method => :put} do |f| %>
+  <h3>
+    Not done:
+  </h3>
+
+  <ul id="undone">
+    <%= render :partial => "item", :collection => @not_done %>
+  </ul>
+
+  <h3>
+    Done:
+  </h3>
+
+  <ul id="done">
+    <%= render :partial => "item", :collection => @done %>
+  </ul>
+  
+  <p>
+    <%= submit_tag "Save changes", :id => "save_changes" %>
+  </p>
+<% end %>
+</code></pre>
+
+Now let's create a really simple update action to our new controller for the mass assignment of items:
+
+<pre><code class="ruby">class ListsController < ApplicationController
+  def update
+    params[:item].each do |key, values|
+      item = Item.find(key)
+      item.update_attributes(values)
+    end
+    
+    redirect_to items_path
+  end
+end
+</code></pre>
+
+If you now test the application with Javascript turned off, updating the item state should work fine. We can thus continue to the hijacking phase.
+
+First of all, let's hide the submit button because we don't need it in the Ajax'ed form.
+
+<pre><code class="javascript">Event.addBehavior({
+  'body' : function() {
+    $('add_form').hide();
+    $('add_new_link').show();
+    $('save_changes').hide();
+  },
+  '#add_new_link:click' : function(e) {
+    $('add_form').toggle();
+    e.stop();
+  },
+  '#add_form' : Remote.Form
+});
+</code></pre>
+
+Now, what we need to do is to make clicking a checkbox to call the update action for the current item. This is easily done in the js file:
+
+<pre><code class="javascript">Event.addBehavior({
+  'body' : function() {
+    $('add_form').hide();
+    $('add_new_link').show();
+    $('save_changes').hide();
+  },
+  '#add_new_link:click' : function(e) {
+    $('add_form').toggle();
+    e.stop();
+  },
+  '#add_form' : Remote.Form,
+  'input[type=checkbox]:click' : function() {
+    var id = this.id.match(/\d{1,}$/);
+    var auth_token = this.up('form').
+                          select('[name=authenticity_token]').
+                          first().value;
+    new Ajax.Request('/items/' + id, 
+                     {asynchronous:true, 
+                      evalScripts:true, 
+                      method: 'put',
+                      parameters: {
+                        authenticity_token: auth_token
+                      }});
+  }
+});
+</code></pre>
+
+We use the CSS3 selector syntax to get every input of type checkbox, then fetch the item id from the element id using a regular expression and finally call the update method of the items controller to update the item. The cool thing about @addBehaviour@ is that the behaviour is attached to all elements returned by the selector. Thus adding a single call function to our javascript file automatically attaches the function to as many list items as needed.
+
+Note that because of the spam-defense mechanism in Rails, we also need to send the authenticity token with our call. We use the cool Prototype selector functions to easily get to the current token inside the form.
+
+An astute reader might have noticed that if you click an item in the list, and then try to re-click the same item after it's moved to the opposing list, it's not moved back automatically. This is because our Ajax update action created a new list item and added it to the list, and by default @Event.addBehaviour@ does not reattach behaviours after each Ajax call.
+
+We have a couple of ways to fix the situation. The simplest would be to add this line to our Javascript file:
+
+<pre><code class="javascript">Event.addBehavior.reassignAfterAjax = true;</code></pre>
+
+However, the simplest way is not always the best. By reassigning behaviours automatically after each Ajax call we can deteriorate the Javascript performance considerably, and the effect gets larger when there are more items watched.
+
+Second, a bit more surgical option would be to reload the @addBehaviour@ rules in a callback of the Ajax call:
+
+<pre><code class="javascript">onComplete : function() {
+  Event.addBehavior.reload();
+}
+</code></pre>
+
+This way the behaviours would only be reassigned after the particular Ajax call, not all of them. However, it's still a bit heavy-handed.
+
+Let's take a step back and think how we could avoid reassigning all the behaviours for the new element. An obvious answer would of course be not to create a new element at all, but instead just move the existing one (with all the behaviours already attached).
+
+In app/views/items/update.js.rjs we can see that the code first removes a list item and then adds a new one into the list of items in the opposite state:
+
+<pre><code class="ruby">page["#{@item.opposite_state}_#{@item.id}"].remove
+page.insert_html :top, @item.state, :partial => "item"
+</code></pre>
+
+We can fairly easily change that code to not delete/create a new node to the page, but instead move the list item to the correct place in the DOM:
+
+<pre><code class="builder">page << "
+  var el = $('#{@item.opposite_state}_#{@item.id}');
+  $('#{@item.state}').insert({ top: el.remove() });
+  el.id = '#{@item.state}_#{@item.id}';
+"
+</code></pre>
+
+This time we don't use the RJS syntax but instead just output plain old Javascript back to the browser. We first fetch the list element we're about to move. We then remove it from the DOM tree, just to again insert it to the bottom of the list it now belongs to. In the end we change the id of the item to reflect its new state as well.
+
+If you now try the app again, you should be able to tick and untick the items at will, and everything should work just fine. The behaviour assigned to the list element on the page load sticks to it through all the moving and renaming of the element.
+
+--
+
+!/assets/2008/9/9/unobtrusive-cover.png!:http://peepcode.com/products/unobtrusive-prototypejs-draft
+
+_If you enjoyed the article, consider grabbing a copy of my new ebook, "Unobtrusive Prototype":http://peepcode.com/products/unobtrusive-prototypejs-draft, straight from the Peepcode oven. It will have all the code rewritten for Rails 2.1, it is professionally edited unlike my rumblings here, and has a much wider coverage of Low Pro, including writing your own Behaviors and event delegation. *If you're quick and have a close look at my presentation slides in the beginning of this article, you might even find a way to get your copy for half the normal price*!_

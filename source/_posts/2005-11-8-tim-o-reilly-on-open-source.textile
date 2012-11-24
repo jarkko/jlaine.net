@@ -1,0 +1,5 @@
+---
+layout: post
+title: Tim O'Reilly on Open Source
+---
+"David Heinemeier Hansson":http://www.loudthinking.com/ wasn't the only person I interviewed at "EuroOSCON":http://conferences.oreillynet.com/eurooscon/. I also had a short chat with "Tim O'Reilly":http://radar.oreilly.com/tim/ on business around open source before we had to rush to hear "Rael's":http://radar.oreilly.com/rael/ keynote. We talked about how the term first saw the daylight, about business models inside open source and how to build your own business so that it can benefit from and help the open source movement. Unfortunately I couldn't really handle the digital dictator so I can't publish the whole transcript here. Instead, I would advice you to move over to "BBC News":http://news.bbc.co.uk/ where "Bill Thompson interviews O'Reilly":http://news.bbc.co.uk/1/hi/technology/4372728.stm on pretty much same topics. A lot of insight and history regarding open source in there.

@@ -1,0 +1,19 @@
+---
+layout: post
+title: Redirecting txp-style feed url's to feedburner in a lighttpd/typo setup
+---
+I reported "earlier":http://jlaine.net/articles/2006/01/27/back that I hadn't yet gotten the old textpattern-style feed urls like jlaine.net/?rss=1 to work with the setup where all requests are reverse proxied to a "lighttpd":http://lighttpd.net/ instance through apache. That has now changed. With the help of Ryan Schwartz from "Textdrive":http://www.textdrive.com I was able to combine rewriting and redirecting in the lighty config file so that all my feeds now point to "feedburner":http://www.feedburner.com. Here's the setup:
+
+<filter:code lang="ruby">
+$HTTP["host"] =~ "mydomain.net" {
+  url.rewrite-once = ( "^/?rss=1(&section=blog)?" => "/xml/rss20/feed.xml",
+                       "^/?atom=1(&section=blog)?" => "/xml/rss20/feed.xml"  )
+
+    $HTTP["useragent"] !~ "FeedBurner" {
+        url.redirect = (
+            "/xml/rss20/feed.xml" => "http://feeds.feedburner.com/mydomain"
+        )
+    }
+</filter:code>
+
+It might be possible to tackle it with just redirects, but I couldn't get it understanding my regexps. In rewrite rules they work fine, though, so I don't mind. Here we first rewrite all old school feed urls to the new typo-style, and then redirect to the FeedBurner feed unless the request comes from FeedBurner. Works a treat.

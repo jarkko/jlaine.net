@@ -1,0 +1,7 @@
+---
+layout: post
+title: RailsConf slides
+---
+Here's the PDF export of my RailsConf slides. Unfortunately they probably don't make much sense just by themselves. I'll try to post the transcript of the talk as well, as soon as I get back on the normal track of life after three weeks of travelling.
+
+"Angel on the Shoulder":http://jlaine.net/assets/2007/5/28/railsconf2007.pdf (PDF, 4,5MB)

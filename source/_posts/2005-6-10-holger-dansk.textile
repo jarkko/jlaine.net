@@ -1,0 +1,7 @@
+---
+layout: post
+title: Holger Dansk
+---
+When walking back to Lars' place Thursday evening, I spotted Holger Danskes vej, which reminded me of, well, Holger Dansk, but more importantly, "Peopleware":http://www.amazon.com/exec/obidos/tg/detail/-/0932633439/. Peopleware is an amazing book about making software projects work. The meat of the book is that most projects don't fail because of technological reasons but sociological: unhappy people. Joel Spolsky hits the nail pretty well by calling Peopleware an "anti-Dilbert manifesto".
+
+I know. I've written about Peopleware before. But hey, I've read the book many times and still find it as eye-opening as ever. So if you've so far been able to find excuses for avoiding the purchase, give up. You won't regret it.

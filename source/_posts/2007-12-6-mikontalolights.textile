@@ -1,0 +1,17 @@
+---
+layout: post
+title: Mikontalolights
+---
+What would a bunch of geeks do while their dorm highrise is under renovation? Build "the world's biggest LED screen":http://www.mikontalolights.fi/en/technics/, of course.
+
+!http://farm3.static.flickr.com/2118/2086485889_f4de77d344_d.jpg!:http://flickr.com/photos/stanestane/2086485889/
+
+Photo by "StaneStane":http://flickr.com/photos/stanestane/
+
+One of the most infamous student dorm houses in my hometown and whole Finland, "Mikontalo":http://en.wikipedia.org/wiki/Mikontalo, is finally put under hammer and renovated to meet the standards of the third millennium. While the construction work is underway, a bunch of TUT geeks decided to get something more out of the works:
+
+bq. The object of MIKONTALOLIGHTS is to create the world's physically largest colored graphics platform by using the windows of Mikontalo's D-staircase as light pixels. The platform is used to play Tetris and other games and present demos created by the students of Tampere University of Technology.
+
+Here's a video of the grand opening, including rounds of Space Invaders and Tetris (controlled with a mobile phone, of course). Times Square, beware!
+
+<object width="425" height="355"><param name="movie" value="http://www.youtube.com/v/iyMbAI67hUM&rel=1"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/iyMbAI67hUM&rel=1" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"></embed></object>

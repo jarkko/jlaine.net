@@ -1,0 +1,39 @@
+---
+layout: post
+title: Spam Statistics
+---
+h4. Filtered Mail
+
+84040 Good Messages
+
+19581 Spam Messages (19%)
+
+19 Spam Messages Per Day
+
+h4. SpamSieve Accuracy
+
+91 False Positives
+
+162 False Negatives (64%)
+
+99.8% Correct
+
+h4. Corpus
+
+2286 Good Messages
+
+2485 Spam Messages (52%)
+
+167105 Total Words
+
+h4. Rules
+
+1460 Blocklist Rules
+
+2529 Whitelist Rules
+
+h4. Showing Statistics Since
+
+30.1.2004 18.11.26
+
+"SpamSieve":http://c-command.com/spamsieve/ rocks. I just wish it would have some kind of connection to the server so that the screening could do already on that level. That way the spam butchering wouldn't depend on me reading my mail through Mail.app.

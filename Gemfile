@@ -1,9 +1,16 @@
+# encoding: utf-8
+
+if RUBY_VERSION =~ /1.9/
+  Encoding.default_external = Encoding::UTF_8
+  Encoding.default_internal = Encoding::UTF_8
+end
+
 source "http://rubygems.org"
 
 group :development do
   gem 'rake', '~> 0.9.2'
   gem 'rack', '~> 1.4.1'
-  gem 'jekyll', '~> 0.11.2'
+  gem 'jekyll', '~> 0.11.2', :path => "~/code/jekyll"
   gem 'rdiscount', '~> 1.6.8'
   gem 'pygments.rb', '~> 0.2.12'
   gem 'RedCloth', '~> 4.2.9'

@@ -1,0 +1,7 @@
+---
+layout: post
+title: Ruby Breakfast, anyone?
+---
+My other programming language of choice, "TCL(Tool Command Language)":http://www.tcl.tk/, has had its own "merchandise":http://philip.greenspun.com/tcl/ for a long time, so I guess it was about the time to find something for "Ruby":http://ruby-lang.org/en/, too. So, here you go, folks, enjoy my new breakfast juice of choice (??With juicy bits??, of course!):
+
+<img src="/images/21.jpg" style="height:422px;width:317px" alt="Ruby Breakfast Juice" title="Ruby Breakfast Juice" />

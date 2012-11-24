@@ -1,0 +1,28 @@
+---
+layout: post
+title: Torn
+---
+*UPDATE* I am a bit embarrassed to admit how easy I am to get persuaded, but comments from two crazy Danes (and that's a compliment) made me change my mind. I already cancelled my PowerBook order but since it's already shipped I'll have to receive  and send it right back. I also ordered a NuPower battery for the _old faithful_ to make me survive the five weeks until the MBP's start shipping. Hope everything's gonna go allright, but of course I'll have the AppleCare to secure the purchase for a long time. Anyways, "Thomas":http://www.commonme.org/ and "David":http://www.commonme.org/, I will now hold you partly responsible for the decision ;-)
+
+bq. PowerBook is dead! Long live the PowerBook!
+
+"Who":http://daringfireball.net/2006/01/mwsf_predictions. "Would":http://www.kottke.org/06/01/letter-to-apple-support. Have. "Thought":http://www.apple.com/macbookpro/.
+
+A surefire way to make Apple release a new model is to order a computer from them. Three and a half years ago in ZÃ¼rich I had just about unwrapped my then shiny new PowerBook when they announced performance upgrades.
+
+p{float:right;}. !http://images.apple.com/euro/macbookpro/includes/images/intel4xfaster20060109.png(4 times faster than PowerBook G4 1.67GHz)!
+
+This time it's a lot more dramatic and complicated, though. PowerBook no more. "MacBook Pro":http://www.apple.com/macbookpro/ doesn't sound as cool to me as the holy circle around PowerBook, but it's quite hard to dismiss the performance gains even if they would be a bit overrated.
+
+I'm not quite in a situation like "Jason":http://www.kottke.org/06/01/letter-to-apple-support this time. My 17" PowerBook has not yet arrived, and I can according to the law return it no questions asked inside two weeks after the arrival. But does it make this any  easier? Not really.
+
+If I would have a working laptop at hand, I'd without a doubt cancel my order and place a new one for February. However, there's a few things that make me wonder:
+
+* Like "John Gruber":http://daringfireball.net/2006/01/mwsf_predictions said in his this-time-not-quite-right predictions, the software firms just aren't ready. The big ones maybe, but I haven't upgraded to "CS2":http://www.adobe.com/products/creativesuite/main.html and I doubt CS1 will ever be available as a universal binary. Much less all the small apps I've grown just too dependent on.
+* There have been a lot of small problems with version 1's of every PowerBook during the last years. Given that the transition to Intel processors is maybe the biggest leap in the Apple history, I am a bit hesitant to pay for being their beta tester.
+* <a href="http://www.flickr.com/photos/jarkko/74210887/" style="float:right;" ><img src="http://static.flickr.com/38/74210887_f7ea57217e_s.jpg" alt="Freiteg sleeve" /></a> I wanted, and will get, a 17" PowerBook. Even if it's slower, it's got more screen estate. Besides, my "Freitag sleeve":http://www.flickr.com/photos/jarkko/74210887/ is for a 17" model.
+* I need my new laptop yesterday. Not in February.
+
+So, all things considered, I'm going to keep the PowerBook. I'm going to give it a spin for a good six to twelve months and see if the new model is mature enough by then. Given the good resale value of the PowerBooks, I can handle that.
+
+Still, I'm happy I placed the order before yesterday. Even though all the rational things speak for keeping the 17" model, it might've been a bit too hard a decision to make after the announcement.

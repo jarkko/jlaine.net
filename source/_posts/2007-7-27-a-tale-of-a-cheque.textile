@@ -1,0 +1,25 @@
+---
+layout: post
+title: A tale of a cheque
+---
+One thing that never stops amazing me is the eagern€US companies to use cheques as a pa€ethod. I mean, we have been using online banks for more than a decade now, and still the default way of paying a contractor is sending him a cheque.
+
+Sure, the buyer wins some time (and thus a few days' worth of interest€or the receiver of the payment it goes like this:
+
+# Wait for the cheque to arrive in mail. This normally takes about a week.
+# Walk to a bank and get stared at like a lunatic, because you're considered a remnant from the era of "ball chairs":http://www.eero-aarnio.com/8/Objects/Ball_Chair.htm. Stand in line for half an hour because banks have cut their counter workers to a minimum (since no one - except for pensioners - goes to a bank persionally these days, and pensioners have time to wait).
+# Wait another week for the cheque to be cashed and the money to arrive on your account.
+
+Now let's compare this to the process of a bank wire:
+
+# _(laughter)... there is no step 1._ You just wait and after about a week since the customer sends the money it's on your account.
+
+Now as if this wasn't enough, here's what just happened with a cheque I received a couple of months ago. When I got the cheque, the dollar rate was near it's all-time low (around $1.35/€1), so I decided I'd wait for a while for it to stabilize. That turned out to be just a pipe dream so I bit the bullet and walked into a bank this week. No problem.
+
+Today I got a call from the bank. They told me they have a 70-day limit in cashing cheques in the normal fashion (which costs me about €12). Since they don't want to take the risk of being denied by the US bank that issued the cheque, the only way to cash it now is as a CAD (cash against documents) cheque, which, coincidentally, is going to cost me around €50. Just great.
+
+For a reality check, I decided to call "another bank":http://www.nordea.fi and ask how it would work there. The person with whom I talked obviously wasn't prepared to answer such a hard question as "How much does cashing a cheque cost?", so I had to wait on hold for a while until she came back with the answer. And what an answer that was:
+
+"The bank has the option to deny cashing the cheque as its will, and the cost is always at least €90." Geez. I called back to the original bank and told them to go ahead with the cashing. It seems the banks in Finland have  at least as bad an aversion to cheques as I do.
+
+From no on, please don't offer to pay me by a chequ

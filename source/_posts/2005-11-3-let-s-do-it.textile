@@ -1,0 +1,5 @@
+---
+layout: post
+title: Let's do it
+---
+"Let's clone":http://www.clonethegoogleapi.com/ the "Google API":http://www.google.com/apis/.

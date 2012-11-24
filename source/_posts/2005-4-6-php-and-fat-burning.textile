@@ -1,0 +1,13 @@
+---
+layout: post
+title: PHP and fat burning
+---
+A Swedish guy just posted this "link":http://www.bokus.com/cgi-bin/more_book_info.cgi?ISBN=0764549553&pt=search_result to a Swedish online bookstore "Bokus":http://www.bokus.com. It's the page for book _PHP Bible_ by Joyce Park and Tim Converse. 
+
+What's special in that page are the community features of modern online stores. On the bottom of the page there is a section called "Your click list". It contains items that have been bought by people who have explored the same items as I. When the click list consists of only the one abovementioned book, the first suggestion is "_Allt om fettförbrÃ¤nning 1_":http://www.bokus.com/cgi-bin/more_book_info.cgi?ISBN=9197414654 (All about fat burning 1). Whoa!
+
+But the fun doesn't end there. There is also a section called "In the same bookshelf" that has items bought by people who also bought the current item. What could we possibly find from that list on a PHP Bible page? Well, the first item ("_Allt Om Glykemiskt Index : FettförbrÃ¤nning, HÃ¤lsa, Viktminskning, Styrka, U_":http://www.bokusögi-bin/more_book_info.cgi?ISBN=9197414646) seems to indicate that PHP hackers are at least concerned about their overweight. But wait! What else is there? "_Att Ta Sig Upp NÃ¤r Man Ã„r Nere : HjÃ¤lp Till SjÃ¤lvhjÃ¤lp Vid Depressioner_":http://www.bokus.com/cgi-bin/more_book_info.cgi?ISBN=912707269X (Taking you up when you're down: Help for self-help in the case of depression).
+
+Hmmm... you can't deny the facts, can you? So what can you say? 
+
+Dear PHP coders, please lighten up. The summer is coming even in Sweden some day. I know that PHP coding can be depressing but don't lose your faith. Maybe even your boss will trip onto "Ruby on Rails":htöww.rubyonrails.com some day. Oh, and believe me, you can make a difference. Take a look at RoR today, create a cool prototyope using it tomorrow and who knows - maybe your firm is using Rails for the next project.

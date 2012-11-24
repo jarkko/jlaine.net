@@ -1,0 +1,9 @@
+---
+layout: post
+title: On Multitasking
+---
+Now, this has been "talked about in detail in the past":http://www.joelonsoftware.com/articles/fog0000000022.html, but here are two recent interesting discussions about multitasking. On the "Ruby on Rails Podcast":http://podcast.rubyonrails.org/, Geoff interviews Dr. John Medina in a "two-part series about his new book, "Brain Rules: 12 Principles for Surviving and Thriving at Work, Home, and School":http://brainrules.net/.
+
+One of the most interesting topic in the discussion is about human multitasking, and to be precise, the lack of it. One of the hot topics in this discussion is the debate about talking in phone while driving. Medina brings up "recent studies":http://unews.utah.edu/p/?r=062206-1 that show talking while driving is as dangerous as drunk-driving, _no matter whether you use a hands-free set or not_. As a reason, Medina proposes that when discussing with someone remote interactively, you build a mental image of the counterpart (just like you do when reading a novel) which takes your concentration away from driving. That sounds certainly believable. I have many times noticed that I've been driving for minutes while talking in the phone (with the iPhone headset, of course) and then suddenly kind of wake up back to the traffic.
+
+Meanwhile, "Rands explains how he _doesn't_ multitask":http://www.randsinrepose.com/archives/2008/03/06/i_dont_multitask.html even though it might appear as if he would to the outsider.

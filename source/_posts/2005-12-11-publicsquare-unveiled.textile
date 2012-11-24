@@ -1,0 +1,7 @@
+---
+layout: post
+title: PublicSquare Unveiled
+---
+"Lars":http://pinds.com and "Christina":http://www.eleganthack.com/blog/ finally "reveal":http://www.boxesandarrows.com/view/under_the_boxes_and_arrows_hood some "information":http://pinds.com/articles/2005/12/08/publicsquare-headquarters on their "secret project #2":http://www.eleganthack.com/archives/secret_project_2.php#004552. The name of the game is "PublicSquare":http://publicsquarehq.com/, a platform for citizen journalism, _we media_ in the current jargon.
+
+Knowing the skills of the people behind PublicSquare, I can't wait to get my hands on the real thing. It's already running behind "Boxes and Arrows":http://www.boxesandarrows.com/, so the golden rule of _frameworks being extractions_ seems to be holding true. Needless to mention, PS is running on "Rails":http://www.rubyonrails.com.

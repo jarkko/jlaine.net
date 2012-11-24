@@ -1,0 +1,5 @@
+---
+layout: post
+title: Dotherightthing featured in San Francisco Chronicle
+---
+Yesterday's "San Francisco Chronicle":http://sfgate.com/chronicle/ ran with an article called "Responsibility is in their sites":http://sfgate.com/cgi-bin/article.cgi?f=/chronicle/archive/2007/04/15/BUG5SP63BR85.DTL&type=business, featuring "dotherightthing.com":http://dotherightthing.com and including an interview with our co-founder "Ryan Mickle":http://blog.ryanmickle.com/. Cool stuff.

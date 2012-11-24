@@ -1,0 +1,23 @@
+---
+layout: post
+title: Thesis
+---
+OK, it's time for me to become an adult as well eventually and one obvious symptom of that is that I started to work on my Master's thesis this Monday. 
+
+I'll try to be as open about the writing process as possible, partly because of the subject and partly because I hope I can get some feedback from you.
+
+Here's the preliminary setting for my thesis:
+
+* *Research problem*: Small software businesses as part of an open source community.
+* *Research question*: What does it give to (and on the other hand demand from) a small business owner to be a member of an open source community?
+* *Point of view*: Small software business owner[1]
+* *Subquestions*
+** What can you win by contributing to an open source project/community?
+** What specific requirements are involved?
+** What are the potholes you should avoid?
+
+fn1. Small software business is determined by both size and act. I would say 1-10 is probably the range of people working for the firm. However, 1 hacker + 9 marketing people doesn't necessarily qualify as a small business here. So let's say being less than 10 people and acting small.
+
+I have setup an Amazon.com "wishlist":http://www.amazon.com/gp/registry/2YDA3270NW5VC for the books I think are relevant for the thesis. If you have read some of them or know some other books that you think would be spot-on, please leave a comment. The same goes for online articles, of course. I found this huge "list":http://opensource.mit.edu/online_papers.php of papers about Open Source and made already an initial screening on the papers. But finding the best and most relevant for my purpose is not easy so if you know about some great piece you think I should take a look at, please let me know.
+
+The theoretical background for the thesis will be the network theories of the "IMP(Industrial  Marketing and Purchasing Group)":http://www.impgroup.org/ school, of which I know nothing yet. However, the goal is more to give practical advice to business owners than to be very theoretical. Therefore the meat of the thesis will consist of advice collected through interviews. So if you feel like you would have experiences to share and a lot to say, contact me and we can make up a time for an interview.

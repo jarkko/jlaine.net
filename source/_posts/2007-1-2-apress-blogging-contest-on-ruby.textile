@@ -1,0 +1,23 @@
+---
+layout: post
+title: Apress Blogging Contest @ On Ruby
+---
+h2. Rails Revelations: How Rails made me a better programmer
+
+For me, the spell of Rails comes roughly in three parts:
+
+# Productivity boost
+# Having more fun
+# Doing the right things
+
+Number 1 has been the reason numero uno almost everywhere Rails has been mentioned. I guess it's easier to sell productivity to managers than having fun ("oh, that's so unprofessional!") or doing the right things without rigid explicit processes. However, I see the increased productivity mostly as an inevitable consequence of the two latter points.
+
+Much of my liking Ruby and Rails development more than other environments comes from the feeling of the language and tools being a natural extension of my brain. Why shouldn't I be able to write something like <code>2.weeks.ago</code>? It's easy to dismiss things like that as just syntactic sugar without real meaning, but you know, things add up, and overall happiness in work is built of small details.
+
+Point number three could be described as the dullest and most minor benefit Rails brings to table. However, in many ways it's the grounding factor of both the happy Rails development and the improved productivity.
+
+The things I include in doing the right things are stuff like making testing as easy as not to, conforming to the Rest principles and naming conventions, the MVC-type separation of concerns, and keeping yourself DRY(don't repeat yourself). I sleep my nights much better when I know that my application has extensive test coverage and that anyone knowledgeable with Rails can take it up in a few hours in case we need more labour force because the structure of the application is so obvious.
+
+Now, none of these things are specific to or even popularized by Rails. However, many web developers have come to learn these lessons through Rails and I don't know any other framework that would make them as integrated part of the development process as Rails does. As the king of the Rails kingdom, David Heinemeier Hansson, has said, Rails tries to be the angel on the developer's shoulder ("Write your tests, it's as easy as not to!") as opposed to the PHP devil ("SQL in the views, quick'n'dirty, man!").
+
+However, my imagination is very limited and I'd like to hear more about what healthy habits Rails has made people learn and what bad habits to abandon. That's why the topic of our January blogging contest is "Rails Revelations: How Rails made me a better programmer". Heck, if Rails made you quit smoking, "tell us about it":http://on-ruby.blogspot.com/2007/01/win-books-by-blogging.html.

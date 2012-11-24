@@ -1,0 +1,36 @@
+---
+layout: post
+title: ! 'Sony BMG "goes DRM-free" (or: Sony BMG, the dumbest of the dumb)'
+---
+(cross-posted to "dotherightthing.com":http://dotherightthing.com/entries/1481-sony-bmg-goes-drm-free-or-sony-bmg-the-dumbest-of-the-dumb)
+
+Last weeks, the air has been thick about even Sony BMG, the last of the big four music labels finally abandoning it's rootkit-stained history of draconian DRM schemes and publishing "at least part of its collection" available DRM-free":http://www.businessweek.com/technology/content/jan2008/tc2008013_398775.htm. However, the actual way of how it's going to happen has been unclear until very recently. And boy, what scheme that "came to be":http://www.usatoday.com/money/media/2008-01-07-sony-music_N.htm:
+
+bq. The No. 2 record company after Universal Music will sell plastic cards, called Platinum MusicPass, for individual albums for a suggested price of $12.99. Buyers enter a code from the card at new Sony BMG (SNE) site MusicPass.com to download that card's album.
+
+That's right. Plastic frikkin' cards. Marco has a "good view of how this happens":http://www.marco.org/275:
+
+bq. To get Sony BMGâ€™s DRM-free music files, someone burns some coal to manufacture these petroleum-based plastic cards, then delivers them to stores on a series of diesel trucks. I drive to Best Buy in my 3056-pound gas-burning car and find my particular little plastic card, assuming that store carries the album I want in plastic-card format and itâ€™s in stock. (If not, I need to drive to more stores, or just give up and try again next weekend.) But they probably have these cards taking up space somewhere in their massive store that requires tons of energy to keep well-lit and ventilated (since it has no windows).
+
+And as far as the "part of the collection" part goes, the DRM-free collection will be a whopping 37 albums. Three-seven. Combining the convenience of going to a store to be able to buy tunes online, and the width of the supply, I'm sure people will be buying the albums like crazy.
+
+John Gruber "links":http://daringfireball.net/linked/2008/january#tue-08-scalzi to an article by John Scalzi, aptly titled "Why It Won't Work":http://scalzi.com/whatever/?p=280.
+
+<blockquote>
+*Kid #2:* So to recap, what youâ€™ve got here is a system that makes people leave their house in order to download music at their house, and makes them go to a store to get music that they could get at the store, somewhere else.
+
+
+*Sony BMG dude:* Er.
+
+*Kid #1:* Why donâ€™t you just sell non-DRMâ€™d MP3s off Amazon, like every other major music corporation?
+
+*Sony BMG dude:* Well.
+
+*Kid #2:* You donâ€™t actually want to sell unprotected MP3s, do you? You want to be able to say youâ€™re doing it, but really, you want to make it so ridiculously inconvenient that people keep just keep buying CDs and DRMâ€™d tracks off iTunes. Just admit it, bro.
+
+*Sony BMG dude (pointing):* Look! Itâ€™s Celine Dion! And Barry Manilow! (runs away as kids avert their eyes in terror)
+</blockquote>
+
+Won't they ever learn?
+
+*[UPDATE:]* They will indeed "start selling music through Amazon MP3, according to MacWorld":http://www.macworld.com/article/131515/2008/01/amazon.html. The question remains, why on earth did they publicize the born dead plastic card scheme if the whole Amazon deal was about to be announced. The other question is, doesn't it sound like a cartel that three of the big four labels refuse to sell Apple DRM-free songs but sell them somewhere else? Let's hope there are some announcements coming next week in San Francisco.

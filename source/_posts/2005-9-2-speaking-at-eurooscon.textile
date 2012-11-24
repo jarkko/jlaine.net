@@ -1,0 +1,10 @@
+---
+layout: post
+title: Speaking at EuroOSCON
+---
+Yay! Since "David":http://www.loudthinking.com won't make it to Monday's "Ruby on Rails tutorial":http://conferences.oreillynet.com/cs/eurooscon/view/e_sess/7445 in "EuroOSCON":http://conferences.oreillynet.com/eurooscon/ (17-20 October), I will step into his "nice shoes":http://www.loudthinking.com/arc/000489.html and give the presentation. I'm both totally excited and nervous about the gig, but I'm sure the former will take over eventually.
+
+That said, if you haven't yet registered for the first-ever EuroOSCON, it's about the time to do it now. But wait! Before you register, check out "this David's article":http://www.loudthinking.com/arc/000498.html. It might be worth hard cash for you.
+
+!{float: right}http://static.flickr.com/27/39499777_72578bb944_t.jpg(EuroOSCON headshot)!:http://www.flickr.com/photos/jarkko/39499777/
+And when we're at it, here's the headshot my father-in-law candidate took for the presentation with his ""little toy":http://www.flickr.com/photos/jarkko/7796967/". Just so you know to run when you see me coming down the aisle.

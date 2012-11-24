@@ -1,0 +1,19 @@
+---
+layout: post
+title: GBAT
+---
+First things first: "Guy Kawasaki is blogging":http://blog.guykawasaki.com. I know, I know, old news. But if you haven't checked "his blog":http://blog.guykawasaki.com yet, do it know. The guy (pun unintended) has made an _extensive_ career as an Apple evangelist and later in the VC(Venture Capital) world. He also seems to have a talent to write thoughtful and thought-provoking articles day in day out. And he's got a proofreader for his blog.
+
+But that wasn't my point today. Guy has created "a test called GBAT(Guy's Bozofication Aptitude Test)":http://blog.guykawasaki.com/2006/02/gbat_score_high.html, which is "a compilation of the best indicators of whether a company is sliding into bozosity". "Electric Pulp has pushed the idea online":http://electricpulp.com/gbat/ so you can easily test if _now_ would be a good time to look for a new employer.
+
+I especially like the point number #6:
+
+bq. Your HR department requires an MBA degree for any position; it also requires five to ten years work experience in an industry that is only four years old.
+
+That's like straight from some of the early announcements for "Rails jobs":http://jobs.rubynow.com/.
+
+BTW, "my company":http://www.odesign.fi scored 2. Well, maybe 1 actually, because the only two points came from the point #26:
+
+bq. Your CEO writes a book.
+
+I'm not a real CEO and I'm just writing a thesis, not a real book (yet), so I refuse to score the whole two points for that question.

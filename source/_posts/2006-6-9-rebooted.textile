@@ -1,0 +1,9 @@
+---
+layout: post
+title: Rebooted
+---
+And from the ashes rises... No May 1st Reboot here, not even -redesigned- realigned outlook. But hopefully the June 9th Reboot made posting work again.
+
+Talking about "Reboot":http://reboot.dk, it was again a great event. There were "some":http://www.benhammersley.com/Ben/Me.html "great":http://www.docsearls.com/ speeches - maybe not quite as many as last year, though - but the biggest feat for me is the passionate and enthusiastic spirit of the conference and the endless discussions it fosters.
+
+We had a very nice "Rails discussion":http://outside-thoughts.octopod.info/articles/2006/06/02/rails-at-reboot-8 session where I (as promised) talked very little and let the participants take care of the talking. I met a great deal of nice people, "from":http://pinds.com "old":http://marklunds.com/ "friends":http://sean.treadway.info/ to "those":http://blog.olle.ter.dk/ I'd only "met":http://neubia.com/ "online":http://not.invisible.ch/ to those I'd "never":http://justaddwater.dk/ heard of before. We had lengthy discussions with a guy from the original Sun Java team (Hi Reno :) who was totally in love with Rails now and gathering a team for a startup. It really feels like it's the summer of '99 again (with hopefully more than a few things learned).

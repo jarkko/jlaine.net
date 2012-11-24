@@ -1,0 +1,7 @@
+---
+layout: post
+title: Skype 1.0 for Mac is out
+---
+Skype launched today "version 1.0 for OS X":http://www.skype.com/products/skype/macosx/ (and "Linux":http://www.skype.com/products/skype/linux/) of its great internet phone application.
+
+I've been using the beta version for a while and although it's got a few glitches, it has saved me a lot of time and cell phone bills. I still wish the sound quality would be better. Even though they claim to beat normal phone in quality, even domestic connections between two broadband nodes have been flaky at times.
