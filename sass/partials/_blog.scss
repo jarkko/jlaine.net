@@ -17,9 +17,8 @@ article {
       color: $text-color-light;
       margin: 0;
       &.meta {
-        @extend .sans;
         text-transform: uppercase;
-        position: absolute; top: 0;
+        text-align: center;
       }
     }
     @media only screen and (min-width: 768px) {
@@ -43,6 +42,8 @@ article {
     line-height: 1.3em;
   }
   img, video, .flash-video {
+    margin: auto;
+    display: block;
     @extend .flex-content;
     @extend .basic-alignment;
     @include shadow-box;

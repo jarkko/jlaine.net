@@ -2,9 +2,9 @@ $max-width: 1200px !default;
 
 // Padding used for layout margins
 $pad-min: 18px !default;
-$pad-narrow: 25px !default;
-$pad-medium: 35px !default;
-$pad-wide: 55px !default;
+$pad-narrow: 75px !default;
+$pad-medium: 180px !default;
+$pad-wide: 275px !default;
 
 // Sidebar widths used in media queries
 $sidebar-width-medium: 240px !default;
@@ -139,7 +139,6 @@ body.sidebar-footer {
   }
   #content {
     overflow: visible;
-    margin-right: $sidebar-width-medium;
     position: relative;
     .no-sidebar & { margin-right: 0; border-right: 0; }
     .collapse-sidebar & { margin-right: 20px; }
@@ -168,7 +167,7 @@ body.sidebar-footer {
 
 @media only screen and (min-width: 992px) {
   body > header { font-size: $header-font-size * 1.3; }
-  #content { margin-right: $sidebar-width-wide; }
+  #content {  }
   #content {
     > div, > article {
       padding-top: $pad-wide/2;

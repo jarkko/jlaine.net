@@ -15,6 +15,7 @@
   h2 { display: none; }
   h1 {
     font-size: 1.5em;
+    text-align: left;
     a {
       @include hover-link;
       color: inherit;
@@ -52,7 +53,7 @@
       position: absolute;
       text-align: right;
       left: 0em;
-      top: 1.8em;
+      top: 1.7em;
     }
     .year { display: none; }
     article {
