@@ -18,11 +18,13 @@ Let's start by defining what makes good coffee. Actually, let's flip the questio
 
 2. **Espresso (necessarily).** Many people I know say that they don't like any of those fancy coffees, by which they mean that they don't like espresso. To be honest, I don't care that much for espresso, either. I like good espresso like the next guy, but I actually think that great filter coffee beats the hell out of good espresso any day.
 
-  The difference is a bit like between a vodka shot and an exquisite old Scotch. Sure, you can make great drinks from the vodka, too, but it'll never be as smooth as a dram of 25-year-old Bowmore.
+   The difference is a bit like between a vodka shot and an exquisite old Scotch. Sure, you can make great drinks from the vodka, too, but it'll never be as smooth as a dram of 25-year-old Bowmore.
 
-  The bottom line in my opinion is that while you might want to delve into espresso geekery later on, it's not the best place to start. Because great coffee shouldn't be...
+   The bottom line in my opinion is that while you might want to delve into espresso geekery later on, it's not the best place to start. Because great coffee shouldn't be...
 
 3. **Prohibitively expensive.** Since we don't start our love affair with coffee with Espresso, we also don't need equipment that sets us back hundreds or even thousands of Euros and is a hassle to maintain. To me, starting the hobby should be reasonably inexpensive and have a gentle enough learning curve.
+
+---
 
 With that in mind, let's find out how to get the most out of your coffee experience. The founder of [Has Bean Coffee](http://www.hasbean.co.uk), Stephen Leighton, says the secret to the very best coffee is "fresh", "fresh" and "fresh". Just to make sure, I'll throw another "fresh" in the mix myself.
 
@@ -50,29 +52,29 @@ With that in mind, let's find out how to get the most out of your coffee experie
 
    On the bottom level we have most of the commodity coffees. They tend to give anything up to year before the expiry date. What's worst, *they do not tell the exact roasting date*, so you're left with guessing how much time they give their coffee to go stale and calculating from there when it was roasted. This is pure dishonesty. The roasting date is *the* most important thing on the label of a coffee bag. Unfortunately, even many reasonably good specialty coffee roasters (like Johan & Nyström and at least sometimes, Mokkamestarit) can be found on this pathetic level.
 
-  The lesson to learn here: *buy only from roasters that can guarantee the freshness of the roast*.
+   The lesson to learn here: *buy only from roasters that can guarantee the freshness of the roast*.
 
-2. Fresh Grind
+2. **Fresh Grind**
 
-  Note that in the previous point, I only talked about fresh *beans*. That's because *you should never buy your coffee pre-ground*. For commodity coffee, it doesn't really matter whether they give you six or twelve months before the expiry date because *the grinds sold to you are already stale when they hit the selves*.
+   Note that in the previous point, I only talked about fresh *beans*. That's because *you should never buy your coffee pre-ground*. For commodity coffee, it doesn't really matter whether they give you six or twelve months before the expiry date because *the grinds sold to you are already stale when they hit the selves*.
 
-  The issues with pre-ground coffee are manifold. First, grinding coffee releases a large part of its aroma, which are lost forever if you don't use the grinds immediately. Second, coffee really hates oxygen, which should be clear to you by now. When the coffee is ground, there is much more surface that's exposed to the damned gas than with beans. Lastly, different brewing methods call for different grind levels. Good luck trying to make a good French press with coffee that's ground to Aeropress level without drowning in sediment.
+   The issues with pre-ground coffee are manifold. First, grinding coffee releases a large part of its aroma, which are lost forever if you don't use the grinds immediately. Second, coffee really hates oxygen, which should be clear to you by now. When the coffee is ground, there is much more surface that's exposed to the damned gas than with beans. Lastly, different brewing methods call for different grind levels. Good luck trying to make a good French press with coffee that's ground to Aeropress level without drowning in sediment.
 
-  So, the lesson #2: *Buy your beans whole and buy your own grinder*.
+   So, the lesson #2: *Buy your beans whole and buy your own grinder*.
 
-3. Fresh Water.
+3. **Fresh Water**
 
-  To be honest, I don't think this is as much of an issue in Finland, where most of the tap water is pretty good. Sure, some conoisseurs want to buy bottled spring water to brew their coffee with, but I haven't found this to make enough of a difference to justify the price, hassle and unecological choice. If you live on the west side of Tampere, you're getting ground water from your tap anyway. I'm not, but the water is still ok.
+   To be honest, I don't think this is as much of an issue in Finland, where most of the tap water is pretty good. Sure, some conoisseurs want to buy bottled spring water to brew their coffee with, but I haven't found this to make enough of a difference to justify the price, hassle and unecological choice. If you live on the west side of Tampere, you're getting ground water from your tap anyway. I'm not, but the water is still ok.
 
-  Still, you probably don't want to reuse water that's been sitting in the electric kettle for two days already. But you already knew that.
+   Still, you probably don't want to reuse water that's been sitting in the electric kettle for two days already. But you already knew that.
 
-4. My own addition: Fresh Brew
+4. **My own addition: Fresh Brew**
 
-  Probably the biggest reason people seem to think that espresso-based drink are the “good” coffee, as opposed to filter coffee, is that in most cases filter coffee has been sitting on top of a hot plate for quite some time. Espresso drinks on the other hand are basically always made to order.
+   Probably the biggest reason people seem to think that espresso-based drink are the “good” coffee, as opposed to filter coffee, is that in most cases filter coffee has been sitting on top of a hot plate for quite some time. Espresso drinks on the other hand are basically always made to order.
 
-  Now, here's the thing: coffee (the drink) does not stand heating. This includes everything from the hot plate of your coffeemaker to microwave oven to percolator. Quality coffee is good when hot, best when slightly less hot and still great when not that hot anymore. Actually it tastes quite awesome even when cold. 
+   Now, here's the thing: coffee (the drink) does not stand heating. This includes everything from the hot plate of your coffeemaker to microwave oven to percolator. Quality coffee is good when hot, best when slightly less hot and still great when not that hot anymore. Actually it tastes quite awesome even when cold. 
 
-  **Lesson 4:** *Don't let your coffee stand in the coffee maker after it's done.* If you need it to stay hot for longer, pour it into a vacuum bottle.
+   **Lesson 4:** *Don't let your coffee stand in the coffee maker after it's done.* If you need it to stay hot for longer, pour it into a vacuum bottle.
 
 With these lessons under our belt, here are a couple of practical tips for your coffee pleasure.
 
