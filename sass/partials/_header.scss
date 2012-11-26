@@ -1,5 +1,9 @@
 body > header {
   text-align: center;
+  @media only screen and (max-width: 768px) {
+    padding: 1em 0 0 0;
+  }
+
   @media only screen and (min-width: 768px) {
     display: block;
     @include transform-origin(100%,100%);
@@ -20,6 +24,9 @@ body > header {
     a, a:visited, a:hover {
       color: $subtitle-color;
       text-decoration: none;
+    }
+    a:hover, a:active {
+      color: #e4614e;
     }
   }
   h2 {
