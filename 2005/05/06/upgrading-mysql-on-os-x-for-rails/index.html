@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>Upgrading MySQL on OS X for Rails - jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="So I stumbled upon a problem with my Rails app. Or with MySQL, to be precise. I needed to use date() functions in a query to compare timestamps. I &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jarkko.github.com/jlaine/2005/05/06/upgrading-mysql-on-os-x-for-rails/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/feed/atom.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-84654-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <!--<nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/feed/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jarkko.github.com/jlaine" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>-->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Upgrading MySQL on OS X for Rails</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-05-06T00:00:00+03:00" pubdate data-updated="true">May 6<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>So I stumbled upon a problem with my Rails app. Or with MySQL, to be precise. I needed to use date() functions in a query to compare timestamps. I know, I could&#8217;ve done it some other way but I like to keep things simple. The only problem was that my laptop was running MySQL 4.0 which (imagine that!) didn&#8217;t support date().</p>
+<p>I hesitated a bit if I wanted to go through the update process just for this but because I from now treat problems, not symptoms, I decided to dive straight into it.</p>
+<p>I installed the latest MySQL with DarwinPorts and moved my old databases to the new folder (this wasn&#8217;t what I initially tried to do but it was how I got things working in the end. Besides, fighting with MySQL isn&#8217;t, despite the headline, the meat of this story). Then I changed the StartupItem in /Library to point to the new mysql.server script and the server was up.</p>
+<p>The problems started (oh well, continued) when I tried to use my Rails app. I got the same errors as when I tried to use the old mysql client with the new server. I finally figured out that the reason for this was that the MySQL/Ruby bindings were compiled for the old server. I banged my head against a wall for a while before I found out from Jason&#8217;s <a href="http://manuals.textdrive.com/read/chapter/3#page7">OS X tutorials</a> that gem install needs two extra dashes before giving the configure options to it. Finally I got it all working so here&#8217;s the command you need to get MySQL/Ruby bindings for a DarwinPorts-installed MySQL server:<br />
+<pre><code>
+sudo gem install mysql -- \\
+--with-mysql-include=/opt/local/include/mysql/ \\
+--with-mysql-lib=/opt/local/lib/mysql/
+</code></pre></p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarkko Laine</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-05-06T00:00:00+03:00" pubdate data-updated="true">May 6<span>th</span>, 2005</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jarkko.github.com/jlaine/2005/05/06/upgrading-mysql-on-os-x-for-rails/" data-via="" data-counturl="http://jarkko.github.com/jlaine/2005/05/06/upgrading-mysql-on-os-x-for-rails/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2005/04/19/rails-0-12/" title="Previous Post: Rails 0.12">&laquo; Rails 0.12</a>
+      
+      
+        <a class="basic-alignment right" href="/2005/05/07/google-web-accelerator-considered-harmful/" title="Next Post: Google Web Accelerator Considered Harmful">Google Web Accelerator Considered Harmful &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jarkko Laine -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '50b05efb613f5d7127000040');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</body>
+</html>

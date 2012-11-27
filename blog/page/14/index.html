@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="I interviewed David Heinemeier Hansson, the creator of Ruby on Rails, at the first European Open Source Convention in Amsterdam, October 18th. The &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jarkko.github.com/jlaine/blog/page/14/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/feed/atom.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-84654-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <!--<nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/feed/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jarkko.github.com/jlaine" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>-->
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/11/02/interview-with-david-heinemeier-hansson/">Interview With David Heinemeier Hansson</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-02T00:00:00+02:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>I interviewed David Heinemeier Hansson, the creator of Ruby on Rails, at the first European Open Source Convention in Amsterdam, October 18th. The theme was how the emergence of the Rails community had affected him and the small business he is partnering in. This is the whole transcript of the interview, only slightly edited.</em></p>
+<p><strong>When you created Rails, was it clear from the beginning that the framework would be released with an open source license?</strong></p>
+<p>No, no. When we started work on Basecamp, the project Rails sprung out of, we just wanted something for ourselves. I wanted something for myself, and I just wasn&#8217;t happy with what was already out there. Originally the attention was to just do something for me, but about halfway through the production of Basecamp I realized that Ruby on Rails was making me happier as a programmer and there was a good chance that it could make other people happy too. I&#8217;ve been a user of open source for a long time but I haven&#8217;t actually released any open source software before Rails. So it was not a natural outset for me that I wanted to produce open source software.</p>
+<p>But I was getting deeper into the ruby community. I was using a lot of the open source libraries in there and by the time I&#8217;d extracted enough out of Basecamp to have something that could be called a framework I definitely did start thinking about releasing it. Those thoughts then grew more serious around the time of release of Basecamp in February 2004. I thought to myself, &#8220;Ok, I&#8217;m going to release it, I&#8217;m going to polish it up and package it nicely and put it out there&#8221;.</p>
+<p>I then spent February through July polishing all the stuff I&#8217;d used to produce Basecamp in a nice package. As a user of open source I&#8217;d continuously been annoyed by the quality of documentation, packaging, examples and all that stuff that are sometimes lacking in open source software, and I wanted to make sure that Rails didn&#8217;t suffer from that. So Rails came to be because I found the stuff useful and thought that other people could find it useful, too.</p>
+<p><strong>Did you have any presumed benefits or fears about making Rails open source and how did they relate to the reality?</strong></p>
+<p>I was already won over. I believed in the open source benefits by the time I open-sourced it. Actually I did it in a somewhat under-hand way as I didn&#8217;t really propose it as a question to my business partners as &#8220;Should we do this or not?&#8221; It was in my mind largely a technical decision: this is going to improve my productivity as a programmer, which in turn is going to improve our business situation. I would actually have thought that I was doing a bad job as an employee of 37signals if I didn&#8217;t open-source it. I felt that it was my duty as a conscious programmer to get the most mileage out of the work that we produced.</p>
+<p>So I was actually fairly positive and optimistic about the notion of open source beforehand, but I&#8217;ve certainly been overwhelmed by the benefits that we&#8217;ve been able to receive, both on the technical and other levels. There&#8217;s so much code in rails that I use every day but that I didn&#8217;t write. If nobody else would have written that, I would have had to do it. Which just means that I would have less time to spend on our proprietary business logic which just doesn&#8217;t make sense. There&#8217;s nothing in Basecamp, Backpack or any other of the 37signals products that really relates to Rails in the sense that there&#8217;s something we&#8217;d be losing up by sharing Rails. Rails is all about common infrastructure, so it just makes perfect sense for companies the size of 37signals to share the load of developing infrastructure software with other small companies and even big companies. The whole notion of creating a commons that everybody contributes to and everybody benefits from has served us incredibly strong.</p>
+<p>So there&#8217;s been all the technical benefits of getting a whole lot of work done that we didn&#8217;t have to do: getting bugs fixed before we encountered them in our production software, all the traditional open source benefits. But it&#8217;s also been a huge PR benefit, in the sense that 37signals is mentioned pretty much every time Ruby on Rails is mentioned just because it&#8217;s the poster child and it&#8217;s where Rails originated from. All these things lead to a lot of goodwill against 37signals both from the press and from the programmers. I think that that alone has an extreme value for small companies. We don&#8217;t have a large marketing budget, we don&#8217;t buy advertising, we don&#8217;t do a lot of those things big companies do to create awareness of the products. So we really have to leverage anything that can get the word of mouth going, and having a successful open source project is one of the best ways of making your mark as a company.</p>
+<p>And then, third, open source is also a perfect way to find great employees. So far all of the programmers (three at the moment) that were hired to 37signals since I joined, have been cherry-picked of the very best of the Ruby on Rails developers. It provides an excellent filter to find the very best people in the business just because you get to work with people for a long time before you even have to consider whether you can hire them or not. At the point of hire you already know these people, you know what they&#8217;re capable of, you have worked with them and you know that the culture is a good fit. I think that&#8217;s incredibly important for small companies like 37signals. You cannot afford to hire a dork. You cannot afford to have somebody in your team who&#8217;s not pulling in the same direction as others. If you just put up a &#8220;We&#8217;re hiring&#8221; sign on the door, the risk for getting exactly that is very high. There&#8217;s only so much you can do in vetting out candidates if you&#8217;re going through the normal process of accepting resumes and having a one-hour chat. So for us leveraging the open source has been a very powerful tool in attracting the top talent.</p>
+<p><strong>The community has played an important role in the success of Rails. Where would you think Rails would be now without it?</strong></p>
+<p>There wouldn&#8217;t be any Rails. There wouldn&#8217;t be Rails in the sense of a large open source project. There would still be Rails in the sense that I&#8217;d probably use it but I would have gained so much less without a community. Community is really critical in many senses. Having a load of users is a great way to find errors in your software, to get great ideas for new features and just to have an ecosystem where other people can benefit from your work, build a business on it and then have the resources to contribute back. You can also find employees that way and just get the whole awareness thing going.</p>
+<p>If there was not a community of passionate Rails users there would not be any buzz, and if there&#8217;s no buzz, 37signals would not be getting the marketing value out of it. So the community is Rails in a large sense.</p>
+<p><strong>So you at least to some degree agree with Alan Cooper, when he says that in a sense the source code has become not an asset but a liability and that the value of an open source project is in its community.</strong></p>
+<p>I think that&#8217;s true at least in some sense, and I definitely subscribe to the whole notion of `less software&#8217;: that the more software you have, the higher liability it is, the harder it is to change, and so on. But at the same time it&#8217;s also true that software over time just gets experienced. A product like Ruby on Rails has a lot of experience embedded in it just because it&#8217;s been used by a large number of people on a wide set of different applications for a long time. It means that we fixed a lot of those bugs that less experienced software just hasn&#8217;t fixed. And I think that&#8217;s at least some of the value of having a codebase with experience. So I wouldn&#8217;t say that the code as a total is a liability, because I also think that open source projects that announce themselves and try to drum up a community without any code have a really hard time, just because the reason the community exists is to revolve around the code. So there has to be something real about the community and lines of code &#8212; executable, valuable software &#8212; is that reason to form a community.</p>
+<p><strong>Do you feel the form of community &#8212; you and the core team &#8212; has been the right structural form of an open source community? Would you do something different if you&#8217;d start all over?</strong></p>
+<p>I was actually very reserved in getting something as the core team together, even using a bug tracking system. I tried to keep as little community infrastructure in place as possible, just to lower the barrier for a new member to enter the community.</p>
+<p>But there just comes the time when you have 300 people in an irc channel and it&#8217;s not going to be anymore about how do we push Rails forward. It&#8217;s going to be a whole lot about the usage of the software, which is great, but it also means that the people who do the work, the people who really push the framework forward, need some place else to discuss their ideas and share an experience about pushing the framework forward.</p>
+<p>So at some point the community invariably gets split up. There is the part of the community that mainly uses it, maybe contributes bug reports and helps spread the message and the excitement. Then you&#8217;ll have something like the core team forming which is just the people who dig deep enough into the code to continuously submit patches and so on. I think that&#8217;s actually a healthy split because if you don&#8217;t do that split you risk losing some of these core members just to the noise because they drown out in the three hundred people in the irc channel.</p>
+<p>So having a secluded, private place to discuss these matters is actually very beneficial. But it&#8217;s somewhat of a balance because you don&#8217;t want to create too wide of a split between the core group and the rest of the community. You want to make the whole thing feel as one. And you just got to walk that fine line and not set these things up to be adversarial. It has to be about cooperation and make everybody realize that we&#8217;re just here to create a better Rails and this is how we find it useful to do it: to have a core group of people who supply a lot of patches, and that they have a back room just for themselves.</p>
+<p><strong>As an entrepreneur and a founder of a new open source project and community, is there something you would like to have known 1.5 years ago when you started the whole thing?</strong></p>
+<p>I&#8217;ve certainly learned a lot of things but at the same time I&#8217;m glad that the learning happened while I was doing something. I think Rails in some parts happened because I didn&#8217;t know it all. If I had known how much work it actually is and how big a thing it actually is to create a full-stack framework like rails is, I would likely have been pretty intimidated by that, so I might not have done it.</p>
+<p>If I&#8217;d known more about Ruby I would perhaps not have been annoyed enough. I was bringing experiences over from another languages and feeling: Oh, <span class="caps">PHP</span> used to do this, why can&#8217;t Ruby do it? So I had enough friction at that time with my own experiences and coming to a new language and a new culture in some sense was what sparked the development of Rails.</p>
+<p>I think that when you&#8217;re new somewhere, you have a real opportunity to inflect change. Because the longer you spend in a community the more experienced you get and the less likely it comes for you to see all the flaws. You just grow accustomed to them. So I think that we need newbies to tell us what&#8217;s wrong and give us the outside perspective. I think that was what I did with Rails: I gave the outside, web, perspective on Ruby, and that became Rails.</p>
+<p>Anyway, I would likely have instituted some of the community changes a little bit sooner: we would have had a place to post the patches from the start, not just the wiki. We also would&#8217;ve had the mailing list from the start. So some of the things that I held back on I would probably have introduced sooner.</p>
+<p><strong>You in 37signals have been great proponents of `big things with small teams&#8217;. How close do you think the notion of open source communities and projects are to this way of thinking?</strong></p>
+<p>I think it&#8217;s pretty close. I think that one of the reasons why Rails is such a success now is because I didn&#8217;t open source it from day one. I developed with a very small team, me, until it had enough of the vision that taking on new people would more likely change them to the vision that was already in the software than change the vision of the software.</p>
+<p>I think one of the mistakes a lot of open source projects do is that they release too early. They release the software in a state where it&#8217;s very easy for somebody else to come in and say: &#8220;I wanna take it into this other direction.&#8221; And you don&#8217;t get the sense of unity and support around the core vision if you do that. You really need to have that structure of software in place before you can scale it up.</p>
+<p>I think that&#8217;s the same notion I have about developing software in general: you need to develop it in small teams. Developing by committee or developing by huge teams is not a way to get succinct, effective, valuable, simple software. It&#8217;s just a way to get something big and imploded because you have to please everybody, because everybody is on a level playing field.</p>
+<p>That&#8217;s why having at least a sense of hierarchy in an open source project is not necessarily a bad thing. It doesn&#8217;t mean that somebody coming in from day one can&#8217;t say whatever they want. It just means that we have some method of ensuring that the vision isn&#8217;t bent out of shape too early, and I think vision for software is incredibly important. Vision is what gives it that edge, that focused use, which makes the users of the software happy.</p>
+<p><strong>How do you see the risks arising from legal matters, especially intellectual property rights, affecting different players in open source ecosystems?</strong></p>
+<p>I actually see it just as a temporary distraction that&#8217;s affecting some parts of the open source software. And I really think it&#8217;s a temporary thing. It&#8217;ll blow over and in three years we&#8217;ll look back and say: &#8220;Huh! It wasn&#8217;t that curious.&#8221;</p>
+<p>One of the stances we have taken with Ruby on Rails is to release the whole thing under <span class="caps">MIT</span> license, which basically just says: &#8220;You can do whatever you want, just don&#8217;t sue us.&#8221; I like that sort of license. I&#8217;m not a big <span class="caps">GPL</span> proponent. It probably works fine for something but I&#8217;ve found that people are even more willing to contribute something back when you&#8217;re not holding a gun to their heads saying: &#8220;You have to!&#8221;, and I found at least in my usage that I keep more freedom that way.</p>
+<p>I think that also reduces the risk of having these legal encounters, just because if you can do whatever you want, then who cares. So I don&#8217;t see it as a whole as a threat, I see it partly as a figment of media imagination. In some way or another, fears and threats filled up just because you&#8217;ve been hyping open source for all these years. Now we need to tear it down somehow, tear down the innocent image of it. And it&#8217;s just a meaningless distraction, not something I spend a whole lot of brain cycles on.</p>
+<p><strong>So it&#8217;s just a part of life for a younger field?</strong></p>
+<p>It&#8217;s just a part of the process of going through this paradigm shift where most if not all infrastructure programming is going open source just because it makes sense. Naturally there&#8217;s some players that used to make money on infrastructure software that don&#8217;t like that shift. But as dinosaurs go, they will be extinct, and it will be a good thing, once we just realize this base level for cooperation around these things: that open source is just a very good model in developing great infrastructure software. Then we&#8217;ll figure out how to add value on top instead of trying to compete on the low-level components.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/11/02/got-some-extra-cash/">Got Some Extra Cash?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-02T00:00:00+02:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Hmmmmm&#8230;</p>
+<div style="border: 1px solid #cccccc; background-color: white; width: 115px; text-align: center; padding: 0 0 10px 0;"><p style="margin: 0"><img src="http://static.flickr.com/23/25822676_789bf55448_t.jpg" style="border:0;"><br /> 		<span style="font-size: 11px;">My <a href="http://jlaine.net">blog</a> is worth <b>$14,678.04</b>.</span><br /><span style="font-size: 10px;"><a href="http://www.business-opportunities.biz/projects/how-much-is-your-blog-worth/">How much is your blog worth?</a></span></p><p><a href="http://www.technorati.com/" style="border: 0px;"><img src="http://technorati.com/pix/tech-logo-embed.gif" style="border: 0px;"></a></p></div>
+<p>(via <a href="http://joshuaink.com/">Joshuaink</a>)</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/11/02/changeset/">Changeset</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-02T00:00:00+02:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Changeset <a href="http://dev.rubyonrails.org/changeset/2848">2848</a>:</p>
+<blockquote>
+<p>Added <code>redirect_to :back</code> as a short-hand for <code>redirect_to(request.env["HTTP_REFERER"])</code></p>
+</blockquote></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/10/16/greetings-from-eurooscon/">Greetings From EuroOSCON</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-10-16T00:00:00+03:00" pubdate data-updated="true">Oct 16<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few impressions from the first ever <a href="http://conferences.oreillynet.com/eu€/">E€ Open Source Convention</a> in Amsterdam.</p>
+<ul>
+	<li>The main street between central station and central square was really full with people. Stuffed.</li>
+	<li>I got into my smoke-free room on the third attempt. First I was handed a smoking room, then a smoke-free room with nonfunctional key and finally everything went fine. Good excercise.</li>
+	<li>I went through the two last hours of my presentation on the spot in the grand ballroom. My Rails tutorial has been attracting most people of all the tutorials (yay!) so it was moved there instead of Amsterdam room.<br />
+<a href="http://www.flickr.com/photos/jarkko/53065004/in/set-1150619/"><img src="http://static.flickr.com/28/53065004_549ba2a54d_m.jpg" title="Welcome to EuroOSCON" alt="Welcome to EuroOSCON" /></a></li>
+</ul>
+<ul>
+	<li>The hotel <em>is</em> poshy. You thought the breakfast buffÃ© on the Baltic sea ferries costs something. Think again. Having breakfast in the wintergarden here makes you 22€ poorer.</li>
+	<li>I&#8217;m feeling both pretty excited and surprisingly little nervous about the tutorial. I guess the practice is starting to pay dividends.</li>
+	<li>The free conference wifi doesn&#8217;t stretch all the way to my room so I ended up paying 12.50€ per day to Swisscom. The whole conference would have been 60€ but I&#8217;m here only for 3 days so where&#8217;s the bargain?</li>
+	<li>I won&#8217;t be wearing an <a href="http://english.ajax.nl/indexns.html"><span class="caps">AJAX</span> Amsterdam</a> shirt during my presentation. I contemplated buying one in the airport but then the whole idea struck me as a bit too corny so I let it for Paul Everitt in his <a href="http://conferences.oreillynet.com/cs/eurooscon/view/e_sess/7233">Model-Driven <span class="caps">AJAX</span> tutorial</a>.</li>
+</ul>
+<p>I created a <a href="http://www.flickr.com/photos/jarkko/sets/1150619/">Flickr set</a> for the convention and will be updating it during the week. Stay tun</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/10/14/going-to-eurooscon/">Going to EuroOSCON</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-10-14T00:00:00+03:00" pubdate data-updated="true">Oct 14<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I will start a week-long journey today which will include first an orienteering relay in southwestern Finland and then <a href="http://conferences.oreillynet.com/eurooscon/">EuroOSCON</a> in Amsterdam.</p>
+<p>My <a href="http://conferences.oreillynet.com/cs/eurooscon/view/e_sess/7445">tutorial</a> in EuroOSCON is my first <strong>big</strong> presentation so you can imagine I have some butterflies in my stomach already. The flexible path and show-don&#8217;t-tell theme of the tutorial hopefully makes it a bit easier to survive the three-hour gig. I&#8217;ve practiced the whole tutorial already quite a few times and still have a few days left to hone the last glitches. Needless to say, I&#8217;m pretty excited.</p>
+<p>As my tutorial will be a whirlwind tour through Rails, it pays off to at least know what&#8217;s Rails is about before the tutorial. Coincidentally, ONLamp.com has just launched <a href="http://blog.curthibbs.us/">Curt Hibbs&#8217;s</a> article &#8220;<a href="http://www.onlamp.com/pub/a/onlamp/2005/10/13/what_is_rails.html">What Is Ruby on Rails</a>&#8221; that does a great job explaining <em>what</em> Rails is. My tutorial will then tell you <em>how</em> that will benefit you.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/10/03/quote-of-the-day/">Quote of the Day</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-10-03T00:00:00+03:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote>
+<p>The only people who never experience failure are those who are not pushing the envelope of what mankind is capable of doing.</p>
+</blockquote>
+<p style="text-align:right;">&#8212;John T. Preston in <a href="http://www.angelcapitalassociation.org/dir_downloads/resources/Research_Entrepreneurship.pdf">Success Factors in Technology-based Entrepreneurship</a></p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/10/03/copyright-demonstration-in-helsinki-tomorrow/">Copyright Demonstration in Helsinki Tomorrow</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-10-03T00:00:00+03:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><strong><span class="caps">UPDATE</span></strong> We <a href="http://www.theregister.co.uk/2005/10/06/finlands_drm_law/">lost</a>. I am now (or at least in a few weeks) officially a criminal. And so are at least a million other Finns. Welcome to the club.
+<p>If you&#8217;re living in Helsinki area, please take part in the <a href="http://arje.net/copyright_legislation_demonstration">demonstration</a> against the new copyright law that is about to be ratified by the Finnish parliament tomorrow. I&#8217;m deeply concerned about the new law that will make</p>
+<ul>
+	<li>circumventing copy protection (e.g copying music from <span class="caps">DRM</span> CD&#8217;s to my iPod),</li>
+	<li>talking about <span class="caps">DRM</span> circumvention methods</li>
+	<li>and group purchases of books from Amazon.com</li>
+</ul>
+<p>illegal. </p>
+<p>Not only is the proposed law arguably unconstitutional (even according to the constitution committee of the parliament), it is also so strongly against the common sense of justice that I find its passing utterly incomprehensible. That doesn&#8217;t seem to stop the parliament from making the decision, tho, so I&#8217;d be grateful if as many of you as possible would gather around the parliament house tomorrow and relay my wishes to the MP&#8217;s.</p>
+<p>The manners the local <a href="http://www.boingboing.net/2005/09/22/finnish_record_exec_.html">recording industry executives</a> (&#8220;If you&#8217;re on Mac, by a CD player&#8221;) and <a href="http://www.boingboing.net/2005/09/16/finnish_culture_mini.html">ministers</a> have shown during the battle is a whole &#8216;nuther story so I won&#8217;t bore you to death with it. Just drag your friggin&#8217; arse to the demonstration, will &#8217;ya. Please. Pretty please.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/09/28/paul-graham-on-work-hours/">Paul Graham on Work Hours</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-09-28T00:00:00+03:00" pubdate data-updated="true">Sep 28<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote>
+<p>The basic idea behind office hours is that if you can&#8217;t make people work, you can at least prevent them from having fun.</p>
+</blockquote>
+<p style="text-align:right;">&#8212;Paul Graham in <a href="http://www.paulgraham.com/opensource.html">What Business Can Learn from Open Source</a></p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/09/28/mannerheim-s-hipster-pda/">Mannerheim&#8217;s Hipster PDA</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-09-28T00:00:00+03:00" pubdate data-updated="true">Sep 28<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you would go and propose that <a href="http://en.wikipedia.org/wiki/Carl_Gustaf_Emil_Mannerheim"><span class="caps">CGE</span> Mannerheim</a> was wearing hipsters on his journeys, in some circles you&#8217;d undeniably get mugged. However, here&#8217;s some proof for you, linked by <a href="http://www.43folders.com/2005/09/mannerheims_hip.html">43Folders</a>:</p>
+<p><a href="http://www.flickr.com/photos/arabella/47142554/"><img src="http://static.flickr.com/27/47142554_e0aed7ca6d_m_d.jpg" title="Mannerheim&#39;s hipster PDA" alt="Mannerheim&#39;s hipster PDA" /></a></p>
+<p>And no,  <em>I</em> didn&#8217;t have to look up who Mannerheim was.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/09/22/aure-on-rails/">Aure on Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-09-22T00:00:00+03:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One of the mythic figures behind <a href="http://www.assureconsulting.com/articles/arsdigitahis.shtml">ArsDigita</a>, Aurelius Prochazka has stepped into the Rails world and started a <a href="http://typo.leetsoft.com/trac/">typo</a> -driven <a href="http://www.aurelius.com/">weblog</a>.</p>
+<p>ArsDigita was one of the most influential companies in the early days of my web hacker career (or shall we say, studies). It seemed to be so different from the traditional dotcom shops. It had a <a href="http://web.archive.org/web/19981212012633/http://arsdigita.com/">human voice</a>. It was honest. Although I was too young for the dotcom boom (and not quite as <a href="http://unicast.org/stuff/arsdigita/">obsessed</a> about ArsDigita as <a href="http://unicast.org/">Guan</a>), I followed the (at that time sliding) chapters of AD very closely.</p>
+<p>One of the things I remember best about the <a href="http://www.waxy.org/random/arsdigita/">battle</a> between <a href="http://philip.greenspun.com/">Philip Greenspun</a> and the VC&#8217;s is this comment made by Gary Jin in Lars Pind&#8217;s &#8220;<a href="http://pinds.com/blog/one-entry?entry_id=2867">Goodbye ArsDigita</a>&#8221; :</p>
+<blockquote>
+<p>ArsDigita <span class="caps">WAS</span> something special. While other company sent cute, young female recruiters deep into the hallways of <span class="caps">UCLA</span> Enginner, aD send down <a href="http://www.aure.com/">Aure</a> and the problem sets. Instead of sugar coat problems, aD had public shame. If something is bad, people would say, &#8220;it sucked!&#8221; There was vision, the brain and yes, plenty egos as well. It was an awesome place to be&#8230;while it lasted.</p>
+</blockquote>
+<p>So imagine my reaction when Aure today appeared to the Rails mailing list and <a href="http://www.aurelius.com/articles/2005/09/21/my-first-rails-mailing-list-post">told</a> he was building a user/group management framework on top of Rails. And in his own, non-apologetic way, no less :-)</p>
+<p>Welcome on board, Aure!</p></div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/15/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/13/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jarkko Laine -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '50b05efb613f5d7127000040');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</body>
+</html>

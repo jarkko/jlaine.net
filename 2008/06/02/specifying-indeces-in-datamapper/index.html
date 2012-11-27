@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>Specifying indeces in DataMapper - jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="I&#8217;ve been working with Merb and DataMapper in the context of a new project for a week now, and the experience has been both pleasant and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jarkko.github.com/jlaine/2008/06/02/specifying-indeces-in-datamapper/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/feed/atom.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-84654-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <!--<nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/feed/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jarkko.github.com/jlaine" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>-->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Specifying Indeces in DataMapper</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-02T00:00:00+03:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve been working with <a href="http://merbivore.com/">Merb</a> and <a href="http://datamapper.org/">DataMapper</a> in the context of a new project for a week now, and the experience has been both pleasant and interesting. On one hand the stack is solid and super-fast (like, desktop app fast), on the other there are a lot of things that catch you if you don&#8217;t manage to remove the Rails hat off your head. The youth of the frameworks still shows (especially in DataMapper which has recently seen a major refactoring to make it more modular the same way Merb was reworked a bit earlier) but at the same time I get the chance to help with some really cool up-and-coming open source software. If you don&#8217;t consider that a plus, maybe you should still wait a couple months before you consider these critters for a production app.</p>
+<p>One clear symptom of the young age of both Merb and DataMapper is the lack of documentation. They both have documentation sections on their respective websites and there are other efforts such as Merbunity going on, but you still have to have the guts to dive into the source code if you want to find out how some of the less common use cases work.</p>
+<p>Here&#8217;s a short piece on how to declare indeces for your DataMapper models. I plan to continue publishing this kind of tutorials for other functionality as well, and to contribute them back to the &#8220;official&#8221; docs when appropriate.</p>
+<h2>The big difference</h2>
+<p>The big conceptual different between ActiveRecord and DataMapper is that in ActiveRecord, the place where the properties of database tables are defined are the migration files. The actual tables are then built according to the migrations and the actual model classes build their property to methods from the database schema.</p>
+<p>In DataMapper, the properties are defined in the actual model file. DM has so called auto migrations that compare the model file and the database schema, and modify the schema if the two don&#8217;t match.</p>
+<p>Here&#8217;s an example DataMapper model:</p>
+<pre><code class="ruby">class User
+  include DataMapper::Resource
+
+  property :id,         Integer, :serial =&gt; true
+  property :first_name, String
+  property :last_name,  String
+  property :bio,        Text
+  property :single,     Boolean
+end
+</code></pre>
+<p>Seems clean, doesn&#8217;t it. Looking at a model it is clear what properties it has and what methods it supports. But what about indeces? In AR migrations, you would use the <code>create_index</code> method. In DataMapper, <code>index</code> is an option given to the <code>property</code> method:</p>
+<pre><code class="ruby">property :last_name,    String, :index =&gt; true
+</code></pre>
+<p>Or, if you want the index to be unique:</p>
+<pre><code class="ruby">property :last_name,    String, :unique_index =&gt; true
+</code></pre>
+<p>OK, but what if you need multi-column composite indeces? Easy. Instead of <code>true</code>, give the index a name using a symbol:</p>
+<pre><code class="ruby">property :last_name,     String, :index =&gt; :name
+property :first_name,    String, :index =&gt; :name
+</code></pre>
+<p>This will create an index called <code>index_products_name</code> for the table, spanning columns <code>last_name</code> and <code>first_name</code>. <strong>The columns are added to the index in order of appearance</strong>, so in this case the indexing order would be <em>last name, first name</em>. If you want to change that order, just change the order of you <code>property</code> calls in the model call definition.</p>
+<p>There you have it! No rocket surgery, but something I had to dive into the source code to find out.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarkko Laine</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-02T00:00:00+03:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jarkko.github.com/jlaine/2008/06/02/specifying-indeces-in-datamapper/" data-via="" data-counturl="http://jarkko.github.com/jlaine/2008/06/02/specifying-indeces-in-datamapper/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/05/25/start-from-the-heart/" title="Previous Post: Start from the Heart">&laquo; Start from the Heart</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/06/27/sonera-s-at-it-again/" title="Next Post: Sonera's at it again">Sonera's at it again &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jarkko Laine -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '50b05efb613f5d7127000040');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</body>
+</html>

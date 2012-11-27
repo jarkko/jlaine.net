@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>Usability tip #2: Use the label tag! - jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="Many otherwise great web sites/applications, like Basecamp and IconBuffet, seem to share one very annoying shortcoming: their forms don&#8217;t use &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jarkko.github.com/jlaine/2006/03/14/usability-tip-2-use-the-label-tag/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/feed/atom.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-84654-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <!--<nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/feed/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jarkko.github.com/jlaine" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>-->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Usability Tip #2: Use the Label Tag!</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-03-14T00:00:00+02:00" pubdate data-updated="true">Mar 14<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Many otherwise great web sites/applications, like <a href="http://www.basecamphq.com">Basecamp</a> and <a href="https://www.iconbuffet.com/">IconBuffet</a>, seem to share one very annoying shortcoming: <a href="http://odesign.clientsection.com/login">their</a> <a href="https://www.iconbuffet.com/account/login">forms</a> don&#8217;t use <a href="http://www.w3schools.com/tags/tag_label.asp"><em>label</em></a> elements.</p>
+<p>Even if you think <a href="http://37signals.com/svn/archives2/fly_on_the_wall_week_of_march_10.php">accessibility is for documents</a> (which it isn&#8217;t), please use <em>labels</em> in your forms. They are not just for blind people.</p>
+<p>The <em>big thing</em> for me in using labels is that they effectively make the clickable area of the form element a lot bigger. Which one would you prefer pushing? The male (without label) or the female (with label)?</p>
+<form name="test" action="test">
+<p><input type="radio" name="sex" id="male" /> <span class="caps">MALE</span><br/>
+<input type="radio" name="sex" id="female" /> <label for="female"><span class="caps">FEMALE</span> (with label)</label><br/></p>
+</form>
+<p>(Of course if you use Safari you don&#8217;t care because Safari doesn&#8217;t support the label element.)</p>
+<p>I think using real form labels is a huge usability enhancement in addition to helping accessibility.</p>
+<p>For gawd&#8217;s sake, using the Rails&#8217; form helpers to construct the form automatically uses labels, so it shouldn&#8217;t be too hard for two of the more prominent Rails showcases to use it.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarkko Laine</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-03-14T00:00:00+02:00" pubdate data-updated="true">Mar 14<span>th</span>, 2006</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jarkko.github.com/jlaine/2006/03/14/usability-tip-2-use-the-label-tag/" data-via="" data-counturl="http://jarkko.github.com/jlaine/2006/03/14/usability-tip-2-use-the-label-tag/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2006/03/13/lost/" title="Previous Post: Lost">&laquo; Lost</a>
+      
+      
+        <a class="basic-alignment right" href="/2006/03/14/usability-tip-display-the-city-name-first-in-a-time-zone-drop-down-list/" title="Next Post: Usability tip: Display the city name first in a time zone drop-down list">Usability tip: Display the city name first in a time zone drop-down list &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jarkko Laine -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '50b05efb613f5d7127000040');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</body>
+</html>

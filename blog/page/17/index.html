@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="I&#8217;ve long suspected that David Heinemeier Hansson is some kind of mindreader. This morning, when Rails 0.12 came out, I&#8217;m even more &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jarkko.github.com/jlaine/blog/page/17/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/feed/atom.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-84654-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <!--<nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/feed/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jarkko.github.com/jlaine" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>-->
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/04/19/rails-0-12/">Rails 0.12</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-04-19T00:00:00+03:00" pubdate data-updated="true">Apr 19<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve long suspected that <a href="http://www.loudthinking.com">David Heinemeier Hansson</a> is some kind of mindreader. This morning, when <a href="http://www.rubyonrails.com">Rails</a> <a href="http://feeds.feedburner.com/RidingRails?m=59">0.12</a> came out, I&#8217;m even more convinced about that.</p>
+<h4>Eager loading of associations.</h4>
+<p>This is a very cool addition to the arsenal of ActiveRecord. You can now select which associated objects get loaded automatically when you use find to get a bunch of things from the database.</p>
+<h5>Example:</h5>
+<pre><code>for model in Model.find(:all, 
+                  :include =&gt; :products) do
+  puts "Title:            " + 
+     model.title
+  puts "Number of models: " + 
+     model.comments.size
+end</code></pre>
+<p>In the olden days, this kind of code would have meant N+1 sql queries where N is the number of models. And now? One. Uno. Ett. The magical <em>include</em> clause in the <code>find</code> call causes Rails to automatically craft a join query that fetches not only the model objects but also all the product objects associated to them.</p>
+<h4>Even better <span class="caps">AJAX</span> support</h4>
+<p>This is what got me thinking about DHH&#8217;s supernaturality. Last week I was playing around with the new <span class="caps">AJAX</span> stuff and noticed that there was no way to specify the &#8220;normal&#8221; href attribute in the <span class="caps">AJAX</span>-powered links and forms, for those people who don&#8217;t have a browser supporting ajax (mainly people with disabilities). Well, I didn&#8217;t even have time to write a ticket about it when it&#8217;s already fixed.</p>
+<p>Not convinced yet? Ok. How about this. I&#8217;m writing a simple intranet for our club and thought that it would be cool to have a simple bulletin board on the front page where people could just leave quick, non-threaded messages with <span class="caps">AJAX</span>. The problem was that even when the writer can see her note in no time, others can&#8217;t. So <code>periodically_call_remote</code> to help, updating the given part of the page periodically.</p>
+<p>OK, but stop listening to me. Go read the <a href="http://feeds.feedburner.com/RidingRails?m=59">full post</a> about the enhancements yourself.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/04/15/we-ll-meet-in-reboot-7/">We&#8217;ll Meet in Reboot 7</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-04-15T00:00:00+03:00" pubdate data-updated="true">Apr 15<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://reboot.dk/reboot7/show/HomePage">Reboot 7</a> in Copenhagen has now been officially announced and what a happening it will be! The <a href="http://reboot.dk/reboot7/show/Participants">speaker list</a> consists of such guys as <a href="http://www.stopdesign.com">Doug Bowman</a>, <a href="http://www.boingboing.net/">Cory Doctorow</a> and <a href="http://www.jimmywales.com/">Jimmy Wales</a>, not to mention <a href="http://www.rubyonrails.com">Rails</a> and <a href="http://www.basecamphq.com">Basecamp</a> heroes <a href="http://www.loudthinking.com">David Heinemeier Hansson</a> and <a href="http://www.37signals.com/svn/">Jason Fried</a>.</p>
+<p>I also got an unofficial confirmation from David that they will be giving the <a href="http://www.37signals.com/workshop-basecamp.php">Building of Basecamp</a> workshop the day before Reboot. Geez, I have been <a href="http://www.43things.com/things/view/77493">waiting</a> for that announcement like Christmas. Can&#8217;t wait for the day the registration begins. If the success is anywhere near the previous workshops, there&#8217;s not many days to spend before the gig is sold out.</p>
+<p>Unfortunately I have a wedding on Saturday that I really have (and want) to attend, so I will miss the second day talks and the Saturday night ceremonies. Even then the whole show sounds like something I won&#8217;t forget very soon.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/04/15/dammit/">Dammit</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-04-15T00:00:00+03:00" pubdate data-updated="true">Apr 15<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Wednesday really seemed to be too good a day for me as the following days have been pretty painful. It seems that I&#8217;ve been carrying a <a href="http://www.answers.com/dermoid+cyst&amp;r=67">dermoid cyst</a> (a kind of benign tumor) under my coccyx whole my life but this week of all time it decided to inflame, probably after it got irritated by some heavy (non-xml) sit-ups during a work-out. I tried to bite it and run last night a training with the help of some painkillers. During the night I had problems to get sleep because of the pain and after I caught quite high fever this afternoon I had to accept the fact that I won&#8217;t be participating any competitions this weekend. With the help of Maria&#8217;s father I got a time in the local emergency room and they literally cut a hole in my butt.</p>
+<p>After some serious yelling and pain the tumor was emptied of about a litre of pus (or so it seemed. I wasn&#8217;t able to see the operation, for obvious reasons) and they plugged the hole with a roll of gauze tissue so that all the matter can exit the tumor in the next two days. Needless to say, I don&#8217;t really feel like sitting in an office chair right now so I guess I&#8217;ll be catching on my backlog of reading and movie watching this weekend.</p>
+<p>Take care.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/04/15/a-day-at-the-university/">A Day at the University</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-04-15T00:00:00+03:00" pubdate data-updated="true">Apr 15<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Wednesday was a really good day in many ways. I was giving my first lecture ever about <a href="http://www.rubyonrails.com">Rails</a> and it went real smooth. The audience consisted of about 30 students of &#8220;Programming Hypermedia&#8221; class given at the <a href="http://matriisi.ee.tut.fi/hypermedia/en/">Hypermedia Lab</a> of <a href="http://www.tut.fi/public/index.cfm?siteid=32">Tampere University of Technology</a>. As it was my first real public presentation both about Rails and in general, I was a bit nervous about how it would go. Turned out I really was equipped to give such a talk. The students seemed to be genuinely interested. I got many good questions (like &#8220;how does it scale?&#8221;) and could even answer them (&#8220;share nothing, baby!&#8221;).</p>
+<p>It seemed that some of the people in the audience had really been burned by their php assignments so my 45-minute demo of setting up a blog with rss feed hopefully hit the target.</p>
+<p>So the conclusion is: I really know Rails reasonably well, so well that I can give presentations and demos on it without losing my audience. So if you&#8217;re interested in Rails and would like it to be presented to your team or the whole office, drop <a href="mailto:jarkko@odesign.fi">me</a> a line and we will put up a workshop to share the love.</p>
+<p>&#8220;But wait!&#8221;, you say. &#8220;What other things made the past Wednesday so great?&#8221; Well, Liverpool tied with Juventus and went on with 2-1 in aggregate goals to the semifinals of <a href="http://www.uefa.com/competitions/ucl/index.html"><span class="caps">UEFA</span> Chapions League</a>, not less because of the rock-solid defense led by the Finn <a href="http://www.finland-football.net/hyypia.asp">Sami HyypiÃ¤</a>.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/04/06/php-and-fat-burning/">PHP and Fat Burning</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-04-06T00:00:00+03:00" pubdate data-updated="true">Apr 6<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A Swedish guy just posted this <a href="http://www.bokus.com/cgi-bin/more_book_info.cgi?ISBN=0764549553&amp;pt=search_result">link</a> to a Swedish online bookstore <a href="http://www.bokus.com">Bokus</a>. It&#8217;s the page for book <em><span class="caps">PHP</span> Bible</em> by Joyce Park and Tim Converse.</p>
+<p>What&#8217;s special in that page are the community features of modern online stores. On the bottom of the page there is a section called &#8220;Your click list&#8221;. It contains items that have been bought by people who have explored the same items as I. When the click list consists of only the one abovementioned book, the first suggestion is <a href="http://www.bokus.com/cgi-bin/more_book_info.cgi?ISBN=9197414654"><em>Allt om fettförbrÃ¤nning 1</em></a> (All about fat burning 1). Whoa!</p>
+<p>But the fun doesn&#8217;t end there. There is also a section called &#8220;In the same bookshelf&#8221; that has items bought by people who also bought the current item. What could we possibly find from that list on a <span class="caps">PHP</span> Bible page? Well, the first item (<a href="http://www.bokusögi-bin/more_book_info.cgi?ISBN=9197414646"><em>Allt Om Glykemiskt Index : FettförbrÃ¤nning, HÃ¤lsa, Viktminskning, Styrka, U</em></a>) seems to indicate that <span class="caps">PHP</span> hackers are at least concerned about their overweight. But wait! What else is there? <a href="http://www.bokus.com/cgi-bin/more_book_info.cgi?ISBN=912707269X"><em>Att Ta Sig Upp NÃ¤r Man Ã„r Nere : HjÃ¤lp Till SjÃ¤lvhjÃ¤lp Vid Depressioner</em></a> (Taking you up when you&#8217;re down: Help for self-help in the case of depression).</p>
+<p>Hmmm&#8230; you can&#8217;t deny the facts, can you? So what can you say?</p>
+<p>Dear <span class="caps">PHP</span> coders, please lighten up. The summer is coming even in Sweden some day. I know that <span class="caps">PHP</span> coding can be depressing but don&#8217;t lose your faith. Maybe even your boss will trip onto <a href="htöww.rubyonrails.com">Ruby on Rails</a> some day. Oh, and believe me, you can make a difference. Take a look at RoR today, create a cool prototyope using it tomorrow and who knows &#8211; maybe your firm is using Rails for the next project.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/04/05/running-your-own-lighttpd-on-textdrive-and-keeping-it-alive-too-part-i/">Running Your Own Lighttpd (on TextDrive) and Keeping It Alive, Too (Part I)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-04-05T00:00:00+03:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now that TextDrive <a href="http://weblog.textdrive.com/article/31/having-ones-own-lighttpd-and-running-it-too">supports</a> <a href="http://lighttpd.net/">lighttpd</a> and I&#8217;m eventually moving all my sites to a lighttpd/fastcgi setup, I&#8217;m confronted with a new problem: the webserver process is now mine and I&#8217;m the one responsible for keeping it running.</p>
+<p>The first thing to remember (and to fix) is that my lighttpd process is <strong>not</strong> started automatically at server bootup. This is fortunately easy to fix:</p>
+<ol>
+	<li>Login to webmin (e.g. <a href="http://webmin.bidwell.textdrive.com">http://webmin.bidwell.textdrive.com</a>) and click  <em>Scheduled Cron Jobs</em> under <em>System</em>. <strong>Important:</strong> you can&#8217;t use usermin as it doesn&#8217;t seem to have the necessary privileges to schedule cron jobs. So do yourself a favor and dive right into webmin.</li>
+	<li>Click <em>Create a new scheduled cron job</em>.</li>
+	<li>Type your lighttpd startup command in the <em>Command</em> field. For example, <code>/usr/local/sbin/lighttpd -f /usr/home/[yourname]/sites/[yoursite]/config/lighttpd.conf</code>. Remember that you need to use the whole paths in your command, otherwise all hell can break loose.</li>
+	<li>Select <em>Simple schedule</em> and <em>When system boots</em> from the drop-down menu.</li>
+	<li>Submit the form clicking <em>Create</em>.</li>
+</ol>
+<p>Congrats! Your lighttpd service should now survive the unfortunate days when &#8220;<em>a pair of redundant <span class="caps">UPS</span> units fail</em>&#8221;.</p>
+<p>We&#8217;re not quite there yet, though. As sure as people die some day, processes die too. Wouldn&#8217;t it be even nicer if we could somehow monitor that our beloved lighttpd is up and running at all times? <em>Hint: yes, it would.</em></p>
+<p>So, next we&#8217;re going to wrap up a Ruby script that keeps a keen eye on our webserver. But that&#8217;s a great topic for a sequel (I&#8217;ll never get to write sequels unless I break my stories in multiple parts). So go ahead and implement your own reboot-surviving lighttpd machine. More to come later.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/04/05/rails-gets-more-exposure-in-finland/">Rails Gets More Exposure in Finland</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-04-05T00:00:00+03:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Only about a week before my lecture, &#8220;<a href="http://jlaine.net/blog/40/not-your-average-speaker"><em>Ruby on Rails &#8211; Web applications with a glimpse in the eye</em></a>&#8221;, <a href="http://assemblix.net">Assemblix.net</a>, a major developer newsletter in Finland publishes an above-the-fold <a href="http://assemblix.net/kirje/60">article</a> about <a href="http://rubyonrails.com">Rails</a>. The article goes briefly through the <span class="caps">MVC</span> pattern implementation of Rails. The conclusion states that &#8220;<cite>some people have sung the praises of Rails while others think that the same can be accomplished with [replace-with-your-favourite-tool]</cite>&#8221; (translation mine).</p>
+<p>I would like to point out that the magic of Rails is not <em>what</em> can be done with it, but rather <em>how</em> it can be done: extraordinary fast, keeping the focus on the end product instead of implementation details, and &#8211; most importantly &#8211; always with a smile on your face.</p>
+<p>However, I find the article a major breakthrough in the given newsletter and the developer community in Finland in general. This is to my knowledge the first editorial article in Assemblix breaking the mold of Java-Windows-<span class="caps">PHP</span>, the emphasis having been on the first two.</p>
+<p>So I salute the editors of Assemblix, although one could say the buzz around Rails makes it impossible to go wrong with such an article. Anyway, it&#8217;s great to get more publicity for Rails here in the land of reindeers and <a href="http://virtual.finland.fi/finfo/english/aurora_borealis.html">aurora borealis</a>, too.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/04/05/aaltonenshoe-com-runs-lighttpd/">Aaltonenshoe.com Runs Lighttpd</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-04-05T00:00:00+03:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My latest Rails project, <a href="http://aaltonenshoe.com">Aaltonenshoe.com</a> is now running on a lighttpd/fastcgi setting. Moving the setup over from an Apache/<span class="caps">CGI</span> one was a matter of minutes with the help of Jason&#8217;s <a href="http://weblog.textdrive.com/article/31/having-ones-own-lighttpd-and-running-it-too">Having one&#8217;s own lighttpd and running it, too</a></p>
+<p>After I got the port from Jason, I made a few small changes to the llighttpd config file I was using on my local dev server, went to Webmin (Apache =&gt; Aliases and Redirects) and pointed aaltonenshoe.com to aaltonenshoe.com:8504. Saving those settings resulted in an error in webmin but that was fixed by Jason very fast.</p>
+<p>My conclusion: The site now runs very, <strong>very</strong> fast without any caching.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/03/30/what-s-in-a-mac/">What&#8217;s in a Mac?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-03-30T00:00:00+03:00" pubdate data-updated="true">Mar 30<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.loudthinking.com">David Heinemeier Hansson</a> of <a href="http://rubyonrails.com">Ruby on Rails</a> fame has yet again stirred a hor€est by <a href="http://www.loudthinking.com/arc/000433.html">stating</a> that he would &#8220;<cite>have a hard time imagining hiring a programmer who was still on Windows for 37signals.</cite>&#8221;</p>
+<p>While David&#8217;s tone is (more or less intentionally) pretty provocative, most of the angry commenters seem to have taken his thoughts totally backwards:</p>
+<blockquote>
+<p>Great programmers are made by talent, not by the tools and platform they choose, damn it. Saying anything remotely otherwise is incredibly ignorant. &#8230; Like I said, talent. I really don&#8217;t see any link between the above and the choice of tools.</p>
+</blockquote>
+<p>Well, David never said great programmers are made of the tools. But as anyone who&#8217;s read <a href="http://www.pragmaticprogrammer.com/ppbook/index.shtml">Pragmatic Programmer: From Journeyman to Master</a> knows, great hackers are passionate about the tools they use. That&#8217;s why David is concerned about the &#8220;covers both needs just fine&#8221; attitude a few of the commenters advocate.</p>
+<p>I wouldn&#8217;t be as harsh as David. I can imagine there are reasons why people really want to have a Windows PC. But if a developer is not passionate about making herself more productive, how could she be passionate about the project I would be hiring her for?</p>
+<p>What surprises me most, tho, is that still &#8211; in 2005 &#8211; the most common reason for avoiding a Mac seems to be the price. Well, let me tell you something. Powerbooks start at €1500 here in Finland, probably the most expensive corner of Europe. Believe me, you <strong>will</strong> have a hard time finding a comparative PC laptop at that price, let alone half of it.</p>
+<p>And to Simen Brekken, who&#8217;s starting to love his 12&quot; PowerBook but thinks it&#8217;s too slow: it doesn&#8217;t need a new <span class="caps">CPU</span>. It needs more <span class="caps">RAM</span>. Running Photoshop, Indesign and Illustrator simultaneously is nothing spectacular for G4, as long as it has 1GB or more <span class="caps">RAM</span>.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/03/29/a-touch-of-mark-ii/">A Touch of Mark II</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-03-29T00:00:00+03:00" pubdate data-updated="true">Mar 29<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>A word of caution</strong>: this entry has no other meaning than to show off.</p>
+<p><a href="http://www.flickr.com/photos/jarkko/7796967/"><img src="http://photos7.flickr.com/7796967_4104f2d6cb_m.jpg" title="My hand and a Canon" alt="My hand and a Canon" /></a></p>
+<p>Yes, that is my hand holding a brand new <a href="http://www.canon-europe.com/For_Home/Product_Finder/Cameras/Digital_SLR/EOS_1Ds_markII/index.asp?ComponentID=230304&amp;SourcePageID=164046">Canon <span class="caps">EOS</span>-1Ds Mark II</a>. The bad news: it&#8217;s not mine (with the voice of <a href="http://www.imdb.com/title/tt0118655/quotes">Austin Powers</a>). We were visiting Maria&#8217;s parents after a while and I finally got a chance to play a bit around with my father-in-law-candidate&#8217;s new baby.</p>
+<p>So how does it feel? Like a brick. I&#8217;m telling ya baby, that&#8217;s a helluva pack of hardware. I never touched an <span class="caps">EOS</span>-1, but this is certainly heavier than an <span class="caps">EOS</span>-3. Of course it has the vertical hand grip built-in, but dragging an <span class="caps">EOS</span>-1Ds with e.g. the <a href="http://www.canon-europe.com/For_Home/Product_Finder/Cameras/EF_Lenses/Image_Stabilization_Lenses/EF_70200mm_f28LIS_USM/">70-200mm/2.8 lense</a> for a day sure beats a gym session.</p>
+<p><a href="http://www.flickr.com/photos/jarkko/7796937/in/set-194680/"><img src="http://photos7.flickr.com/7796937_775235dd60_m.jpg" title="A flower" alt="A flower" /></a></p>
+<p>I took a few quick photos with the camera (and another few of it) and posted them to a <a href="http://www.flickr.com/photos/jarkko/sets/194680/">Flickr set</a>. Nothing spectacular, I seem to a be a bit rusty after shooting too much with the wide focal area of a digital point&#8217;n&#8217;shoot. In 1Ds with default settings (especially with the <a href="http://www.canon-europe.com/For_Home/Product_Finder/Cameras/EF_Lenses/Macro_Lenses/EF_100mm_f28_Macro_USM/">100mm macro lense</a>) the area is so razor sharp and narrow that I seem to have missed the target in all but a few of the photos.</p>
+<p>My <a href="http://www.flickr.com/photos/jarkko/sets/194680/">set</a> was exported as medium jpeg&#8217;s (that&#8217;s 6MP, folks!) and even then the quality of the photos was astonishing. Can&#8217;t wait to get a hold of the 16MP <span class="caps">RAW</span> files after a real shooting session, which I sure hope I can get arranged later this spring.</p></div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/18/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/16/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jarkko Laine -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '50b05efb613f5d7127000040');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>From Rails Ajax helpers to Low Pro, Part 3 (+ some announcements) - jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="This is the third part of my introduction to Low Pro series, something that has been taken&#8230; hmmm&#8230; a while. The two first parts can be &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jarkko.github.com/jlaine/2008/09/09/from-rails-ajax-helpers-to-low-pro-part-3-some-announcements/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/feed/atom.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-84654-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <!--<nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/feed/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jarkko.github.com/jlaine" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>-->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">From Rails Ajax Helpers to Low Pro, Part 3 (+ Some Announcements)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-09T00:00:00+03:00" pubdate data-updated="true">Sep 9<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><em>This is the third part of my introduction to Low Pro series, something that has been taken&#8230; hmmm&#8230; a while. The two first parts can be found here:</em></p>
+<ul>
+	<li><a href="http://jlaine.net/2007/8/3/from-rails-ajax-helpers-to-low-pro-part-i">Part 1</a></li>
+	<li><a href="http://jlaine.net/2007/8/6/from-rails-ajax-helpers-to-low-pro-part-2">Part 2</a></li>
+</ul>
+<p><em>Coincidentally, all these pieces are also part of my new ebook, <a href="http://peepcode.com/products/unobtrusive-prototypejs-draft">Unobtrusive Prototype</a>, straight from the Peepcode oven. If you liked the articles, you might really enjoy the book. It will have all the code rewritten for Rails 2.1 (as has this article btw), it is professionally edited unlike my rumblings here, and has a much wider coverage of Low Pro, including writing your own Behaviors and event delegation.</em></p>
+<p><em>I also managed to give a <a href="http://en.oreilly.com/railseurope2008/public/schedule/detail/3584">tutorial</a> on the topics covered in the book in <a href="http://en.oreilly.com/railseurope2008/public/content/home">RailsConf Europe</a> in Berlin last week. The <a href="http://www.slideshare.net/supervillain/accessible-ajax-on-rails-presentation/">tutorial slides can be found at Slideshare</a>, where they also got a short featured treatment.</em></p>
+<div style="width:425px;text-align:left" id="__ss_578598">
+<p><object style="margin:0px" width="425" height="355"><br />
+<param name="movie" value="http://static.slideshare.net/swf/ssplayer2.swf?doc=railsconfeurope2008-1220336237309478-9&stripped_title=accessible-ajax-on-rails-presentation" /><br />
+<param name="allowFullScreen" value="true"/><br />
+<param name="allowScriptAccess" value="always"/><br />
+  <embed src="http://static.slideshare.net/swf/ssplayer2.swf?doc=railsconfeurope2008-1220336237309478-9&stripped_title=accessible-ajax-on-rails-presentation" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"><br />
+  </embed><br />
+</object></p>
+</div>
+<p><em>I moved the <a href="http://github.com/jarkko/unobtrusive_book_code/">sample code for the articles and the book</a> to <a href="http://github.com/jarkko">my GitHub account</a>. The <a href="http://github.com/jarkko/unobtrusive_book_code/tree/chapter-5">Chapter 5 branch</a> should be pretty much where this article starts at. If you&#8217;re not into git (yet), just click the &#8220;Download&#8221; button on the page to suck a zip file of the whole source code to your box.</em></p>
+<h3>Going <span class="caps">DRY</span> with multiple elements</h3>
+<p>Now that we have taken care of adding items to our to-do lists, let&#8217;s have a look at the the action of ticking items done and undone. The <code>index.html.erb</code> view uses the Rails&#8217; partial mechanism to display the lists of items. Here&#8217;s how the <code>_item.html.erb</code> partial looks like:</p>
+<pre><code class="builder">&lt;% @item = item %&gt;
+&lt;li id="&lt;%= item.state %&gt;_&lt;%= item.id %&gt;"&gt;
+  &lt;%= check_box("item[]", :done, :id =&gt; "#{item.state}_box_#{item.id}") %&gt;
+  &lt;label for="&lt;%= "#{item.state}_box_#{item.id}" %&gt;"&gt;
+    &lt;%= item.description %&gt;
+  &lt;/label&gt;
+  &lt;%= observe_field("#{item.state}_box_#{item.id}", 
+                    :url =&gt; item_path(item), 
+                    :method =&gt; :put) %&gt;
+&lt;/li&gt;
+</code></pre>
+<p><code>observe_field</code> is a Rails helper that attaches an Javascript observer to the field in question. Whenever the field is changed (or every <em>n</em> seconds, if the time n is given as a parameter to the <code>observe_field</code> call), an Ajax call (in this case to <code>item_path(item)</code>) is made. In our app, the responding <code>update</code> action will then update the state of the item in the database and return Javascript that will move the item to the correct list on the page.</p>
+<p>Here&#8217;s an example of what the list of items looks like to the browser:</p>
+<pre><code class="html">&lt;li id="undone_1"&gt;
+&lt;input id="undone_box_1" name="item[1][done]" type="checkbox" value="1" /&gt;
+&lt;input name="item[1][done]" type="hidden" value="0" /&gt;
+&lt;label for="undone_box_1"&gt;
+  Buy carrots
+&lt;/label&gt;
+&lt;script type="text/javascript"&gt;
+//&lt;![CDATA[
+new Form.Element.EventObserver('undone_box_1',
+                  function(element, value) {
+                    new Ajax.Request('/items/1', 
+                                     {asynchronous:true, 
+                                      evalScripts:true, 
+                                      method:'put', 
+                                      parameters:value + '&amp;authenticity_token=' +
+                encodeURIComponent('8d829cfcccdf4d2b494891ef47cc95893faa361e')})})
+//]]&gt;
+&lt;/script&gt;
+&lt;/li&gt;
+&lt;li id="undone_2"&gt;
+&lt;input id="undone_box_2" name="item[2][done]" type="checkbox" value="1" /&gt;
+&lt;input name="item[2][done]" type="hidden" value="0" /&gt;
+&lt;label for="undone_box_2"&gt;
+  Return bottles to recycling
+&lt;/label&gt;
+&lt;script type="text/javascript"&gt;
+//&lt;![CDATA[
+new Form.Element.EventObserver('undone_box_2', 
+                  function(element, value) {
+                    new Ajax.Request('/items/2', 
+                                     {asynchronous:true, 
+                                       evalScripts:true, method:'put', 
+                                       parameters:value + '&amp;authenticity_token=' +
+                encodeURIComponent('8d829cfcccdf4d2b494891ef47cc95893faa361e')})})
+//]]&gt;
+&lt;/script&gt;
+&lt;/li&gt;
+</code></pre>
+<p>Imagine a list that has a couple dozen items. Not exactly <span class="caps">DRY</span>, is it, especially compared to how clean the source code of a Rails app tends to be?</p>
+<p>Even if we set aside all the objections for the ugly code above, there is still the issue of the form not working at all without Javascript. Not good.</p>
+<p>Let&#8217;s again start our round of refactoring by making the checkboxes work without javascript. For that, we&#8217;ll remove the <code>observe_field</code> call from the partial:</p>
+<pre><code class="builder">&lt;% @item = item %&gt;
+&lt;li id="&lt;%= item.state %&gt;_&lt;%= item.id %&gt;"&gt;
+  &lt;%= check_box("item[]", :done, :id =&gt; "#{item.state}_box_#{item.id}") %&gt;
+  &lt;label for="&lt;%= "#{item.state}_box_#{item.id}" %&gt;"&gt;
+    &lt;%= item.description %&gt;
+  &lt;/label&gt;
+&lt;/li&gt;
+</code></pre>
+<p>Now, to make our form work again, we need to figure out what it&#8217;s supposed to do and where we should send it to. Thinking restfully, by submitting a form with multiple items checked or unchecked, we are modifying a <em>to-do list</em>. Let&#8217;s thus create a simple controller for the imaginary List resource (remember, resources don&#8217;t need to map directly to ActiveRecord models).</p>
+<pre><code>script/generate controller Lists</code></pre>
+<p>Then add the necessary route to <code>config/routes.rb</code></p>
+<pre><code class="ruby">  map.resources :items
+  map.resource :list
+</code></pre>
+<p>For simplicity&#8217;s sake, let&#8217;s pretend our app can only handle a single to-do list (it&#8217;s our personal to-do list app, after all) and use the single form of resource routes with it.</p>
+<p>In our to-do list page, we currently have a form that&#8217;s unable to submit anything. Let&#8217;s add a submit button to it and also change the form in <code>app/views/items/index.html.erb</code> to point to the lists controller:</p>
+<pre><code class="builder">&lt;% form_for :list, :url =&gt; list_path, :html =&gt; {:method =&gt; :put} do |f| %&gt;
+  &lt;h3&gt;
+    Not done:
+  &lt;/h3&gt;
+
+  &lt;ul id="undone"&gt;
+    &lt;%= render :partial =&gt; "item", :collection =&gt; @not_done %&gt;
+  &lt;/ul&gt;
+
+  &lt;h3&gt;
+    Done:
+  &lt;/h3&gt;
+
+  &lt;ul id="done"&gt;
+    &lt;%= render :partial =&gt; "item", :collection =&gt; @done %&gt;
+  &lt;/ul&gt;
+  
+  &lt;p&gt;
+    &lt;%= submit_tag "Save changes", :id =&gt; "save_changes" %&gt;
+  &lt;/p&gt;
+&lt;% end %&gt;
+</code></pre>
+<p>Now let&#8217;s create a really simple update action to our new controller for the mass assignment of items:</p>
+<pre><code class="ruby">class ListsController &lt; ApplicationController
+  def update
+    params[:item].each do |key, values|
+      item = Item.find(key)
+      item.update_attributes(values)
+    end
+    
+    redirect_to items_path
+  end
+end
+</code></pre>
+<p>If you now test the application with Javascript turned off, updating the item state should work fine. We can thus continue to the hijacking phase.</p>
+<p>First of all, let&#8217;s hide the submit button because we don&#8217;t need it in the Ajax&#8217;ed form.</p>
+<pre><code class="javascript">Event.addBehavior({
+  'body' : function() {
+    $('add_form').hide();
+    $('add_new_link').show();
+    $('save_changes').hide();
+  },
+  '#add_new_link:click' : function(e) {
+    $('add_form').toggle();
+    e.stop();
+  },
+  '#add_form' : Remote.Form
+});
+</code></pre>
+<p>Now, what we need to do is to make clicking a checkbox to call the update action for the current item. This is easily done in the js file:</p>
+<pre><code class="javascript">Event.addBehavior({
+  'body' : function() {
+    $('add_form').hide();
+    $('add_new_link').show();
+    $('save_changes').hide();
+  },
+  '#add_new_link:click' : function(e) {
+    $('add_form').toggle();
+    e.stop();
+  },
+  '#add_form' : Remote.Form,
+  'input[type=checkbox]:click' : function() {
+    var id = this.id.match(/\d{1,}$/);
+    var auth_token = this.up('form').
+                          select('[name=authenticity_token]').
+                          first().value;
+    new Ajax.Request('/items/' + id, 
+                     {asynchronous:true, 
+                      evalScripts:true, 
+                      method: 'put',
+                      parameters: {
+                        authenticity_token: auth_token
+                      }});
+  }
+});
+</code></pre>
+<p>We use the CSS3 selector syntax to get every input of type checkbox, then fetch the item id from the element id using a regular expression and finally call the update method of the items controller to update the item. The cool thing about <code>addBehaviour</code> is that the behaviour is attached to all elements returned by the selector. Thus adding a single call function to our javascript file automatically attaches the function to as many list items as needed.</p>
+<p>Note that because of the spam-defense mechanism in Rails, we also need to send the authenticity token with our call. We use the cool Prototype selector functions to easily get to the current token inside the form.</p>
+<p>An astute reader might have noticed that if you click an item in the list, and then try to re-click the same item after it&#8217;s moved to the opposing list, it&#8217;s not moved back automatically. This is because our Ajax update action created a new list item and added it to the list, and by default <code>Event.addBehaviour</code> does not reattach behaviours after each Ajax call.</p>
+<p>We have a couple of ways to fix the situation. The simplest would be to add this line to our Javascript file:</p>
+<pre><code class="javascript">Event.addBehavior.reassignAfterAjax = true;</code></pre>
+<p>However, the simplest way is not always the best. By reassigning behaviours automatically after each Ajax call we can deteriorate the Javascript performance considerably, and the effect gets larger when there are more items watched.</p>
+<p>Second, a bit more surgical option would be to reload the <code>addBehaviour</code> rules in a callback of the Ajax call:</p>
+<pre><code class="javascript">onComplete : function() {
+  Event.addBehavior.reload();
+}
+</code></pre>
+<p>This way the behaviours would only be reassigned after the particular Ajax call, not all of them. However, it&#8217;s still a bit heavy-handed.</p>
+<p>Let&#8217;s take a step back and think how we could avoid reassigning all the behaviours for the new element. An obvious answer would of course be not to create a new element at all, but instead just move the existing one (with all the behaviours already attached).</p>
+<p>In app/views/items/update.js.rjs we can see that the code first removes a list item and then adds a new one into the list of items in the opposite state:</p>
+<pre><code class="ruby">page["#{@item.opposite_state}_#{@item.id}"].remove
+page.insert_html :top, @item.state, :partial =&gt; "item"
+</code></pre>
+<p>We can fairly easily change that code to not delete/create a new node to the page, but instead move the list item to the correct place in the <span class="caps">DOM</span>:</p>
+<pre><code class="builder">page &lt;&lt; "
+  var el = $('#{@item.opposite_state}_#{@item.id}');
+  $('#{@item.state}').insert({ top: el.remove() });
+  el.id = '#{@item.state}_#{@item.id}';
+"
+</code></pre>
+<p>This time we don&#8217;t use the <span class="caps">RJS</span> syntax but instead just output plain old Javascript back to the browser. We first fetch the list element we&#8217;re about to move. We then remove it from the <span class="caps">DOM</span> tree, just to again insert it to the bottom of the list it now belongs to. In the end we change the id of the item to reflect its new state as well.</p>
+<p>If you now try the app again, you should be able to tick and untick the items at will, and everything should work just fine. The behaviour assigned to the list element on the page load sticks to it through all the moving and renaming of the element.</p>
+<p>&#8212;</p>
+<p><a href="http://peepcode.com/products/unobtrusive-prototypejs-draft"><img src="/assets/2008/9/9/unobtrusive-cover.png" alt="" /></a></p>
+<p><em>If you enjoyed the article, consider grabbing a copy of my new ebook, <a href="http://peepcode.com/products/unobtrusive-prototypejs-draft">Unobtrusive Prototype</a>, straight from the Peepcode oven. It will have all the code rewritten for Rails 2.1, it is professionally edited unlike my rumblings here, and has a much wider coverage of Low Pro, including writing your own Behaviors and event delegation. <strong>If you&#8217;re quick and have a close look at my presentation slides in the beginning of this article, you might even find a way to get your copy for half the normal price</strong>!</em></p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarkko Laine</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-09T00:00:00+03:00" pubdate data-updated="true">Sep 9<span>th</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jarkko.github.com/jlaine/2008/09/09/from-rails-ajax-helpers-to-low-pro-part-3-some-announcements/" data-via="" data-counturl="http://jarkko.github.com/jlaine/2008/09/09/from-rails-ajax-helpers-to-low-pro-part-3-some-announcements/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/06/27/sonera-s-at-it-again/" title="Previous Post: Sonera's at it again">&laquo; Sonera's at it again</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/09/16/making-emacs-keybindings-work-with-zsh-and-screen/" title="Next Post: Making emacs keybindings work with zsh and screen">Making emacs keybindings work with zsh and screen &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jarkko Laine -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '50b05efb613f5d7127000040');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>More Rails goodness - jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="Rails version 0.9.4.1 is out and ohmigod. The framework is going forward so fast I have trouble following up with all the new stuff. Here&#8217;s the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jarkko.github.com/jlaine/2005/01/20/more-rails-goodness/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/feed/atom.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-84654-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <!--<nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/feed/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jarkko.github.com/jlaine" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>-->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">More Rails Goodness</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-01-20T00:00:00+02:00" pubdate data-updated="true">Jan 20<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Rails version 0.9.4.1 is out and ohmigod. The framework is going forward so fast I have trouble following up with all the new stuff. Here&#8217;s the greatest of <a href="http://weblog.rubyonrails.com/archives/2005/01/17/rails-094-caching-filters-sqlite3/">the latest</a>: <a href="http://ap.rubyonrails.com/classes/ActionController/Caching.html">Caching</a>.</p>
+<p>Well, yeah, caching is no news as such. It&#8217;s the way David implemented it (just like other things) in Rails that can&#8217;t stop astounding me. It&#8217;s so simple it almost makes me cry. Want to <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Pages.html">cache some whole pages</a> your controller is serving? Just do this:</p>
+<pre><code>
+  class WeblogController &lt; ActionController::Base
+    caches_page :show, :new
+  end
+</code></pre>
+<p>Phew, that was all good and well. But what if you have some personalized content? You can&#8217;t cache whole pages then, can you? That&#8217;s right, dear Watson. But you can cache the actions. Using <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Actions.html"><em>action caching</em></a> means that the request will go trough Action Pack so all the filters are processed before the page gets served. That way you can use authentication and other magic in your pages without having to give up the glory of caching. Here&#8217;s an example of controller that uses both page <em>and</em> action caching, stolen straight from the api docs:</p>
+<pre><code>
+  class ListsController &lt; ApplicationController
+    before_filter :authenticate, :except =&gt; :public
+    caches_page   :public
+    caches_action :show, :feed
+  end
+</code></pre>
+<p>This controller has a public action and two private actions that need authentication &#8212; and thus action-level caching.</p>
+<p>The most granular way to do caching in Rails is <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Fragments.html"><em>fragment caching</em></a>. It&#8217;s what the two higher-level caching schemes use internally. Using fragment caching is a gem when you have pages that have both highly dynamic and pretty static parts. The downside is that it&#8217;s a bit more work and you have to do it in templates. Here&#8217;s an example of fragment caching:</p>
+<pre><code>
+  &lt;b&gt;Hello &lt;%= @name %&gt;&lt;/b&gt;
+  &lt;% cache(binding) do %&gt;
+    All the topics in the system:
+    &lt;%= render_collection_of_partials "topic", Topic.find_all %&gt;
+  &lt;% end %&gt;
+</code></pre>
+<p>There. But, wait! What if the content changes in between. Will the users be served old stinkin&#8217; cheese ever after. Glad you asked. It turns out David <em>did</em> notice this possibility. That&#8217;s why controllers now have methods like <code>expire_page</code>, <code>expire_action</code> and <code>expire_fragment</code>, for all you busy bees who can&#8217;t settle with the content you once created. Here&#8217;s an action where the cache for page <em>show</em> is flushed:</p>
+<pre><code>
+  class WeblogController &lt; ActionController::Base
+    def update
+      List.update(@params["list"]["id"], @params["list"])
+      expire_page :action =&gt; "show", :id =&gt; @params["list"]["id"]
+      redirect_to :action =&gt; "show", :id =&gt; @params["list"]["id"]
+    end
+  end
+</code></pre>
+<p>OK, enough rambling. Now, go create some apps swift as an arrow.</p>
+<p>Oh, one more thing. Rails can use a bunch of different methods to store the cache. But that&#8217;s <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Fragments.html">another story</a>.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarkko Laine</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-01-20T00:00:00+02:00" pubdate data-updated="true">Jan 20<span>th</span>, 2005</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jarkko.github.com/jlaine/2005/01/20/more-rails-goodness/" data-via="" data-counturl="http://jarkko.github.com/jlaine/2005/01/20/more-rails-goodness/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2005/01/20/back/" title="Previous Post: Back">&laquo; Back</a>
+      
+      
+        <a class="basic-alignment right" href="/2005/01/28/mapquestioning/" title="Next Post: MapQuestioning">MapQuestioning &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jarkko Laine -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '50b05efb613f5d7127000040');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</body>
+</html>

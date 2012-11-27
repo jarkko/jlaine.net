@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>Running your own lighttpd (on TextDrive) and keeping it alive, too (Part I) - jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="Now that TextDrive supports lighttpd and I&#8217;m eventually moving all my sites to a lighttpd/fastcgi setup, I&#8217;m confronted with a new &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jarkko.github.com/jlaine/2005/04/05/running-your-own-lighttpd-on-textdrive-and-keeping-it-alive-too-part-i/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/feed/atom.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-84654-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <!--<nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/feed/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jarkko.github.com/jlaine" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>-->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Running Your Own Lighttpd (on TextDrive) and Keeping It Alive, Too (Part I)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-04-05T00:00:00+03:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Now that TextDrive <a href="http://weblog.textdrive.com/article/31/having-ones-own-lighttpd-and-running-it-too">supports</a> <a href="http://lighttpd.net/">lighttpd</a> and I&#8217;m eventually moving all my sites to a lighttpd/fastcgi setup, I&#8217;m confronted with a new problem: the webserver process is now mine and I&#8217;m the one responsible for keeping it running.</p>
+<p>The first thing to remember (and to fix) is that my lighttpd process is <strong>not</strong> started automatically at server bootup. This is fortunately easy to fix:</p>
+<ol>
+	<li>Login to webmin (e.g. <a href="http://webmin.bidwell.textdrive.com">http://webmin.bidwell.textdrive.com</a>) and click  <em>Scheduled Cron Jobs</em> under <em>System</em>. <strong>Important:</strong> you can&#8217;t use usermin as it doesn&#8217;t seem to have the necessary privileges to schedule cron jobs. So do yourself a favor and dive right into webmin.</li>
+	<li>Click <em>Create a new scheduled cron job</em>.</li>
+	<li>Type your lighttpd startup command in the <em>Command</em> field. For example, <code>/usr/local/sbin/lighttpd -f /usr/home/[yourname]/sites/[yoursite]/config/lighttpd.conf</code>. Remember that you need to use the whole paths in your command, otherwise all hell can break loose.</li>
+	<li>Select <em>Simple schedule</em> and <em>When system boots</em> from the drop-down menu.</li>
+	<li>Submit the form clicking <em>Create</em>.</li>
+</ol>
+<p>Congrats! Your lighttpd service should now survive the unfortunate days when &#8220;<em>a pair of redundant <span class="caps">UPS</span> units fail</em>&#8221;.</p>
+<p>We&#8217;re not quite there yet, though. As sure as people die some day, processes die too. Wouldn&#8217;t it be even nicer if we could somehow monitor that our beloved lighttpd is up and running at all times? <em>Hint: yes, it would.</em></p>
+<p>So, next we&#8217;re going to wrap up a Ruby script that keeps a keen eye on our webserver. But that&#8217;s a great topic for a sequel (I&#8217;ll never get to write sequels unless I break my stories in multiple parts). So go ahead and implement your own reboot-surviving lighttpd machine. More to come later.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarkko Laine</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-04-05T00:00:00+03:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jarkko.github.com/jlaine/2005/04/05/running-your-own-lighttpd-on-textdrive-and-keeping-it-alive-too-part-i/" data-via="" data-counturl="http://jarkko.github.com/jlaine/2005/04/05/running-your-own-lighttpd-on-textdrive-and-keeping-it-alive-too-part-i/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2005/04/05/rails-gets-more-exposure-in-finland/" title="Previous Post: Rails gets more exposure in Finland">&laquo; Rails gets more exposure in Finland</a>
+      
+      
+        <a class="basic-alignment right" href="/2005/04/06/php-and-fat-burning/" title="Next Post: PHP and fat burning">PHP and fat burning &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jarkko Laine -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '50b05efb613f5d7127000040');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</body>
+</html>

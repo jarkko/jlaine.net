@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>Installing Ruby MySQL driver on OS X - jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="Just noticed that I hadn&#8217;t installed the native Ruby mysql driver after getting the laptop back from repair. The reason it took a few days is &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jarkko.github.com/jlaine/2006/10/03/installing-ruby-mysql-driver-on-os-x/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/feed/atom.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-84654-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <!--<nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/feed/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jarkko.github.com/jlaine" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>-->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Installing Ruby MySQL Driver on OS X</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-10-03T00:00:00+03:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Just noticed that I hadn&#8217;t installed the native Ruby mysql driver after getting the laptop back from repair. The reason it took a few days is that Rails just happily churns away with it&#8217;s built-in pure-ruby driver. However, the native binary driver is considerably faster and more stable, so you should never go into production without it. It won&#8217;t hurt having it installed on all your dev boxes, too.</p>
+<p>However, installing the native driver on OS X wasn&#8217;t as easy as one would assume. If you have the MySQL binary OS X version from <a href="http://www.mysql.com">MySQL.com</a>, it&#8217;s installed under /usr/local/mysql, and the gem can&#8217;t find it there. You can fix this by hinting the gem install command about the location of MySQL:</p>
+<filter:code>sudo gem install mysql &#8212; &#8212;with-mysql-dir=/usr/local/mysql</filter:code>
+<p>Unfortunately, this resulted in errors:</p>
+<filter:code>Probutanol:~ jarkko$ sudo gem install mysql &#8212; &#8212;with-mysql-dir=/usr/local/mysql/ <br />
+Attempting local installation of &#8216;mysql&#8217;<br />
+Local gem file not found: mysql*.gem<br />
+Attempting remote installation of &#8216;mysql&#8217;<br />
+Select which gem to install for your platform (i686-darwin8.6.1)<br />
+ 1. mysql 2.7.1 (mswin32)<br />
+ 2. mysql 2.7 (ruby)<br />
+ 3. mysql 2.6 (ruby)<br />
+ 4. mysql 2.5.1 (ruby)<br />
+ 5. Cancel installation<br />
+&gt; 2<br />
+Building native extensions.  This could take a while&#8230;<br />
+mysql.c: In function Ã¢Init_mysqlÃ¢:<br />
+mysql.c:2015: error: Ã¢ulongÃ¢ undeclared (first use in this function)<br />
+mysql.c:2015: error: (Each undeclared identifier is reported only once<br />
+mysql.c:2015: error: for each function it appears in.)<br />
+mysql.c:2015: error: parse error before numeric constant<br />
+mysql.c:2018: error: parse error before numeric constant</filter:code>
+<p>Googling around helped, and <a href="http://i.nfectio.us/articles/2006/09/12/running-rails-on-os-x-with-mysql-5-0-24">Bob Silva came to the rescue</a>: you can fix the errors by adding the following line to the mysql.c file of the mysql gem (/opt/local/lib/ruby/gems/1.8/gems/mysql-2.7/mysql.c for me):</p>
+<filter:code>#define ulong unsigned long</filter:code>
+<p>However, just adding it and re-running the gem install command doesn&#8217;t work. It turns out the mysql.c file is recreated by the extconf.rb configuration, so you need to do a bit of handiwork:</p>
+<filter:code>cd /opt/local/lib/ruby/gems/1.8/gems/mysql-2.7<br />
+sudo ruby extconf.rb install mysql &#8212; &#8212;with-mysql-dir=/usr/local/mysql/</filter:code>
+<p>Now add the line above to the created mysql.c file, and after that compile and install the driver by hand:</p>
+<filter:code>sudo make<br />
+sudo make install</filter:code>
+<p>That&#8217;s it, the driver should be installed. You can check it by running the gem list command:</p>
+<filter:code>$ gem list<br />
+<br />
+<b>* <span class="caps">LOCAL</span> <span class="caps">GEMS</span> *</b><br />
+<br />
+&#8230;<br />
+<br />
+mysql (2.7)<br />
+    MySQL/Ruby provides the same functions for Ruby programs that the<br />
+    MySQL C <span class="caps">API</span> provides for C programs.<br />
+<br />
+&#8230;</filter:code>
+<p>Note that you might have the native driver installed even if you don&#8217;t have the gem (e.g. via darwinports). You can check whether the library is installed in irb:</p>
+<filter:code>$ irb<br />
+irb(main):001:0&gt; require &#8216;mysql&#8217;<br />
+=&gt; true</filter:code>
+<p>If it&#8217;s not installed, you will get something like this:</p>
+<filter:code>$ irb <br />
+irb(main):001:0&gt; require &#8216;rubygems&#8217;<br />
+=&gt; true<br />
+irb(main):002:0&gt; require &#8216;mysql&#8217;<br />
+LoadError: no such file to load &#8212; mysql<br />
+        from /opt/local/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:21:in `require__&#8217;<br />
+        from /opt/local/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:21:in `require&#8217;<br />
+        from (irb):2</filter:code></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarkko Laine</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-10-03T00:00:00+03:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2006</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jarkko.github.com/jlaine/2006/10/03/installing-ruby-mysql-driver-on-os-x/" data-via="" data-counturl="http://jarkko.github.com/jlaine/2006/10/03/installing-ruby-mysql-driver-on-os-x/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2006/09/30/installing-subversion-1-4-on-os-x/" title="Previous Post: Installing subversion 1.4 on OS X">&laquo; Installing subversion 1.4 on OS X</a>
+      
+      
+        <a class="basic-alignment right" href="/2006/10/03/resetting-activerecord-object-columns-in-migrations/" title="Next Post: Resetting ActiveRecord object columns in migrations">Resetting ActiveRecord object columns in migrations &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jarkko Laine -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '50b05efb613f5d7127000040');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</body>
+</html>

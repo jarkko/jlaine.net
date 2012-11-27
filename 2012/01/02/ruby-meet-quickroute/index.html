@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>Ruby, meet QuickRoute - jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="While I missed the tradition of releasing Ruby gems on the Christmas day, I did meet my own tradition of not doing anything with the computer that &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jarkko.github.com/jlaine/2012/01/02/ruby-meet-quickroute/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/feed/atom.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-84654-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <!--<nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/feed/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jarkko.github.com/jlaine" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>-->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ruby, Meet QuickRoute</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-02T00:00:00+02:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>While I missed the tradition of releasing Ruby gems on the Christmas day, I did meet my own tradition of not doing anything with the computer that day. That said, I had something interesting in the works that just needed to be wrapped up as a Ruby gem—namely, a library for parsing the GPS data out of JPEG files produced by <a href="http://www.matstroeng.se/quickroute/en/">QuickRoute</a>. Without further ado, may I present <a href="https://github.com/jarkko/quickroute-ruby">quickroute-ruby</a>.</p>
+
+<p>The task wasn&#8217;t exactly trivial, as the data is embedded in binary format in an <a href="http://en.wikipedia.org/wiki/JPEG_File_Interchange_Format#JFIF_segment_format">APP0 segment</a> inside the image. Moreover, the data format was basically undocumented. However, with the help of <a href="http://www.matstroeng.se/">Mats</a> I managed to reverse-engineer the original C# and PHP libraries to an extent that I seemed to get correct output out of the file.</p>
+
+<p>The library is still very young, and while it seems to work correctly with my test images, I have no doubt there are a bunch of bugs hidden. If you seem to run into one, please file an <a href="https://github.com/jarkko/quickroute-ruby/issues">issue in the tracker</a>, or better yet, send me a <a href="https://github.com/jarkko/quickroute-ruby/pulls">pull request</a> with a test-driven fix.</p>
+
+<p>For usage, check out the GitHub page. I&#8217;ll work on cleaning up the code and writing some more documentation in the coming days, but the code itself should be fairly self-explanatory.</p>
+
+<p>Happy New Year!</p>
+
+<p><strong>P.S</strong> <a href="https://github.com/jarkko/quickroute-gps">I&#8217;m also mirroring</a> the complete (GPL licensed) <a href="http://code.google.com/p/quickroute-gps/">QuickRoute C# code repository</a> on GitHub. So if you prefer working with Git instead of Subversion + Google Code, you might want to start off there.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarkko Laine</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-02T00:00:00+02:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jarkko.github.com/jlaine/2012/01/02/ruby-meet-quickroute/" data-via="" data-counturl="http://jarkko.github.com/jlaine/2012/01/02/ruby-meet-quickroute/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/09/30/blade-runner/" title="Previous Post: Blade Runner">&laquo; Blade Runner</a>
+      
+      
+        <a class="basic-alignment right" href="/2012/01/16/introduction-to-great-coffee/" title="Next Post: Introduction to Great Coffee">Introduction to Great Coffee &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jarkko Laine -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '50b05efb613f5d7127000040');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+</body>
+</html>
