@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE harjoitus [
+<!ELEMENT harjoitus  (otsikko1, linkki, tehtava+, linkki, paivitysteksti)>
+
+<!ELEMENT otsikko1  (#PCDATA)>
+
+<!ELEMENT linkki (#PCDATA)>
+
+<!ELEMENT tehtava    (otsikko2, otsikko3?, tehtavananto)>
+<!ATTLIST tehtava    id    ID    #IMPLIED>
+
+<!ELEMENT otsikko2     (#PCDATA)>
+
+<!ELEMENT otsikko3    (#PCDATA)>
+
+<!ELEMENT tehtavananto      (p|koodi|ol|ul)*>
+
+<!ELEMENT p    (#PCDATA|linkki)*>
+
+<!ELEMENT koodi     (#PCDATA)>
+
+<!ELEMENT ol       (li+)>
+
+<!ELEMENT ul       (li+)>
+
+<!ELEMENT li       (#PCDATA|p)*>
+
+<!ELEMENT paivitysteksti       (#PCDATA)>
+]>
+
+
+
+<harjoitus>
+	<otsikko1>Harjoitus 721</otsikko1>
+	<linkki>Etusivulle</linkki>
+	<tehtava>
+		<otsikko2>Tehtava 1</otsikko2>
+		<tehtavananto>
+			<p>Tehtavatekstia</p>
+		</tehtavananto>	
+	</tehtava>
+	<linkki>Kotisivulle</linkki>
+	<paivitysteksti>Paivitetty ennen kristusta
+	</paivitysteksti>
+</harjoitus>
