@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<book>
+  <bookinfo>
+    <title>XML-merkkauksesta</title>
+    <author>
+      <firstname>John</firstname>
+      <surname>Doe</surname>
+    </author>
+  </bookinfo>
+  <preface>Seuraavassa käsitellään XML:n käyttöä 
+  tekstinkäsittelyssä.
+  </preface>
+  <chapter>
+    <title>Johdanto</title>
+    <para>Tämä on yksinkertainen kirja. Kirjan rakenne on
+    merkattu aikaisemmassa harjoituksessa määritellyn
+    book-DTD:n mukaisesti. Loogisen rakenteen merkkauksen
+    etu on tekstin automaattisen käsittelyn helppous. "Oikeasti"
+    XML tulisi piilottaa tekstieditorin käyttöliittymän taakse.
+    </para>
+    <para>Puhtaasti tekstiin perustuva käsikirjoitusprosessi on 
+    toisinaan eduksi myös sisällön näkökulmasta &#151; kirjoittajan
+    huomio keskittyy muotoilun kanssa hötkyilyn sijasta tekstin 
+    sisältöön ja sen rakenteeseen.
+    </para>    
+  </chapter>
+  <chapter>
+    <title>Lyhennemerkinnät</title>
+    <para>Pitkää kirjaa XML:llä merkkaava alkaa kuitenkin aika 
+    nopeasti kaivata SGML-tyyppisiä lyhennemerkintöjä...    
+    </para>
+  </chapter>  
+</book>
+

@@ -1,0 +1,415 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+
+<title>TCP/IP-protokollaperhe ja internet-turvallisuus</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+body {  font-family: Georgia, "Times New Roman", Times, serif}
+h1 {  font-family: Verdana, Arial, Helvetica, sans-serif; color: #FF0000}
+h2 {  font-family: Arial, Helvetica, sans-serif; color: #000066}
+h3 {  font-family: Arial, Helvetica, sans-serif; font-weight: 800}
+.kuvateksti {  font-size: smaller; font-weight: bold}
+h4 {  font-family: Arial, Helvetica, sans-serif}
+.sisluet {  font-family: Arial, Helvetica, sans-serif; font-weight: bold}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<h1>TCP/IP-protokollaperhe ja internet-turvallisuus</h1>
+<p>Tämä tutkielma on tehty harjoitustyönä keväällä 2001 Tampereen teknillisen 
+  korkeakoulun kurssille 83450, <a href="http://www.cs.tut.fi/kurssit/83450/" title="Kurssin kotisivulle">Internetin 
+  verkkotekniikat</a>.<br>
+  Tekijät Laura Koskinen, Kalle Viitanen, Jarkko Laine</p>
+<h2>Sis&auml;llysluettelo</h2>
+<ol>
+  <li class="sisluet">TCP/IP-protokollaperhe 
+    <dl>
+      <dt>1.1 Taustaa </dt>
+	  <dt>1.2 Protokollat
+	  	<dl>
+			<dt>1.2.1 IP (Internet Protocol)</dt>
+			<dt>1.2.2 TCP (Transmission Control Protocol)</dt>
+			<dt>1.2.3 UDP (Universal Datagram Protocol)</dt>
+			<dt>1.2.4 ICMP (Internet Control Message Protocol)</dt>
+			<dt>1.2.5 IGMP (Internet Group Management Protocol)</dt>
+			<dt>1.2.6 ARP (Adress Resolution Protocol)</dt>
+		</dl>
+	  </dt>
+    </dl>
+    
+    
+  <li class="sisluet">Tietoturvallisuus internetissä 
+    <dl>
+      <dt>2.1 Johdanto
+	  	<dl> 
+          <dt>2.1.1 Internetille ominaisia erikoispiirteit&auml;</dt>
+          <dt>2.1.2 TCP/IP-protokollaperheen turvallisuus</dt>
+        </dl>	  
+	  </dt>
+	  <dt>2.2 Tietoturvallisuuden nykytila Internetiss&auml;
+	  	<dl>
+			<dt>2.2.1 TCP/IP-tason turvamekanismeja</dt>
+			<dt>2.2.2 Yleisimm&auml;t tietoturvaongelmat</dt>
+			<dt>2.2.3 Murtautumismenetelmi&auml;</dt>
+			<dt>2.2.4 Suojautuminen</dt>
+		</dl>
+	  
+	  
+	  </dt>
+    </dl>
+	
+	
+  <li class="sisluet">Yhteenveto 
+  <li class="sisluet">Lähdeluettelo 
+</ol>
+  
+<h2>1 TCP/IP-protokollaperhe</h2>
+<h3>1.1 Taustaa</h3>
+  TCP/IP-protokollaperhe syntyi alkuaan Yhdysvaltain puolustusministeri&ouml;n 
+  toimesta ARPANETin yhteysk&auml;yt&auml;nn&ouml;ksi, josta se levisi nopeasti 
+  yliopistoihin ja tutkimuskeskuksiin. Se korvasi vuonna 1982 aiemman protokollan, 
+  NCP:n, ja samalla ARPANET muutti nimens&auml; internetiksi. Perhe koostuu useasta 
+  eri protokollasta, jotka ovat ajan my&ouml;t&auml; muodostuneet internet-standardeiksi. 
+  <p> TCP/IP:n perusajatuksena on, ett&auml; tietoliikenne on liian monimutkaista 
+    yhden protokollan hoidettavaksi. Siksi sen mukaan ty&ouml; jaetaankin eri 
+    tasojen moduuleille, jotka sitten kommunikoivat vastapuolen vastaavan tason 
+    protokollan kanssa. 
+  <p> TCP/IP:ll&auml; ei ole virallista mallia, kuten OSI-mallilla. Se kuvataan 
+    kuitenkin yleens&auml; viiten&auml; kerroksena: 
+  <ul>
+    <li>Sovelluskerros 
+    <li>Kuljetuskerros 
+    <li>Verkkokerros 
+    <li>Yhteyskerros 
+    <li>Fyysinen kerros 
+      <p> 
+  </ul>
+  Kerrokset eiv&auml;t sovi t&auml;ysin yhteen OSI-mallin seitsem&auml;n kerroksen 
+  rajojen kanssa, koska TCP/IP kehitettiin jo ennen OSI:a. Siit&auml; muodostui 
+  kuitenkin &quot;standardi&quot;, koska se on avoin eik&auml; ole sidoksissa 
+  mihink&auml;&auml;n laitevalmistajiin tai -tyyppeihin. OSI-malli sen sijaan 
+  j&auml;i raskautensa vuoksi er&auml;&auml;nlaisen referenssimallin asemaan. 
+  
+<h3>1.2 Protokollat</h3>
+  <p>Kuvassa 1 on esitelty TCP/IP-protokollaperheen ydinprotokollat sek&auml; 
+    niiden tarjoamia sovellustason palveluita. Perheen perusprotokollia ovat IP, 
+    ICMP, IGMP, ARP, TCP sek&auml; UDP. N&auml;ist&auml; IP, ARP, ICMP ja IGMP 
+    toimivat verkkokerroksella ja TCP sek&auml; UDP kuljetuskerroksella. </p>
+  
+<p><img src="image001.gif" width="642" height="470" alt="TCP/IP-protokollaperhe"></p>
+  
+<p class="kuvateksti">Kuva 1. TCP/IP:n protokollat sek&auml; niiden tarjoamat 
+  ylemm&auml;n tason palvelut </p>
+  
+<h4>1.2.1 IP (Internet Protocol)</h4>
+  My&ouml;s verkkojen veturiksi kutsuttu IP on yhteydet&ouml;n protokolla, jonka 
+  palveluja kaikki TCP/IP-liikenne k&auml;ytt&auml;&auml; hyv&auml;kseen. Protokolla 
+  j&auml;tt&auml;&auml; yhteyksien pidon suosiolla TCP:n teht&auml;v&auml;ksi. 
+  IP on tarkoitettu v&auml;litt&auml;m&auml;&auml;n paketteja yhteen kytkettyjen 
+  verkkojen osasta toiseen ja sen t&auml;rkein teht&auml;v&auml; on reititys. 
+  Se onkin toiminnassa kaikissa verkkoon kytketyiss&auml; p&auml;&auml;telaitteissa 
+  sek&auml; reitittimiss&auml;. 
+  <p> 
+  <p>Pakettien l&auml;hett&auml;j&auml; ja vastaanottaja ilmaistaan IP-osoitteella. 
+    IP-osoite on 32-bittinen luku, joka esitet&auml;&auml;n yleens&auml; pisteill&auml; 
+    eroteltuna desimaalilukuna, esim. 195.148.185.48. Protokolla reititt&auml;&auml; 
+    paketit ilman, ett&auml; l&auml;hett&auml;j&auml;n tarvitsee tiet&auml;&auml; 
+    siirrosta muuta kuin saajan IP-osoite.</p>
+  <p>IP-protokolla k&auml;sittelee kaikki IP-paketit erillisin&auml;. Se ei ota 
+    kantaa siirrett&auml;v&auml;n tiedon luotettavuuteen, vuonvalvontaan eik&auml; 
+    muihin korkeamman tason palveluihin. T&auml;m&auml; johtuu ennen kaikkea suorituskykysyist&auml;, 
+    sek&auml; siit&auml;, ett&auml; samoja teht&auml;vi&auml; on turha suorittaa 
+    useamman eri tason protokollan toimesta. IP ei my&ouml;sk&auml;&auml;n sis&auml;ll&auml; 
+    virheenkorjausta, mutta se laskee kuitenkin paketeille tarkistussumman ja 
+    hylk&auml;&auml; virheelliset datagrammit. 
+  
+<h4>1.2.2 TCP (Transmission Control Protocol)</h4>
+  TCP on protokolla, joka on kehitetty datan v&auml;litt&auml;miseen verkossa 
+  luotettavasti k&auml;ytt&auml;en hyv&auml;ksi ep&auml;luotettavaa IP:n v&auml;lityspalvelua. 
+  Alkuper&auml;inen TCP julkaistiin jo 1970-luvun alkupuolella, mutta sill&auml; 
+  on hyvin v&auml;h&auml;n yhteist&auml; TCP/IP-perheen TCP:n kanssa.<br>
+  TCP on yhteydellinen protokolla. T&auml;m&auml; tarkoittaa sit&auml;, ett&auml; 
+  ennen kuin datasiirto koneiden v&auml;lill&auml; voidaan aloittaa, pit&auml;&auml; 
+  vastapuolten muodostaa kesken&auml;&auml;n yhteys. T&auml;m&auml; tapahtuu ns. 
+  kolmitiek&auml;ttelyn avulla. 
+  <p> 
+  <p>TCP on my&ouml;s niin sanottu p&auml;&auml;st&auml; p&auml;&auml;h&auml;n 
+    -protokolla. Kaikki TCP-tason datav&auml;litys tapahtuu vain yhteyden p&auml;iss&auml; 
+    olevien laitteiden v&auml;lill&auml;, eik&auml; protokolla ole k&auml;yt&ouml;ss&auml; 
+    IP:n tapaan esim. reitin varrella olevissa reitittimiss&auml;.</p>
+  <p>TCP sijoittuu siis kuljetuskerrokselle. Se tarjoaa korkeamman tason sovelluksille 
+    helpon rajapinnan yhteyden muodostamiseen ja datan siirtoon. TCP:n t&auml;rkeimm&auml;t 
+    palvelut ylemmille tasoille ovat: 
+  <ul>
+    <li><b>Datan v&auml;litys</b>. TCP paketoi ylemm&auml;n tason sovellusten 
+      antaman datan ja antaa paketit alemman kerroksen kuljetettavaksi oikeaan 
+      osoitteeseen. TCP n&auml;kyy sovellusohjelmille aivan kuin muutkin k&auml;ytt&ouml;j&auml;rjestelm&auml;n 
+      palvelut, kuten levyj&auml;rjestelm&auml;t (esim. NFS).<br>
+    <li><b>Luotettavuus</b>. Luotettava yhteys perustuu kehteen perusvarmistukseen: 
+      pakettien sarjanumeroihin ja kuittaukseen. Jos l&auml;hetykseen ei saada 
+      kuittausta, data l&auml;hetet&auml;&auml;n uudelleen.<br>
+    <li>Datavirran kontrolli eli <b>vuonohjaus</b>. TCP k&auml;ytt&auml;&auml; 
+      ns. liukuvan ikkunan menetelm&auml;&auml;, jonka avulla estet&auml;&auml;n 
+      l&auml;hett&auml;j&auml;&auml; l&auml;hett&auml;m&auml;st&auml; kerralla 
+      enemp&auml;&auml; dataa kuin vastaanottaja on valmis vastaanottamaan.<br>
+    <li>Yhteyden monikanavointi eli <b>multipleksaus</b>. TCP voi kuljettaa samanaikaisesti 
+      useamman sovelluksen yhteytt&auml; ja eri sovellusten yhteydet voidaan erotella 
+      toisistaan porttinumeroiden avulla. Osa porttinumeroista on valmiiksi m&auml;&auml;ritelty 
+      tietyille palveluille (esim. FTP, POP3, HTTP) ja osa on vapaasti valittavissa.<br>
+    <li><b>Yhteys</b>.<br>
+    <li><b>Tiedon salaus</b>. 
+  </ul>
+  
+<h4>1.2.3 UDP (Universal Datagram Protocol)</h4>
+  UDP on toinen TCP/IP-perheen siirtokerrokselle sijoittuvista protokollista. 
+  Se on TCP:t&auml; yksinkertaisempi protokolla, joka on tarkoitettu yksinkertaisten 
+  tietos&auml;hkeiden eli datagrammien l&auml;hett&auml;miseen. Se ei tarjoa yhteydellisyytt&auml; 
+  eik&auml; kuittauksia kuten TCP. UDP:t&auml; k&auml;ytet&auml;&auml;n yksinkertaisuutensa 
+  vuoksi tehokkuussyist&auml; mm. DNS-nimipalvelussa sek&auml; NFS-tiedostoj&auml;rjestelm&auml;ss&auml;.<br>
+  
+<h4>1.2.4 ICMP (Internet Control Message Protocol)</h4>
+  ICMP on oikeastaan osa IP:t&auml; ja sijoittuu n&auml;in ollen verkkokerrokselle. 
+  Protokolla tarjoaa vianetsint&auml;- ja diagnostiikkapalveluja ja sit&auml; 
+  k&auml;ytet&auml;&auml;n mm. virheilmoituksiin. Tunnetuin k&auml;ytt&ouml;muoto 
+  ICMP:lle on ping-ohjelma.<br>
+  
+<h4>1.2.5 IGMP (Internet Group Management Protocol)</h4>
+  IGMP sijoittuu my&ouml;s verkkokerrokselle. Protokollaa k&auml;ytet&auml;&auml;n 
+  UDP-pakettien l&auml;hett&auml;miseen useille vastaanottajille. Protokollan 
+  avulla tietokone voi ilmoittaa reitittimille multicast-ryhm&auml;n, johon se 
+  kuuluu. 
+  
+<h4>1.2.6 ARP (Adress Resolution Protocol)</h4>
+  ARP sijoittuu verkkokerrokselle, joidenkin l&auml;hteiden mukaan jopa OSI-mallin 
+  linkkikerrokselle, jota ei TCP/IP-pinossa ole varsinaisesti eritelty. Protokollaa 
+  k&auml;ytet&auml;&auml;n yhdess&auml; Reverse ARP:in kanssa laitteiden fyysisen 
+  eli ns. MAC-osoitteen selvitt&auml;miseen IP-osoitteen perusteella ja p&auml;invastoin. 
+  
+<h2>2 Tietoturvallisuus Internetiss&auml;</h2>
+  
+<h3>2.1 Johdanto</h3>
+  
+<h4>2.1.1 Internetille ominaisia erikoispiirteit&auml; </h4>
+  K&auml;sitelt&auml;ess&auml; Internetin tietoturvallisuutta riskit hajaantuvat 
+  useampaan kohtaan ja siksi tuleekin huomioida verkon tietokonej&auml;rjestelmien, 
+  verkon solmujen, verkon hallintamekanismien sek&auml; tietoliikenneprotokollien 
+  suojaus. Yksitt&auml;inen liittym&auml; ei voi vaikuttaa koko verkon turvallisuuteen, 
+  vaan sen tulee keskitty&auml; oman j&auml;rjestelm&auml;ns&auml; ja sen liit&auml;nn&auml;n 
+  turvallisuuteen. Internet on rakennettu alunperin avoimmuuden pohjallle, joten 
+  turvakysymyksi&auml; ei ole ajateltu alusta alkaen. T&auml;st&auml; syyst&auml; 
+  esimerkiksi Unix -systeemiss&auml; riitt&auml;v&auml;n turvan saavuttaminen 
+  voi vaatia melkoisia ponnistuksia. 
+  
+<h4>2.1.2 TCP/IP-protokollaperheen turvallisuus</h4>
+  Internet-verkon perustekniikat on suunniteltu suojaamaan tietoliikenteen eheys 
+  satunnaisia virheit&auml; vastaan. Tahallista hy&ouml;kk&auml;yst&auml; vastaan 
+  itse verkko ei tarjoa kovinkaan hyv&auml;&auml; suojaa. Asiantuntijat ovat pitk&auml;&auml;n 
+  tienneet, ett&auml; TCP/IP-perusprotokollien turvallisuuteen ei voi luottaa. 
+  Vasta Internetin kaupallisten sovellusten laajeneminen on tuonut t&auml;m&auml;n 
+  ongelman yleiseen tietoon. TCP/IP-verkon turvallisuudesta on k&auml;yt&auml;nn&ouml;ss&auml; 
+  huolehdittava muilla kuin loogisen tason ratkaisuilla eli on huolehdittava verkon 
+  eri osien erist&auml;misest&auml; toisistaan sek&auml; kriittisten verkkosegmenttien 
+  sijoittamisesta turvattuihin tiloihin. TCP/IP ymp&auml;rist&ouml;&ouml;n on 
+  tulossa erilaisia turvallisuutta parantavia ominaisuuksia kuten uusi IP-protokollan 
+  versio Ipv6.0. 
+  
+<h3>2.2 Tietoturvallisuuden nykytila Internetiss&auml;</h3>
+  Nykyisiss&auml; TCP/IP systeemeiss&auml; on huomattavan paljon turvallisuusongelmia, 
+  mik&auml; johtuu siit&auml;, ett&auml; protokollaperhe suunniteltiin ajatellen 
+  k&auml;ytt&ouml;ymp&auml;rist&ouml;n olevan riitt&auml;v&auml;n turvallinen. 
+  Tavoitteena suunnittelussa oli esimerkiksi se, ett&auml; verkko turvaa IP-pakettien 
+  eheyden. 
+  
+<h4>2.2.1 TCP/IP-tason turvamekanismeja</h4>
+  <b>IP-osoitteet</b> ovat melko luotettava mekanismi. L&auml;hett&auml;j&auml;n 
+  IP -osoitetta k&auml;ytet&auml;&auml;n aina vastaamiseen. Tosin t&auml;t&auml;kin 
+  on onnistuttu kiert&auml;m&auml;&auml;n siten, ett&auml; paketteja saadaan kulkemaan 
+  aivan eri paikkaan kuin haluttu IP-osoite. 
+  <p><b>Sekvenssinumerot</b> on tarkoitettu vuonohjaukseen, mutta ne ovat osoittautuneet 
+    tehokkaaksi turvaominaisuudeksi. P&auml;&auml;st&auml;kseen TCP -yhteydelle 
+    murtautujan tulee tiet&auml;&auml; mik&auml; sekvenssinumero yhteydell&auml; 
+    on menossa. T&auml;m&auml; onnistuu vain joko arvaamalla sekvenssinumero tai 
+    salakuuntelemalla l&auml;hetyst&auml;. N&auml;m&auml; ovat useissa tapauksissa 
+    vaikeita menetelmi&auml;. 
+  <p><b>Porttinumeroiden</b> k&auml;ytt&ouml;turvallisuusmenetelm&auml;n&auml; 
+    on standardoimaton turvallisuussysteemi, jossa alle 1024:n porttinumeroita 
+    annetaan vain sellaisille prosesseille, joilla on p&auml;&auml;k&auml;ytt&auml;j&auml;n 
+    (root) oikeudet. T&auml;t&auml; hy&ouml;dynnet&auml;&auml;n toisinaan palomuureissa, 
+    mutta j&auml;rjestelm&auml; ei itsess&auml;&auml;n ole luotettava. 
+  <p> <b>Perusturvamekanismeihin</b> on odotettavissa parannusta IPv6:n my&ouml;t&auml;. 
+    T&auml;ss&auml; IP -protokollan uudessa versiossa on lis&auml;tty kaksi uutta 
+    turvamekanismia: todennuskehys AH, jonka avulla voidaan todeta jokaisen kehyksen 
+    eheys ja alkuper&auml; sek&auml; ESP (Encapsulating Security Payload), jonka 
+    avulla voidaan salata koko IP-paketti tai sen hy&ouml;tykuorman. IPv6.0 :n 
+    kehitysty&ouml; ei ole viel&auml; t&auml;ysin valmis. 
+  
+<h4>2.2.2 Yleisimm&auml;t tietoturvaongelmat</h4>
+  <p>Koska Internet on kaksisuuntainen kanava, kutsumaton vieras voi p&auml;&auml;st&auml; 
+    yrityksen omaan j&auml;rjestelm&auml;&auml;n k&auml;siksi ja muutella tietoja. 
+    T&auml;llainen murto onnistuu k&auml;ytt&ouml;j&auml;rjestelm&auml;ss&auml; 
+    tai palvelinohjelmistoissa olevien aukkojen ansiosta tai jopa hankkimalla 
+    k&auml;ytt&auml;j&auml;tunnus jollain keinolla. N&auml;ytt&auml;vimpi&auml; 
+    t&auml;llaisia hy&ouml;kk&auml;yksi&auml; on Yhdysvaltojen oikeusministeri&ouml;n 
+    WWW-palvelun taannoinen muuttaminen &quot;Department of Injustice&quot; -nimiseksi.</p>
+  <p>TCP/IP-protokollaperheess&auml; on useita turvallisuuteen liittyvi&auml; 
+    heikkouksia, jotka ovat otollisia hy&ouml;kk&auml;yskohteita. N&auml;ist&auml; 
+    yleisimpi&auml; ovat:</p>
+  <p><b>Verkon salakuuntelu</b>, joka onnistuu helposti, mik&auml;li saadaan fyysinen 
+    yhteys siirtomediaan. P&auml;&auml;sty&auml;&auml;n k&auml;siksi kaapeliin 
+    liitettyyn koneeseen murtautuja voi kuunnella liikennett&auml; vaikkapa diagnostiikkaohjelmaa 
+    k&auml;ytt&auml;en ja poimia liikenteest&auml; k&auml;ytt&auml;jien salasanoja.</p>
+  <p><b>IP-osoitteiden v&auml;&auml;rennys</b> tapahtuu l&auml;hett&auml;m&auml;ll&auml; 
+    UDP paketteja joiden IP -osoite on v&auml;&auml;r&auml;. T&auml;ll&ouml;in 
+    vastaanottajan paluupaketit eiv&auml;t tietenk&auml;&auml;n tule perille. 
+    T&auml;t&auml; voidaan k&auml;ytt&auml;&auml; muun muassa hy&ouml;kk&auml;yksess&auml; 
+    NFS:&auml;&auml; vastaan sek&auml; IP-osoitteeseen perustuvan tunnistuksen 
+    kiertoon.</p>
+  <p><b>ICMP-hy&ouml;kk&auml;yksess&auml;</b> tunkeutuja uskottelee olevansa reititin 
+    k&auml;ytt&auml;en ICMP:t&auml;. Hy&ouml;kk&auml;&auml;j&auml; uskottelee 
+    laitteelle lyhyimm&auml;n polun tiettyyn osoitteeseen kulkevan itsens&auml; 
+    kautta ja saa n&auml;in siepattua l&auml;htev&auml;t paketit. Mik&auml;li 
+    hy&ouml;kk&auml;&auml;j&auml;ll&auml; on my&ouml;s v&auml;&auml;rennetty IP 
+    -osoite saa h&auml;n haltuunsa my&ouml;s paluupaketit.</p>
+  <p><b>ARP-kysely</b> soveltuu my&ouml;s tietoturvahy&ouml;kk&auml;yksiin. ARP-protokollalla 
+    (Addres Resolution Protocol) voidaan selvitt&auml;&auml; samassa verkossa 
+    olevan laitteen Ethernet-osoite. ARP-kyselypaketissa kysyt&auml;&auml;n mik&auml; 
+    on tietty&auml; IP-osoitetta vastaava Ethernet-osoite. Normaalisti IP-osoitteen 
+    omakseen tunnistava laite vastaa Ethernet-osoitteellaan, mutta mik&auml;li 
+    hy&ouml;kk&auml;&auml;j&auml;ll&auml; on laite samassa verkossa, voi t&auml;m&auml; 
+    vastata ennen oikeaa konetta ja uskotella olevansa t&auml;m&auml;.<br>
+    <br>
+    <b>IP-l&auml;hdereitityst&auml;</b> voidaan k&auml;ytt&auml;&auml; reitityksen 
+    muuttamiseen. Sit&auml; on tarkoitus k&auml;ytt&auml;&auml; reititystaulujen 
+    menness&auml; sekaisin. L&auml;hdereitityksen avulla murtautuja voi laittaa 
+    oman IP-osoitteensa tilalle reitin, jossa h&auml;nen osoitteensa on. Vastaanottaja 
+    n&auml;kee l&auml;hett&auml;j&auml;n&auml; reitin viimeisen osoitteen, vaikka 
+    k&auml;yt&auml;nn&ouml;ss&auml; paketit pys&auml;htyv&auml;t jo murtautujan 
+    osoitteen kohdalla.</p>
+  <p><b>S&auml;hk&ouml;postin v&auml;&auml;rennys</b> on hyvin yksinkertainen 
+    toimenpide. SMTP-protokollassa viesti kulkee selv&auml;kielisen&auml;, jolloin 
+    haluamillaan l&auml;ht&ouml;tiedoilla varustetun postin saa l&auml;htem&auml;&auml;n 
+    ottamalla yhteytt&auml; esimerkiksi Telnetill&auml; koneen SMTP porttiin ja 
+    naputtelemalla haluamansa viestin.</p>
+  <p><b>K&auml;&auml;nteisnimipalvelun</b> avulla voi muuttaa oman IP-osoitteensa. 
+    Nimipalvelu DNS muuttaa domain-nimen vastaavaksi IP-osoitteeksi ja k&auml;&auml;nteisnimipalvelu 
+    tekee vastakkaisen toiminnon. Itse nimipalvelu on varsin varmatoiminen, mutta 
+    k&auml;&auml;nteisnimipalvelua voidaan huijata liitt&auml;m&auml;ll&auml; 
+    IP-osoitteeseen haluamansa nimi. Useissa palvelimissa t&auml;m&auml; on estetty 
+    nimikysely avulla, jolloin k&auml;&auml;nteisnimipalvelussa saatu nimi tarkistetaan 
+    suorittamalla sille nimipalvelukysely. </p>
+  <p>Nimipalvelimiin kohdistuvasta tietoturvariskist&auml; on esimerkkin&auml; 
+    seuraava uutinen: Yritysten tietoj&auml;rjestelmist&auml; l&ouml;ytyi vakavia 
+    puutteita (HS 24.2.2001). Uutisen mukaan yksitoista sadasta Suomen suurimmasta 
+    yrityksest&auml; on laiminly&ouml;nyt tietoturvan. N&auml;iden yritysten nimipalvelinj&auml;rjestelm&auml;ss&auml; 
+    on aukko, jonka kautta hakkerit pystyv&auml;t halutessaan kaatamaan firmojen 
+    internet-sivustot sek&auml; my&ouml;s mahdollisesti tunkeutumaan niiden tietoj&auml;rjestelmiin. 
+    &quot;Sadan liikevaihdollisesti suurimman yrityksen nimipalveluj&auml;rjestelm&auml;t 
+    testasi islantilainen tietoturvayritys Men&amp;Mice. Tutkituista yrityksist&auml; 
+    11 k&auml;ytti nimipalveluj&auml;rjestelm&auml;ss&auml;&auml;n (BIND DSN) 
+    puutteellista ohjelmistoversiota. Nimipalveluongelma havaittiin maailmalla 
+    tammikuun 29. p&auml;iv&auml;n&auml; 2001. Men&amp;Micen tekem&auml;n selvityksen 
+    mukaan seuraavana p&auml;iv&auml;n&auml; l&auml;hes 600:lla maailman 1000 
+    suurimmasta yrityksest&auml; oli aukko nimipalveluj&auml;rjestelm&auml;ss&auml;&auml;n. 
+    Yritykset kuitenkin p&auml;ivittiv&auml;t nopeasti ohjelmistojaan.&quot; </p>
+  
+<h4>2.2.3 Murtautumismenetelmi&auml;</h4>
+  <p>Tunkeutujien k&auml;ytt&auml;m&auml;t murtautumismenetelm&auml;t voidaan 
+    jakaa sosiaalisiin ja teknisiin menetelmiin. Sosiaalisissa menetelmiss&auml; 
+    tunkeutuja k&auml;ytt&auml;&auml; v&auml;&auml;rin omia oikeuksiaan tai huijaa 
+    toisia k&auml;ytt&auml;ji&auml;. T&auml;m&auml; on usein helpompaa kuin teknisten 
+    ratkaisujen k&auml;ytt&ouml;. Teknisiss&auml; menetelmiss&auml; laitteistojen 
+    heikkouksia voidaan k&auml;ytt&auml;&auml; hyv&auml;ksi, esimerkiksi suojaamaton 
+    muistij&auml;rjestelm&auml; on tehokas keino salasanojen selvitykseen.</p>
+  <p><b>Salakuuntelu</b> on tehokas murtautumistapa ja se on p&auml;&auml;tteiden 
+    ja l&auml;hiverkkojen tapauksessa melko helppoa. </p>
+  <p><b>Troijanhevoset</b> ovat ohjelmanp&auml;tki&auml;, joita pyrit&auml;&auml;n 
+    huomaamattomasti ujuttamaan suojattuun j&auml;rjestelm&auml;&auml;n. P&auml;&auml;sty&auml;&auml;n 
+    j&auml;rjestelm&auml;&auml;n ohjelman tekee suojamuuriin aukon, josta murtautuja 
+    p&auml;&auml;see halutessaan sis&auml;&auml;n systeemiin.</p>
+  <p><b>Suojausaukot</b> ovat virheellisi&auml; suojausm&auml;&auml;rittelyj&auml;, 
+    jotka altistavat systeemin turvallisuusuhalle. Tyypillinen tapaus on Unix-tiedosto, 
+    jonka k&auml;ytt&ouml;oikeudet on v&auml;&auml;rin m&auml;&auml;ritelty.</p>
+  <p><b>Salasanojen arvailu</b> on yleinen tapa p&auml;&auml;st&auml; systeemiin. 
+    On tutkittu, ett&auml; jopa joka nelj&auml;nnell&auml; k&auml;ytt&auml;j&auml;ll&auml; 
+    on huono salasana. Jos p&auml;&auml;st&auml;&auml;n k&auml;siksi suureen m&auml;&auml;r&auml;&auml;n 
+    salasanatietoja, on yhden salasanan arvaaminen mahdollista melko nopeastikin.</p>
+  <p><b>Ohjelmistovirheet</b> ovat my&ouml;s tapa p&auml;&auml;st&auml; j&auml;rjestelm&auml;&auml;n. 
+    Jokainen ohjelma sis&auml;lt&auml;&auml; virheit&auml;, joista monia ei koskaan 
+    havaita. K&auml;yt&auml;nn&ouml;ss&auml; ohjelmistovirheiden t&auml;ydellinen 
+    poistaminen esimerkiksi suuresta k&auml;ytt&ouml;j&auml;rjestelm&auml;st&auml; 
+    on mahdotonta. T&auml;m&auml; murtautumismenetelm&auml; vaatii tekij&auml;lt&auml;&auml;n 
+    todellista osaamista eik&auml; siksi ole kovin yleinen.</p>
+  
+<h4>2.2.4 Suojautuminen</h4>
+  <p>Suojautumisessa on olennaisen t&auml;rke&auml;&auml; ennakkosuunnittelu. 
+    Riskit on siis analysoitava etuk&auml;teen. Todenn&auml;k&ouml;iset uhat sek&auml; 
+    turvallisuusj&auml;rjestelm&auml;n mahdollisuudet on tiedostettava. T&auml;m&auml;n 
+    lis&auml;ksi on suunniteltava ja luotava oikean tasoiset suojatoimenpiteet.</p>
+  <p>Suojausj&auml;rjestelm&auml; ei ole koskaan valmis toimimaan ilman k&auml;yt&ouml;naikaista 
+    ty&ouml;t&auml;. Toimiva suojaus edellytt&auml;&auml; systeemin p&auml;ivityst&auml; 
+    tasaisin v&auml;liajoin sek&auml; jatkuvaa k&auml;yt&ouml;n seurantaa. K&auml;yt&ouml;n 
+    seurannalla voidaan havaita murtautuja joko toiminnassa tai sitten l&ouml;yt&auml;&auml; 
+    t&auml;m&auml;n j&auml;lkeens&auml; j&auml;tt&auml;mi&auml; j&auml;lki&auml; 
+    tai turvallisuusaukkoja. Seuranta toteutetaan useimmiten turvalokin avulla. 
+    Se tallentaa esimerkiksi tehdyt turvatasojen muutokset k&auml;ytt&auml;en 
+    kerrankirjoittavaa menetelm&auml;&auml; tai erillist&auml; lokikonetta. Seurantaa 
+    voidaan tehostaa liitt&auml;m&auml;ll&auml; lokiin ohjelma, joka analysoi 
+    poikkeukselliset tilanteet ja raportoi niist&auml;.</p>
+  
+<h2>3 Yhteenveto</h2>
+  <p>Suomen Internet-verkon suunnittelussa ei toimintavarmuuteen ja k&auml;ytett&auml;vyyteen 
+    ole kiinnitetty huomiota viel&auml; samalla tavoin kuin esimerkiksi puhelinverkon 
+    kohdalla. Verkko itsess&auml;&auml;n kest&auml;&auml; normaalit virhetilanteet, 
+    mutta ei aktiivista hy&ouml;kk&auml;yst&auml;. Internet-verkko itsess&auml;&auml;n 
+    ei tunnista k&auml;ytt&auml;ji&auml; mitenk&auml;&auml;n, vaan on viestint&auml;kanava, 
+    jossa on merkitt&auml;v&auml;n paljon helpompaa esiinty&auml; naamioituneena 
+    tai anonyymin&auml; kuin muussa el&auml;m&auml;ss&auml;. Nimett&ouml;m&auml;n&auml; 
+    tai keksityn nimen suojissa esiintyminen on jopa kohtuullisen yleist&auml; 
+    verkkomaailmassa. </p>
+  <p>Virheellisesti tunnistettu osapuoli voi verkon ylitse asioidessaan saada 
+    aikaan huomattavaa vahinkoa. Esimerkiksi ulkopuolinen taho voi l&auml;hett&auml;&auml; 
+    Internetin kautta viranomaiselle v&auml;&auml;rennetty&auml; s&auml;hk&ouml;postia, 
+    joka n&auml;ytt&auml;&auml; tulevan toiselta viranomaiselta saman organisaation 
+    sis&auml;ll&auml;. Tavallinen k&auml;ytt&auml;j&auml; ei osaa tutkia s&auml;hk&ouml;postin 
+    otsakekentti&auml; riitt&auml;v&auml;n huolellisesti huomatakseen v&auml;&auml;renn&ouml;ksen. 
+  </p>
+  <p>Verkon kautta s&auml;hk&ouml;itse asioitaessa kiist&auml;m&auml;tt&ouml;myys 
+    tulee t&auml;rke&auml;mm&auml;ksi tekniseksi ongelmaksi kuin paperien kanssa 
+    asioitaessa. Viranomaisp&auml;&auml;t&ouml;kseen on usein pystytt&auml;v&auml; 
+    vetoamaan my&ouml;s j&auml;lkeenp&auml;in ja pelk&auml;st&auml;&auml;n vastaanotettu 
+    s&auml;hk&ouml;postiviesti tiedostossa tai paperille tulostettuna ei v&auml;ltt&auml;m&auml;tt&auml; 
+    riit&auml; t&auml;llaiseksi todisteeksi. </p>
+  <p>Internet-k&auml;yt&ouml;n suurin turvallisuusongelma ei kuitenkaan ole luonteeltaan 
+    tekninen. Verkon k&auml;ytt&auml;jien kokemattomuus ja tiet&auml;m&auml;tt&ouml;myys 
+    verkon ominaisuuksista on suurin ongelma ja sit&auml; ei pystyt&auml; t&auml;ysin 
+    ratkaisemaan teknisill&auml; keinoilla. Eri ymp&auml;rist&ouml;iss&auml; ovat 
+    eri uhkien todenn&auml;k&ouml;isyydet ja uhan toteutumisesta aiheutuvat vahingot 
+    erilaisia. Suojauduttaessa on etsitt&auml;v&auml; tasapaino riskien ja kustannusten 
+    v&auml;lill&auml;. Esimerkiksi oppilaitoksen opiskelijoiden harjoitust&ouml;it&auml; 
+    suojaamaan ei kannata hankkia miljoonien markkojen palomuuriratkaisua. </p>
+  <p>Julkishallinnon tiedoille ei voida l&auml;hesk&auml;&auml;n aina asettaa 
+    markkam&auml;&auml;r&auml;ist&auml; arvoa, vaan suojaustarve l&auml;htee laeista 
+    ja asetuksista. T&auml;ll&ouml;in, mik&auml;li palvelun riitt&auml;v&auml;n 
+    tasoista tietoturvallisuutta ei voida taata, ei palvelua voida tarjota Internet-verkossa. 
+  </p>
+  <h2><br>
+  4 L&auml;hdeluettelo </h2>
+  <p>Nikander, P. &amp; Peltonen, T. &amp; Viljanen, L. 1996. Internet tietoturva. 
+    Gummerrus Kirjapaino Oy. Jyv&auml;skyl&auml; </p>
+  <p>Junkkari, M. 2001. &quot;Yritysten tietoj&auml;rjestelmist&auml; l&ouml;ytyi 
+    vakavia puutteita.&quot; 24.2.2001. Helsingin Sanomat. Talous.</p>
+  
+<p>Toppila, P. 1997. Tietoturva internetissä. Seminaariesitelmä. <a href="http://www.hut.fi/%7Eptoppila/tieot.htm">http://www.hut.fi/~ptoppila/tieot.htm</a></p>
+<p></p>
+<p>RFC 791: Internet Protocol</p>
+<p>RFC 793: Transmission Control Protocol</p>
+<p>RCF 1122: Requirements for Internet hosts - communication layers</p>
+<p>Hautaniemi, M. 1994. TKK/Atk-keskuksen TCP/IP-verkon valvonta ja hallinta. 
+  Diplomity&ouml;. <a href="http://keskus.hut.fi/julkaisut/tyot/diplomityot/611/">http://keskus.hut.fi/julkaisut/tyot/diplomityot/611/</a></p>
+</body>
+</html>

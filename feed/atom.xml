@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[jlaine.net]]></title>
-  <link href="http://jarkko.github.com/jlaine/atom.xml" rel="self"/>
-  <link href="http://jarkko.github.com/jlaine/"/>
-  <updated>2012-11-27T16:43:48+02:00</updated>
-  <id>http://jarkko.github.com/jlaine/</id>
+  <link href="http://jlaine.net/atom.xml" rel="self"/>
+  <link href="http://jlaine.net/"/>
+  <updated>2012-12-21T10:20:40+02:00</updated>
+  <id>http://jlaine.net/</id>
   <author>
     <name><![CDATA[Jarkko Laine]]></name>
     
@@ -15,19 +15,19 @@
   
   <entry>
     <title type="html"><![CDATA[Scaling your Frontend &ndash; Graphics in the Era of Retina Screens]]></title>
-    <link href="http://jarkko.github.com/jlaine/2012/11/10/scaling-your-frontend-graphics-in-the-era-of-retina-screens/"/>
+    <link href="http://jlaine.net/2012/11/10/scaling-your-frontend-graphics-in-the-era-of-retina-screens/"/>
     <updated>2012-11-10T00:00:00+02:00</updated>
-    <id>http://jarkko.github.com/jlaine/2012/11/10/scaling-your-frontend-graphics-in-the-era-of-retina-screens</id>
+    <id>http://jlaine.net/2012/11/10/scaling-your-frontend-graphics-in-the-era-of-retina-screens</id>
     <content type="html"><![CDATA[<p>Here&#8217;s my deck from the Tampere Web Dev meetup on the 10th of November, 2012.</p>
-<script async class="speakerdeck-embed" data-id="f2dd78000d670130372a1231381d9beb" data-ratio="1.37081659973226" src="http://jarkko.github.com/jlaine//speakerdeck.com/assets/embed.js"></script><p>Thanks to Thomas Fuchs for <a href="http://retinafy.me">retinafy.me</a> and <a href="http://www.fngtps.com/2012/reasonable-ways-to-use-high-resolution-images-on-retina-displays/">Thijs van der Vossen</a>.</p>
+<script async class="speakerdeck-embed" data-id="f2dd78000d670130372a1231381d9beb" data-ratio="1.37081659973226" src="http://jlaine.net//speakerdeck.com/assets/embed.js"></script><p>Thanks to Thomas Fuchs for <a href="http://retinafy.me">retinafy.me</a> and <a href="http://www.fngtps.com/2012/reasonable-ways-to-use-high-resolution-images-on-retina-displays/">Thijs van der Vossen</a>.</p>
 <p>If you enjoyed the talk, you might consider signing up for my up-and-coming eBook, <a href="http://forgottensvg.com">Forgotten <span class="caps">SVG</span></a>.</p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Introduction to Great Coffee]]></title>
-    <link href="http://jarkko.github.com/jlaine/2012/01/16/introduction-to-great-coffee/"/>
+    <link href="http://jlaine.net/2012/01/16/introduction-to-great-coffee/"/>
     <updated>2012-01-16T00:00:00+02:00</updated>
-    <id>http://jarkko.github.com/jlaine/2012/01/16/introduction-to-great-coffee</id>
+    <id>http://jlaine.net/2012/01/16/introduction-to-great-coffee</id>
     <content type="html"><![CDATA[<p><em>This is a talk I gave in the first Tampere Web Dev meetup in January 2012</em>.</p>
 
 <script src="http://speakerdeck.com/embed/4f11d91ed28ef6001f010f3e.js"></script>
@@ -185,9 +185,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ruby, meet QuickRoute]]></title>
-    <link href="http://jarkko.github.com/jlaine/2012/01/02/ruby-meet-quickroute/"/>
+    <link href="http://jlaine.net/2012/01/02/ruby-meet-quickroute/"/>
     <updated>2012-01-02T00:00:00+02:00</updated>
-    <id>http://jarkko.github.com/jlaine/2012/01/02/ruby-meet-quickroute</id>
+    <id>http://jlaine.net/2012/01/02/ruby-meet-quickroute</id>
     <content type="html"><![CDATA[<p>While I missed the tradition of releasing Ruby gems on the Christmas day, I did meet my own tradition of not doing anything with the computer that day. That said, I had something interesting in the works that just needed to be wrapped up as a Ruby gem—namely, a library for parsing the GPS data out of JPEG files produced by <a href="http://www.matstroeng.se/quickroute/en/">QuickRoute</a>. Without further ado, may I present <a href="https://github.com/jarkko/quickroute-ruby">quickroute-ruby</a>.</p>
 
 <p>The task wasn&#8217;t exactly trivial, as the data is embedded in binary format in an <a href="http://en.wikipedia.org/wiki/JPEG_File_Interchange_Format#JFIF_segment_format">APP0 segment</a> inside the image. Moreover, the data format was basically undocumented. However, with the help of <a href="http://www.matstroeng.se/">Mats</a> I managed to reverse-engineer the original C# and PHP libraries to an extent that I seemed to get correct output out of the file.</p>
@@ -204,9 +204,9 @@
   
   <entry>
     <title type="html"><![CDATA[Blade Runner]]></title>
-    <link href="http://jarkko.github.com/jlaine/2011/09/30/blade-runner/"/>
+    <link href="http://jlaine.net/2011/09/30/blade-runner/"/>
     <updated>2011-09-30T00:00:00+03:00</updated>
-    <id>http://jarkko.github.com/jlaine/2011/09/30/blade-runner</id>
+    <id>http://jlaine.net/2011/09/30/blade-runner</id>
     <content type="html"><![CDATA[<p>The launch of Amazon&#8217;s new Kindles has already been analyzed to near death, so I&#8217;m not going to dive too deep in that general discussion. What struck me as interesting, though, was <a href="http://daringfireball.net/">John Gruber&#8217;s analysis</a> of the new models being US-only:</p>
 
 <blockquote><p>Production must be tight on the Fire and Touch models, as well, because they’re only being offered in the U.S. for now. The only new Kindle for sale outside the U.S. is the $79 non-touch model.</p></blockquote>
@@ -223,9 +223,9 @@
   
   <entry>
     <title type="html"><![CDATA[iTunes doesn't recognize your iPhone or iPad anymore? Here's the fix.]]></title>
-    <link href="http://jarkko.github.com/jlaine/2011/08/18/itunes-doesn-t-recognize-your-iphone-or-ipad-anymore-here-s-the-fix/"/>
+    <link href="http://jlaine.net/2011/08/18/itunes-doesn-t-recognize-your-iphone-or-ipad-anymore-here-s-the-fix/"/>
     <updated>2011-08-18T00:00:00+03:00</updated>
-    <id>http://jarkko.github.com/jlaine/2011/08/18/itunes-doesn-t-recognize-your-iphone-or-ipad-anymore-here-s-the-fix</id>
+    <id>http://jlaine.net/2011/08/18/itunes-doesn-t-recognize-your-iphone-or-ipad-anymore-here-s-the-fix</id>
     <content type="html"><![CDATA[<p>Somewhere between updating OS X to Lion and iTunes to version 10.4 iTunes stopped recognizing both my iPhone and my iPad. What&#8217;s weirder, even though System information saw both devices, my iPad also showed the disappointing &#8220;Not Charging&#8221; message in its status bar. The iPhone, which doesn&#8217;t demand as high a voltage from the port, did charge, though.</p>
 
 <p>The web is full of different instructions on how to fix this kind of a situation. The gist of them all is basically to restart the device, restart the computer and if these won&#8217;t help, reinstall iTunes. There is even a <a href="http://support.apple.com/kb/ht1747">knowledge base article</a> on the Apple support pages with these instructions.</p>
@@ -265,9 +265,9 @@
   
   <entry>
     <title type="html"><![CDATA[Compensation. Supercompensation.]]></title>
-    <link href="http://jarkko.github.com/jlaine/2010/11/09/compensation-supercompensation/"/>
+    <link href="http://jlaine.net/2010/11/09/compensation-supercompensation/"/>
     <updated>2010-11-09T00:00:00+02:00</updated>
-    <id>http://jarkko.github.com/jlaine/2010/11/09/compensation-supercompensation</id>
+    <id>http://jlaine.net/2010/11/09/compensation-supercompensation</id>
     <content type="html"><![CDATA[<p><em>This the second part of The Road to <a href="http://www.rubyconf5k.com">RubyConf XK</a>, a series of articles about running training. Don&#8217;t miss the <a href="http://jlaine.net/2010/11/1/the-road-to-rubyconf-xk-why-run">first part</a>.</em></p>
 
 <p>For many, it is enough to know that running keeps you fit. But if you&#8217;re training with a goal in mind (be it a specific time on marathon or just to get into better shape), it is useful to know a bit about the physiology of physical training.</p>
@@ -401,9 +401,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Road to RubyConf Xk: Why run?]]></title>
-    <link href="http://jarkko.github.com/jlaine/2010/11/01/the-road-to-rubyconf-xk-why-run/"/>
+    <link href="http://jlaine.net/2010/11/01/the-road-to-rubyconf-xk-why-run/"/>
     <updated>2010-11-01T00:00:00+02:00</updated>
-    <id>http://jarkko.github.com/jlaine/2010/11/01/the-road-to-rubyconf-xk-why-run</id>
+    <id>http://jlaine.net/2010/11/01/the-road-to-rubyconf-xk-why-run</id>
     <content type="html"><![CDATA[<h3>About The Road to RubyConfXk</h3>
 
 <p><em>This is a series of articles that I&#8217;m writing paving the road to <a href="http://rubyconf5k.com/">RubyConf Xk</a>, the second installment of the running event at the yearly <a href="http://rubyconf.org/">RubyConf</a>. This is the pilot episode of the series. Next parts will explore several diverse topics loosely related to running.</em></p>
@@ -490,9 +490,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to quickly fix Safari 5 Reader typography]]></title>
-    <link href="http://jarkko.github.com/jlaine/2010/06/09/how-to-quickly-fix-safari-5-reader-typography/"/>
+    <link href="http://jlaine.net/2010/06/09/how-to-quickly-fix-safari-5-reader-typography/"/>
     <updated>2010-06-09T00:00:00+03:00</updated>
-    <id>http://jarkko.github.com/jlaine/2010/06/09/how-to-quickly-fix-safari-5-reader-typography</id>
+    <id>http://jlaine.net/2010/06/09/how-to-quickly-fix-safari-5-reader-typography</id>
     <content type="html"><![CDATA[<p>I really like the clutter-free reading experience the new <a href="http://www.apple.com/safari/whats-new.html#reader">Reader</a> feature in <a href="http://www.apple.com/safari/">Safari 5</a> brings. However, what I don&#8217;t like too much is the standard html rendering it uses for typography. The full fix for this would be to write a Safari extension to run the whole text through <a href="http://www.latex-project.org/">LaTeX</a> or the very least through the <a href="http://www.bramstein.com/projects/typeset/">Knuth &amp; Plass</a> algorithm.</p>
 <p>However, a quick fix for the horrible justified text is this:</p>
 <p>Open the contents of Applications/Safari.app:</p>
@@ -514,9 +514,9 @@
   
   <entry>
     <title type="html"><![CDATA[Speaking at Frozen Rails]]></title>
-    <link href="http://jarkko.github.com/jlaine/2010/03/23/speaking-at-frozen-rails/"/>
+    <link href="http://jlaine.net/2010/03/23/speaking-at-frozen-rails/"/>
     <updated>2010-03-23T00:00:00+02:00</updated>
-    <id>http://jarkko.github.com/jlaine/2010/03/23/speaking-at-frozen-rails</id>
+    <id>http://jlaine.net/2010/03/23/speaking-at-frozen-rails</id>
     <content type="html"><![CDATA[<p><img src="http://img.skitch.com/20100323-qaibjnb3ahyjk79i89kc8rsg8u.png" alt="" /></p>
 <p>The first-ever Ruby/Rails conference in Finland, <a href="http://frozenrails.eu">Frozen Rails</a>, is going to take place May 7th in Helsinki. The speaker lineup is top notch, including three <a href="http://rubyonrails.org/core">Rails core team</a> members and the inimitable <a href="http://defunkt.github.com/">Chris Wanstrath</a>. For an unknown reason, in the midst of these high profile guys, a random guy from Tampere has ended up in the speaker list. Yours truly has the honorable (and somewhat frightening) job to wrap up the conference with an ending talk.</p>
 <p>My talk is tentatively titled &#8220;Of Perfection, Perfectionism and Perfect Web Apps&#8221;. It will be less of a technical talk and more a critical, personal, humorous and hopefully entertaining performance about the previous decade spent writing various kinds of web sites and apps.</p>
@@ -525,9 +525,9 @@
   
   <entry>
     <title type="html"><![CDATA[6 guaranteed ways to make me block you on Twitter]]></title>
-    <link href="http://jarkko.github.com/jlaine/2010/03/06/6-bulletproof-ways-to-make-me-block-you-on-twitter/"/>
+    <link href="http://jlaine.net/2010/03/06/6-bulletproof-ways-to-make-me-block-you-on-twitter/"/>
     <updated>2010-03-06T00:00:00+02:00</updated>
-    <id>http://jarkko.github.com/jlaine/2010/03/06/6-bulletproof-ways-to-make-me-block-you-on-twitter</id>
+    <id>http://jlaine.net/2010/03/06/6-bulletproof-ways-to-make-me-block-you-on-twitter</id>
     <content type="html"><![CDATA[<p>For me Twitter serves two purposes:</p>
 
 <ol>
@@ -621,9 +621,9 @@
   
   <entry>
     <title type="html"><![CDATA[New Zealand SVG Map in Black and White]]></title>
-    <link href="http://jarkko.github.com/jlaine/2010/02/14/new-zealand-in-black-and-white/"/>
+    <link href="http://jlaine.net/2010/02/14/new-zealand-in-black-and-white/"/>
     <updated>2010-02-14T00:00:00+02:00</updated>
-    <id>http://jarkko.github.com/jlaine/2010/02/14/new-zealand-in-black-and-white</id>
+    <id>http://jlaine.net/2010/02/14/new-zealand-in-black-and-white</id>
     <content type="html"><![CDATA[<p><a href="http://www.flickr.com/photos/jarkko/3273520632/" title="High Tide by supervillain, on Flickr"><img src="http://farm4.static.flickr.com/3312/3273520632_e0a3af6af4.jpg" width="500" height="151" alt="High Tide" /></a></p>
 <p>We had the luxury of spending six weeks around New Zealand in last February and March, including a visit to <a href="http://www.webstock.org.nz/">Webstock &#8217;09</a>. This year&#8217;s conference is about to start within hours, and while I won&#8217;t be able to attend this time, I will celebrate the event by publishing the <span class="caps">SVG</span> New Zealand map I produced for the travelogue book of our trip (click the map to get to the <span class="caps">SVG</span> version):</p>
 <p><a href="http://dl.dropbox.com/u/3101464/New_Zealand_location_map_bw.svg"><img src="http://img.skitch.com/20100214-cm236x5ccawk4g624ibibmkuq9.png" title="New Zealand map" alt="New Zealand map" /></a></p>
@@ -633,9 +633,9 @@
   
   <entry>
     <title type="html"><![CDATA[Adventures in Online Shopping with Shopping4net.com]]></title>
-    <link href="http://jarkko.github.com/jlaine/2009/10/19/adventures-in-online-shopping-with-shopping4net-com/"/>
+    <link href="http://jlaine.net/2009/10/19/adventures-in-online-shopping-with-shopping4net-com/"/>
     <updated>2009-10-19T00:00:00+03:00</updated>
-    <id>http://jarkko.github.com/jlaine/2009/10/19/adventures-in-online-shopping-with-shopping4net-com</id>
+    <id>http://jlaine.net/2009/10/19/adventures-in-online-shopping-with-shopping4net-com</id>
     <content type="html"><![CDATA[<p><strong>Update Nov 24: Turned out I indeed was too optimistic. <a href="#updates">Updated the timeline</a></strong></p>
 
 <p>Color me lucky. I&#8217;ve done my fair share to support the online economy, but very rarely have I had experiences that have made me regret a purchase decision. I think before this summer I&#8217;ve only had to cancel or return two purchases during the decade I&#8217;ve been shopping on the internet.</p>
@@ -774,9 +774,9 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
   
   <entry>
     <title type="html"><![CDATA[Ruby/Rails/BDD training in Helsinki in April]]></title>
-    <link href="http://jarkko.github.com/jlaine/2009/02/19/ruby-rails-bdd-training-in-helsinki-in-april/"/>
+    <link href="http://jlaine.net/2009/02/19/ruby-rails-bdd-training-in-helsinki-in-april/"/>
     <updated>2009-02-19T00:00:00+02:00</updated>
-    <id>http://jarkko.github.com/jlaine/2009/02/19/ruby-rails-bdd-training-in-helsinki-in-april</id>
+    <id>http://jlaine.net/2009/02/19/ruby-rails-bdd-training-in-helsinki-in-april</id>
     <content type="html"><![CDATA[<p><strong>Note</strong> The actual class will be taught in Finnish</p>
 <p>Two years ago we joined forces with Helsinki Polytechnic Stadia to organize a Ruby/Rails class for both students of the school and a couple of attendees from the business world. The class was a success.</p>
 <p>Now we&#8217;re doing it again. The name of the school has changed to <a href="http://www.metropolia.fi/">Metropolia</a>, and the venue of the class from Arabia to Leppävaara, but the theme of the class will remain the same: teach both newbie and intermediate Ruby hackers to real wizards that can confidently write their ideas in Ruby.</p>
@@ -796,9 +796,9 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
   
   <entry>
     <title type="html"><![CDATA[Build your green home]]></title>
-    <link href="http://jarkko.github.com/jlaine/2008/10/04/build-your-green-home/"/>
+    <link href="http://jlaine.net/2008/10/04/build-your-green-home/"/>
     <updated>2008-10-04T00:00:00+03:00</updated>
-    <id>http://jarkko.github.com/jlaine/2008/10/04/build-your-green-home</id>
+    <id>http://jlaine.net/2008/10/04/build-your-green-home</id>
     <content type="html"><![CDATA[<p>The &#8220;summer project&#8221; for <a href="http://innovatebig.com/">Rod</a>, me and <a href="http://www.linkedin.com/in/lorenbaxter">Loren</a>, <a href="http://ecohomeresource.com/">EcoHomeResource</a> is now live. The site is a hub of information and news for everyone wanting to build a green home or to make their current apartments more eco-friendly.</p>
 <p>My dream has for quite some time (since reading <a href="http://www.amazon.com/gp/redirect.html?ie=UTF8&amp;location=http%3A%2F%2Fwww.amazon.com%2FNatural-Capitalism-Creating-Industrial-Revolution%2Fdp%2F0316353000%2F&amp;tag=jlainenet-20&amp;linkCode=ur2&amp;camp=1789&amp;creative=9325">Natural Capitalism</a> and <a href="http://www.amazon.com/gp/redirect.html?ie=UTF8&amp;location=http%3A%2F%2Fwww.amazon.com%2FCradle-Remaking-Way-Make-Things%2Fdp%2F0865475873%2F&amp;tag=jlainenet-20&amp;linkCode=ur2&amp;camp=1789&amp;creative=9325">Cradle to Cradle</a>, to be exact) been to build us a <a href="http://www.redferret.net/?p=8707">carbon-positive home</a>, so the project has been spot-on for me.</p>
 <p>The actual blog/<span class="caps">CMS</span> is using Movable Type but the backend database for products and companies is built on <a href="http://merbivore.org/">Merb</a> and <a href="http://datamapper.org/">Datamapper</a>. The integration of the platforms has definitely been a challenge but the decision to use separate pieces loosely joined by web services gives us a chance to reuse the database easily in the future if need be.</p>
@@ -808,9 +808,9 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
   
   <entry>
     <title type="html"><![CDATA[Unplugged]]></title>
-    <link href="http://jarkko.github.com/jlaine/2008/10/03/unplugged/"/>
+    <link href="http://jlaine.net/2008/10/03/unplugged/"/>
     <updated>2008-10-03T00:00:00+03:00</updated>
-    <id>http://jarkko.github.com/jlaine/2008/10/03/unplugged</id>
+    <id>http://jlaine.net/2008/10/03/unplugged</id>
     <content type="html"><![CDATA[<p>Early last year I was shopping for in-canal earplugs because I wanted a pair of reasonably sound-isolating plugs that <strong>stay in my ears</strong>, even when running or biking. The standard iPod plugs are not meant for me. Even if I could stand the sound quality (which I don&#8217;t), all I have to do is to lean my head on one side and the earplug drops on the ground. The same goes pretty much for all the &#8220;normal&#8221; earplugs, thus I needed more drastic measures.</p>
 <p>My first idea was to buy a pair of <a href="http://www.amazon.com/Sennheiser-CX300-B-Earbuds-Black/dp/B000E6G9RI/">Sennheiser CX300</a> plugs, cause I&#8217;d had a couple of different Sennheisers in the past and been fairly happy with all of them. <a href="http://imaj.es/">James</a> proposed that I&#8217;d get <a href="http://www.amazon.com/Shure-E2c-n-Sound-Isolating-Earphones/dp/B000E5GKW8">Shure E2C&#8217;s</a> instead; he&#8217;d used both and thought the Shures were vastly superior, sitting tighter in the ear and being better sound-isolating. I believed him and ordered a pair from Amazon.co.uk, which he then brought to our Caboose meetup in Paris.</p>
 <p>In general I&#8217;ve been very happy with the earphones. They sound great, pretty much as good as my <a href="http://www.amazon.com/Sennheiser-PX200-Collapsible-High-Performance-Headphones/dp/B000089GN4/">Sennheiser PX200</a> headphones. And most of all, after you find the best fitting sleeve for your ear (they come with a selection of sleeves), they sit in your ear like plague.</p>
@@ -823,9 +823,9 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
   
   <entry>
     <title type="html"><![CDATA[Fernando]]></title>
-    <link href="http://jarkko.github.com/jlaine/2008/10/02/fernando/"/>
+    <link href="http://jlaine.net/2008/10/02/fernando/"/>
     <updated>2008-10-02T00:00:00+03:00</updated>
-    <id>http://jarkko.github.com/jlaine/2008/10/02/fernando</id>
+    <id>http://jlaine.net/2008/10/02/fernando</id>
     <content type="html"><![CDATA[<p>There was <a href="http://developer.apple.com/iphone/program/">something in the air</a> that night,<br />
 the stars were bright, Fernando.</p>
 <p><a href="http://pragprog.com/">They</a> were <a href="http://blog.toolshed.com/2008/10/iphone-nda-lift.html">shining</a> <a href="http://pragprog.com/screencasts/v-bdiphone/writing-your-first-iphone-application">there</a> for <a href="http://pragmaticstudio.com/iphone/">you</a> and <a href="http://pragdave.blogs.pragprog.com/pragdave/2008/10/the-iphone-book.html">me</a>,<br />
@@ -835,9 +835,9 @@ for <a href="http://furbo.org/2008/10/01/redacted/">liberty</a>, Fernando.</p>
   
   <entry>
     <title type="html"><![CDATA[A Week of Ruby/Rails/BDD/Ajax Training in December]]></title>
-    <link href="http://jarkko.github.com/jlaine/2008/09/24/a-week-of-ruby-rails-bdd-ajax-training-in-december/"/>
+    <link href="http://jlaine.net/2008/09/24/a-week-of-ruby-rails-bdd-ajax-training-in-december/"/>
     <updated>2008-09-24T00:00:00+03:00</updated>
-    <id>http://jarkko.github.com/jlaine/2008/09/24/a-week-of-ruby-rails-bdd-ajax-training-in-december</id>
+    <id>http://jlaine.net/2008/09/24/a-week-of-ruby-rails-bdd-ajax-training-in-december</id>
     <content type="html"><![CDATA[<p>After my last Ruby on Rails workshop held last year I&#8217;ve often been asked when there is going to be another one. Here it comes.</p>
 <p>December 1st to 5th, we will join forces with <a href="http://tarvainen.wordpress.com/">Antti Tarvainen</a> from <a href="http://leonidasoy.com/">Leonidas</a> and give <a href="http://rapidstraining.fi/">a week of one-day workshops</a> in Helsinki with separate but closely related themes:</p>
 <ol>
@@ -854,9 +854,9 @@ for <a href="http://furbo.org/2008/10/01/redacted/">liberty</a>, Fernando.</p>
   
   <entry>
     <title type="html"><![CDATA[Making emacs keybindings work with zsh and screen]]></title>
-    <link href="http://jarkko.github.com/jlaine/2008/09/16/making-emacs-keybindings-work-with-zsh-and-screen/"/>
+    <link href="http://jlaine.net/2008/09/16/making-emacs-keybindings-work-with-zsh-and-screen/"/>
     <updated>2008-09-16T00:00:00+03:00</updated>
-    <id>http://jarkko.github.com/jlaine/2008/09/16/making-emacs-keybindings-work-with-zsh-and-screen</id>
+    <id>http://jlaine.net/2008/09/16/making-emacs-keybindings-work-with-zsh-and-screen</id>
     <content type="html"><![CDATA[<p>I&#8217;ve always (as in from the early OpenACS days) been an emacs guy on linux. Sure, I do most of my development on TextMate these days, but for all text editing on servers I still prefer emacs and have its keybindings tattooed deep in my brain:</p>
 <table>
 	<tr>
@@ -892,9 +892,9 @@ startup_message off
   
   <entry>
     <title type="html"><![CDATA[From Rails Ajax helpers to Low Pro, Part 3 (+ some announcements)]]></title>
-    <link href="http://jarkko.github.com/jlaine/2008/09/09/from-rails-ajax-helpers-to-low-pro-part-3-some-announcements/"/>
+    <link href="http://jlaine.net/2008/09/09/from-rails-ajax-helpers-to-low-pro-part-3-some-announcements/"/>
     <updated>2008-09-09T00:00:00+03:00</updated>
-    <id>http://jarkko.github.com/jlaine/2008/09/09/from-rails-ajax-helpers-to-low-pro-part-3-some-announcements</id>
+    <id>http://jlaine.net/2008/09/09/from-rails-ajax-helpers-to-low-pro-part-3-some-announcements</id>
     <content type="html"><![CDATA[<p><em>This is the third part of my introduction to Low Pro series, something that has been taken&#8230; hmmm&#8230; a while. The two first parts can be found here:</em></p>
 <ul>
 	<li><a href="http://jlaine.net/2007/8/3/from-rails-ajax-helpers-to-low-pro-part-i">Part 1</a></li>
@@ -1087,15 +1087,15 @@ page.insert_html :top, @item.state, :partial =&gt; "item"
 <p>This time we don&#8217;t use the <span class="caps">RJS</span> syntax but instead just output plain old Javascript back to the browser. We first fetch the list element we&#8217;re about to move. We then remove it from the <span class="caps">DOM</span> tree, just to again insert it to the bottom of the list it now belongs to. In the end we change the id of the item to reflect its new state as well.</p>
 <p>If you now try the app again, you should be able to tick and untick the items at will, and everything should work just fine. The behaviour assigned to the list element on the page load sticks to it through all the moving and renaming of the element.</p>
 <p>&#8212;</p>
-<p><a href="http://peepcode.com/products/unobtrusive-prototypejs-draft"><img src="http://jarkko.github.com/jlaine/assets/2008/9/9/unobtrusive-cover.png" alt="" /></a></p>
+<p><a href="http://peepcode.com/products/unobtrusive-prototypejs-draft"><img src="http://jlaine.net/assets/2008/9/9/unobtrusive-cover.png" alt="" /></a></p>
 <p><em>If you enjoyed the article, consider grabbing a copy of my new ebook, <a href="http://peepcode.com/products/unobtrusive-prototypejs-draft">Unobtrusive Prototype</a>, straight from the Peepcode oven. It will have all the code rewritten for Rails 2.1, it is professionally edited unlike my rumblings here, and has a much wider coverage of Low Pro, including writing your own Behaviors and event delegation. <strong>If you&#8217;re quick and have a close look at my presentation slides in the beginning of this article, you might even find a way to get your copy for half the normal price</strong>!</em></p>]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Sonera's at it again]]></title>
-    <link href="http://jarkko.github.com/jlaine/2008/06/27/sonera-s-at-it-again/"/>
+    <link href="http://jlaine.net/2008/06/27/sonera-s-at-it-again/"/>
     <updated>2008-06-27T00:00:00+03:00</updated>
-    <id>http://jarkko.github.com/jlaine/2008/06/27/sonera-s-at-it-again</id>
+    <id>http://jlaine.net/2008/06/27/sonera-s-at-it-again</id>
     <content type="html"><![CDATA[<p><strong>[<span class="caps">UPDATE</span>]</strong> Now the people in the Nordic have followed the lead of <a href="http://fuckyourogers.com">fuckyourogers.com</a>:</p>
 <ul>
 	<li><a href="http://www.facebook.com/group.php?gid=22113926713">iPhone: Yes please &#8211; Sonera: No thank you</a></li>
