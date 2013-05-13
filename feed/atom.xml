@@ -4,7 +4,7 @@
   <title><![CDATA[jlaine.net]]></title>
   <link href="http://jlaine.net/atom.xml" rel="self"/>
   <link href="http://jlaine.net/"/>
-  <updated>2012-12-21T10:20:40+02:00</updated>
+  <updated>2013-05-13T18:04:57+01:00</updated>
   <id>http://jlaine.net/</id>
   <author>
     <name><![CDATA[Jarkko Laine]]></name>
@@ -14,9 +14,76 @@
 
   
   <entry>
+    <title type="html"><![CDATA[How to get started with bootstrapping]]></title>
+    <link href="http://jlaine.net/2013/05/13/how-to-get-started-with-bootstrapping/"/>
+    <updated>2013-05-13T00:00:00+01:00</updated>
+    <id>http://jlaine.net/2013/05/13/how-to-get-started-with-bootstrapping</id>
+    <content type="html"><![CDATA[<h2>Bootstrapping Resources</h2>
+
+<p>In the <a href="http://2013.scottishrubyconference.com">Scottish Ruby Conference</a>, <a href="https://twitter.com/tekin">Tekin Suleiman</a> gave a great talk about his experiences in bootstrapping a web app. At the end of the talk there was a question about further resources into the subject. I’ve been into this thing for years now (both in the form of building <a href="http://www.wildfire.com">Wildfire</a> and dribbling with personal projects), so here’s my take on the subject.</p>
+
+<p>First things first: Teikin mentioned Amy Hoy’s <a href="http://unicornfree.com/2013/30x500-is-dead-long-live-30x500">30x500 class</a> and that has been my philosophical home in the field as well. I was fortunate enough to join the class early on, but even after several price hikes it’s worth many times its cost if you’re committed to bootstrapping. But you <em>really, really</em> need to be committed. If not (yet), you should still read her blog <a href="http://unicornfree.com">Unicornfree</a> from top to bottom to gain lots of insight into all things bootstrapping.</p>
+
+<p>Another commonly mentioned resource is the <a href="http://www.amazon.com/dp/0307887898/?tag=jlainenet-20">Lean Startup</a> book by Eric Ries and the lean startup community sparked by it. My issue with the book for a bootstrapper is that in the end of the day, its ideology is still your normal startup mentality, only executed in a more nimble manner. That said, it might be worthwhile to read the book, if only to know what people are talking about when they mention the MVP or validated learning.</p>
+
+<p>If you’re doing anything related to web, Patrick McKenzie’s blog <a href="http://www.kalzumeus.com/blog/">Kalzumeus</a> and the related podcast is an indispensable resource. Another one is Brennan Dunn’s <a href="http://planscope.io/blog/">blog</a> and mailing list. <a href="http://nathanbarry.com">Nathan Barry</a> has also written a lot of good stuff on the topic recently.</p>
+
+<p>If you’re a conference kind of person, there are a few that hit the soft spot quite nicely. Hoy organizes one called <a href="http://unicornfree.com/2013/baconbizconf-philadelphia-may-30-31">BaconBizConf</a> in late May. <a href="http://www.microconf.com">Microconf</a> (unfortunately this year’s conf already was in April) is another one that has received a lot of praise. <a href="http://lessconf.lesseverything.com">LessConf</a> was great as well from what I’ve heard but I believe the past one was the last one there was.</p>
+
+<p>Random resource pointers aside, I’ll next delve into some (as random) details and lessons I’ve learned about bootstrapping.</p>
+
+<h2>Perils of starting with an idea</h2>
+
+<p>An old adage says that ideas are worth nothing, execution is everything. However, most people will only hang on to the latter part of the saying, not taking the first part literally. In her class, Hoy takes this one step further, explaining why starting by looking for an idea to build is actually harmful for you. The reasons for this are manifold.</p>
+
+<p>First of all, it is not very likely that you have a unique, great idea that is also sellable. It is much more likely that someone already had the same idea, tested it, and <em>found out it did not work</em>. Second, thinking that the starting point of a company is an idea found in a flash of deitic brilliance is a very nice path to despair. This effect Hoy calls the idea quicksand. In it you think you find a great idea, sit on it, let it subsume you, and finally give up. It victimizes and paralyzes you.</p>
+
+<p>Lastly, starting a company with an idea is very likely to cause your thinking to suffer from serious <a href="http://en.wikipedia.org/wiki/Confirmation_bias">confirmation bias</a>. You harvest information that supports your idea and dismerit or ignore cues that would tell you your idea is in reality a stinking, unsellable pile of yak poo. We all are affected by it and it’s really, really hard to avoid it. So do yourself a favor and don’t start bootstrapping with a ready-baked idea.</p>
+
+<h2>So what <em>should</em> I start with, then?</h2>
+
+<p>To sell anything, you need a market. You need an audience. An audience is a mostly homogenous group of people. Ruby developers. Web designers. Freelancers. <em>Bootstrappers</em>. You don’t necessarily have to be a part of the audience yourself, although that does help you both in finding the pains and later when you’re actually building your product because of your domain knowledge.</p>
+
+<p>Once you have picked an audience, you can start finding out what really bugs that audience. Lurk in their forums, and spy on them for insight. What itches do they have, from which colossal pains do they suffer? <em>This</em> will form the basis for the business you’ll build.</p>
+
+<p>Don’t directly ask whether they’d need this and that. Actually search for patterns and keywords in how they describe issues they’re having. This is what Hoy calls a Sales Safari.</p>
+
+<h2>Content marketing</h2>
+
+<p>One topic that pops up in almost every discussion about marketing effectively on the web is content marketing. What it basically means is that by providing valuable content to your audience you teach them and simultaneously build trust in yourself. This appoints you as an authority in the field.</p>
+
+<p>An important thing to note is that you do <em>not</em> have to be a super expert in the field in question, just a notch above the knowledge level of your audience. This means you’re actually more likely to remember the pain and issues you encountered when you were in the same situation. For a seasoned expert this might be years in the past and thus something only vaguely in their minds. Thus it is easy for them to take many of the issues as given.</p>
+
+<p>What you <em>do</em> have to be good at, though, is writing. If you have a big budget you can hire people to do it, but for a bootstrapped company at least one of the insiders needs to be a wordsmith. Sorry to break the bad news but there just isn’t a way around it. As said many times over, <em>if you can’t write clearly, you can’t think clearly</em>.</p>
+
+<p>By writing skills I don’t mean writing grammatically perfect English (or whatever language you use to reach your audience). Grammar is important for sure, but much more important is communicating your ideas effectively. The most important thing to learn the ropes here is practice, but here are some resources you might want to have a look at for getting better at writing.</p>
+
+<ul>
+<li><a href="http://www.amazon.com/dp/0060891548/?tag=jlainenet-20">On Writing Well</a> is a great general guide on writing effective prose.</li>
+<li><a href="http://www.amazon.com/Writing-Story-Dramatic-Nonfiction-Reference/dp/0452272955/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1368444822&amp;sr=1-1&amp;keywords=writing+for+story">Writing for Story</a> by the two-time Pulitzer prize winner Jon Franklin is a succinct introduction to writing gripping narrative in non-fiction. Storytelling is one of the most powerful techniques we have to grip our audience and get our ideas through.</li>
+<li><a href="http://www.amazon.com/dp/0887232981/?tag=jlainenet-20">Breakthrough Advertising</a> is a bible for writing effective ad copy. While you might never become a copywriter, your goals are very much the same. Unfortunately the book is out of print and very hard to get your hands on. You <em>might</em> (I’ve been told) find the full text from the net, though, using your favorite search engine.</li>
+<li><a href="http://www.copyblogger.com/blog/">Copyblogger</a> (subscribe to their RSS feed or mailing list) is a blog about pretty much all of the above. The amount of new content there is a bit on the high side but the quality makes up for that.</li>
+</ul>
+
+
+<p>Once you got the basics covered, you’re ready to get into the nitty-gritty details of teaching your audience. Neil Patel of Crazy Egg and Kissmetrics just recently published a free minibook called the <a href="http://www.quicksprout.com/2013/04/29/the-advanced-guide-to-content-marketing/">Advanced Guide to Content Marketing</a>. Aforementioned Copyblogger also has a <a href="http://www.copyblogger.com/content-marketing">series of articles about content marketing</a>. One thing that invariably exists in these primers is building a warm email mailing list.</p>
+
+<h3>The Power of Email</h3>
+
+<p>As a geek it might be easy to dismiss email as a communication method as old-fashioned and something people mostly ignore. I mean, everyone prefers to get their daily RSS fix or (nowadays) read about your stuff on Twitter. Nothing could be further from the truth. Growing a list of email newsletter subscribers is by far the most effective method of reaching your audience. There are a couple of reasons for this. Firstly, it is way more personal. Most email list software lets you personalize your emails (so do collect at least the first name of your audience members, if only as an optional field), and if you write them in a conversational tone, the reader will react to them in a completely different manner than to a more generic form such as a blog post.</p>
+
+<p>Secondly, in the spirit of <a href="http://en.wikipedia.org/wiki/Permission_marketing">permission marketing</a>, everyone subscribed to your list has already given you permission to penetrate their email inbox. This is A Good Thing<sup>TM</sup>. You’re given a lot of trust. Just remember not to fail that trust. Always think how what you’ll write will benefit and teach the readers. If your newsletter is literally a collection of news about <em>you, you, you</em>, your readership will disappear faster than you can say MailChimp.</p>
+
+<p>So, here were some random pointers for getting started with bootstrapping. Obviously, it’s a life-long path so taking up everything at once is pretty much a doomed undertaking (I’ve been taking Amy’s course at least three times already). So give yourself time, but <em>get started now</em>. And ferchrissake, don’t try to sell anything to consumers. Why? That’s a topic for another post.</p>
+
+<p>Did I miss something? Anything else you’d like to read about bootstrapping? <a href="https://www.twitter.com/jarkko">Drop me a note</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Scaling your Frontend &ndash; Graphics in the Era of Retina Screens]]></title>
     <link href="http://jlaine.net/2012/11/10/scaling-your-frontend-graphics-in-the-era-of-retina-screens/"/>
-    <updated>2012-11-10T00:00:00+02:00</updated>
+    <updated>2012-11-10T00:00:00+00:00</updated>
     <id>http://jlaine.net/2012/11/10/scaling-your-frontend-graphics-in-the-era-of-retina-screens</id>
     <content type="html"><![CDATA[<p>Here&#8217;s my deck from the Tampere Web Dev meetup on the 10th of November, 2012.</p>
 <script async class="speakerdeck-embed" data-id="f2dd78000d670130372a1231381d9beb" data-ratio="1.37081659973226" src="http://jlaine.net//speakerdeck.com/assets/embed.js"></script><p>Thanks to Thomas Fuchs for <a href="http://retinafy.me">retinafy.me</a> and <a href="http://www.fngtps.com/2012/reasonable-ways-to-use-high-resolution-images-on-retina-displays/">Thijs van der Vossen</a>.</p>
@@ -26,7 +93,7 @@
   <entry>
     <title type="html"><![CDATA[Introduction to Great Coffee]]></title>
     <link href="http://jlaine.net/2012/01/16/introduction-to-great-coffee/"/>
-    <updated>2012-01-16T00:00:00+02:00</updated>
+    <updated>2012-01-16T00:00:00+00:00</updated>
     <id>http://jlaine.net/2012/01/16/introduction-to-great-coffee</id>
     <content type="html"><![CDATA[<p><em>This is a talk I gave in the first Tampere Web Dev meetup in January 2012</em>.</p>
 
@@ -186,7 +253,7 @@
   <entry>
     <title type="html"><![CDATA[Ruby, meet QuickRoute]]></title>
     <link href="http://jlaine.net/2012/01/02/ruby-meet-quickroute/"/>
-    <updated>2012-01-02T00:00:00+02:00</updated>
+    <updated>2012-01-02T00:00:00+00:00</updated>
     <id>http://jlaine.net/2012/01/02/ruby-meet-quickroute</id>
     <content type="html"><![CDATA[<p>While I missed the tradition of releasing Ruby gems on the Christmas day, I did meet my own tradition of not doing anything with the computer that day. That said, I had something interesting in the works that just needed to be wrapped up as a Ruby gem—namely, a library for parsing the GPS data out of JPEG files produced by <a href="http://www.matstroeng.se/quickroute/en/">QuickRoute</a>. Without further ado, may I present <a href="https://github.com/jarkko/quickroute-ruby">quickroute-ruby</a>.</p>
 
@@ -205,7 +272,7 @@
   <entry>
     <title type="html"><![CDATA[Blade Runner]]></title>
     <link href="http://jlaine.net/2011/09/30/blade-runner/"/>
-    <updated>2011-09-30T00:00:00+03:00</updated>
+    <updated>2011-09-30T00:00:00+01:00</updated>
     <id>http://jlaine.net/2011/09/30/blade-runner</id>
     <content type="html"><![CDATA[<p>The launch of Amazon&#8217;s new Kindles has already been analyzed to near death, so I&#8217;m not going to dive too deep in that general discussion. What struck me as interesting, though, was <a href="http://daringfireball.net/">John Gruber&#8217;s analysis</a> of the new models being US-only:</p>
 
@@ -224,7 +291,7 @@
   <entry>
     <title type="html"><![CDATA[iTunes doesn't recognize your iPhone or iPad anymore? Here's the fix.]]></title>
     <link href="http://jlaine.net/2011/08/18/itunes-doesn-t-recognize-your-iphone-or-ipad-anymore-here-s-the-fix/"/>
-    <updated>2011-08-18T00:00:00+03:00</updated>
+    <updated>2011-08-18T00:00:00+01:00</updated>
     <id>http://jlaine.net/2011/08/18/itunes-doesn-t-recognize-your-iphone-or-ipad-anymore-here-s-the-fix</id>
     <content type="html"><![CDATA[<p>Somewhere between updating OS X to Lion and iTunes to version 10.4 iTunes stopped recognizing both my iPhone and my iPad. What&#8217;s weirder, even though System information saw both devices, my iPad also showed the disappointing &#8220;Not Charging&#8221; message in its status bar. The iPhone, which doesn&#8217;t demand as high a voltage from the port, did charge, though.</p>
 
@@ -266,7 +333,7 @@
   <entry>
     <title type="html"><![CDATA[Compensation. Supercompensation.]]></title>
     <link href="http://jlaine.net/2010/11/09/compensation-supercompensation/"/>
-    <updated>2010-11-09T00:00:00+02:00</updated>
+    <updated>2010-11-09T00:00:00+00:00</updated>
     <id>http://jlaine.net/2010/11/09/compensation-supercompensation</id>
     <content type="html"><![CDATA[<p><em>This the second part of The Road to <a href="http://www.rubyconf5k.com">RubyConf XK</a>, a series of articles about running training. Don&#8217;t miss the <a href="http://jlaine.net/2010/11/1/the-road-to-rubyconf-xk-why-run">first part</a>.</em></p>
 
@@ -402,7 +469,7 @@
   <entry>
     <title type="html"><![CDATA[The Road to RubyConf Xk: Why run?]]></title>
     <link href="http://jlaine.net/2010/11/01/the-road-to-rubyconf-xk-why-run/"/>
-    <updated>2010-11-01T00:00:00+02:00</updated>
+    <updated>2010-11-01T00:00:00+00:00</updated>
     <id>http://jlaine.net/2010/11/01/the-road-to-rubyconf-xk-why-run</id>
     <content type="html"><![CDATA[<h3>About The Road to RubyConfXk</h3>
 
@@ -491,7 +558,7 @@
   <entry>
     <title type="html"><![CDATA[How to quickly fix Safari 5 Reader typography]]></title>
     <link href="http://jlaine.net/2010/06/09/how-to-quickly-fix-safari-5-reader-typography/"/>
-    <updated>2010-06-09T00:00:00+03:00</updated>
+    <updated>2010-06-09T00:00:00+01:00</updated>
     <id>http://jlaine.net/2010/06/09/how-to-quickly-fix-safari-5-reader-typography</id>
     <content type="html"><![CDATA[<p>I really like the clutter-free reading experience the new <a href="http://www.apple.com/safari/whats-new.html#reader">Reader</a> feature in <a href="http://www.apple.com/safari/">Safari 5</a> brings. However, what I don&#8217;t like too much is the standard html rendering it uses for typography. The full fix for this would be to write a Safari extension to run the whole text through <a href="http://www.latex-project.org/">LaTeX</a> or the very least through the <a href="http://www.bramstein.com/projects/typeset/">Knuth &amp; Plass</a> algorithm.</p>
 <p>However, a quick fix for the horrible justified text is this:</p>
@@ -515,7 +582,7 @@
   <entry>
     <title type="html"><![CDATA[Speaking at Frozen Rails]]></title>
     <link href="http://jlaine.net/2010/03/23/speaking-at-frozen-rails/"/>
-    <updated>2010-03-23T00:00:00+02:00</updated>
+    <updated>2010-03-23T00:00:00+00:00</updated>
     <id>http://jlaine.net/2010/03/23/speaking-at-frozen-rails</id>
     <content type="html"><![CDATA[<p><img src="http://img.skitch.com/20100323-qaibjnb3ahyjk79i89kc8rsg8u.png" alt="" /></p>
 <p>The first-ever Ruby/Rails conference in Finland, <a href="http://frozenrails.eu">Frozen Rails</a>, is going to take place May 7th in Helsinki. The speaker lineup is top notch, including three <a href="http://rubyonrails.org/core">Rails core team</a> members and the inimitable <a href="http://defunkt.github.com/">Chris Wanstrath</a>. For an unknown reason, in the midst of these high profile guys, a random guy from Tampere has ended up in the speaker list. Yours truly has the honorable (and somewhat frightening) job to wrap up the conference with an ending talk.</p>
@@ -526,7 +593,7 @@
   <entry>
     <title type="html"><![CDATA[6 guaranteed ways to make me block you on Twitter]]></title>
     <link href="http://jlaine.net/2010/03/06/6-bulletproof-ways-to-make-me-block-you-on-twitter/"/>
-    <updated>2010-03-06T00:00:00+02:00</updated>
+    <updated>2010-03-06T00:00:00+00:00</updated>
     <id>http://jlaine.net/2010/03/06/6-bulletproof-ways-to-make-me-block-you-on-twitter</id>
     <content type="html"><![CDATA[<p>For me Twitter serves two purposes:</p>
 
@@ -622,7 +689,7 @@
   <entry>
     <title type="html"><![CDATA[New Zealand SVG Map in Black and White]]></title>
     <link href="http://jlaine.net/2010/02/14/new-zealand-in-black-and-white/"/>
-    <updated>2010-02-14T00:00:00+02:00</updated>
+    <updated>2010-02-14T00:00:00+00:00</updated>
     <id>http://jlaine.net/2010/02/14/new-zealand-in-black-and-white</id>
     <content type="html"><![CDATA[<p><a href="http://www.flickr.com/photos/jarkko/3273520632/" title="High Tide by supervillain, on Flickr"><img src="http://farm4.static.flickr.com/3312/3273520632_e0a3af6af4.jpg" width="500" height="151" alt="High Tide" /></a></p>
 <p>We had the luxury of spending six weeks around New Zealand in last February and March, including a visit to <a href="http://www.webstock.org.nz/">Webstock &#8217;09</a>. This year&#8217;s conference is about to start within hours, and while I won&#8217;t be able to attend this time, I will celebrate the event by publishing the <span class="caps">SVG</span> New Zealand map I produced for the travelogue book of our trip (click the map to get to the <span class="caps">SVG</span> version):</p>
@@ -634,7 +701,7 @@
   <entry>
     <title type="html"><![CDATA[Adventures in Online Shopping with Shopping4net.com]]></title>
     <link href="http://jlaine.net/2009/10/19/adventures-in-online-shopping-with-shopping4net-com/"/>
-    <updated>2009-10-19T00:00:00+03:00</updated>
+    <updated>2009-10-19T00:00:00+01:00</updated>
     <id>http://jlaine.net/2009/10/19/adventures-in-online-shopping-with-shopping4net-com</id>
     <content type="html"><![CDATA[<p><strong>Update Nov 24: Turned out I indeed was too optimistic. <a href="#updates">Updated the timeline</a></strong></p>
 
@@ -775,7 +842,7 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
   <entry>
     <title type="html"><![CDATA[Ruby/Rails/BDD training in Helsinki in April]]></title>
     <link href="http://jlaine.net/2009/02/19/ruby-rails-bdd-training-in-helsinki-in-april/"/>
-    <updated>2009-02-19T00:00:00+02:00</updated>
+    <updated>2009-02-19T00:00:00+00:00</updated>
     <id>http://jlaine.net/2009/02/19/ruby-rails-bdd-training-in-helsinki-in-april</id>
     <content type="html"><![CDATA[<p><strong>Note</strong> The actual class will be taught in Finnish</p>
 <p>Two years ago we joined forces with Helsinki Polytechnic Stadia to organize a Ruby/Rails class for both students of the school and a couple of attendees from the business world. The class was a success.</p>
@@ -797,7 +864,7 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
   <entry>
     <title type="html"><![CDATA[Build your green home]]></title>
     <link href="http://jlaine.net/2008/10/04/build-your-green-home/"/>
-    <updated>2008-10-04T00:00:00+03:00</updated>
+    <updated>2008-10-04T00:00:00+01:00</updated>
     <id>http://jlaine.net/2008/10/04/build-your-green-home</id>
     <content type="html"><![CDATA[<p>The &#8220;summer project&#8221; for <a href="http://innovatebig.com/">Rod</a>, me and <a href="http://www.linkedin.com/in/lorenbaxter">Loren</a>, <a href="http://ecohomeresource.com/">EcoHomeResource</a> is now live. The site is a hub of information and news for everyone wanting to build a green home or to make their current apartments more eco-friendly.</p>
 <p>My dream has for quite some time (since reading <a href="http://www.amazon.com/gp/redirect.html?ie=UTF8&amp;location=http%3A%2F%2Fwww.amazon.com%2FNatural-Capitalism-Creating-Industrial-Revolution%2Fdp%2F0316353000%2F&amp;tag=jlainenet-20&amp;linkCode=ur2&amp;camp=1789&amp;creative=9325">Natural Capitalism</a> and <a href="http://www.amazon.com/gp/redirect.html?ie=UTF8&amp;location=http%3A%2F%2Fwww.amazon.com%2FCradle-Remaking-Way-Make-Things%2Fdp%2F0865475873%2F&amp;tag=jlainenet-20&amp;linkCode=ur2&amp;camp=1789&amp;creative=9325">Cradle to Cradle</a>, to be exact) been to build us a <a href="http://www.redferret.net/?p=8707">carbon-positive home</a>, so the project has been spot-on for me.</p>
@@ -809,7 +876,7 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
   <entry>
     <title type="html"><![CDATA[Unplugged]]></title>
     <link href="http://jlaine.net/2008/10/03/unplugged/"/>
-    <updated>2008-10-03T00:00:00+03:00</updated>
+    <updated>2008-10-03T00:00:00+01:00</updated>
     <id>http://jlaine.net/2008/10/03/unplugged</id>
     <content type="html"><![CDATA[<p>Early last year I was shopping for in-canal earplugs because I wanted a pair of reasonably sound-isolating plugs that <strong>stay in my ears</strong>, even when running or biking. The standard iPod plugs are not meant for me. Even if I could stand the sound quality (which I don&#8217;t), all I have to do is to lean my head on one side and the earplug drops on the ground. The same goes pretty much for all the &#8220;normal&#8221; earplugs, thus I needed more drastic measures.</p>
 <p>My first idea was to buy a pair of <a href="http://www.amazon.com/Sennheiser-CX300-B-Earbuds-Black/dp/B000E6G9RI/">Sennheiser CX300</a> plugs, cause I&#8217;d had a couple of different Sennheisers in the past and been fairly happy with all of them. <a href="http://imaj.es/">James</a> proposed that I&#8217;d get <a href="http://www.amazon.com/Shure-E2c-n-Sound-Isolating-Earphones/dp/B000E5GKW8">Shure E2C&#8217;s</a> instead; he&#8217;d used both and thought the Shures were vastly superior, sitting tighter in the ear and being better sound-isolating. I believed him and ordered a pair from Amazon.co.uk, which he then brought to our Caboose meetup in Paris.</p>
@@ -824,7 +891,7 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
   <entry>
     <title type="html"><![CDATA[Fernando]]></title>
     <link href="http://jlaine.net/2008/10/02/fernando/"/>
-    <updated>2008-10-02T00:00:00+03:00</updated>
+    <updated>2008-10-02T00:00:00+01:00</updated>
     <id>http://jlaine.net/2008/10/02/fernando</id>
     <content type="html"><![CDATA[<p>There was <a href="http://developer.apple.com/iphone/program/">something in the air</a> that night,<br />
 the stars were bright, Fernando.</p>
@@ -836,7 +903,7 @@ for <a href="http://furbo.org/2008/10/01/redacted/">liberty</a>, Fernando.</p>
   <entry>
     <title type="html"><![CDATA[A Week of Ruby/Rails/BDD/Ajax Training in December]]></title>
     <link href="http://jlaine.net/2008/09/24/a-week-of-ruby-rails-bdd-ajax-training-in-december/"/>
-    <updated>2008-09-24T00:00:00+03:00</updated>
+    <updated>2008-09-24T00:00:00+01:00</updated>
     <id>http://jlaine.net/2008/09/24/a-week-of-ruby-rails-bdd-ajax-training-in-december</id>
     <content type="html"><![CDATA[<p>After my last Ruby on Rails workshop held last year I&#8217;ve often been asked when there is going to be another one. Here it comes.</p>
 <p>December 1st to 5th, we will join forces with <a href="http://tarvainen.wordpress.com/">Antti Tarvainen</a> from <a href="http://leonidasoy.com/">Leonidas</a> and give <a href="http://rapidstraining.fi/">a week of one-day workshops</a> in Helsinki with separate but closely related themes:</p>
@@ -855,7 +922,7 @@ for <a href="http://furbo.org/2008/10/01/redacted/">liberty</a>, Fernando.</p>
   <entry>
     <title type="html"><![CDATA[Making emacs keybindings work with zsh and screen]]></title>
     <link href="http://jlaine.net/2008/09/16/making-emacs-keybindings-work-with-zsh-and-screen/"/>
-    <updated>2008-09-16T00:00:00+03:00</updated>
+    <updated>2008-09-16T00:00:00+01:00</updated>
     <id>http://jlaine.net/2008/09/16/making-emacs-keybindings-work-with-zsh-and-screen</id>
     <content type="html"><![CDATA[<p>I&#8217;ve always (as in from the early OpenACS days) been an emacs guy on linux. Sure, I do most of my development on TextMate these days, but for all text editing on servers I still prefer emacs and have its keybindings tattooed deep in my brain:</p>
 <table>
@@ -893,7 +960,7 @@ startup_message off
   <entry>
     <title type="html"><![CDATA[From Rails Ajax helpers to Low Pro, Part 3 (+ some announcements)]]></title>
     <link href="http://jlaine.net/2008/09/09/from-rails-ajax-helpers-to-low-pro-part-3-some-announcements/"/>
-    <updated>2008-09-09T00:00:00+03:00</updated>
+    <updated>2008-09-09T00:00:00+01:00</updated>
     <id>http://jlaine.net/2008/09/09/from-rails-ajax-helpers-to-low-pro-part-3-some-announcements</id>
     <content type="html"><![CDATA[<p><em>This is the third part of my introduction to Low Pro series, something that has been taken&#8230; hmmm&#8230; a while. The two first parts can be found here:</em></p>
 <ul>
@@ -1089,98 +1156,6 @@ page.insert_html :top, @item.state, :partial =&gt; "item"
 <p>&#8212;</p>
 <p><a href="http://peepcode.com/products/unobtrusive-prototypejs-draft"><img src="http://jlaine.net/assets/2008/9/9/unobtrusive-cover.png" alt="" /></a></p>
 <p><em>If you enjoyed the article, consider grabbing a copy of my new ebook, <a href="http://peepcode.com/products/unobtrusive-prototypejs-draft">Unobtrusive Prototype</a>, straight from the Peepcode oven. It will have all the code rewritten for Rails 2.1, it is professionally edited unlike my rumblings here, and has a much wider coverage of Low Pro, including writing your own Behaviors and event delegation. <strong>If you&#8217;re quick and have a close look at my presentation slides in the beginning of this article, you might even find a way to get your copy for half the normal price</strong>!</em></p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Sonera's at it again]]></title>
-    <link href="http://jlaine.net/2008/06/27/sonera-s-at-it-again/"/>
-    <updated>2008-06-27T00:00:00+03:00</updated>
-    <id>http://jlaine.net/2008/06/27/sonera-s-at-it-again</id>
-    <content type="html"><![CDATA[<p><strong>[<span class="caps">UPDATE</span>]</strong> Now the people in the Nordic have followed the lead of <a href="http://fuckyourogers.com">fuckyourogers.com</a>:</p>
-<ul>
-	<li><a href="http://www.facebook.com/group.php?gid=22113926713">iPhone: Yes please &#8211; Sonera: No thank you</a></li>
-	<li><a href="http://www.facebook.com/group.php?gid=16689679566&amp;ref=nf">Bedre Telia abonnement til iPhone 3G</a></li>
-	<li><a href="http://www.facebook.com/group.php?gid=31332232832">Billigere iPhone til Norge!</a></li>
-	<li><a href="http://www.facebook.com/group.php?gid=21660696603">Telia dödar iPhone med kassa abonnemang.</a></li>
-</ul>
-<p>Sonera, the poor man&#8217;s AT&amp;T, the old Finnish national telcom that got &#8220;famous&#8221; in the dawn of the century by <a href="http://robots.cnnfn.com/2000/08/17/europe/german_umts/index.htm">buying thin German air for $7.5 Billions</a> (and later writing it off as worthless), is on fire again. The company that&#8217;s nowadays merged with its Swedish counterpart Telia, <a href="http://www.teliasonera.com/press/pressreleases/item.page?prs.itemId=360269">announced</a> a while ago that they will be the ones bringing the <a href="http://www.apple.com/iphone/">3G iPhone</a> to the Northern Europe. I guess some warning bells should have been in place considering the company is pretty much the only one that still doesn&#8217;t offer a reasonable unlimited data plan for its <span class="caps">GSM</span> customers. However, initially the excitement over iPhone finally (officially) reaching this corner of the world took over and I even considered becoming a Sonera client.</p>
-<p>Today, the truth was revealed when the <a href="http://www.sonera.fi/iphone">iPhone 3G plans</a> were announced. <em>Not a single plan has unlimited data</em>. Not even the €90/month Large plan (which has 1GB/month of data). The small and medium plans come with measly 100 and 250 MB a month. Considering that watching a few YouTube movies consumes pretty much the whole monthly quota, the plans seem nothing but laughable<sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup>.</p>
-<p><strong>[<span class="caps">UPDATE</span>]</strong> Here&#8217;s the whole pricing table:</p>
-<table>
-	<tr>
-		<td><em>Plan</em></td>
-		<td><em>Small</em></td>
-		<td><em>Medium</em></td>
-		<td><em>Large</em></td>
-	</tr>
-	<tr>
-		<td><em>Price</em></td>
-		<td>31,69 €/month + 159 €/8 GB or 245 €/16 GB iPhone</td>
-		<td> 51,49 €/month + 79 €/8 GB or 165 €/16 GB iPhone</td>
-		<td>89,99 €/month + 1 €/8 GB or 85 €/16 GB iPhone </td>
-	</tr>
-	<tr>
-		<td><em>Includes</em></td>
-	</tr>
-	<tr>
-		<td>(min/month)</td>
-		<td>100</td>
-		<td>250</td>
-		<td>1000</td>
-	</tr>
-	<tr>
-		<td><span class="caps">SMS</span> messages/month</td>
-		<td>100</td>
-		<td>250</td>
-		<td>1000</td>
-	</tr>
-	<tr>
-		<td>Data (MB/month)</td>
-		<td>100</td>
-		<td>250</td>
-		<td>1000</td>
-	</tr>
-	<tr>
-		<td>Home Run hotspot usage</td>
-		<td>yes</td>
-		<td>yes</td>
-		<td>yes</td>
-	</tr>
-	<tr>
-		<td><em>Additional calls</em></td>
-	</tr>
-	<tr>
-		<td>Starting a call</td>
-		<td> 	0,049 € 	</td>
-		<td>0,049 € 	</td>
-		<td>0,049 € 	</td>
-	</tr>
-	<tr>
-		<td>Cost/min</td>
-		<td> 	0,079 € 	</td>
-		<td>0,079 € 	</td>
-		<td>0,079 € 	</td>
-	</tr>
-	<tr>
-		<td>Additional text msg</td>
-		<td> 	0,079 € 	</td>
-		<td>0,079 € 	</td>
-		<td>0,079 € 	</td>
-	</tr>
-	<tr>
-		<td>Data/MB</td>
-		<td> 1,49 € 	</td>
-		<td>1,49 € 	</td>
-		<td>1,49 €</td>
-	</tr>
-</table>
-<p>Now, the plans might have been ok 5 years ago<sup class="footnote" id="fnr2"><a href="#fn2">2</a></sup>, but they totally overlook the platform what iPhone has become in the countries it&#8217;s been on sale so far. An iPhone is not just a phone anymore, it&#8217;s a whole new computing platform, which pretty much needs an unlimited data plan.</p>
-<p>One huge selling point for the new phone will no doubt be <a href="http://www.apple.com/mobileme/">Mobile Me</a>. The chance to automatically and wirelessly sync your life between your computers and your phone sounds almost too good to be true. With €1.49/MB for the over quota data transfer, the syncing doesn&#8217;t exactly sound like a realistic option anymore.</p>
-<p>Fortunately everything is not lost for us. You <em>can</em> buy the phone from Sonera even without the ridiculous plans. The 8GB and 16GB models cost €429 and €519 respectively if you don&#8217;t take any real plan with them. You <strong>do</strong> have to sign up for a custom plan for 24 months, though, but the cheapest comes at €1.99/month and thus only adds €48 to the total cost of ownership. That might just about cut it for me, but for the masses? Not so much. I hope I&#8217;ll be wrong, but to me it seems that Sonera is once again going to kill something that would&#8217;ve had potential to be something disruptive.</p>
-<p>Oh well, I hear they&#8217;re going to sell cheap unlocked iPhones in Italy&#8230;</p>
-<p><strong>[<span class="caps">UPDATE</span>]</strong> Gruber links to <a href="http://www.tuaw.com/2008/06/27/rogers-announces-iphone-rates-in-canada/">The Unofficial Apple Weblog&#8217;s entry about Rogers unveiling their plans</a> as well, <a href="http://daringfireball.net/linked/2008/06/27/rogers-canada">stating that &#8216;they suck&#8217;</a>. However, compared to the offering from Sonera, Rogers&#8217; plans seem to be downright cheap (even the cheapest plan comes with 400MB of data and 150 mins of weekday calls compared to 100MB and 100 mins all the time). Thanks also to Vesa for the comment about Rogers&#8217; plans.</p>
-<p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> The prices seem even more laughable considering that pretty much every other operator offers unlimited data plans starting from €10/month.</p>
-<p class="footnote" id="fn2"><a href="#fnr2"><sup>2</sup></a> Even though we did, in fact, have unlimited <span class="caps">GPRS</span> plans in here back then, something which was unheard of in the Middle Europe where I used to live those days.</p>]]></content>
   </entry>
   
 </feed>

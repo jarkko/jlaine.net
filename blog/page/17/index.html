@@ -11,7 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="I&#8217;ve long suspected that David Heinemeier Hansson is some kind of mindreader. This morning, when Rails 0.12 came out, I&#8217;m even more &hellip;">
+  <meta name="description" content="So I stumbled upon a problem with my Rails app. Or with MySQL, to be precise. I needed to use date() functions in a query to compare timestamps. I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +82,49 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2005/05/06/upgrading-mysql-on-os-x-for-rails/">Upgrading MySQL on OS X for Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-05-06T00:00:00+01:00" pubdate data-updated="true">May 6<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So I stumbled upon a problem with my Rails app. Or with MySQL, to be precise. I needed to use date() functions in a query to compare timestamps. I know, I could&#8217;ve done it some other way but I like to keep things simple. The only problem was that my laptop was running MySQL 4.0 which (imagine that!) didn&#8217;t support date().</p>
+<p>I hesitated a bit if I wanted to go through the update process just for this but because I from now treat problems, not symptoms, I decided to dive straight into it.</p>
+<p>I installed the latest MySQL with DarwinPorts and moved my old databases to the new folder (this wasn&#8217;t what I initially tried to do but it was how I got things working in the end. Besides, fighting with MySQL isn&#8217;t, despite the headline, the meat of this story). Then I changed the StartupItem in /Library to point to the new mysql.server script and the server was up.</p>
+<p>The problems started (oh well, continued) when I tried to use my Rails app. I got the same errors as when I tried to use the old mysql client with the new server. I finally figured out that the reason for this was that the MySQL/Ruby bindings were compiled for the old server. I banged my head against a wall for a while before I found out from Jason&#8217;s <a href="http://manuals.textdrive.com/read/chapter/3#page7">OS X tutorials</a> that gem install needs two extra dashes before giving the configure options to it. Finally I got it all working so here&#8217;s the command you need to get MySQL/Ruby bindings for a DarwinPorts-installed MySQL server:<br />
+<pre><code>
+sudo gem install mysql -- \\
+--with-mysql-include=/opt/local/include/mysql/ \\
+--with-mysql-lib=/opt/local/lib/mysql/
+</code></pre></p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2005/04/19/rails-0-12/">Rails 0.12</a></h1>
     
     
@@ -98,7 +141,7 @@
   
 
 
-<time datetime="2005-04-19T00:00:00+03:00" pubdate data-updated="true">Apr 19<span>th</span>, 2005</time>
+<time datetime="2005-04-19T00:00:00+01:00" pubdate data-updated="true">Apr 19<span>th</span>, 2005</time>
         
       </p>
     
@@ -148,7 +191,7 @@ end</code></pre>
   
 
 
-<time datetime="2005-04-15T00:00:00+03:00" pubdate data-updated="true">Apr 15<span>th</span>, 2005</time>
+<time datetime="2005-04-15T00:00:00+01:00" pubdate data-updated="true">Apr 15<span>th</span>, 2005</time>
         
       </p>
     
@@ -185,7 +228,7 @@ end</code></pre>
   
 
 
-<time datetime="2005-04-15T00:00:00+03:00" pubdate data-updated="true">Apr 15<span>th</span>, 2005</time>
+<time datetime="2005-04-15T00:00:00+01:00" pubdate data-updated="true">Apr 15<span>th</span>, 2005</time>
         
       </p>
     
@@ -222,7 +265,7 @@ end</code></pre>
   
 
 
-<time datetime="2005-04-15T00:00:00+03:00" pubdate data-updated="true">Apr 15<span>th</span>, 2005</time>
+<time datetime="2005-04-15T00:00:00+01:00" pubdate data-updated="true">Apr 15<span>th</span>, 2005</time>
         
       </p>
     
@@ -260,7 +303,7 @@ end</code></pre>
   
 
 
-<time datetime="2005-04-06T00:00:00+03:00" pubdate data-updated="true">Apr 6<span>th</span>, 2005</time>
+<time datetime="2005-04-06T00:00:00+01:00" pubdate data-updated="true">Apr 6<span>th</span>, 2005</time>
         
       </p>
     
@@ -299,7 +342,7 @@ end</code></pre>
   
 
 
-<time datetime="2005-04-05T00:00:00+03:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
+<time datetime="2005-04-05T00:00:00+01:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
         
       </p>
     
@@ -345,7 +388,7 @@ end</code></pre>
   
 
 
-<time datetime="2005-04-05T00:00:00+03:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
+<time datetime="2005-04-05T00:00:00+01:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
         
       </p>
     
@@ -383,7 +426,7 @@ end</code></pre>
   
 
 
-<time datetime="2005-04-05T00:00:00+03:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
+<time datetime="2005-04-05T00:00:00+01:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
         
       </p>
     
@@ -420,7 +463,7 @@ end</code></pre>
   
 
 
-<time datetime="2005-03-30T00:00:00+03:00" pubdate data-updated="true">Mar 30<span>th</span>, 2005</time>
+<time datetime="2005-03-30T00:00:00+01:00" pubdate data-updated="true">Mar 30<span>th</span>, 2005</time>
         
       </p>
     
@@ -436,47 +479,6 @@ end</code></pre>
 <p>I wouldn&#8217;t be as harsh as David. I can imagine there are reasons why people really want to have a Windows PC. But if a developer is not passionate about making herself more productive, how could she be passionate about the project I would be hiring her for?</p>
 <p>What surprises me most, tho, is that still &#8211; in 2005 &#8211; the most common reason for avoiding a Mac seems to be the price. Well, let me tell you something. Powerbooks start at €1500 here in Finland, probably the most expensive corner of Europe. Believe me, you <strong>will</strong> have a hard time finding a comparative PC laptop at that price, let alone half of it.</p>
 <p>And to Simen Brekken, who&#8217;s starting to love his 12&quot; PowerBook but thinks it&#8217;s too slow: it doesn&#8217;t need a new <span class="caps">CPU</span>. It needs more <span class="caps">RAM</span>. Running Photoshop, Indesign and Illustrator simultaneously is nothing spectacular for G4, as long as it has 1GB or more <span class="caps">RAM</span>.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/03/29/a-touch-of-mark-ii/">A Touch of Mark II</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-03-29T00:00:00+03:00" pubdate data-updated="true">Mar 29<span>th</span>, 2005</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>A word of caution</strong>: this entry has no other meaning than to show off.</p>
-<p><a href="http://www.flickr.com/photos/jarkko/7796967/"><img src="http://photos7.flickr.com/7796967_4104f2d6cb_m.jpg" title="My hand and a Canon" alt="My hand and a Canon" /></a></p>
-<p>Yes, that is my hand holding a brand new <a href="http://www.canon-europe.com/For_Home/Product_Finder/Cameras/Digital_SLR/EOS_1Ds_markII/index.asp?ComponentID=230304&amp;SourcePageID=164046">Canon <span class="caps">EOS</span>-1Ds Mark II</a>. The bad news: it&#8217;s not mine (with the voice of <a href="http://www.imdb.com/title/tt0118655/quotes">Austin Powers</a>). We were visiting Maria&#8217;s parents after a while and I finally got a chance to play a bit around with my father-in-law-candidate&#8217;s new baby.</p>
-<p>So how does it feel? Like a brick. I&#8217;m telling ya baby, that&#8217;s a helluva pack of hardware. I never touched an <span class="caps">EOS</span>-1, but this is certainly heavier than an <span class="caps">EOS</span>-3. Of course it has the vertical hand grip built-in, but dragging an <span class="caps">EOS</span>-1Ds with e.g. the <a href="http://www.canon-europe.com/For_Home/Product_Finder/Cameras/EF_Lenses/Image_Stabilization_Lenses/EF_70200mm_f28LIS_USM/">70-200mm/2.8 lense</a> for a day sure beats a gym session.</p>
-<p><a href="http://www.flickr.com/photos/jarkko/7796937/in/set-194680/"><img src="http://photos7.flickr.com/7796937_775235dd60_m.jpg" title="A flower" alt="A flower" /></a></p>
-<p>I took a few quick photos with the camera (and another few of it) and posted them to a <a href="http://www.flickr.com/photos/jarkko/sets/194680/">Flickr set</a>. Nothing spectacular, I seem to a be a bit rusty after shooting too much with the wide focal area of a digital point&#8217;n&#8217;shoot. In 1Ds with default settings (especially with the <a href="http://www.canon-europe.com/For_Home/Product_Finder/Cameras/EF_Lenses/Macro_Lenses/EF_100mm_f28_Macro_USM/">100mm macro lense</a>) the area is so razor sharp and narrow that I seem to have missed the target in all but a few of the photos.</p>
-<p>My <a href="http://www.flickr.com/photos/jarkko/sets/194680/">set</a> was exported as medium jpeg&#8217;s (that&#8217;s 6MP, folks!) and even then the quality of the photos was astonishing. Can&#8217;t wait to get a hold of the 16MP <span class="caps">RAW</span> files after a real shooting session, which I sure hope I can get arranged later this spring.</p></div>
   
   
 
@@ -502,7 +504,7 @@ end</code></pre>
 </ul>
 
 <p>
-  Copyright &copy; 2012 - Jarkko Laine -
+  Copyright &copy; 2013 - Jarkko Laine -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 </footer>
