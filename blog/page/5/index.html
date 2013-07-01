@@ -11,7 +11,8 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="It seems that my wee hometown is getting a citizen wireless network (only in Finnish, unfortunately), based on sharing your own wifi and getting free &hellip;">
+  <meta name="description" content="We&#8217;re using Globalize for our latest Rails project and I just ran against a problem when running specs with rake.
+We specify the base language &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +83,66 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2007/09/06/making-globalize-play-nice-with-specs/">Making Globalize Play Nice With Specs</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-06T00:00:00+03:00" pubdate data-updated="true">Sep 6<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We&#8217;re using <a href="http://www.globalize-rails.org/globalize/">Globalize</a> for our latest Rails project and I just ran against a problem when running specs with rake.</p>
+<p>We specify the base language and the locales our app supports in environment.rb:</p>
+<pre><code class="ruby">include Globalize
+Locale.set_base_language('en-US')
+SupportedLocales.define(['fi-FI', 'sv-SE', 'en-US'], 'en-US')
+</code></pre>
+<p>However, <code>SupportedLocales.define</code> expects that the language and country data exists in the database, otherwise it will die miserably. Of course, when you run specs with rake, it will wipe the database as its first action so you&#8217;re pretty much out of luck:</p>
+<pre><code>.../vendor/plugins/globalize/lib/globalize/localization/supported_locales.rb:282:in `setup': Globalize base language undefined! (RuntimeError)</code></pre>
+<p>I fixed this by copying the <code>db:test:clone</code> rake task from <code>[RAILS]/railties/lib/tasks/databases.rake</code> to its own file in <code>lib/tasks</code> and modifying it so that it will load some language and country fixtures automatically:</p>
+<pre><code class="ruby">require(File.join(RAILS_ROOT, 'vendor', 'rails', 'activerecord', 'lib', 'active_record', 'fixtures'))
+
+namespace :db do
+  namespace :test do
+    desc "Recreate the test database from the current environment's database schema"
+    task :clone =&gt; %w(db:schema:dump db:test:purge) do
+      ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations['test'])
+      ActiveRecord::Schema.verbose = false
+      Rake::Task["db:schema:load"].invoke
+      Fixtures.create_fixtures("#{RAILS_ROOT}/spec/fixtures", [:globalize_countries, :globalize_languages])
+    end
+  end
+end
+</code></pre>
+<p>The only thing differing from the original task is the last line creating the fixtures. For some reasons I also need to explicitly require the fixtures file on the top of the file. Aside from this, I needed to change Rakefile in the root of our Rails app to require <code>config/environment.rb</code> instead of <code>config/boot.rb</code> for everything to work.</p>
+<p>Of course your fixture files need to include all the languages and countries you&#8217;re specifying in your <code>SupportedLocales.define</code> call.</p>
+<p>After these modifications, rake runs through fine again.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2007/08/22/langaton-tampere/">Langaton Tampere</a></h1>
     
     
@@ -98,7 +159,7 @@
   
 
 
-<time datetime="2007-08-22T00:00:00+01:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2007</time>
+<time datetime="2007-08-22T00:00:00+03:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2007</time>
         
       </p>
     
@@ -134,7 +195,7 @@
   
 
 
-<time datetime="2007-08-06T00:00:00+01:00" pubdate data-updated="true">Aug 6<span>th</span>, 2007</time>
+<time datetime="2007-08-06T00:00:00+03:00" pubdate data-updated="true">Aug 6<span>th</span>, 2007</time>
         
       </p>
     
@@ -340,7 +401,7 @@ New item:
   
 
 
-<time datetime="2007-08-03T00:00:00+01:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2007</time>
+<time datetime="2007-08-03T00:00:00+03:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2007</time>
         
       </p>
     
@@ -473,7 +534,7 @@ style="display: none;"&gt;
   
 
 
-<time datetime="2007-07-31T00:00:00+01:00" pubdate data-updated="true">Jul 31<span>st</span>, 2007</time>
+<time datetime="2007-07-31T00:00:00+03:00" pubdate data-updated="true">Jul 31<span>st</span>, 2007</time>
         
       </p>
     
@@ -512,7 +573,7 @@ style="display: none;"&gt;
   
 
 
-<time datetime="2007-07-27T00:00:00+01:00" pubdate data-updated="true">Jul 27<span>th</span>, 2007</time>
+<time datetime="2007-07-27T00:00:00+03:00" pubdate data-updated="true">Jul 27<span>th</span>, 2007</time>
         
       </p>
     
@@ -562,7 +623,7 @@ style="display: none;"&gt;
   
 
 
-<time datetime="2007-07-03T00:00:00+01:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2007</time>
+<time datetime="2007-07-03T00:00:00+03:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2007</time>
         
       </p>
     
@@ -602,7 +663,7 @@ style="display: none;"&gt;
   
 
 
-<time datetime="2007-05-28T00:00:00+01:00" pubdate data-updated="true">May 28<span>th</span>, 2007</time>
+<time datetime="2007-05-28T00:00:00+03:00" pubdate data-updated="true">May 28<span>th</span>, 2007</time>
         
       </p>
     
@@ -638,7 +699,7 @@ style="display: none;"&gt;
   
 
 
-<time datetime="2007-04-27T00:00:00+01:00" pubdate data-updated="true">Apr 27<span>th</span>, 2007</time>
+<time datetime="2007-04-27T00:00:00+03:00" pubdate data-updated="true">Apr 27<span>th</span>, 2007</time>
         
       </p>
     
@@ -683,7 +744,7 @@ style="display: none;"&gt;
   
 
 
-<time datetime="2007-04-25T00:00:00+01:00" pubdate data-updated="true">Apr 25<span>th</span>, 2007</time>
+<time datetime="2007-04-25T00:00:00+03:00" pubdate data-updated="true">Apr 25<span>th</span>, 2007</time>
         
       </p>
     
@@ -692,41 +753,6 @@ style="display: none;"&gt;
 
   <div class="entry-content"><p>All the cool kids are heading to <a href="http://conferences.oreillynet.com/rails/">RailsConf</a> in less than a month from now. Dr. Nic Williams, the man who&#8217;s obviously found a way to stretch the concept of time as we know it, has now whipped up <a href="http://myconfplan.com">MyConfPlan</a>, a free service you can use to plan your conferences and share the plans with others.</p>
 <p>Check the site up! <a href="http://myconfplan.com/conferences/RailsConf2007/users/jarkko">My very preliminary and incomplete plan for RailsConf is open for review</a>.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/04/16/dotherightthing-featured-in-san-francisco-chronicle/">Dotherightthing Featured in San Francisco Chronicle</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-04-16T00:00:00+01:00" pubdate data-updated="true">Apr 16<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Yesterday&#8217;s <a href="http://sfgate.com/chronicle/">San Francisco Chronicle</a> ran with an article called <a href="http://sfgate.com/cgi-bin/article.cgi?f=/chronicle/archive/2007/04/15/BUG5SP63BR85.DTL&amp;type=business">Responsibility is in their sites</a>, featuring <a href="http://dotherightthing.com">dotherightthing.com</a> and including an interview with our co-founder <a href="http://blog.ryanmickle.com/">Ryan Mickle</a>. Cool stuff.</p></div>
   
   
 

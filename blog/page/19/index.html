@@ -11,7 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="Cory Doctorow points to a Slashdot post: The Tokyo District Court has ordered the destruction of Ichitaro, a software product that is the only &hellip;">
+  <meta name="description" content="Both BoingBoing and The Register report about a security exploit affecting most modern browsers. The vulnerability makes it possible to create links &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +82,52 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2005/02/08/new-firefox-safari-exploit/">New Firefox/Safari Exploit</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-02-08T00:00:00+02:00" pubdate data-updated="true">Feb 8<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Both <a href="http://www.boingboing.net/2005/02/06/shmoo_group_exploit_.html">BoingBoing</a> and <a href="http://www.theregister.co.uk/2005/02/07/browsers_idn_spoofing/">The Register</a> report about a security exploit affecting most modern browsers. The vulnerability makes it possible to create links that look ok in the browser (like www.paypal.com) but that actually lead to another site that has non-7-bit-ascii characters in their address. <a href="http://secunia.com">Secunia</a> has prepared a <a href="http://secunia.com/multiple_browsers_idn_spoofing_test/">test</a> you can run to see if your browser is vulnerable to the exploit.</p>
+<p>In the BoingBoing story, they tell about a way to secure Firefox by changing a config parameter. However, in a later update they say that the fix doesn&#8217;t stand restarting the browser. Another update <a href="http://users.tns.net/~skingery/weblog/2005/02/permanent-fix-for-shmoo-group-exploit.html">tells</a> how to make the fix permanent. The fix is for Windows users, so here&#8217;s a rewrite of it for all Mac Firefox people:</p>
+<ol>
+	<li>Exit Firefox</li>
+	<li>Open ~/Library/Application Support/Firefox/Profiles/ ###.default (or default.###) in finder (### being a number of random characters)</li>
+	<li>Backup compreg.dat</li>
+	<li>Open compreg.dat in a text editor (right-click =&gt; open with&#8230; =&gt; other =&gt; select textedit or some other text editor)</li>
+	<li>Scroll down to [<span class="caps">CONTRACTIDS</span>] section and find this row: @mozilla.org/network/idn-service;1,{62b778a6-bce3-456b-8c31-2865fbb68c91}</li>
+	<li>change the 1 after idn-service; to 0, so that the line will be @mozilla.org/network/idn-service;0,{62b778a6-bce3-456b-8c31-2865fbb68c91}</li>
+	<li>Save the file and restart Firefox. Navigate to <a href="http://secunia.com/multiple_browsers_idn_spoofing_test/">Secunia&#8217;s test</a> and run the test. If you get a &#8220;not found&#8221; error, you should be all fine.</li>
+</ol>
+<p>I&#8217;ve tested the fix and it works fine for me, but I can&#8217;t promise it will for you. So stay tuned for security updates. And don&#8217;t forget Safari is vulnerable to this exploit, too, as is Opera.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2005/02/07/save-us-from-all-this/">Save Us From All This</a></h1>
     
     
@@ -98,7 +144,7 @@
   
 
 
-<time datetime="2005-02-07T00:00:00+00:00" pubdate data-updated="true">Feb 7<span>th</span>, 2005</time>
+<time datetime="2005-02-07T00:00:00+02:00" pubdate data-updated="true">Feb 7<span>th</span>, 2005</time>
         
       </p>
     
@@ -137,7 +183,7 @@
   
 
 
-<time datetime="2005-02-02T00:00:00+00:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2005</time>
+<time datetime="2005-02-02T00:00:00+02:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2005</time>
         
       </p>
     
@@ -174,7 +220,7 @@
   
 
 
-<time datetime="2005-02-01T00:00:00+00:00" pubdate data-updated="true">Feb 1<span>st</span>, 2005</time>
+<time datetime="2005-02-01T00:00:00+02:00" pubdate data-updated="true">Feb 1<span>st</span>, 2005</time>
         
       </p>
     
@@ -210,7 +256,7 @@
   
 
 
-<time datetime="2005-02-01T00:00:00+00:00" pubdate data-updated="true">Feb 1<span>st</span>, 2005</time>
+<time datetime="2005-02-01T00:00:00+02:00" pubdate data-updated="true">Feb 1<span>st</span>, 2005</time>
         
       </p>
     
@@ -249,7 +295,7 @@
   
 
 
-<time datetime="2005-01-28T00:00:00+00:00" pubdate data-updated="true">Jan 28<span>th</span>, 2005</time>
+<time datetime="2005-01-28T00:00:00+02:00" pubdate data-updated="true">Jan 28<span>th</span>, 2005</time>
         
       </p>
     
@@ -286,7 +332,7 @@
   
 
 
-<time datetime="2005-01-20T00:00:00+00:00" pubdate data-updated="true">Jan 20<span>th</span>, 2005</time>
+<time datetime="2005-01-20T00:00:00+02:00" pubdate data-updated="true">Jan 20<span>th</span>, 2005</time>
         
       </p>
     
@@ -356,7 +402,7 @@
   
 
 
-<time datetime="2005-01-20T00:00:00+00:00" pubdate data-updated="true">Jan 20<span>th</span>, 2005</time>
+<time datetime="2005-01-20T00:00:00+02:00" pubdate data-updated="true">Jan 20<span>th</span>, 2005</time>
         
       </p>
     
@@ -394,7 +440,7 @@
   
 
 
-<time datetime="2005-01-06T00:00:00+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2005</time>
+<time datetime="2005-01-06T00:00:00+02:00" pubdate data-updated="true">Jan 6<span>th</span>, 2005</time>
         
       </p>
     
@@ -439,7 +485,7 @@ Jarkko Laine</p></div>
   
 
 
-<time datetime="2005-01-06T00:00:00+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2005</time>
+<time datetime="2005-01-06T00:00:00+02:00" pubdate data-updated="true">Jan 6<span>th</span>, 2005</time>
         
       </p>
     
@@ -452,55 +498,6 @@ Jarkko Laine</p></div>
 <p>Wimpypoint is a great tool in conjunction to .<span class="caps">LRN</span>. It makes it possible to integrate lecture slides to other course material. However, as it presents every slide as an individual html page, using it for presenting is kind of clunky. An S^5^ presentation, on the other hand, consists of a single page and supports all the usual slide-navigating keys (see the <a href="http://www.meyerweb.com/eric/tools/s5/s5-intro.html">introductory slide show</a> for examples), making it responsive to the point where it competes head-to-head with desktop products like Apple Keynote and Microsoft Powerpoint. Additionally, because of the single-file paradigm S^5^ makes it a whole lot easier to export a presentation for offline situations.</p>
 <h4>The Deliverable</h4>
 <p>The Wimpypoint package will use S^5^ as its primary presentation mechanism. The old mechanism can be kept as an alternative method for backwards-compatibility if needed. Wimpypoint will also sport an export function which will export the presentation and all related files as a zip (or equiv.) package for offline presenting. Also the templating system of Wimpypoint will be integrated with S^5^. I will also do everything that is needed for fully integrating the revised package with .<span class="caps">LRN</span>.</p>
-<p>Tampere, January 6th 2005,<br />
-Jarkko Laine</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/01/06/improving-the-contingency-design-of-openacs-mdash-an-openacs-microgrant-proposal/">Improving the Contingency Design of OpenACS &mdash; an OpenACS Microgrant Proposal</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-01-06T00:00:00+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2005</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>Background</h4>
-<p>The <em>admin backend</em> is a major part of a web framework like OpenACS. As Philip Greenspun once noted, roughly half of all the pages in a dynamic website are more or less admin pages. Making administrating a system a pleasure is vital for any system, including OpenACS.</p>
-<p><a href="http://37signals.com">37signals</a> published a book called <a href="http://37signals.com/book/index.php">Defensive Design for the Web</a> last spring. The book was lately selected as <a href="http://www.37signals.com/svn/archives/000999.php">the best web design book of 2004</a>. <cite>Defensive Design for the Web</cite> is about improving the contingency design of a website, including e.g. error messages, help and forms. The book also provides a heuristics to analyze the contingency level of a service.</p>
-<h4>The Proposal</h4>
-<p>I will go through all the major OpenACS components, including core and .<span class="caps">LRN</span>, and analyze their contingency design level with the help of heuristics developed by 37signals. As a result of this analysis, I will improve the administrative and end-user visible interfaces to the point where they will score at least 80% of the applicable parts of the test.</p>
-<h4>The deliverable</h4>
-<p>A system that is slicker and more pleasurable to use out-of-the-box. The UI of OpenACS has gotten a lot better lately, but has still room for improvement.</p>
-<p>Concrete improvements include e.g.:</p>
-<ul>
-	<li>Real double-click protection. Adding functions to ad_form that disable buttons when one is clicked and give a visual clue that the process has started. Current double-click protection protects from duplicate entries but results often in user-visible errors.</li>
-	<li>Improved error pages.</li>
-	<li>Improved &#8220;inter-page&#8221; notification/error message delivery and display system.</li>
-</ul>
 <p>Tampere, January 6th 2005,<br />
 Jarkko Laine</p></div>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[jlaine.net]]></title>
   <link href="http://jlaine.net/atom.xml" rel="self"/>
   <link href="http://jlaine.net/"/>
-  <updated>2013-05-15T10:07:10+01:00</updated>
+  <updated>2013-07-01T20:42:58+03:00</updated>
   <id>http://jlaine.net/</id>
   <author>
     <name><![CDATA[Jarkko Laine]]></name>
@@ -14,9 +14,34 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Runemployment]]></title>
+    <link href="http://jlaine.net/2013/07/01/runemployment/"/>
+    <updated>2013-07-01T20:40:00+03:00</updated>
+    <id>http://jlaine.net/2013/07/01/runemployment</id>
+    <content type="html"><![CDATA[<p>A few months ago, <a href="http://objo.com/2013/01/31/funemployment/">several</a> <a href="http://benscofield.com/on-taking-time-to-think/">friends</a> announced taking a few steps back from their hectic work life, taking perhaps on some freelance clients but mostly enjoying life, family, getting into shape, or whatever they felt they had been neglecting in their busy lives as software professionals and entrepreneurs. The term they often used for this was <em><a href="http://www.latimes.com/news/local/la-me-funemployment4-2009jun04,0,7581684.story">funemployment</a></em>.</p>
+
+<p>June 30th was my last day doing full-time contracting for <a href="http://wildfireapp.com">Wildfire</a>. I joined the company back in 2008 when the company was basically the co-founders, Victoria and Alain, and a couple of remote contractors. During the past five years I was fortunate enough to see a bootstrapped startup grow to a juggernaut of hundreds of employees and eventually a <a href="http://techcrunch.com/2012/07/31/google-acquires-wildfire/">lucrative acquisition target</a>.</p>
+
+<p>In many ways I always experienced Wildfire as my own product even though that technically never was the case. There’s just something in midwifing a product, seeing its first paying customers, then the first thousand (including several Fortune 50 companies), and so on. That’s a lesson money just cannot buy.</p>
+
+<p>The folks at Wildfire were always awesome to us contractors. We were allowed to work pretty much how much we wanted, wherever we wanted. That might have been just as well from the fells of Lapland as from a B&amp;B <a href="http://www.flickr.com/photos/jarkko/5137528302/in/set-72157613678662906/">somewhere in New Zealand’s South Island</a>. That trust and philosophy also let and motivated us to deliver.</p>
+
+<p>There are some things I missed during the past few years, however. Being wholly subsumed by Wildfire meant that I all but gave up writing and making serious contributions to open source projects. That’s something I want to change.</p>
+
+<h2>Say hello to Bear Metal</h2>
+
+<p>Working with <a href="https://twitter.com/erkkie">Erkki</a>, <a href="https://github.com/tarmo">Tarmo</a>, and <a href="https://twitter.com/methodmissing">Lourens</a> for several years built a special bond between us. A 100 % trust in everyone pulling their weight is surprisingly quite a luxury these days. Thus, while our work on Wildfire will soon be done, our work together will not. We’re not burned out enough to look for funemployment. We love what we do. However, one thing we love the most is doing it wherever we want to be, be it hitting the XC tracks of Äkäslompolo, wakeparks (with the bidirectional cable) of Bangkok or trail-marathoning across islands mid-Atlantic. I’d like to call that <em>runemployment</em>.</p>
+
+<p>That’s something we’re not willing to give up. Because of that shared passion and mutual trust we decided to set up a shop of our own, by the four us. We’re called <a href="http://bearmetal.eu">Bear Metal</a> and we’re open for business beginning next fall. We’re a cross-functional team ready to build web businesses from scratch and also provide training and consulting services about building and running large-scale Ruby apps; deploying them with Chef; and <a href="http://www.zeromq.org/intro:commercial-support">ZeroMQ</a>.</p>
+
+<p>Come join us in our run into the future.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[How to get started with bootstrapping]]></title>
     <link href="http://jlaine.net/2013/05/13/how-to-get-started-with-bootstrapping/"/>
-    <updated>2013-05-13T00:00:00+01:00</updated>
+    <updated>2013-05-13T00:00:00+03:00</updated>
     <id>http://jlaine.net/2013/05/13/how-to-get-started-with-bootstrapping</id>
     <content type="html"><![CDATA[<h2>Bootstrapping Resources</h2>
 
@@ -83,7 +108,7 @@
   <entry>
     <title type="html"><![CDATA[Scaling your Frontend &ndash; Graphics in the Era of Retina Screens]]></title>
     <link href="http://jlaine.net/2012/11/10/scaling-your-frontend-graphics-in-the-era-of-retina-screens/"/>
-    <updated>2012-11-10T00:00:00+00:00</updated>
+    <updated>2012-11-10T00:00:00+02:00</updated>
     <id>http://jlaine.net/2012/11/10/scaling-your-frontend-graphics-in-the-era-of-retina-screens</id>
     <content type="html"><![CDATA[<p>Here&#8217;s my deck from the Tampere Web Dev meetup on the 10th of November, 2012.</p>
 <script async class="speakerdeck-embed" data-id="f2dd78000d670130372a1231381d9beb" data-ratio="1.37081659973226" src="http://jlaine.net//speakerdeck.com/assets/embed.js"></script><p>Thanks to Thomas Fuchs for <a href="http://retinafy.me">retinafy.me</a> and <a href="http://www.fngtps.com/2012/reasonable-ways-to-use-high-resolution-images-on-retina-displays/">Thijs van der Vossen</a>.</p>
@@ -93,7 +118,7 @@
   <entry>
     <title type="html"><![CDATA[Introduction to Great Coffee]]></title>
     <link href="http://jlaine.net/2012/01/16/introduction-to-great-coffee/"/>
-    <updated>2012-01-16T00:00:00+00:00</updated>
+    <updated>2012-01-16T00:00:00+02:00</updated>
     <id>http://jlaine.net/2012/01/16/introduction-to-great-coffee</id>
     <content type="html"><![CDATA[<p><em>This is a talk I gave in the first Tampere Web Dev meetup in January 2012</em>.</p>
 
@@ -253,7 +278,7 @@
   <entry>
     <title type="html"><![CDATA[Ruby, meet QuickRoute]]></title>
     <link href="http://jlaine.net/2012/01/02/ruby-meet-quickroute/"/>
-    <updated>2012-01-02T00:00:00+00:00</updated>
+    <updated>2012-01-02T00:00:00+02:00</updated>
     <id>http://jlaine.net/2012/01/02/ruby-meet-quickroute</id>
     <content type="html"><![CDATA[<p>While I missed the tradition of releasing Ruby gems on the Christmas day, I did meet my own tradition of not doing anything with the computer that day. That said, I had something interesting in the works that just needed to be wrapped up as a Ruby gem—namely, a library for parsing the GPS data out of JPEG files produced by <a href="http://www.matstroeng.se/quickroute/en/">QuickRoute</a>. Without further ado, may I present <a href="https://github.com/jarkko/quickroute-ruby">quickroute-ruby</a>.</p>
 
@@ -272,7 +297,7 @@
   <entry>
     <title type="html"><![CDATA[Blade Runner]]></title>
     <link href="http://jlaine.net/2011/09/30/blade-runner/"/>
-    <updated>2011-09-30T00:00:00+01:00</updated>
+    <updated>2011-09-30T00:00:00+03:00</updated>
     <id>http://jlaine.net/2011/09/30/blade-runner</id>
     <content type="html"><![CDATA[<p>The launch of Amazon&#8217;s new Kindles has already been analyzed to near death, so I&#8217;m not going to dive too deep in that general discussion. What struck me as interesting, though, was <a href="http://daringfireball.net/">John Gruber&#8217;s analysis</a> of the new models being US-only:</p>
 
@@ -291,7 +316,7 @@
   <entry>
     <title type="html"><![CDATA[iTunes doesn't recognize your iPhone or iPad anymore? Here's the fix.]]></title>
     <link href="http://jlaine.net/2011/08/18/itunes-doesn-t-recognize-your-iphone-or-ipad-anymore-here-s-the-fix/"/>
-    <updated>2011-08-18T00:00:00+01:00</updated>
+    <updated>2011-08-18T00:00:00+03:00</updated>
     <id>http://jlaine.net/2011/08/18/itunes-doesn-t-recognize-your-iphone-or-ipad-anymore-here-s-the-fix</id>
     <content type="html"><![CDATA[<p>Somewhere between updating OS X to Lion and iTunes to version 10.4 iTunes stopped recognizing both my iPhone and my iPad. What&#8217;s weirder, even though System information saw both devices, my iPad also showed the disappointing &#8220;Not Charging&#8221; message in its status bar. The iPhone, which doesn&#8217;t demand as high a voltage from the port, did charge, though.</p>
 
@@ -333,7 +358,7 @@
   <entry>
     <title type="html"><![CDATA[Compensation. Supercompensation.]]></title>
     <link href="http://jlaine.net/2010/11/09/compensation-supercompensation/"/>
-    <updated>2010-11-09T00:00:00+00:00</updated>
+    <updated>2010-11-09T00:00:00+02:00</updated>
     <id>http://jlaine.net/2010/11/09/compensation-supercompensation</id>
     <content type="html"><![CDATA[<p><em>This the second part of The Road to <a href="http://www.rubyconf5k.com">RubyConf XK</a>, a series of articles about running training. Don&#8217;t miss the <a href="http://jlaine.net/2010/11/1/the-road-to-rubyconf-xk-why-run">first part</a>.</em></p>
 
@@ -469,7 +494,7 @@
   <entry>
     <title type="html"><![CDATA[The Road to RubyConf Xk: Why run?]]></title>
     <link href="http://jlaine.net/2010/11/01/the-road-to-rubyconf-xk-why-run/"/>
-    <updated>2010-11-01T00:00:00+00:00</updated>
+    <updated>2010-11-01T00:00:00+02:00</updated>
     <id>http://jlaine.net/2010/11/01/the-road-to-rubyconf-xk-why-run</id>
     <content type="html"><![CDATA[<h3>About The Road to RubyConfXk</h3>
 
@@ -558,7 +583,7 @@
   <entry>
     <title type="html"><![CDATA[How to quickly fix Safari 5 Reader typography]]></title>
     <link href="http://jlaine.net/2010/06/09/how-to-quickly-fix-safari-5-reader-typography/"/>
-    <updated>2010-06-09T00:00:00+01:00</updated>
+    <updated>2010-06-09T00:00:00+03:00</updated>
     <id>http://jlaine.net/2010/06/09/how-to-quickly-fix-safari-5-reader-typography</id>
     <content type="html"><![CDATA[<p>I really like the clutter-free reading experience the new <a href="http://www.apple.com/safari/whats-new.html#reader">Reader</a> feature in <a href="http://www.apple.com/safari/">Safari 5</a> brings. However, what I don&#8217;t like too much is the standard html rendering it uses for typography. The full fix for this would be to write a Safari extension to run the whole text through <a href="http://www.latex-project.org/">LaTeX</a> or the very least through the <a href="http://www.bramstein.com/projects/typeset/">Knuth &amp; Plass</a> algorithm.</p>
 <p>However, a quick fix for the horrible justified text is this:</p>
@@ -582,7 +607,7 @@
   <entry>
     <title type="html"><![CDATA[Speaking at Frozen Rails]]></title>
     <link href="http://jlaine.net/2010/03/23/speaking-at-frozen-rails/"/>
-    <updated>2010-03-23T00:00:00+00:00</updated>
+    <updated>2010-03-23T00:00:00+02:00</updated>
     <id>http://jlaine.net/2010/03/23/speaking-at-frozen-rails</id>
     <content type="html"><![CDATA[<p><img src="http://img.skitch.com/20100323-qaibjnb3ahyjk79i89kc8rsg8u.png" alt="" /></p>
 <p>The first-ever Ruby/Rails conference in Finland, <a href="http://frozenrails.eu">Frozen Rails</a>, is going to take place May 7th in Helsinki. The speaker lineup is top notch, including three <a href="http://rubyonrails.org/core">Rails core team</a> members and the inimitable <a href="http://defunkt.github.com/">Chris Wanstrath</a>. For an unknown reason, in the midst of these high profile guys, a random guy from Tampere has ended up in the speaker list. Yours truly has the honorable (and somewhat frightening) job to wrap up the conference with an ending talk.</p>
@@ -593,7 +618,7 @@
   <entry>
     <title type="html"><![CDATA[6 guaranteed ways to make me block you on Twitter]]></title>
     <link href="http://jlaine.net/2010/03/06/6-bulletproof-ways-to-make-me-block-you-on-twitter/"/>
-    <updated>2010-03-06T00:00:00+00:00</updated>
+    <updated>2010-03-06T00:00:00+02:00</updated>
     <id>http://jlaine.net/2010/03/06/6-bulletproof-ways-to-make-me-block-you-on-twitter</id>
     <content type="html"><![CDATA[<p>For me Twitter serves two purposes:</p>
 
@@ -689,7 +714,7 @@
   <entry>
     <title type="html"><![CDATA[New Zealand SVG Map in Black and White]]></title>
     <link href="http://jlaine.net/2010/02/14/new-zealand-in-black-and-white/"/>
-    <updated>2010-02-14T00:00:00+00:00</updated>
+    <updated>2010-02-14T00:00:00+02:00</updated>
     <id>http://jlaine.net/2010/02/14/new-zealand-in-black-and-white</id>
     <content type="html"><![CDATA[<p><a href="http://www.flickr.com/photos/jarkko/3273520632/" title="High Tide by supervillain, on Flickr"><img src="http://farm4.static.flickr.com/3312/3273520632_e0a3af6af4.jpg" width="500" height="151" alt="High Tide" /></a></p>
 <p>We had the luxury of spending six weeks around New Zealand in last February and March, including a visit to <a href="http://www.webstock.org.nz/">Webstock &#8217;09</a>. This year&#8217;s conference is about to start within hours, and while I won&#8217;t be able to attend this time, I will celebrate the event by publishing the <span class="caps">SVG</span> New Zealand map I produced for the travelogue book of our trip (click the map to get to the <span class="caps">SVG</span> version):</p>
@@ -701,7 +726,7 @@
   <entry>
     <title type="html"><![CDATA[Adventures in Online Shopping with Shopping4net.com]]></title>
     <link href="http://jlaine.net/2009/10/19/adventures-in-online-shopping-with-shopping4net-com/"/>
-    <updated>2009-10-19T00:00:00+01:00</updated>
+    <updated>2009-10-19T00:00:00+03:00</updated>
     <id>http://jlaine.net/2009/10/19/adventures-in-online-shopping-with-shopping4net-com</id>
     <content type="html"><![CDATA[<p><strong>Update Nov 24: Turned out I indeed was too optimistic. <a href="#updates">Updated the timeline</a></strong></p>
 
@@ -842,7 +867,7 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
   <entry>
     <title type="html"><![CDATA[Ruby/Rails/BDD training in Helsinki in April]]></title>
     <link href="http://jlaine.net/2009/02/19/ruby-rails-bdd-training-in-helsinki-in-april/"/>
-    <updated>2009-02-19T00:00:00+00:00</updated>
+    <updated>2009-02-19T00:00:00+02:00</updated>
     <id>http://jlaine.net/2009/02/19/ruby-rails-bdd-training-in-helsinki-in-april</id>
     <content type="html"><![CDATA[<p><strong>Note</strong> The actual class will be taught in Finnish</p>
 <p>Two years ago we joined forces with Helsinki Polytechnic Stadia to organize a Ruby/Rails class for both students of the school and a couple of attendees from the business world. The class was a success.</p>
@@ -864,7 +889,7 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
   <entry>
     <title type="html"><![CDATA[Build your green home]]></title>
     <link href="http://jlaine.net/2008/10/04/build-your-green-home/"/>
-    <updated>2008-10-04T00:00:00+01:00</updated>
+    <updated>2008-10-04T00:00:00+03:00</updated>
     <id>http://jlaine.net/2008/10/04/build-your-green-home</id>
     <content type="html"><![CDATA[<p>The &#8220;summer project&#8221; for <a href="http://innovatebig.com/">Rod</a>, me and <a href="http://www.linkedin.com/in/lorenbaxter">Loren</a>, <a href="http://ecohomeresource.com/">EcoHomeResource</a> is now live. The site is a hub of information and news for everyone wanting to build a green home or to make their current apartments more eco-friendly.</p>
 <p>My dream has for quite some time (since reading <a href="http://www.amazon.com/gp/redirect.html?ie=UTF8&amp;location=http%3A%2F%2Fwww.amazon.com%2FNatural-Capitalism-Creating-Industrial-Revolution%2Fdp%2F0316353000%2F&amp;tag=jlainenet-20&amp;linkCode=ur2&amp;camp=1789&amp;creative=9325">Natural Capitalism</a> and <a href="http://www.amazon.com/gp/redirect.html?ie=UTF8&amp;location=http%3A%2F%2Fwww.amazon.com%2FCradle-Remaking-Way-Make-Things%2Fdp%2F0865475873%2F&amp;tag=jlainenet-20&amp;linkCode=ur2&amp;camp=1789&amp;creative=9325">Cradle to Cradle</a>, to be exact) been to build us a <a href="http://www.redferret.net/?p=8707">carbon-positive home</a>, so the project has been spot-on for me.</p>
@@ -876,7 +901,7 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
   <entry>
     <title type="html"><![CDATA[Unplugged]]></title>
     <link href="http://jlaine.net/2008/10/03/unplugged/"/>
-    <updated>2008-10-03T00:00:00+01:00</updated>
+    <updated>2008-10-03T00:00:00+03:00</updated>
     <id>http://jlaine.net/2008/10/03/unplugged</id>
     <content type="html"><![CDATA[<p>Early last year I was shopping for in-canal earplugs because I wanted a pair of reasonably sound-isolating plugs that <strong>stay in my ears</strong>, even when running or biking. The standard iPod plugs are not meant for me. Even if I could stand the sound quality (which I don&#8217;t), all I have to do is to lean my head on one side and the earplug drops on the ground. The same goes pretty much for all the &#8220;normal&#8221; earplugs, thus I needed more drastic measures.</p>
 <p>My first idea was to buy a pair of <a href="http://www.amazon.com/Sennheiser-CX300-B-Earbuds-Black/dp/B000E6G9RI/">Sennheiser CX300</a> plugs, cause I&#8217;d had a couple of different Sennheisers in the past and been fairly happy with all of them. <a href="http://imaj.es/">James</a> proposed that I&#8217;d get <a href="http://www.amazon.com/Shure-E2c-n-Sound-Isolating-Earphones/dp/B000E5GKW8">Shure E2C&#8217;s</a> instead; he&#8217;d used both and thought the Shures were vastly superior, sitting tighter in the ear and being better sound-isolating. I believed him and ordered a pair from Amazon.co.uk, which he then brought to our Caboose meetup in Paris.</p>
@@ -891,7 +916,7 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
   <entry>
     <title type="html"><![CDATA[Fernando]]></title>
     <link href="http://jlaine.net/2008/10/02/fernando/"/>
-    <updated>2008-10-02T00:00:00+01:00</updated>
+    <updated>2008-10-02T00:00:00+03:00</updated>
     <id>http://jlaine.net/2008/10/02/fernando</id>
     <content type="html"><![CDATA[<p>There was <a href="http://developer.apple.com/iphone/program/">something in the air</a> that night,<br />
 the stars were bright, Fernando.</p>
@@ -903,7 +928,7 @@ for <a href="http://furbo.org/2008/10/01/redacted/">liberty</a>, Fernando.</p>
   <entry>
     <title type="html"><![CDATA[A Week of Ruby/Rails/BDD/Ajax Training in December]]></title>
     <link href="http://jlaine.net/2008/09/24/a-week-of-ruby-rails-bdd-ajax-training-in-december/"/>
-    <updated>2008-09-24T00:00:00+01:00</updated>
+    <updated>2008-09-24T00:00:00+03:00</updated>
     <id>http://jlaine.net/2008/09/24/a-week-of-ruby-rails-bdd-ajax-training-in-december</id>
     <content type="html"><![CDATA[<p>After my last Ruby on Rails workshop held last year I&#8217;ve often been asked when there is going to be another one. Here it comes.</p>
 <p>December 1st to 5th, we will join forces with <a href="http://tarvainen.wordpress.com/">Antti Tarvainen</a> from <a href="http://leonidasoy.com/">Leonidas</a> and give <a href="http://rapidstraining.fi/">a week of one-day workshops</a> in Helsinki with separate but closely related themes:</p>
@@ -922,7 +947,7 @@ for <a href="http://furbo.org/2008/10/01/redacted/">liberty</a>, Fernando.</p>
   <entry>
     <title type="html"><![CDATA[Making emacs keybindings work with zsh and screen]]></title>
     <link href="http://jlaine.net/2008/09/16/making-emacs-keybindings-work-with-zsh-and-screen/"/>
-    <updated>2008-09-16T00:00:00+01:00</updated>
+    <updated>2008-09-16T00:00:00+03:00</updated>
     <id>http://jlaine.net/2008/09/16/making-emacs-keybindings-work-with-zsh-and-screen</id>
     <content type="html"><![CDATA[<p>I&#8217;ve always (as in from the early OpenACS days) been an emacs guy on linux. Sure, I do most of my development on TextMate these days, but for all text editing on servers I still prefer emacs and have its keybindings tattooed deep in my brain:</p>
 <table>
@@ -955,207 +980,6 @@ startup_message off
 <pre><code class="shell">bindkey -e
 </code></pre>
 <p>Adding that one line into my <code>.zshrc</code> among the other keybindings solved the problem. Now I&#8217;m one happy zsh+screen camper, although my journey is still at a very early stage and I&#8217;m yet to learn the more advanced zsh goodies. The nice thing has been that without learning really anything new (or changing any habits), I&#8217;m still benefiting from using zsh.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[From Rails Ajax helpers to Low Pro, Part 3 (+ some announcements)]]></title>
-    <link href="http://jlaine.net/2008/09/09/from-rails-ajax-helpers-to-low-pro-part-3-some-announcements/"/>
-    <updated>2008-09-09T00:00:00+01:00</updated>
-    <id>http://jlaine.net/2008/09/09/from-rails-ajax-helpers-to-low-pro-part-3-some-announcements</id>
-    <content type="html"><![CDATA[<p><em>This is the third part of my introduction to Low Pro series, something that has been taken&#8230; hmmm&#8230; a while. The two first parts can be found here:</em></p>
-<ul>
-	<li><a href="http://jlaine.net/2007/8/3/from-rails-ajax-helpers-to-low-pro-part-i">Part 1</a></li>
-	<li><a href="http://jlaine.net/2007/8/6/from-rails-ajax-helpers-to-low-pro-part-2">Part 2</a></li>
-</ul>
-<p><em>Coincidentally, all these pieces are also part of my new ebook, <a href="http://peepcode.com/products/unobtrusive-prototypejs-draft">Unobtrusive Prototype</a>, straight from the Peepcode oven. If you liked the articles, you might really enjoy the book. It will have all the code rewritten for Rails 2.1 (as has this article btw), it is professionally edited unlike my rumblings here, and has a much wider coverage of Low Pro, including writing your own Behaviors and event delegation.</em></p>
-<p><em>I also managed to give a <a href="http://en.oreilly.com/railseurope2008/public/schedule/detail/3584">tutorial</a> on the topics covered in the book in <a href="http://en.oreilly.com/railseurope2008/public/content/home">RailsConf Europe</a> in Berlin last week. The <a href="http://www.slideshare.net/supervillain/accessible-ajax-on-rails-presentation/">tutorial slides can be found at Slideshare</a>, where they also got a short featured treatment.</em></p>
-<div style="width:425px;text-align:left" id="__ss_578598">
-<p><object style="margin:0px" width="425" height="355"><br />
-<param name="movie" value="http://static.slideshare.net/swf/ssplayer2.swf?doc=railsconfeurope2008-1220336237309478-9&stripped_title=accessible-ajax-on-rails-presentation" /><br />
-<param name="allowFullScreen" value="true"/><br />
-<param name="allowScriptAccess" value="always"/><br />
-  <embed src="http://static.slideshare.net/swf/ssplayer2.swf?doc=railsconfeurope2008-1220336237309478-9&stripped_title=accessible-ajax-on-rails-presentation" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"><br />
-  </embed><br />
-</object></p>
-</div>
-<p><em>I moved the <a href="http://github.com/jarkko/unobtrusive_book_code/">sample code for the articles and the book</a> to <a href="http://github.com/jarkko">my GitHub account</a>. The <a href="http://github.com/jarkko/unobtrusive_book_code/tree/chapter-5">Chapter 5 branch</a> should be pretty much where this article starts at. If you&#8217;re not into git (yet), just click the &#8220;Download&#8221; button on the page to suck a zip file of the whole source code to your box.</em></p>
-<h3>Going <span class="caps">DRY</span> with multiple elements</h3>
-<p>Now that we have taken care of adding items to our to-do lists, let&#8217;s have a look at the the action of ticking items done and undone. The <code>index.html.erb</code> view uses the Rails&#8217; partial mechanism to display the lists of items. Here&#8217;s how the <code>_item.html.erb</code> partial looks like:</p>
-<pre><code class="builder">&lt;% @item = item %&gt;
-&lt;li id="&lt;%= item.state %&gt;_&lt;%= item.id %&gt;"&gt;
-  &lt;%= check_box("item[]", :done, :id =&gt; "#{item.state}_box_#{item.id}") %&gt;
-  &lt;label for="&lt;%= "#{item.state}_box_#{item.id}" %&gt;"&gt;
-    &lt;%= item.description %&gt;
-  &lt;/label&gt;
-  &lt;%= observe_field("#{item.state}_box_#{item.id}", 
-                    :url =&gt; item_path(item), 
-                    :method =&gt; :put) %&gt;
-&lt;/li&gt;
-</code></pre>
-<p><code>observe_field</code> is a Rails helper that attaches an Javascript observer to the field in question. Whenever the field is changed (or every <em>n</em> seconds, if the time n is given as a parameter to the <code>observe_field</code> call), an Ajax call (in this case to <code>item_path(item)</code>) is made. In our app, the responding <code>update</code> action will then update the state of the item in the database and return Javascript that will move the item to the correct list on the page.</p>
-<p>Here&#8217;s an example of what the list of items looks like to the browser:</p>
-<pre><code class="html">&lt;li id="undone_1"&gt;
-&lt;input id="undone_box_1" name="item[1][done]" type="checkbox" value="1" /&gt;
-&lt;input name="item[1][done]" type="hidden" value="0" /&gt;
-&lt;label for="undone_box_1"&gt;
-  Buy carrots
-&lt;/label&gt;
-&lt;script type="text/javascript"&gt;
-//&lt;![CDATA[
-new Form.Element.EventObserver('undone_box_1',
-                  function(element, value) {
-                    new Ajax.Request('/items/1', 
-                                     {asynchronous:true, 
-                                      evalScripts:true, 
-                                      method:'put', 
-                                      parameters:value + '&amp;authenticity_token=' +
-                encodeURIComponent('8d829cfcccdf4d2b494891ef47cc95893faa361e')})})
-//]]&gt;
-&lt;/script&gt;
-&lt;/li&gt;
-&lt;li id="undone_2"&gt;
-&lt;input id="undone_box_2" name="item[2][done]" type="checkbox" value="1" /&gt;
-&lt;input name="item[2][done]" type="hidden" value="0" /&gt;
-&lt;label for="undone_box_2"&gt;
-  Return bottles to recycling
-&lt;/label&gt;
-&lt;script type="text/javascript"&gt;
-//&lt;![CDATA[
-new Form.Element.EventObserver('undone_box_2', 
-                  function(element, value) {
-                    new Ajax.Request('/items/2', 
-                                     {asynchronous:true, 
-                                       evalScripts:true, method:'put', 
-                                       parameters:value + '&amp;authenticity_token=' +
-                encodeURIComponent('8d829cfcccdf4d2b494891ef47cc95893faa361e')})})
-//]]&gt;
-&lt;/script&gt;
-&lt;/li&gt;
-</code></pre>
-<p>Imagine a list that has a couple dozen items. Not exactly <span class="caps">DRY</span>, is it, especially compared to how clean the source code of a Rails app tends to be?</p>
-<p>Even if we set aside all the objections for the ugly code above, there is still the issue of the form not working at all without Javascript. Not good.</p>
-<p>Let&#8217;s again start our round of refactoring by making the checkboxes work without javascript. For that, we&#8217;ll remove the <code>observe_field</code> call from the partial:</p>
-<pre><code class="builder">&lt;% @item = item %&gt;
-&lt;li id="&lt;%= item.state %&gt;_&lt;%= item.id %&gt;"&gt;
-  &lt;%= check_box("item[]", :done, :id =&gt; "#{item.state}_box_#{item.id}") %&gt;
-  &lt;label for="&lt;%= "#{item.state}_box_#{item.id}" %&gt;"&gt;
-    &lt;%= item.description %&gt;
-  &lt;/label&gt;
-&lt;/li&gt;
-</code></pre>
-<p>Now, to make our form work again, we need to figure out what it&#8217;s supposed to do and where we should send it to. Thinking restfully, by submitting a form with multiple items checked or unchecked, we are modifying a <em>to-do list</em>. Let&#8217;s thus create a simple controller for the imaginary List resource (remember, resources don&#8217;t need to map directly to ActiveRecord models).</p>
-<pre><code>script/generate controller Lists</code></pre>
-<p>Then add the necessary route to <code>config/routes.rb</code></p>
-<pre><code class="ruby">  map.resources :items
-  map.resource :list
-</code></pre>
-<p>For simplicity&#8217;s sake, let&#8217;s pretend our app can only handle a single to-do list (it&#8217;s our personal to-do list app, after all) and use the single form of resource routes with it.</p>
-<p>In our to-do list page, we currently have a form that&#8217;s unable to submit anything. Let&#8217;s add a submit button to it and also change the form in <code>app/views/items/index.html.erb</code> to point to the lists controller:</p>
-<pre><code class="builder">&lt;% form_for :list, :url =&gt; list_path, :html =&gt; {:method =&gt; :put} do |f| %&gt;
-  &lt;h3&gt;
-    Not done:
-  &lt;/h3&gt;
-
-  &lt;ul id="undone"&gt;
-    &lt;%= render :partial =&gt; "item", :collection =&gt; @not_done %&gt;
-  &lt;/ul&gt;
-
-  &lt;h3&gt;
-    Done:
-  &lt;/h3&gt;
-
-  &lt;ul id="done"&gt;
-    &lt;%= render :partial =&gt; "item", :collection =&gt; @done %&gt;
-  &lt;/ul&gt;
-  
-  &lt;p&gt;
-    &lt;%= submit_tag "Save changes", :id =&gt; "save_changes" %&gt;
-  &lt;/p&gt;
-&lt;% end %&gt;
-</code></pre>
-<p>Now let&#8217;s create a really simple update action to our new controller for the mass assignment of items:</p>
-<pre><code class="ruby">class ListsController &lt; ApplicationController
-  def update
-    params[:item].each do |key, values|
-      item = Item.find(key)
-      item.update_attributes(values)
-    end
-    
-    redirect_to items_path
-  end
-end
-</code></pre>
-<p>If you now test the application with Javascript turned off, updating the item state should work fine. We can thus continue to the hijacking phase.</p>
-<p>First of all, let&#8217;s hide the submit button because we don&#8217;t need it in the Ajax&#8217;ed form.</p>
-<pre><code class="javascript">Event.addBehavior({
-  'body' : function() {
-    $('add_form').hide();
-    $('add_new_link').show();
-    $('save_changes').hide();
-  },
-  '#add_new_link:click' : function(e) {
-    $('add_form').toggle();
-    e.stop();
-  },
-  '#add_form' : Remote.Form
-});
-</code></pre>
-<p>Now, what we need to do is to make clicking a checkbox to call the update action for the current item. This is easily done in the js file:</p>
-<pre><code class="javascript">Event.addBehavior({
-  'body' : function() {
-    $('add_form').hide();
-    $('add_new_link').show();
-    $('save_changes').hide();
-  },
-  '#add_new_link:click' : function(e) {
-    $('add_form').toggle();
-    e.stop();
-  },
-  '#add_form' : Remote.Form,
-  'input[type=checkbox]:click' : function() {
-    var id = this.id.match(/\d{1,}$/);
-    var auth_token = this.up('form').
-                          select('[name=authenticity_token]').
-                          first().value;
-    new Ajax.Request('/items/' + id, 
-                     {asynchronous:true, 
-                      evalScripts:true, 
-                      method: 'put',
-                      parameters: {
-                        authenticity_token: auth_token
-                      }});
-  }
-});
-</code></pre>
-<p>We use the CSS3 selector syntax to get every input of type checkbox, then fetch the item id from the element id using a regular expression and finally call the update method of the items controller to update the item. The cool thing about <code>addBehaviour</code> is that the behaviour is attached to all elements returned by the selector. Thus adding a single call function to our javascript file automatically attaches the function to as many list items as needed.</p>
-<p>Note that because of the spam-defense mechanism in Rails, we also need to send the authenticity token with our call. We use the cool Prototype selector functions to easily get to the current token inside the form.</p>
-<p>An astute reader might have noticed that if you click an item in the list, and then try to re-click the same item after it&#8217;s moved to the opposing list, it&#8217;s not moved back automatically. This is because our Ajax update action created a new list item and added it to the list, and by default <code>Event.addBehaviour</code> does not reattach behaviours after each Ajax call.</p>
-<p>We have a couple of ways to fix the situation. The simplest would be to add this line to our Javascript file:</p>
-<pre><code class="javascript">Event.addBehavior.reassignAfterAjax = true;</code></pre>
-<p>However, the simplest way is not always the best. By reassigning behaviours automatically after each Ajax call we can deteriorate the Javascript performance considerably, and the effect gets larger when there are more items watched.</p>
-<p>Second, a bit more surgical option would be to reload the <code>addBehaviour</code> rules in a callback of the Ajax call:</p>
-<pre><code class="javascript">onComplete : function() {
-  Event.addBehavior.reload();
-}
-</code></pre>
-<p>This way the behaviours would only be reassigned after the particular Ajax call, not all of them. However, it&#8217;s still a bit heavy-handed.</p>
-<p>Let&#8217;s take a step back and think how we could avoid reassigning all the behaviours for the new element. An obvious answer would of course be not to create a new element at all, but instead just move the existing one (with all the behaviours already attached).</p>
-<p>In app/views/items/update.js.rjs we can see that the code first removes a list item and then adds a new one into the list of items in the opposite state:</p>
-<pre><code class="ruby">page["#{@item.opposite_state}_#{@item.id}"].remove
-page.insert_html :top, @item.state, :partial =&gt; "item"
-</code></pre>
-<p>We can fairly easily change that code to not delete/create a new node to the page, but instead move the list item to the correct place in the <span class="caps">DOM</span>:</p>
-<pre><code class="builder">page &lt;&lt; "
-  var el = $('#{@item.opposite_state}_#{@item.id}');
-  $('#{@item.state}').insert({ top: el.remove() });
-  el.id = '#{@item.state}_#{@item.id}';
-"
-</code></pre>
-<p>This time we don&#8217;t use the <span class="caps">RJS</span> syntax but instead just output plain old Javascript back to the browser. We first fetch the list element we&#8217;re about to move. We then remove it from the <span class="caps">DOM</span> tree, just to again insert it to the bottom of the list it now belongs to. In the end we change the id of the item to reflect its new state as well.</p>
-<p>If you now try the app again, you should be able to tick and untick the items at will, and everything should work just fine. The behaviour assigned to the list element on the page load sticks to it through all the moving and renaming of the element.</p>
-<p>&#8212;</p>
-<p><a href="http://peepcode.com/products/unobtrusive-prototypejs-draft"><img src="http://jlaine.net/assets/2008/9/9/unobtrusive-cover.png" alt="" /></a></p>
-<p><em>If you enjoyed the article, consider grabbing a copy of my new ebook, <a href="http://peepcode.com/products/unobtrusive-prototypejs-draft">Unobtrusive Prototype</a>, straight from the Peepcode oven. It will have all the code rewritten for Rails 2.1, it is professionally edited unlike my rumblings here, and has a much wider coverage of Low Pro, including writing your own Behaviors and event delegation. <strong>If you&#8217;re quick and have a close look at my presentation slides in the beginning of this article, you might even find a way to get your copy for half the normal price</strong>!</em></p>]]></content>
   </entry>
   
 </feed>

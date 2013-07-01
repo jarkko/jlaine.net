@@ -11,8 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="(cross-posted to dotherightthing.com)
-Last weeks, the air has been thick about even Sony BMG, the last of the big four music labels finally &hellip;">
+  <meta name="description" content="I just run into the following error when running autotest within a Rails app: /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +82,59 @@ Last weeks, the air has been thick about even Sony BMG, the last of the big four
       
   <header>
     
+      <h1 class="entry-title"><a href="/2008/01/15/note-to-self-when-autotest-fails/">Note to Self: When Autotest Fails&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-15T00:00:00+02:00" pubdate data-updated="true">Jan 15<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just run into the following error when running autotest within a Rails app:</p>
+<pre><code>
+/Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:402:in `to_constant_name': Anonymous modules have no name to be referenced by (ArgumentError)
+	from /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:214:in `qualified_name_for'
+	from /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:477:in `const_missing'
+	from /Users/jarkko/Sites/koulutusweb/vendor/plugins/rspec/lib/spec/example/example_group_factory.rb:7:in `reset'
+	from /Users/jarkko/Sites/koulutusweb/vendor/plugins/rspec/lib/spec/example/example_group_factory.rb:59
+	from /Library/Ruby/Site/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /Library/Ruby/Site/1.8/rubygems/custom_require.rb:27:in `require'
+	from /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:496:in `require'
+	from /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:342:in `new_constants_in'
+	 ... 59 levels...
+	from /Library/Ruby/Gems/1.8/gems/rspec-1.0.8/lib/spec/runner/command_line.rb:17:in `run'
+	from /Library/Ruby/Gems/1.8/gems/rspec-1.0.8/bin/spec:3
+	from /usr/bin/spec:19:in `load'
+	from /usr/bin/spec:19
+</code></pre>
+<p>It turned out I had typed &#8220;sudo gem update zentest&#8221; to get the latest version of the gem. However, the correct way would have been to use the camel-cased version ZenTest. The funny thing is, that if you run the command in lower case (like I&#8217;m use to do with RubyGems), you <em>will</em> get ZenTest, it&#8217;s just version 3.5.0 (as opposed to 3.8 that I supposedly got).</p>
+<p>So here&#8217;s hoping that the next time I do the same mistake, this page will pop up from the big G.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2008/01/09/sony-bmg-goes-drm-free-or-sony-bmg-the-dumbest-of-the-dumb/">Sony BMG &#8220;Goes DRM-free&#8221; (or: Sony BMG, the Dumbest of the Dumb)</a></h1>
     
     
@@ -99,7 +151,7 @@ Last weeks, the air has been thick about even Sony BMG, the last of the big four
   
 
 
-<time datetime="2008-01-09T00:00:00+00:00" pubdate data-updated="true">Jan 9<span>th</span>, 2008</time>
+<time datetime="2008-01-09T00:00:00+02:00" pubdate data-updated="true">Jan 9<span>th</span>, 2008</time>
         
       </p>
     
@@ -154,7 +206,7 @@ Last weeks, the air has been thick about even Sony BMG, the last of the big four
   
 
 
-<time datetime="2008-01-03T00:00:00+00:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2008</time>
+<time datetime="2008-01-03T00:00:00+02:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2008</time>
         
       </p>
     
@@ -192,7 +244,7 @@ Fields Inline&#8221;. However, I don&#8217;t get any royalties from the book sal
   
 
 
-<time datetime="2008-01-01T00:00:00+00:00" pubdate data-updated="true">Jan 1<span>st</span>, 2008</time>
+<time datetime="2008-01-01T00:00:00+02:00" pubdate data-updated="true">Jan 1<span>st</span>, 2008</time>
         
       </p>
     
@@ -227,7 +279,7 @@ Fields Inline&#8221;. However, I don&#8217;t get any royalties from the book sal
   
 
 
-<time datetime="2007-12-10T00:00:00+00:00" pubdate data-updated="true">Dec 10<span>th</span>, 2007</time>
+<time datetime="2007-12-10T00:00:00+02:00" pubdate data-updated="true">Dec 10<span>th</span>, 2007</time>
         
       </p>
     
@@ -268,7 +320,7 @@ Fields Inline&#8221;. However, I don&#8217;t get any royalties from the book sal
   
 
 
-<time datetime="2007-12-06T00:00:00+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2007</time>
+<time datetime="2007-12-06T00:00:00+02:00" pubdate data-updated="true">Dec 6<span>th</span>, 2007</time>
         
       </p>
     
@@ -311,7 +363,7 @@ Fields Inline&#8221;. However, I don&#8217;t get any royalties from the book sal
   
 
 
-<time datetime="2007-12-03T00:00:00+00:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2007</time>
+<time datetime="2007-12-03T00:00:00+02:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2007</time>
         
       </p>
     
@@ -353,7 +405,7 @@ Fields Inline&#8221;. However, I don&#8217;t get any royalties from the book sal
   
 
 
-<time datetime="2007-10-25T00:00:00+01:00" pubdate data-updated="true">Oct 25<span>th</span>, 2007</time>
+<time datetime="2007-10-25T00:00:00+03:00" pubdate data-updated="true">Oct 25<span>th</span>, 2007</time>
         
       </p>
     
@@ -393,7 +445,7 @@ Fields Inline&#8221;. However, I don&#8217;t get any royalties from the book sal
   
 
 
-<time datetime="2007-09-20T00:00:00+01:00" pubdate data-updated="true">Sep 20<span>th</span>, 2007</time>
+<time datetime="2007-09-20T00:00:00+03:00" pubdate data-updated="true">Sep 20<span>th</span>, 2007</time>
         
       </p>
     
@@ -436,7 +488,7 @@ Fields Inline&#8221;. However, I don&#8217;t get any royalties from the book sal
   
 
 
-<time datetime="2007-09-19T00:00:00+01:00" pubdate data-updated="true">Sep 19<span>th</span>, 2007</time>
+<time datetime="2007-09-19T00:00:00+03:00" pubdate data-updated="true">Sep 19<span>th</span>, 2007</time>
         
       </p>
     
@@ -454,66 +506,6 @@ Fields Inline&#8221;. However, I don&#8217;t get any royalties from the book sal
 <p>Now that I got to use an iPhone in real life, I can say the two UI&#8217;s are like from different planets. It&#8217;s nice to hear that Nokia and others are coming out with touch screen phones, but I wonder if they ever get it when it comes to usability. Symbian in E90 doesn&#8217;t really reassure me in that regard.</p>
 <p>Would I swap my omnipotent Nokia for a device using years-old phone technology? In a heartbeat. While the E90 is really nice and all, it&#8217;s an epitome of feature list competition where the more buzzwords your feature list contains, the better your phone is. And while getting 3.5G speeds is really cool, the coverage is still so bad around Finland that just having Edge for a while (until the 3G iPhone comes out) wouldn&#8217;t be too bad.</p>
 <p>It kind of hurts me to say this as a Finn, but at the moment it seems that a newcomer in the mobile phone market has beaten the current leader pretty badly. For the customer and the market in general, that&#8217;s all but certainly a good thing.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/09/06/making-globalize-play-nice-with-specs/">Making Globalize Play Nice With Specs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-09-06T00:00:00+01:00" pubdate data-updated="true">Sep 6<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We&#8217;re using <a href="http://www.globalize-rails.org/globalize/">Globalize</a> for our latest Rails project and I just ran against a problem when running specs with rake.</p>
-<p>We specify the base language and the locales our app supports in environment.rb:</p>
-<pre><code class="ruby">include Globalize
-Locale.set_base_language('en-US')
-SupportedLocales.define(['fi-FI', 'sv-SE', 'en-US'], 'en-US')
-</code></pre>
-<p>However, <code>SupportedLocales.define</code> expects that the language and country data exists in the database, otherwise it will die miserably. Of course, when you run specs with rake, it will wipe the database as its first action so you&#8217;re pretty much out of luck:</p>
-<pre><code>.../vendor/plugins/globalize/lib/globalize/localization/supported_locales.rb:282:in `setup': Globalize base language undefined! (RuntimeError)</code></pre>
-<p>I fixed this by copying the <code>db:test:clone</code> rake task from <code>[RAILS]/railties/lib/tasks/databases.rake</code> to its own file in <code>lib/tasks</code> and modifying it so that it will load some language and country fixtures automatically:</p>
-<pre><code class="ruby">require(File.join(RAILS_ROOT, 'vendor', 'rails', 'activerecord', 'lib', 'active_record', 'fixtures'))
-
-namespace :db do
-  namespace :test do
-    desc "Recreate the test database from the current environment's database schema"
-    task :clone =&gt; %w(db:schema:dump db:test:purge) do
-      ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations['test'])
-      ActiveRecord::Schema.verbose = false
-      Rake::Task["db:schema:load"].invoke
-      Fixtures.create_fixtures("#{RAILS_ROOT}/spec/fixtures", [:globalize_countries, :globalize_languages])
-    end
-  end
-end
-</code></pre>
-<p>The only thing differing from the original task is the last line creating the fixtures. For some reasons I also need to explicitly require the fixtures file on the top of the file. Aside from this, I needed to change Rakefile in the root of our Rails app to require <code>config/environment.rb</code> instead of <code>config/boot.rb</code> for everything to work.</p>
-<p>Of course your fixture files need to include all the languages and countries you&#8217;re specifying in your <code>SupportedLocales.define</code> call.</p>
-<p>After these modifications, rake runs through fine again.</p></div>
   
   
 

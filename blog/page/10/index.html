@@ -11,8 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="
-Late as always, here&#8217;s the DOM structure of the jlaine.net homepage visualized by Websites as Graphs. (via Jakob)">
+  <meta name="description" content="When submitting forms in a web app, you often need to check whether a variable is set and not an empty string, because unfilled text input fields &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +82,72 @@ Late as always, here&#8217;s the DOM structure of the jlaine.net homepage visual
       
   <header>
     
+      <h1 class="entry-title"><a href="/2006/06/14/hidden-rails-goodies-blank/">Hidden Rails Goodies: Blank?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-06-14T00:00:00+03:00" pubdate data-updated="true">Jun 14<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When submitting forms in a web app, you often need to check whether a variable is set <em>and</em> not an empty string, because unfilled text input fields will be set but empty. In OpenACS there was a procedure called <code>exists_and_not_null</code> for this.</p>
+<p>In Ruby you could do something like:</p>
+<filter:code lang="ruby">
+<p>if params[:string] and !params[:string].empty?</p>
+</filter:code>
+<p>However, that is both laborious and risky. If the variable happened to be something else than a string, calling <code>empty?</code> would bomb.</p>
+<p>Fortunately, Rails defines a pretty much undocumented method <code>blank?</code>. <code>blank?</code> is defined in the <code>Object</code> class so every possible class in a Rails app will respond to it. By default, <code>blank?</code> returns true only for <code>nil</code>, <code>false</code>, an empty array or hash and &quot;&quot; (an empty string, after stripping the whitespace). Of course, you can overwrite the method in your own classes to make <code>blank?</code> behave as you please for them.</p>
+<filter:code lang="ruby">
+<p>&gt;&gt; 5.blank?<br />
+=&gt; false<br />
+&gt;&gt; o = Object.new<br />
+=&gt; #<Object:0x10f8c6c><br />
+&gt;&gt; o.blank?<br />
+=&gt; false<br />
+&gt;&gt; n = nil<br />
+=&gt; nil<br />
+&gt;&gt; n.blank?<br />
+=&gt; true<br />
+&gt;&gt; n = &quot;&quot;<br />
+=&gt; &quot;&quot;<br />
+&gt;&gt; n.blank?<br />
+=&gt; true<br />
+&gt;&gt; f = false<br />
+=&gt; false<br />
+&gt;&gt; f.blank?<br />
+=&gt; true</p>
+</filter:code>
+<p>So using <code>blank?</code> you can replace the code above by</p>
+<filter:code lang="ruby">
+<p>unless params[:string].blank?</p>
+</filter:code>
+<p>and you&#8217;re good to go. Enjoy!</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2006/06/13/jlaine-net-visualized/">jlaine.net Visualized</a></h1>
     
     
@@ -99,7 +164,7 @@ Late as always, here&#8217;s the DOM structure of the jlaine.net homepage visual
   
 
 
-<time datetime="2006-06-13T00:00:00+01:00" pubdate data-updated="true">Jun 13<span>th</span>, 2006</time>
+<time datetime="2006-06-13T00:00:00+03:00" pubdate data-updated="true">Jun 13<span>th</span>, 2006</time>
         
       </p>
     
@@ -135,7 +200,7 @@ Late as always, here&#8217;s the DOM structure of the jlaine.net homepage visual
   
 
 
-<time datetime="2006-06-09T00:00:00+01:00" pubdate data-updated="true">Jun 9<span>th</span>, 2006</time>
+<time datetime="2006-06-09T00:00:00+03:00" pubdate data-updated="true">Jun 9<span>th</span>, 2006</time>
         
       </p>
     
@@ -172,7 +237,7 @@ Late as always, here&#8217;s the DOM structure of the jlaine.net homepage visual
   
 
 
-<time datetime="2006-04-13T00:00:00+01:00" pubdate data-updated="true">Apr 13<span>th</span>, 2006</time>
+<time datetime="2006-04-13T00:00:00+03:00" pubdate data-updated="true">Apr 13<span>th</span>, 2006</time>
         
       </p>
     
@@ -209,7 +274,7 @@ Late as always, here&#8217;s the DOM structure of the jlaine.net homepage visual
   
 
 
-<time datetime="2006-04-06T00:00:00+01:00" pubdate data-updated="true">Apr 6<span>th</span>, 2006</time>
+<time datetime="2006-04-06T00:00:00+03:00" pubdate data-updated="true">Apr 6<span>th</span>, 2006</time>
         
       </p>
     
@@ -257,7 +322,7 @@ Late as always, here&#8217;s the DOM structure of the jlaine.net homepage visual
   
 
 
-<time datetime="2006-04-05T00:00:00+01:00" pubdate data-updated="true">Apr 5<span>th</span>, 2006</time>
+<time datetime="2006-04-05T00:00:00+03:00" pubdate data-updated="true">Apr 5<span>th</span>, 2006</time>
         
       </p>
     
@@ -292,7 +357,7 @@ Late as always, here&#8217;s the DOM structure of the jlaine.net homepage visual
   
 
 
-<time datetime="2006-04-03T00:00:00+01:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2006</time>
+<time datetime="2006-04-03T00:00:00+03:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2006</time>
         
       </p>
     
@@ -334,7 +399,7 @@ Late as always, here&#8217;s the DOM structure of the jlaine.net homepage visual
   
 
 
-<time datetime="2006-03-14T00:00:00+00:00" pubdate data-updated="true">Mar 14<span>th</span>, 2006</time>
+<time datetime="2006-03-14T00:00:00+02:00" pubdate data-updated="true">Mar 14<span>th</span>, 2006</time>
         
       </p>
     
@@ -371,7 +436,7 @@ Late as always, here&#8217;s the DOM structure of the jlaine.net homepage visual
   
 
 
-<time datetime="2006-03-14T00:00:00+00:00" pubdate data-updated="true">Mar 14<span>th</span>, 2006</time>
+<time datetime="2006-03-14T00:00:00+02:00" pubdate data-updated="true">Mar 14<span>th</span>, 2006</time>
         
       </p>
     
@@ -415,7 +480,7 @@ Late as always, here&#8217;s the DOM structure of the jlaine.net homepage visual
   
 
 
-<time datetime="2006-03-13T00:00:00+00:00" pubdate data-updated="true">Mar 13<span>th</span>, 2006</time>
+<time datetime="2006-03-13T00:00:00+02:00" pubdate data-updated="true">Mar 13<span>th</span>, 2006</time>
         
       </p>
     
@@ -423,52 +488,6 @@ Late as always, here&#8217;s the DOM structure of the jlaine.net homepage visual
 
 
   <div class="entry-content"><p>OK, I guess nothing coming from the <a href="http://www.uspto.gov/"><span class="caps">USPTO</span></a> could surprise me anymore, but <span class="caps">WTF</span>?!? This has got to be <a href="http://www.informationweek.com/story/showArticle.jhtml?articleID=180206472&amp;cid=RSSfeed_IWK_News">one of the most outrageous sweep-everything-under-one-umbrella patents</a> ever issued. I <a href="http://sidesh0w.com/weblog/2006/02/23/three_cheers_for_the_patent_office/">concur</a>.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/03/05/gbat/">GBAT</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-03-05T00:00:00+00:00" pubdate data-updated="true">Mar 5<span>th</span>, 2006</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>First things first: <a href="http://blog.guykawasaki.com">Guy Kawasaki is blogging</a>. I know, I know, old news. But if you haven&#8217;t checked <a href="http://blog.guykawasaki.com">his blog</a> yet, do it know. The guy (pun unintended) has made an <em>extensive</em> career as an Apple evangelist and later in the <acronym title="Venture Capital"><span class="caps">VC</span></acronym> world. He also seems to have a talent to write thoughtful and thought-provoking articles day in day out. And he&#8217;s got a proofreader for his blog.</p>
-<p>But that wasn&#8217;t my point today. Guy has created <a href="http://blog.guykawasaki.com/2006/02/gbat_score_high.html" title="Guy&#39;s Bozofication Aptitude Test">a test called <span class="caps">GBAT</span></a>, which is &#8220;a compilation of the best indicators of whether a company is sliding into bozosity&#8221;. <a href="http://electricpulp.com/gbat/">Electric Pulp has pushed the idea online</a> so you can easily test if <em>now</em> would be a good time to look for a new employer.</p>
-<p>I especially like the point number #6:</p>
-<blockquote>
-<p>Your HR department requires an <span class="caps">MBA</span> degree for any position; it also requires five to ten years work experience in an industry that is only four years old.</p>
-</blockquote>
-<p>That&#8217;s like straight from some of the early announcements for <a href="http://jobs.rubynow.com/">Rails jobs</a>.</p>
-<p><span class="caps">BTW</span>, <a href="http://www.odesign.fi">my company</a> scored 2. Well, maybe 1 actually, because the only two points came from the point #26:</p>
-<blockquote>
-<p>Your <span class="caps">CEO</span> writes a book.</p>
-</blockquote>
-<p>I&#8217;m not a real <span class="caps">CEO</span> and I&#8217;m just writing a thesis, not a real book (yet), so I refuse to score the whole two points for that question.</p></div>
   
   
 
