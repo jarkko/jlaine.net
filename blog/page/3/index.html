@@ -11,7 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="This is the third part of my introduction to Low Pro series, something that has been taken&#8230; hmmm&#8230; a while. The two first parts can be &hellip;">
+  <meta name="description" content="I&#8217;ve always (as in from the early OpenACS days) been an emacs guy on linux. Sure, I do most of my development on TextMate these days, but for &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/09/16/making-emacs-keybindings-work-with-zsh-and-screen/">Making Emacs Keybindings Work With Zsh and Screen</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-16T00:00:00+03:00" pubdate data-updated="true">Sep 16<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve always (as in from the early OpenACS days) been an emacs guy on linux. Sure, I do most of my development on TextMate these days, but for all text editing on servers I still prefer emacs and have its keybindings tattooed deep in my brain:</p>
+<table>
+	<tr>
+		<td><em>Ctrl-a</em></td>
+		<td>Beginning of line</td>
+	</tr>
+	<tr>
+		<td><em>Ctrl-e</em></td>
+		<td>End of line</td>
+	</tr>
+	<tr>
+		<td><em>Ctrl-k</em></td>
+		<td>Kill the rest of the line</td>
+	</tr>
+</table>
+<p>Of course, these are the default bindings in bash as well.</p>
+<p>However, I&#8217;m using <a href="http://www.mattcutts.com/blog/a-quick-tutorial-on-screen/"><span class="caps">GNU</span> screen</a> to stay sane while working over unreliable server connections. Screen uses <code>Ctrl-a</code> by default as its escape key so to make it work correctly, I&#8217;ve had this in my <code>.bash_profile</code> files for a long time:</p>
+<pre><code class="shell">alias scr="TERM=vt100 ; screen -e^Oo"
+alias scd="TERM=vt100 ; screen -d -r"
+</code></pre>
+<p>That makes (among other things) <code>Ctrl-o</code> to be the escape key binding and <em>lets <code>Ctrl-a</code> do the thing it&#8217;s supposed to do</em>.</p>
+<p>However, I&#8217;ve heard so much talk about <a href="http://friedcpu.wordpress.com/2007/07/24/zsh-the-last-shell-youll-ever-need/">zsh</a> from many directions lately, that I had to try it out myself. With zsh (<a href="http://friedcpu.wordpress.com/2007/07/24/zsh-the-last-shell-youll-ever-need/"><code>.zshrc</code> downloaded from here</a>) the keys worked fine without screen, but within a screen session they broke. Here&#8217;s what I had to do to make everything work.</p>
+<p>First, setting the default escape key in the screen alias command didn&#8217;t work. I had to do it in the <code>~/.screenrc</code> file instead:</p>
+<pre><code class="shell">escape ^Oo
+startup_message off
+</code></pre>
+<p>(The second line just turns off the annoying splash screen)</p>
+<p>However, with this and the default key bindings <code>Ctrl-a</code> and friends still didn&#8217;t work in screen, they were just output as literals on the screen. Some determined googling finally <a href="http://my.opera.com/blackbelt_jones/blog/2007/06/05/zsh-prompt-configuration-issue-solved">turned up the key</a> (pun unintended) to the puzzle:</p>
+<pre><code class="shell">bindkey -e
+</code></pre>
+<p>Adding that one line into my <code>.zshrc</code> among the other keybindings solved the problem. Now I&#8217;m one happy zsh+screen camper, although my journey is still at a very early stage and I&#8217;m yet to learn the more advanced zsh goodies. The nice thing has been that without learning really anything new (or changing any habits), I&#8217;m still benefiting from using zsh.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -804,43 +869,6 @@ command "rm -rf /opt/sites/mysite/releases/20080220092659" failed on myserver
 	<li><a href="http://www.apple.com/aperture/">Aperture 2</a> is here! Downloading it right now and have high hopes for the performance. Especially creating previews and exporting photos leaves a lot to be desired in 1.5, and if the first comments around the &#8217;net are to be trusted, the newcomer should be vastly better in this regard.</li>
 </ol>
 <p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> A track of two (or &#8220;kakkosen latu&#8221; in Finnish) is a term that came from a two-hour cross-country skiing (preferably classic) exercise and is now a synonym for any longer training pass (run, ski, hike, whatever) of around or over two hours.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/02/12/the-stupid-thing-aka-region-codes/">The Best of Times, the Worst of Times</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-12T00:00:00+02:00" pubdate data-updated="true">Feb 12<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m kind of sad that Blu-ray has taken the lead in the next generation digital video disc race, and that has little to do with the fact that <a href="http://en.wikipedia.org/wiki/Sony_BMG#Controversy">I don&#8217;t really like Sony</a>. The reason <a href="http://arstechnica.com/news.ars/post/20080211-best-buy-netflix-join-hd-dvd-dogpile.html">the lurking death of HD <span class="caps">DVD</span></a> makes me really sad is that while it has smaller capacity than BD, it has one thing really going for it: <strong>it&#8217;s void of one of the pests of modern times: regional codes.</strong></p>
-<p><a href="http://adactio.com/journal/1404">Jeremy Keith recently wrote</a> about DVD&#8217;s and Wii games that he bought during his Christmas trip to US <em>that he cannot use</em> because they are limited to be played only by a player with the US region code. Now, there are region code-free players available, but that only makes the whole scheme more pointless.</p>
-<p>Now, with HD <span class="caps">DVD</span> being free of the region codes, we could have gotten rid of them once and for all. However, with Blu-ray seemingly winning the war, we seem to be stuck with the same hassle into the unforeseeable future. And people wonder why Pirate Bay is the #1 movie distribution channel in Europe these days&#8230;</p></div>
   
   
 

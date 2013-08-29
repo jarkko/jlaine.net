@@ -104,15 +104,15 @@
 
 <div class="entry-content"><p>While I missed the tradition of releasing Ruby gems on the Christmas day, I did meet my own tradition of not doing anything with the computer that day. That said, I had something interesting in the works that just needed to be wrapped up as a Ruby gem—namely, a library for parsing the GPS data out of JPEG files produced by <a href="http://www.matstroeng.se/quickroute/en/">QuickRoute</a>. Without further ado, may I present <a href="https://github.com/jarkko/quickroute-ruby">quickroute-ruby</a>.</p>
 
-<p>The task wasn&#8217;t exactly trivial, as the data is embedded in binary format in an <a href="http://en.wikipedia.org/wiki/JPEG_File_Interchange_Format#JFIF_segment_format">APP0 segment</a> inside the image. Moreover, the data format was basically undocumented. However, with the help of <a href="http://www.matstroeng.se/">Mats</a> I managed to reverse-engineer the original C# and PHP libraries to an extent that I seemed to get correct output out of the file.</p>
+<p>The task wasn’t exactly trivial, as the data is embedded in binary format in an <a href="http://en.wikipedia.org/wiki/JPEG_File_Interchange_Format#JFIF_segment_format">APP0 segment</a> inside the image. Moreover, the data format was basically undocumented. However, with the help of <a href="http://www.matstroeng.se/">Mats</a> I managed to reverse-engineer the original C# and PHP libraries to an extent that I seemed to get correct output out of the file.</p>
 
 <p>The library is still very young, and while it seems to work correctly with my test images, I have no doubt there are a bunch of bugs hidden. If you seem to run into one, please file an <a href="https://github.com/jarkko/quickroute-ruby/issues">issue in the tracker</a>, or better yet, send me a <a href="https://github.com/jarkko/quickroute-ruby/pulls">pull request</a> with a test-driven fix.</p>
 
-<p>For usage, check out the GitHub page. I&#8217;ll work on cleaning up the code and writing some more documentation in the coming days, but the code itself should be fairly self-explanatory.</p>
+<p>For usage, check out the GitHub page. I’ll work on cleaning up the code and writing some more documentation in the coming days, but the code itself should be fairly self-explanatory.</p>
 
 <p>Happy New Year!</p>
 
-<p><strong>P.S</strong> <a href="https://github.com/jarkko/quickroute-gps">I&#8217;m also mirroring</a> the complete (GPL licensed) <a href="http://code.google.com/p/quickroute-gps/">QuickRoute C# code repository</a> on GitHub. So if you prefer working with Git instead of Subversion + Google Code, you might want to start off there.</p>
+<p><strong>P.S</strong> <a href="https://github.com/jarkko/quickroute-gps">I’m also mirroring</a> the complete (GPL licensed) <a href="http://code.google.com/p/quickroute-gps/">QuickRoute C# code repository</a> on GitHub. So if you prefer working with Git instead of Subversion + Google Code, you might want to start off there.</p>
 </div>
 
 

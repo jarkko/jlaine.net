@@ -11,7 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="The first-ever Ruby/Rails conference in Finland, Frozen Rails, is going to take place May 7th in Helsinki. The speaker lineup is top notch, &hellip;">
+  <meta name="description" content="I really like the clutter-free reading experience the new Reader feature in Safari 5 brings. However, what I don&#8217;t like too much is the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +82,57 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2010/06/09/how-to-quickly-fix-safari-5-reader-typography/">How to Quickly Fix Safari 5 Reader Typography</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-09T00:00:00+03:00" pubdate data-updated="true">Jun 9<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I really like the clutter-free reading experience the new <a href="http://www.apple.com/safari/whats-new.html#reader">Reader</a> feature in <a href="http://www.apple.com/safari/">Safari 5</a> brings. However, what I don&#8217;t like too much is the standard html rendering it uses for typography. The full fix for this would be to write a Safari extension to run the whole text through <a href="http://www.latex-project.org/">LaTeX</a> or the very least through the <a href="http://www.bramstein.com/projects/typeset/">Knuth &amp; Plass</a> algorithm.</p>
+<p>However, a quick fix for the horrible justified text is this:</p>
+<p>Open the contents of Applications/Safari.app:</p>
+<p><img src="http://img.skitch.com/20100609-8tynrxcjdgwt16bcr69fq1rsge.png" alt="" /></p>
+<p>Then open Resources/Reader.html in a text editor.</p>
+<p>Around line 82 there is a <span class="caps">CSS</span> rule for <code>.page</code>. Update it to left-align the paragraphs:</p>
+<p><code class="css">&lt;pre&gt;
+.page {
+    font: 20px Palatino, Georgia, Times, "Times New Roman", serif;
+    line-height: 160%;
+    text-align: left !important;
+}
+&lt;/pre&gt;
+</code></p>
+<p>Use <code>!important</code> as well, just to make sure. Save the file (you might need to type in your password here), and you&#8217;re done!</p>
+<p>If you dislike Palatino, you can of course edit the <span class="caps">CSS</span> to your heart&#8217;s content. For me, the biggest beef were the <a href="http://en.wikipedia.org/wiki/River_(typography)">rivers</a> flowing through the text when using the default justified alignment.</p>
+<p><a href="http://dl.dropbox.com/u/3101464/safari-reader.png"><img src="http://dl.dropbox.com/u/3101464/safari-reader-small.png" alt="" /></a></p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2010/03/23/speaking-at-frozen-rails/">Speaking at Frozen Rails</a></h1>
     
     
@@ -146,89 +197,86 @@
   <div class="entry-content"><p>For me Twitter serves two purposes:</p>
 
 <ol>
-<li>It helps me stay in contact with people I know but am unable to see often because they live on another side of the world or just because I&#8217;m a hermit working from home and never get out.</li>
-<li>It is a moderated feed of interesting content on the web.</li>
+  <li>It helps me stay in contact with people I know but am unable to see often because they live on another side of the world or just because I’m a hermit working from home and never get out.</li>
+  <li>It is a moderated feed of interesting content on the web.</li>
 </ol>
-
 
 <p>These purposes shall thus form the frame of reference for the rest of this article.</p>
 
 <hr />
 
-<p>One cool thing about Twitter is that it can be pretty much spam-free as far as it affects an individual user. Sure, there are lots of spammers around but they don&#8217;t really bother you much since the only exposure to them you&#8217;ll ever get is the single email you receive when someone follows you. You can turn off that notification.</p>
+<p>One cool thing about Twitter is that it can be pretty much spam-free as far as it affects an individual user. Sure, there are lots of spammers around but they don’t really bother you much since the only exposure to them you’ll ever get is the single email you receive when someone follows you. You can turn off that notification.</p>
 
-<p>In one end of the spectrum in how you handle followers on Twitter is to act like <a href="http://twitter.com/nzkoz/">Koz</a>: you let everyone follow you, even spammers. That can lead to a healthy number of followers, and the count will probably increase exponentially. The downside is that most of the followers will meet at least some criteria of the word &#8220;spammer&#8221;. This ratio will also probably get worse over time because the more followers you have the easier spammers will find you. But hey, at least you can brag about the hundreds of thousands of followers you have.</p>
+<p>In one end of the spectrum in how you handle followers on Twitter is to act like <a href="http://twitter.com/nzkoz/">Koz</a>: you let everyone follow you, even spammers. That can lead to a healthy number of followers, and the count will probably increase exponentially. The downside is that most of the followers will meet at least some criteria of the word “spammer”. This ratio will also probably get worse over time because the more followers you have the easier spammers will find you. But hey, at least you can brag about the hundreds of thousands of followers you have.</p>
 
-<p>The polar opposite approach is to only allow your friends to follow you. This will basically make Twitter what Facebook used to be before it gave in to the dark side. Locking up your updates means that Twitter is a radically different tool for you, because you can&#8217;t use it to broadcast anything to the public. That&#8217;s fine for some people. However, it would totally defeat the second purpose I have for Twitter so it&#8217;s not an option for me.</p>
+<p>The polar opposite approach is to only allow your friends to follow you. This will basically make Twitter what Facebook used to be before it gave in to the dark side. Locking up your updates means that Twitter is a radically different tool for you, because you can’t use it to broadcast anything to the public. That’s fine for some people. However, it would totally defeat the second purpose I have for Twitter so it’s not an option for me.</p>
 
-<p>My policy is somewhere between the two ends. Generally, I let everyone follow me. Just don&#8217;t expect me to follow you back. I want to keep my twitter feed palatable, so I only follow people based on the interestingness of their tweets. There are, however, a couple of jackass rules that do make me block you from my followers list.</p>
-
-<ol>
-<li>Let&#8217;s get the obvious case done with first: <strong>your posts look anything like this</strong>:</li>
-</ol>
-
-
-<blockquote><p>&#8220;how to get 16000+ followers in 90 days, fully automated&#8221;</p></blockquote>
-
-<p>  or</p>
-
-<blockquote><p>&#8220;RECEIVE GUARANTEED $125 Commission When You Sign Up For FREE Advertisement!&#8221;</p></blockquote>
-
-<p>  I have a word for that: spam. And not only will I block you, I <em>will</em> hit the &#8220;Report spam&#8221; button. I don&#8217;t care if you are the leading Twitter follower expert in the world. I just don&#8217;t care.</p>
+<p>My policy is somewhere between the two ends. Generally, I let everyone follow me. Just don’t expect me to follow you back. I want to keep my twitter feed palatable, so I only follow people based on the interestingness of their tweets. There are, however, a couple of jackass rules that do make me block you from my followers list.</p>
 
 <ol>
-<li><strong>You clearly auto-followed me based on something I tweeted.</strong> A year or so ago I tweeted about having watched the film &#8221;<a href="http://www.amazon.com/gp/product/B000I5Y8FU?ie=UTF8&amp;tag=jlainenet-20&amp;linkCode=xm2&amp;camp=1789&amp;creativeASIN=B000I5Y8FU">Who killed the electric car?</a>&#8221;. I was immediately followed by @evcast, a podcast about electric cars. It was obvious that my tweet had sparked the action, since I had never heard of EVCast and I&#8217;m 100% sure they didn&#8217;t know about me either.</li>
+  <li>Let’s get the obvious case done with first: <strong>your posts look anything like this</strong>:</li>
 </ol>
 
+<blockquote>
+  <p>“how to get 16000+ followers in 90 days, fully automated”</p>
+</blockquote>
 
-<p>  A curious anecdote about this is that while automatically following me annoyed the hell out of me and I did block the Twitter account, I still ended up subscribing to the podcast, which is actually quite good and interesting. I wouldn&#8217;t recommend copying the habit, though. When the guy behind EVCast, Bo Bennett, later auto-followed me with another Twitter account (one for his own content management system product) after I mentioned the acronym &#8220;CMS&#8221; in a tweet, I had no qualms about blocking him.</p>
+<p>or</p>
 
-<p>  Auto-following is a really pathetic form of <a href="http://twitter-fail.com/tag/follower-whoring/">follower-whoring</a>, based on the assumption that people are flattered by you following them and follow you back as a favor. Just don&#8217;t do it no matter what self-acclaimed Twitter gurus (you know, the ones tweeting like in point #1) tell you. Just don&#8217;t.</p>
+<blockquote>
+  <p>“RECEIVE GUARANTEED $125 Commission When You Sign Up For FREE Advertisement!”</p>
+</blockquote>
 
-<p>  <img src="http://img.skitch.com/20100306-cybx79jm7ejgy5ede3k2stx3mi.png" alt="Bo Bennett is following you" /></p>
+<p>I have a word for that: spam. And not only will I block you, I <em>will</em> hit the “Report spam” button. I don’t care if you are the leading Twitter follower expert in the world. I just don’t care.</p>
+
+<ol>
+  <li><strong>You clearly auto-followed me based on something I tweeted.</strong> A year or so ago I tweeted about having watched the film “<a href="http://www.amazon.com/gp/product/B000I5Y8FU?ie=UTF8&amp;tag=jlainenet-20&amp;linkCode=xm2&amp;camp=1789&amp;creativeASIN=B000I5Y8FU">Who killed the electric car?</a>”. I was immediately followed by @evcast, a podcast about electric cars. It was obvious that my tweet had sparked the action, since I had never heard of EVCast and I’m 100% sure they didn’t know about me either.</li>
+</ol>
+
+<p>A curious anecdote about this is that while automatically following me annoyed the hell out of me and I did block the Twitter account, I still ended up subscribing to the podcast, which is actually quite good and interesting. I wouldn’t recommend copying the habit, though. When the guy behind EVCast, Bo Bennett, later auto-followed me with another Twitter account (one for his own content management system product) after I mentioned the acronym “CMS” in a tweet, I had no qualms about blocking him.</p>
+
+<p>Auto-following is a really pathetic form of <a href="http://twitter-fail.com/tag/follower-whoring/">follower-whoring</a>, based on the assumption that people are flattered by you following them and follow you back as a favor. Just don’t do it no matter what self-acclaimed Twitter gurus (you know, the ones tweeting like in point #1) tell you. Just don’t.</p>
+
+<p><img src="http://img.skitch.com/20100306-cybx79jm7ejgy5ede3k2stx3mi.png" alt="Bo Bennett is following you" /></p>
 
 <pre><code>---
 </code></pre>
 
-<p>  The two first points in this list were pretty much black and white rules: break them and you&#8217;re out. The rest of the list consists of heuristics. Breaking one of them doesn&#8217;t necessarily put you onto the black list, but it does raise a flag. Combined, getting two or more hits is very likely to rule you out.</p>
+<p>The two first points in this list were pretty much black and white rules: break them and you’re out. The rest of the list consists of heuristics. Breaking one of them doesn’t necessarily put you onto the black list, but it does raise a flag. Combined, getting two or more hits is very likely to rule you out.</p>
 
 <ol>
-<li><strong>Make each entry start with the words &#8220;New blog post&#8221;</strong>.</li>
+  <li><strong>Make each entry start with the words “New blog post”</strong>.</li>
 </ol>
 
+<p><img src="http://img.skitch.com/20100306-ket53taiq86ni3fwjsf9c9tpc8.png" alt="New blog post" /></p>
 
-<p>  <img src="http://img.skitch.com/20100306-ket53taiq86ni3fwjsf9c9tpc8.png" alt="New blog post" /></p>
-
-<p>  That looks like it&#8217;s an automated tweet from your blog software (which it probably is). For me, Twitter is all about authenticity and intimacy.</p>
+<p>That looks like it’s an automated tweet from your blog software (which it probably is). For me, Twitter is all about authenticity and intimacy.</p>
 
 <ol>
-<li><strong>Make each entry end with a link to your blog post.</strong> Scratch that, make each entry end with a link, period. The link will most likely be a shortened url anyway, so I have no way of knowing where it points to. I&#8217;ll thus assume the worst: <em>your own blog post</em>.</li>
+  <li><strong>Make each entry end with a link to your blog post.</strong> Scratch that, make each entry end with a link, period. The link will most likely be a shortened url anyway, so I have no way of knowing where it points to. I’ll thus assume the worst: <em>your own blog post</em>.</li>
 </ol>
 
+<p>This is a more subtle variation of rule #3 and the same comments apply. Let me elaborate a bit more about that, though.</p>
 
-<p>  This is a more subtle variation of rule #3 and the same comments apply. Let me elaborate a bit more about that, though.</p>
+<p>This rule is irrelevant if you are an actual friend and thus meet the #1 criteria in my Twitter usage pattern. For the second point, remember the word <em>moderated</em>. I have reduced my consumption of RSS feeds recently in favor of getting my daily fix of interesting content from my Twitter feed. If all you do is link to your own posts, you’re not contributing to the ecosystem and thus I have no business with you.</p>
 
-<p>  This rule is irrelevant if you are an actual friend and thus meet the #1 criteria in my Twitter usage pattern. For the second point, remember the word <em>moderated</em>. I have reduced my consumption of RSS feeds recently in favor of getting my daily fix of interesting content from my Twitter feed. If all you do is link to your own posts, you&#8217;re not contributing to the ecosystem and thus I have no business with you.</p>
-
-<p>  This is not to say you couldn&#8217;t have an automated Twitter feed for your blog. Just don&#8217;t make it your personal Twitter account. A good example is John Gruber, who has both a personal account and another one for Daring Fireball. Of course, the whole DF feed is already so well moderated that I&#8217;m following it as well as Gruber&#8217;s own account.</p>
+<p>This is not to say you couldn’t have an automated Twitter feed for your blog. Just don’t make it your personal Twitter account. A good example is John Gruber, who has both a personal account and another one for Daring Fireball. Of course, the whole DF feed is already so well moderated that I’m following it as well as Gruber’s own account.</p>
 
 <ol>
-<li><strong>Follow more than 10 times as many people as who follow you.</strong> Like said, this is not an absolute measure but a heuristic that tells your Twitter usage pattern doesn&#8217;t really fit mine. What it basically tells me is that you&#8217;re following people very aggressively and/or you&#8217;re not very interesting because people are not following you in return. Either way it reeks of follower-whoring. This can be forgiven if you&#8217;re new to Twitter and have only a few followers.</li>
+  <li><strong>Follow more than 10 times as many people as who follow you.</strong> Like said, this is not an absolute measure but a heuristic that tells your Twitter usage pattern doesn’t really fit mine. What it basically tells me is that you’re following people very aggressively and/or you’re not very interesting because people are not following you in return. Either way it reeks of follower-whoring. This can be forgiven if you’re new to Twitter and have only a few followers.</li>
 </ol>
 
-
-<p>  <img src="http://img.skitch.com/20100306-f4paamgierb752a64ipr97m8hj.png" alt="" /></p>
+<p><img src="http://img.skitch.com/20100306-f4paamgierb752a64ipr97m8hj.png" alt="" /></p>
 
 <ol>
-<li><strong>Follow more than 1000 people.</strong> Same as above. If you follow a ridiculous amount of people it&#8217;s pretty clear that you cannot <em>really</em> follow them all.</li>
+  <li><strong>Follow more than 1000 people.</strong> Same as above. If you follow a ridiculous amount of people it’s pretty clear that you cannot <em>really</em> follow them all.</li>
 </ol>
-
 
 <hr />
 
-<p>Generally, why do people break these rules? To get more followers. It&#8217;s the classic get rich quick scheme. The social media consultants are today&#8217;s version of charlatans who sell dreams of risk-free, high-interest investments and shortcuts to riches. The asset du jour for companies and individuals alike seems to be the amount of people following them on Twitter or fanning their Facebook page. And the faster you get those numbers up the better, means and integrity to be damned.</p>
+<p>Generally, why do people break these rules? To get more followers. It’s the classic get rich quick scheme. The social media consultants are today’s version of charlatans who sell dreams of risk-free, high-interest investments and shortcuts to riches. The asset du jour for companies and individuals alike seems to be the amount of people following them on Twitter or fanning their Facebook page. And the faster you get those numbers up the better, means and integrity to be damned.</p>
 
-<p>So how <em>can</em> you actively earn more followers without me looking at you in disgust? Glad you asked. It turns out there&#8217;s a book about that. The book is called <a href="http://www.cluetrain.com">The Cluetrain Manifesto</a>. It was written more than a decade ago. Yes, you read that right. Twitter wasn&#8217;t even a wrinkle in Ev Williams&#8217;s eye back then, since he was busy starting his previous venture, Blogger.com. However, even today the theses of the book are about as apt and fresh as it gets in regard to marketing yourself on Twitter.</p>
+<p>So how <em>can</em> you actively earn more followers without me looking at you in disgust? Glad you asked. It turns out there’s a book about that. The book is called <a href="http://www.cluetrain.com">The Cluetrain Manifesto</a>. It was written more than a decade ago. Yes, you read that right. Twitter wasn’t even a wrinkle in Ev Williams’s eye back then, since he was busy starting his previous venture, Blogger.com. However, even today the theses of the book are about as apt and fresh as it gets in regard to marketing yourself on Twitter.</p>
 
 <p><em>Just like markets, Twitter is all about conversations. Write interesting content. Share interesting ideas. Post thoughtful and interesting replies to others. Point to interesting things on the web (yes, some of them can be your own posts). Iterate, rinse and repeat. Keep doing this consistently and you <strong>will</strong> find your readership flourish.</em></p>
 </div>
@@ -307,37 +355,37 @@
 
   <div class="entry-content"><p><strong>Update Nov 24: Turned out I indeed was too optimistic. <a href="#updates">Updated the timeline</a></strong></p>
 
-<p>Color me lucky. I&#8217;ve done my fair share to support the online economy, but very rarely have I had experiences that have made me regret a purchase decision. I think before this summer I&#8217;ve only had to cancel or return two purchases during the decade I&#8217;ve been shopping on the internet.</p>
+<p>Color me lucky. I’ve done my fair share to support the online economy, but very rarely have I had experiences that have made me regret a purchase decision. I think before this summer I’ve only had to cancel or return two purchases during the decade I’ve been shopping on the internet.</p>
 
 <p>With the aforementioned background, the first truly negative online shopping experience was even more unpleasant, courtesy of Shopping4net.com.</p>
 
-<h3>July 4</h3>
+<h3 id="july-4">July 4</h3>
 
 <p>I order toner cartridges for my color laser and some contact lenses from Shopping4net. All items are marked to ship within 1 week in their online store. The order confirmation states July 8 as the expected shipping date. My credit card is charged immediately for the whole amount.</p>
 
-<h3>July 9</h3>
+<h3 id="july-9">July 9</h3>
 
 <p>I receive an email saying that the shipment is delayed (without explanation) and that the new expected shipping date is July 13.</p>
 
-<h3>July 14</h3>
+<h3 id="july-14">July 14</h3>
 
 <p>I receive another boilerplate email stating that the order is delayed, again without any explanation about the reason. This time the expected shipping date is July 17.</p>
 
 <p>This is the last proactive communication (well, not quite, but more on that later) I receive from Shopping4net.</p>
 
-<h3>August 5</h3>
+<h3 id="august-5">August 5</h3>
 
-<p>I&#8217;ve finally had enough and I send an angry letter to the company, where I threaten to cancel the transaction with my credit card company unless I hear more from them, soon.</p>
+<p>I’ve finally had enough and I send an angry letter to the company, where I threaten to cancel the transaction with my credit card company unless I hear more from them, soon.</p>
 
 <p>I get a prompt response to my email where they explain that they had been waiting for the black color cartridge, but now that they checked with the distributor, that whole product is discontinued. The black toner is thus removed from the order and my credit card is credited with its price. This remains about the only thing that Shopping4net manages to handle somewhat well.</p>
 
-<h3>August 10</h3>
+<h3 id="august-10">August 10</h3>
 
 <p>The shipment arrives—<em>without the contact lenses</em>. On top of that, the package slip is for a completely different order and client, so now I know that a guy in Western Finland ordered a Barbie overnight survival kit from Shopping4net.</p>
 
 <p>I send another email to S4n explaining what happened.</p>
 
-<h3>August 12</h3>
+<h3 id="august-12">August 12</h3>
 
 <p>Customer support replies to my emails and insists that the lenses were shipped within the shipment. They ask what kind of package I received and whether it seemed opened.</p>
 
@@ -345,99 +393,109 @@
 
 <p>I never receive a reply to my email.</p>
 
-<h3>August 27</h3>
+<h3 id="august-27">August 27</h3>
 
 <p>I send another email to the customer support asking whether someone could even reply to my email.</p>
 
 <p>I receive a reply the same day:</p>
 
-<blockquote><p>From some reason the lenses were returned to us so it seems that our shipping staff has packed your order incorrectly and sent the lenses to a wrong client.</p></blockquote>
+<blockquote>
+  <p>From some reason the lenses were returned to us so it seems that our shipping staff has packed your order incorrectly and sent the lenses to a wrong client.</p>
+</blockquote>
 
 <p>It <em>seems</em>? No kidding.</p>
 
-<blockquote><p>We will send the lenses to you again and hope they will arrive soon.</p></blockquote>
+<blockquote>
+  <p>We will send the lenses to you again and hope they will arrive soon.</p>
+</blockquote>
 
 <p>They never do.</p>
 
-<h3>September 18</h3>
+<h3 id="september-18">September 18</h3>
 
-<p>I send yet another email asking what the status of the lenses is, given that it&#8217;s been almost <em>another</em> month and I haven&#8217;t even received a shipping confirmation.</p>
+<p>I send yet another email asking what the status of the lenses is, given that it’s been almost <em>another</em> month and I haven’t even received a shipping confirmation.</p>
 
-<h3>September 21</h3>
+<h3 id="september-21">September 21</h3>
 
 <p>I finally receive another correspondence from Shopping4net. They acknowledge that</p>
 
-<blockquote><p>there has been a technical issue with the order and it has therefore not been sent. The issue is now fixed and the lenses shipped to you this morning.</p></blockquote>
+<blockquote>
+  <p>there has been a technical issue with the order and it has therefore not been sent. The issue is now fixed and the lenses shipped to you this morning.</p>
+</blockquote>
 
 <p>A technical issue? Seriously, what the fuck?</p>
 
-<h3>Later that week</h3>
+<h3 id="later-that-week">Later that week</h3>
 
 <p>The lenses finally arrive. There is an invoice within the shipment, which I ignore since I already paid the whole order with my credit card in July.</p>
 
-<h3>October 19</h3>
+<h3 id="october-19">October 19</h3>
 
 <p>I receive a reminder invoice from Shopping4net for the contact lenses. I send <em>yet</em> another email stating that the whole order was already paid by CC and asking them to cancel the invoice.</p>
 
-<p>I hope the story ends here, but based on the history so far, I won&#8217;t be holding my breath.</p>
+<p>I hope the story ends here, but based on the history so far, I won’t be holding my breath.</p>
 
 <h4 id="updates">
 [Updates, November 24th]
 </h4>
 
-
-<h3>October 20</h3>
+<h3 id="october-20">October 20</h3>
 
 <p>Everything seems fine. I get a reply from the customer support:</p>
 
-<blockquote><p>Hej Jarkko,</p>
+<blockquote>
+  <p>Hej Jarkko,</p>
 
-<p>Tuon korvaavan lähetyksen linssejen summa ei jostakin syystä ollut sama kuin
+  <p>Tuon korvaavan lähetyksen linssejen summa ei jostakin syystä ollut sama kuin
 ensimmäisessä lähetyksessä ja summat eivät siksi ole automaattisesti
 kuitannut toisia vastaan. Olemme todella pahoillamme! Olemme tietysti
 poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
 
-<p>Kivaa alku viikkoa sinulle!</p></blockquote>
+  <p>Kivaa alku viikkoa sinulle!</p>
+</blockquote>
 
-<p>You need to understand Finnish to appreciate the comedy in the quote. Here&#8217;s a translation, sans the broken language, of the relevant part of the message:</p>
+<p>You need to understand Finnish to appreciate the comedy in the quote. Here’s a translation, sans the broken language, of the relevant part of the message:</p>
 
-<blockquote><p>The sum of the replacing shipment didn&#8217;t match the original so the sums didn&#8217;t automatically cancel each other. We are terribly sorry! <strong><em>We have of course removed the reminder and everything is in order in your customer account!</em></strong> <em>(emphasis mine)</em></p></blockquote>
+<blockquote>
+  <p>The sum of the replacing shipment didn’t match the original so the sums didn’t automatically cancel each other. We are terribly sorry! <strong><em>We have of course removed the reminder and everything is in order in your customer account!</em></strong> <em>(emphasis mine)</em></p>
+</blockquote>
 
 <p>I wish it was.</p>
 
-<h3>November 20th</h3>
+<h3 id="november-20th">November 20th</h3>
 
 <p>I receive reminder invoice #2:</p>
 
-<blockquote><p>The following invoices from Shopping4net are past due date.</p>
+<blockquote>
+  <p>The following invoices from Shopping4net are past due date.</p>
 
-<p>We have already previously notified you that your invoices have not been paid&#8230;</p></blockquote>
+  <p>We have already previously notified you that your invoices have not been paid…</p>
+</blockquote>
 
 <p>Geez, is this never going to end?</p>
 
-<p>I write another email to the customer support. Stay tuned for more&#8230;</p>
+<p>I write another email to the customer support. Stay tuned for more…</p>
 
-<h4>[/Updates end]</h4>
+<h4 id="updates-end">[/Updates end]</h4>
 
-<h3>What should I (and you) have learned from this?</h3>
+<h3 id="what-should-i-and-you-have-learned-from-this">What should I (and you) have learned from this?</h3>
 
-<p>In a nutshell, here&#8217;s Shopping4net for you based on my saga:</p>
+<p>In a nutshell, here’s Shopping4net for you based on my saga:</p>
 
 <ul>
-<li>They don&#8217;t have a fucking clue about how to run a retail business.</li>
-<li>They lie about what items they have in stock.</li>
-<li>When your order is delayed because some item is unavailable, they will never tell you about it and after it&#8217;s delayed enough, they won&#8217;t even bother to contact you anymore.</li>
-<li>Even if the items you ordered were unavailable, they will charge your credit card right away.</li>
-<li>They will implicitly say you&#8217;re a liar unless proven otherwise.</li>
-<li>They will not respond to your support emails until you remind them several times and/or threaten them with something.</li>
-<li>They don&#8217;t have the guts to admit how they fucked up your order. Instead, they come up with ridiculous explanations like <em>technical issues</em>.</li>
-<li>When they ship backordered items, they either out of dishonesty or pure incompetence send you another invoice even if the items were part of an already paid order, which brings us back to the fact that</li>
+  <li>They don’t have a fucking clue about how to run a retail business.</li>
+  <li>They lie about what items they have in stock.</li>
+  <li>When your order is delayed because some item is unavailable, they will never tell you about it and after it’s delayed enough, they won’t even bother to contact you anymore.</li>
+  <li>Even if the items you ordered were unavailable, they will charge your credit card right away.</li>
+  <li>They will implicitly say you’re a liar unless proven otherwise.</li>
+  <li>They will not respond to your support emails until you remind them several times and/or threaten them with something.</li>
+  <li>They don’t have the guts to admit how they fucked up your order. Instead, they come up with ridiculous explanations like <em>technical issues</em>.</li>
+  <li>When they ship backordered items, they either out of dishonesty or pure incompetence send you another invoice even if the items were part of an already paid order, which brings us back to the fact that</li>
 </ul>
 
+<p><strong>Shopping4net doesn’t have a fucking clue about how to run a retail business.</strong></p>
 
-<p><strong>Shopping4net doesn&#8217;t have a fucking clue about how to run a retail business.</strong></p>
-
-<p>So save yourself from what we went through and order from someone else. Their cheaper prices won&#8217;t come close to making up for the shitty experience.</p>
+<p>So save yourself from what we went through and order from someone else. Their cheaper prices won’t come close to making up for the shitty experience.</p>
 </div>
   
   
@@ -654,71 +712,6 @@ for <a href="http://furbo.org/2008/10/01/redacted/">liberty</a>, Fernando.</p>
 <p>You can choose as many of the days to attend to as you want to (a smörgåsbord if I may), but <em>if you will join us for the whole week, the last day will be on us</em>. The early bird price is 500€/day, with group and alumni discounts available. The price includes a plentiful lunch buffet (of course), kick-ass course materials and some goodies we&#8217;ll disclose a bit later. The course will be held in Finnish.</p>
 <p>I&#8217;m really excited about the course. The last time I gave a Ruby workshop was real fun and I learned a ton from it. One thing I understood while attending Pragmatic Studios is that having more than one teacher really makes a big difference, since instead of a monologue you give the students a real <em>discussion</em> about the topics. I know Antti from a while back and know from his classes at <span class="caps">TUT</span> that he&#8217;s a great instructor, so I really look forward to being able to teach together with him.</p>
 <p>Read more and register yourself for the classes from our brand-new <a href="http://rapidstraining.fi/">Rapids Training</a> website. Hope to see you all in December!</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/09/16/making-emacs-keybindings-work-with-zsh-and-screen/">Making Emacs Keybindings Work With Zsh and Screen</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-16T00:00:00+03:00" pubdate data-updated="true">Sep 16<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;ve always (as in from the early OpenACS days) been an emacs guy on linux. Sure, I do most of my development on TextMate these days, but for all text editing on servers I still prefer emacs and have its keybindings tattooed deep in my brain:</p>
-<table>
-	<tr>
-		<td><em>Ctrl-a</em></td>
-		<td>Beginning of line</td>
-	</tr>
-	<tr>
-		<td><em>Ctrl-e</em></td>
-		<td>End of line</td>
-	</tr>
-	<tr>
-		<td><em>Ctrl-k</em></td>
-		<td>Kill the rest of the line</td>
-	</tr>
-</table>
-<p>Of course, these are the default bindings in bash as well.</p>
-<p>However, I&#8217;m using <a href="http://www.mattcutts.com/blog/a-quick-tutorial-on-screen/"><span class="caps">GNU</span> screen</a> to stay sane while working over unreliable server connections. Screen uses <code>Ctrl-a</code> by default as its escape key so to make it work correctly, I&#8217;ve had this in my <code>.bash_profile</code> files for a long time:</p>
-<pre><code class="shell">alias scr="TERM=vt100 ; screen -e^Oo"
-alias scd="TERM=vt100 ; screen -d -r"
-</code></pre>
-<p>That makes (among other things) <code>Ctrl-o</code> to be the escape key binding and <em>lets <code>Ctrl-a</code> do the thing it&#8217;s supposed to do</em>.</p>
-<p>However, I&#8217;ve heard so much talk about <a href="http://friedcpu.wordpress.com/2007/07/24/zsh-the-last-shell-youll-ever-need/">zsh</a> from many directions lately, that I had to try it out myself. With zsh (<a href="http://friedcpu.wordpress.com/2007/07/24/zsh-the-last-shell-youll-ever-need/"><code>.zshrc</code> downloaded from here</a>) the keys worked fine without screen, but within a screen session they broke. Here&#8217;s what I had to do to make everything work.</p>
-<p>First, setting the default escape key in the screen alias command didn&#8217;t work. I had to do it in the <code>~/.screenrc</code> file instead:</p>
-<pre><code class="shell">escape ^Oo
-startup_message off
-</code></pre>
-<p>(The second line just turns off the annoying splash screen)</p>
-<p>However, with this and the default key bindings <code>Ctrl-a</code> and friends still didn&#8217;t work in screen, they were just output as literals on the screen. Some determined googling finally <a href="http://my.opera.com/blackbelt_jones/blog/2007/06/05/zsh-prompt-configuration-issue-solved">turned up the key</a> (pun unintended) to the puzzle:</p>
-<pre><code class="shell">bindkey -e
-</code></pre>
-<p>Adding that one line into my <code>.zshrc</code> among the other keybindings solved the problem. Now I&#8217;m one happy zsh+screen camper, although my journey is still at a very early stage and I&#8217;m yet to learn the more advanced zsh goodies. The nice thing has been that without learning really anything new (or changing any habits), I&#8217;m still benefiting from using zsh.</p></div>
   
   
 
