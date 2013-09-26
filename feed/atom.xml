@@ -4,7 +4,7 @@
   <title><![CDATA[jlaine.net]]></title>
   <link href="http://jlaine.net/atom.xml" rel="self"/>
   <link href="http://jlaine.net/"/>
-  <updated>2013-08-29T15:30:56+03:00</updated>
+  <updated>2013-09-26T12:25:41+03:00</updated>
   <id>http://jlaine.net/</id>
   <author>
     <name><![CDATA[Jarkko Laine]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Open letter to specialty coffee roasters]]></title>
+    <link href="http://jlaine.net/2013/09/26/dear-specialty-coffee-roaster/"/>
+    <updated>2013-09-26T12:16:00+03:00</updated>
+    <id>http://jlaine.net/2013/09/26/dear-specialty-coffee-roaster</id>
+    <content type="html"><![CDATA[<h2 id="dear-specialty-coffee-roaster">Dear specialty coffee roaster,</h2>
+
+<p>Let me start by saying that I love you, each and every one of you. I love what you’re doing and respect the work you’re doing to bring better coffee to us all and fight the apathy of people sinking in them chain-oil-like substance just to get a fix of caffeine.</p>
+
+<p>That said, it’s time for some tough love. Tough in the sense that I’m going to be quite outspoken and love in the sense that it’s all for the common good of you and me. So here we go.</p>
+
+<p>Here’s the problem with your coffee: <em>It’s sold stale</em>. Why? Because you set the expiry date to something ridiculous like 3 months or (gasp!) a year. And retailers <em>will</em> sell it until that date and not order fresh coffee until they nearly run out of the previous batch. They will do this because it’s more economical for them and <em>it’s not their coffee that’s sold and their reputation that’s on the line</em>. Thus, your coffee is sold stale. And you don’t want that.</p>
+
+<p>But, you say, every coffee in the supermarket is sold with an expiry date of up to a year in the future. So what? You’re not in the specialty coffee business to be just like everyone else. First of all, their coffee is probably stale in any case since it’s sold pre-ground, which makes it go bad in a matter of days. And secondly, their coffee is of so bad quality in the first place that who the fuck cares whether it’s stale or not when used?</p>
+
+<p>Your coffee can be the most awesome single-origin bean in the history of micro-roasting, but when it’s used four months after roasting, it will be stale. And it will be sold until the very last day, because it’s a niche product with fairly low turnover.</p>
+
+<p>Maybe your argument is that most buyers will never notice. That gets us to the heart of the problem. <em>You will want them to notice</em>. You want them to become coffee conoisseurs if they aren’t already. Because if they don’t notice the difference, they shouldn’t be your target market in the first place.</p>
+
+<p>Here’s a little Marketing 101 to you: you want to target a niche. In your case, the niche should probably be the people who really care about the taste and quality of their coffee. Like said above, most people will probably not notice the difference between your Kiawamururu AA and the generic supermarket blend destroyed with robusta. Their taste buds are long since burned. And of those who <em>can</em> taste the difference, most just don’t care enough to justify the significant price difference and inconvenience of sourcing and self-grinding specialty coffee. Trying to convert them is a one-way street of frustration ending up in a bankruptcy.</p>
+
+<p>You are, by definition, a small fish. Trying to target everyone is as good as targeting no one. It will cost you a fortune and be much less effective in actually finding your ideal customers. And this is just from the marketing standpoint. An even more important point to make here is that by making it not only possible but very likely to make your coffee available as stale, you are alienating the very core of the niche market you should be aiming at – the people who not only buy your expensive coffee, but the ones who talk, nay, <em>rave</em>, about it; the ones who serve it to their friends and perhaps <em>convert them as well</em> into your customers and evangelists.</p>
+
+<p>Here’s the thing that I’m quite sure you know: good, fresh coffee is freshware, sold to a small subset of coffee drinkers. Don’t pretend it’s something else. Don’t be like the one-person consultancies talking in enterprise-y terms and about “we” instead of “I”, destroying their personality in the process. Milk producers don’t set the expiry dates of their produce to several months in the future just to get retailers to sell every one of the cartons because (regulations aside) they don’t want their milk to be sold sour. You don’t want your coffee to be sold stale, either. So do something about it. There is no reason in the world for not to do the same as <a href="http://shop.squaremilecoffee.com">Square Mile</a>:</p>
+
+<blockquote>
+  <p>Brew within one month of roasting.</p>
+</blockquote>
+
+<p>Could you please do the same? For me, and in the end, for you.</p>
+
+<p>XOXO,</p>
+
+<p>//jarkko</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Let your data tell a story]]></title>
+    <link href="http://jlaine.net/2013/09/23/let-your-data-tell-a-story/"/>
+    <updated>2013-09-23T09:40:00+03:00</updated>
+    <id>http://jlaine.net/2013/09/23/let-your-data-tell-a-story</id>
+    <content type="html"><![CDATA[<p>If you missed it, I just <a href="http://bearmetal.eu/theden/let-your-data-tell-a-story/">wrote a long write-up of my Monitorama.EU talk in the Bear Metal blog</a>. If you’re working on big data, design, or visualizations, you probably want to read it.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[It’s not about us, it’s about you (and not really about you, either)]]></title>
@@ -947,37 +993,6 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
 <p>In July, when we jumped on a train for our honeymoon in Norway, I forgot my E2C&#8217;s back home. Two weeks without earplugs just couldn&#8217;t do, so I went shopping in the airport to see if they&#8217;d have some good alternatives on sale. One reasonably priced model that looked liked it would fit the bill was <a href="http://www.koss.com/koss/kossweb.nsf/p?openform&amp;pc%5Eeb%5EPLUG">Koss The Plug</a>. Priced at less than €20, I figured I wouldn&#8217;t lose much even if they wouldn&#8217;t turn out to be good. Which they didn&#8217;t.</p>
 <p>While The Plugs sit fairly well inside the ear canal, the foam plug is the only thing keeping them in place. The Shures, no the other hand, have the earphone body sitting inside the earlobe as well, and the cable going behind the ear. So sooner or later gravity will pull The Plug out of the ear, and that moment comes very soon if you&#8217;re both sweating and moving at the same time.</p>
 <p>The biggest problem with the Koss plugs, however, is that (at least with my iPod Shuffle) they somehow hugely amplify the silent humming caused by a player when it&#8217;s on. That causes the phones to be nearly unusable on lower volumes, e.g. when I listen to a podcast before falling asleep. With the lowest volume I can hardly hear the voice of the hosts from the humming. This is a problem I haven&#8217;t encountered with any other pair of plugs, including the ones coming with iPods. Thus I don&#8217;t recommend buying The Plugs even though they are cheap. Cough up a few dozen bucks more and get a good pair of Shures instead. I&#8217;m at least eagerly waiting for my replacement Shure buds, that&#8217;s how big the difference between the two is.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Fernando]]></title>
-    <link href="http://jlaine.net/2008/10/02/fernando/"/>
-    <updated>2008-10-02T00:00:00+03:00</updated>
-    <id>http://jlaine.net/2008/10/02/fernando</id>
-    <content type="html"><![CDATA[<p>There was <a href="http://developer.apple.com/iphone/program/">something in the air</a> that night,<br />
-the stars were bright, Fernando.</p>
-<p><a href="http://pragprog.com/">They</a> were <a href="http://blog.toolshed.com/2008/10/iphone-nda-lift.html">shining</a> <a href="http://pragprog.com/screencasts/v-bdiphone/writing-your-first-iphone-application">there</a> for <a href="http://pragmaticstudio.com/iphone/">you</a> and <a href="http://pragdave.blogs.pragprog.com/pragdave/2008/10/the-iphone-book.html">me</a>,<br />
-for <a href="http://furbo.org/2008/10/01/redacted/">liberty</a>, Fernando.</p>
-<p>- Björn Ulvaeus</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[A Week of Ruby/Rails/BDD/Ajax Training in December]]></title>
-    <link href="http://jlaine.net/2008/09/24/a-week-of-ruby-rails-bdd-ajax-training-in-december/"/>
-    <updated>2008-09-24T00:00:00+03:00</updated>
-    <id>http://jlaine.net/2008/09/24/a-week-of-ruby-rails-bdd-ajax-training-in-december</id>
-    <content type="html"><![CDATA[<p>After my last Ruby on Rails workshop held last year I&#8217;ve often been asked when there is going to be another one. Here it comes.</p>
-<p>December 1st to 5th, we will join forces with <a href="http://tarvainen.wordpress.com/">Antti Tarvainen</a> from <a href="http://leonidasoy.com/">Leonidas</a> and give <a href="http://rapidstraining.fi/">a week of one-day workshops</a> in Helsinki with separate but closely related themes:</p>
-<ol>
-	<li>Beginning Ruby</li>
-	<li>Beginning Rails</li>
-	<li>Advanced Ruby</li>
-	<li><acronym title="Behaviour-Driven Development"><span class="caps">BDD</span></acronym> on Rails</li>
-	<li>Advanced Ajax on Rails</li>
-</ol>
-<p>You can choose as many of the days to attend to as you want to (a smörgåsbord if I may), but <em>if you will join us for the whole week, the last day will be on us</em>. The early bird price is 500€/day, with group and alumni discounts available. The price includes a plentiful lunch buffet (of course), kick-ass course materials and some goodies we&#8217;ll disclose a bit later. The course will be held in Finnish.</p>
-<p>I&#8217;m really excited about the course. The last time I gave a Ruby workshop was real fun and I learned a ton from it. One thing I understood while attending Pragmatic Studios is that having more than one teacher really makes a big difference, since instead of a monologue you give the students a real <em>discussion</em> about the topics. I know Antti from a while back and know from his classes at <span class="caps">TUT</span> that he&#8217;s a great instructor, so I really look forward to being able to teach together with him.</p>
-<p>Read more and register yourself for the classes from our brand-new <a href="http://rapidstraining.fi/">Rapids Training</a> website. Hope to see you all in December!</p>]]></content>
   </entry>
   
 </feed>

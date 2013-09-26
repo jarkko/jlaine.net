@@ -11,7 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="My latest Rails project, Aaltonenshoe.com is now running on a lighttpd/fastcgi setting. Moving the setup over from an Apache/CGI one was a matter of &hellip;">
+  <meta name="description" content="Now that TextDrive supports lighttpd and I&#8217;m eventually moving all my sites to a lighttpd/fastcgi setup, I&#8217;m confronted with a new &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,90 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/04/05/running-your-own-lighttpd-on-textdrive-and-keeping-it-alive-too-part-i/">Running Your Own Lighttpd (on TextDrive) and Keeping It Alive, Too (Part I)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-04-05T00:00:00+03:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now that TextDrive <a href="http://weblog.textdrive.com/article/31/having-ones-own-lighttpd-and-running-it-too">supports</a> <a href="http://lighttpd.net/">lighttpd</a> and I&#8217;m eventually moving all my sites to a lighttpd/fastcgi setup, I&#8217;m confronted with a new problem: the webserver process is now mine and I&#8217;m the one responsible for keeping it running.</p>
+<p>The first thing to remember (and to fix) is that my lighttpd process is <strong>not</strong> started automatically at server bootup. This is fortunately easy to fix:</p>
+<ol>
+	<li>Login to webmin (e.g. <a href="http://webmin.bidwell.textdrive.com">http://webmin.bidwell.textdrive.com</a>) and click  <em>Scheduled Cron Jobs</em> under <em>System</em>. <strong>Important:</strong> you can&#8217;t use usermin as it doesn&#8217;t seem to have the necessary privileges to schedule cron jobs. So do yourself a favor and dive right into webmin.</li>
+	<li>Click <em>Create a new scheduled cron job</em>.</li>
+	<li>Type your lighttpd startup command in the <em>Command</em> field. For example, <code>/usr/local/sbin/lighttpd -f /usr/home/[yourname]/sites/[yoursite]/config/lighttpd.conf</code>. Remember that you need to use the whole paths in your command, otherwise all hell can break loose.</li>
+	<li>Select <em>Simple schedule</em> and <em>When system boots</em> from the drop-down menu.</li>
+	<li>Submit the form clicking <em>Create</em>.</li>
+</ol>
+<p>Congrats! Your lighttpd service should now survive the unfortunate days when &#8220;<em>a pair of redundant <span class="caps">UPS</span> units fail</em>&#8221;.</p>
+<p>We&#8217;re not quite there yet, though. As sure as people die some day, processes die too. Wouldn&#8217;t it be even nicer if we could somehow monitor that our beloved lighttpd is up and running at all times? <em>Hint: yes, it would.</em></p>
+<p>So, next we&#8217;re going to wrap up a Ruby script that keeps a keen eye on our webserver. But that&#8217;s a great topic for a sequel (I&#8217;ll never get to write sequels unless I break my stories in multiple parts). So go ahead and implement your own reboot-surviving lighttpd machine. More to come later.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/04/05/rails-gets-more-exposure-in-finland/">Rails Gets More Exposure in Finland</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-04-05T00:00:00+03:00" pubdate data-updated="true">Apr 5<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Only about a week before my lecture, &#8220;<a href="http://jlaine.net/blog/40/not-your-average-speaker"><em>Ruby on Rails &#8211; Web applications with a glimpse in the eye</em></a>&#8221;, <a href="http://assemblix.net">Assemblix.net</a>, a major developer newsletter in Finland publishes an above-the-fold <a href="http://assemblix.net/kirje/60">article</a> about <a href="http://rubyonrails.com">Rails</a>. The article goes briefly through the <span class="caps">MVC</span> pattern implementation of Rails. The conclusion states that &#8220;<cite>some people have sung the praises of Rails while others think that the same can be accomplished with [replace-with-your-favourite-tool]</cite>&#8221; (translation mine).</p>
+<p>I would like to point out that the magic of Rails is not <em>what</em> can be done with it, but rather <em>how</em> it can be done: extraordinary fast, keeping the focus on the end product instead of implementation details, and &#8211; most importantly &#8211; always with a smile on your face.</p>
+<p>However, I find the article a major breakthrough in the given newsletter and the developer community in Finland in general. This is to my knowledge the first editorial article in Assemblix breaking the mold of Java-Windows-<span class="caps">PHP</span>, the emphasis having been on the first two.</p>
+<p>So I salute the editors of Assemblix, although one could say the buzz around Rails makes it impossible to go wrong with such an article. Anyway, it&#8217;s great to get more publicity for Rails here in the land of reindeers and <a href="http://virtual.finland.fi/finfo/english/aurora_borealis.html">aurora borealis</a>, too.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -393,83 +477,6 @@
 <p>Yes, I&#8217;m thrilled. And already tense as hell. It will be my first real talk if you don&#8217;t count the seminars in school. But, standing on the shoulders of giants (and talking about something I&#8217;ve fell in love with), I feel I just can&#8217;t fail.</p>
 <p>Oh, and the last October&#8217;s edition of <a href="http://www.designinflight.com/">Design In-Flight</a>, the excellent design magazine distributed as pdf, <a href="http://7nights.com/asterisk/">D. Keith Robinson</a> has a take for first-time speakers.</p>
 <p>Stay tuned. The lecture will be on April 13th. I hope I can get someone to tape the two-hour session but even if not, I will make the slides and notes available here. And if you happen to be in Tampere on that inevitably glorious day, why won&#8217;t you sneak in the hall S3 and give it a whirl. Maybe you&#8217;ll be bitten, too.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/02/23/undocumented-rails-finesses-part-i/">&#8220;Undocumented&#8221; Rails Finesses, Part I</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-02-23T00:00:00+02:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2005</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Undocumented in quotes because they&#8217;re really not undocumented, I just didn&#8217;t know about them before.</p>
-<ol>
-	<li><strong>Automatic handling of creation time and modification time in ActiveRecord.</strong> Just put two timestamp fields in your database, <code>created_at</code> and <code>updated_at</code>, and you&#8217;re done. The fields will be automatically used by ActiveRecord whenever a new object is saved for the first time or updated. You don&#8217;t have to worry about them anymore.</li>
-	<li><strong>Optimistic locking.</strong> Just read about this one in the mailing list. Add a field called <code>lock_version</code> (integer) into your table and ActiveRecord will use optimistic locking for that table from now on, as long as you put a hidden field with that version to your edit form.<br />
-What does it mean? When you start editing an object, its <code>lock_version</code> is read from the database. As you submit your changes, your <code>lock_version</code> is compared to the current one in the database and if the db version has been bumbed up, your submittal is not accepted and an exception is raised. You (as an application developer) can then inform the user (hey, that was you, too!) about the situation and show her the latest version . Preferably show her her changes, too, otherwise she has to write the whole story again. You don&#8217;t want that, do you?<br />
-</li></ol></li>
-</ol>
-<p>Rails is full of this kind of candies, so it&#8217;s worth exploring the <a href="http://rails.rubyonrails.com"><span class="caps">API</span> documentation</a>. It&#8217;s still a fairly moving target so I try to keep popping these &#8216;rubies&#8217; up to the surface as I discover them.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/02/22/understanding-mvc/">Understanding MVC</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-02-22T00:00:00+02:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2005</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Amy Hoy of <a href="http://www.slash7.com/flashback/2005/01/oreilly_onlamp.html#more"><em>OnLAMP Tutorial for Designers&#8217; Brains</em></a> fame has written a great <a href="http://www.slash7.com/flashback/2005/02/mvc_the_most_ve.html">writeup</a> on <acronym title="Model-View-Controller"><span class="caps">MVC</span></acronym> pattern and how it relates to <a href="http://rubyonrails.com">Rails</a>. So, if you&#8217;ve always wondered what the heck it means that Rails is a full-stack framework, go read it. Now.</p></div>
   
   
 

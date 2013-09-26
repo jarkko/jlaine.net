@@ -11,7 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="Boing Boing reports that MPAA has been shutting down and taking over several BitTorrent hubs. Reader Brad Clarke says, &#8220;Taking down a site is &hellip;">
+  <meta name="description" content="Undocumented in quotes because they&#8217;re really not undocumented, I just didn&#8217;t know about them before. Automatic handling of creation time &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,83 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/02/23/undocumented-rails-finesses-part-i/">&#8220;Undocumented&#8221; Rails Finesses, Part I</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-02-23T00:00:00+02:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Undocumented in quotes because they&#8217;re really not undocumented, I just didn&#8217;t know about them before.</p>
+<ol>
+	<li><strong>Automatic handling of creation time and modification time in ActiveRecord.</strong> Just put two timestamp fields in your database, <code>created_at</code> and <code>updated_at</code>, and you&#8217;re done. The fields will be automatically used by ActiveRecord whenever a new object is saved for the first time or updated. You don&#8217;t have to worry about them anymore.</li>
+	<li><strong>Optimistic locking.</strong> Just read about this one in the mailing list. Add a field called <code>lock_version</code> (integer) into your table and ActiveRecord will use optimistic locking for that table from now on, as long as you put a hidden field with that version to your edit form.<br />
+What does it mean? When you start editing an object, its <code>lock_version</code> is read from the database. As you submit your changes, your <code>lock_version</code> is compared to the current one in the database and if the db version has been bumbed up, your submittal is not accepted and an exception is raised. You (as an application developer) can then inform the user (hey, that was you, too!) about the situation and show her the latest version . Preferably show her her changes, too, otherwise she has to write the whole story again. You don&#8217;t want that, do you?<br />
+</li></ol></li>
+</ol>
+<p>Rails is full of this kind of candies, so it&#8217;s worth exploring the <a href="http://rails.rubyonrails.com"><span class="caps">API</span> documentation</a>. It&#8217;s still a fairly moving target so I try to keep popping these &#8216;rubies&#8217; up to the surface as I discover them.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/02/22/understanding-mvc/">Understanding MVC</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-02-22T00:00:00+02:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Amy Hoy of <a href="http://www.slash7.com/flashback/2005/01/oreilly_onlamp.html#more"><em>OnLAMP Tutorial for Designers&#8217; Brains</em></a> fame has written a great <a href="http://www.slash7.com/flashback/2005/02/mvc_the_most_ve.html">writeup</a> on <acronym title="Model-View-Controller"><span class="caps">MVC</span></acronym> pattern and how it relates to <a href="http://rubyonrails.com">Rails</a>. So, if you&#8217;ve always wondered what the heck it means that Rails is a full-stack framework, go read it. Now.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -415,89 +492,6 @@
 </code></pre>
 <p>OK, enough rambling. Now, go create some apps swift as an arrow.</p>
 <p>Oh, one more thing. Rails can use a bunch of different methods to store the cache. But that&#8217;s <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Fragments.html">another story</a>.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/01/20/back/">Back</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-01-20T00:00:00+02:00" pubdate data-updated="true">Jan 20<span>th</span>, 2005</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/jarkko/3567740/"><img src="http://photos1.flickr.com/3567740_336a83929a_m.jpg" title="Sunset" alt="Sunset" /></a></p>
-<p>Sorry for my absence from here. I spent last week in <a href="http://www.vuokatti.fi/lang/toiminto.php?mid=4_127&amp;la=uk">Vuokatti</a>, an XC skiing paradise in Northeastern Finland. With no internet connection. That can be a relaxing experience, mind you. Well, ok, I checked my email every now and then with my cellphone, but with no serious job-related thoughts involved.</p>
-<p><a href="http://www.flickr.com/photos/jarkko/3567762/"><img src="http://photos3.flickr.com/3567762_cde093a0d1_m.jpg" title="Skiing track" alt="Skiing track" /></a></p>
-<p>Anyway, the week was pretty productive. 26,5 hours and 359 kilometers of training in 8 days is pretty near my training record. And two of those days were travel days. The weather was excellent, most of the week between 0 and -10 Â°C and sunny.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/01/06/integrating-simulation-with-lrn-8212-an-openacs-microgrant-proposal/">Integrating Simulation With .LRN &#8212; an OpenACS Microgrant Proposal</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-01-06T00:00:00+02:00" pubdate data-updated="true">Jan 6<span>th</span>, 2005</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>Background</h4>
-<p>Simulation is an OpenACS package originally developed by <a href="http:/collaboraid.biz">Collaboraid</a> for project <a href="http:www.rechtenonline.nl">RechtenOnline</a>, a consortium of Dutch law faculties. As Collaboraid was having a lack of resources last fall, I was hired to finish the system. Version 1.0 of system was released in the end of November and a revised version 1.0.1 just before Christmas.</p>
-<p>Simulation is a package which can be used to simulate virtually any common workflows and processes. The most common example used by the original clients is the setting of a new law, with multiple students playing different roles in the process. Simulation is based on the newer, Finite State Machine Workflow package of OpenACS.</p>
-<h4>The Proposal</h4>
-<p>My proposal is to integrate the Simulation package with .<span class="caps">LRN</span> because the target audience of the two is clearly orthogonal.</p>
-<h4>Why would .<span class="caps">LRN</span> benefit</h4>
-<p>Integrating Simulation with .<span class="caps">LRN</span> would give it another member in its already extensive set of collaborative tools.</p>
-<h4>The Deliverable</h4>
-<p>Simulation package will be possible to be installed as a part of .<span class="caps">LRN</span> and they will work seamlessly together. I will also create all the needed portlet packages for both normal users and simulation administrators. All the code will be committed to the OpenACS codebase (as simulation already is). As a part of this project I will also take care that the end-user documentation of Simulation will be taken to a level expected from a .<span class="caps">LRN</span> package.</p>
-<p>Tampere, January 6th 2005,<br />
-Jarkko Laine</p></div>
   
   
 

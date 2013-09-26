@@ -11,7 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="OK, I guess nothing coming from the USPTO could surprise me anymore, but WTF?!? This has got to be one of the most outrageous sweep-everything-under- &hellip;">
+  <meta name="description" content="There&#8217;s a lot of sites where you have to select your time zone as part of the registration process. The zones are often displayed like this: &# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,87 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/03/14/usability-tip-display-the-city-name-first-in-a-time-zone-drop-down-list/">Usability Tip: Display the City Name First in a Time Zone Drop-down List</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-03-14T00:00:00+02:00" pubdate data-updated="true">Mar 14<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There&#8217;s a lot of sites where you have to select your time zone as part of the registration process. The zones are often displayed like this: &#8220;(GMT+02:00) Helsinki&#8221;. That sucks.</p>
+<p>Given that the time zone lists always have dozens of items, it&#8217;s really annoying to scroll down to items further down the list. Fortunately, browser makers have been wise enough to implement keyboard navigation for drop-down lists. Therefore, when selecting a country, I can type &#8220;fin&#8221; and hit <em>enter</em>, and be quite sure Finland is selected.</p>
+<p>With the time zone lists like above, I can&#8217;t use the keyboard. Or I could, but I would have to type everything until the &#8220;H&#8221; in &#8220;Helsinki&#8221; and that would pretty much cancel the benefits of using the keyboard. So if you need to implement time zone lists, do put the city name first and the time zone only after that. Sure, it&#8217;s a minor annoyance but they tend to add up.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/03/14/usability-tip-2-use-the-label-tag/">Usability Tip #2: Use the Label Tag!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-03-14T00:00:00+02:00" pubdate data-updated="true">Mar 14<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Many otherwise great web sites/applications, like <a href="http://www.basecamphq.com">Basecamp</a> and <a href="https://www.iconbuffet.com/">IconBuffet</a>, seem to share one very annoying shortcoming: <a href="http://odesign.clientsection.com/login">their</a> <a href="https://www.iconbuffet.com/account/login">forms</a> don&#8217;t use <a href="http://www.w3schools.com/tags/tag_label.asp"><em>label</em></a> elements.</p>
+<p>Even if you think <a href="http://37signals.com/svn/archives2/fly_on_the_wall_week_of_march_10.php">accessibility is for documents</a> (which it isn&#8217;t), please use <em>labels</em> in your forms. They are not just for blind people.</p>
+<p>The <em>big thing</em> for me in using labels is that they effectively make the clickable area of the form element a lot bigger. Which one would you prefer pushing? The male (without label) or the female (with label)?</p>
+<form name="test" action="test">
+<p><input type="radio" name="sex" id="male" /> <span class="caps">MALE</span><br/>
+<input type="radio" name="sex" id="female" /> <label for="female"><span class="caps">FEMALE</span> (with label)</label><br/></p>
+</form>
+<p>(Of course if you use Safari you don&#8217;t care because Safari doesn&#8217;t support the label element.)</p>
+<p>I think using real form labels is a huge usability enhancement in addition to helping accessibility.</p>
+<p>For gawd&#8217;s sake, using the Rails&#8217; form helpers to construct the form automatically uses labels, so it shouldn&#8217;t be too hard for two of the more prominent Rails showcases to use it.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -411,88 +492,6 @@ url.redirect = (
 }
 </filter:code>
 <p>It might be possible to tackle it with just redirects, but I couldn&#8217;t get it understanding my regexps. In rewrite rules they work fine, though, so I don&#8217;t mind. Here we first rewrite all old school feed urls to the new typo-style, and then redirect to the FeedBurner feed unless the request comes from FeedBurner. Works a treat.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/02/01/passion-fruits-part-i-passionate-users/">Passion Fruits, Part I. Passionate Users</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-02-01T00:00:00+02:00" pubdate data-updated="true">Feb 1<span>st</span>, 2006</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As you might have read from yesterday&#8217;s <a href="http://jlaine.net/articles/2006/01/31/heads-up-for-passion">teaser</a>, I&#8217;ll start a series of articles about passion in web, business and life in general. Although Kathy Sierra&#8217;s blog <a href="http://headrush.typepad.com/creating_passionate_users/">Creating Passionate Users</a> has been a tremendous inspiration for the articles, they will not be restricted to just users. But for starters, we&#8217;ll take the easy route and just snatch two thirds of the name of Kathy&#8217;s blog.</p>
-<p>The first question is, why would you want passionate customers? Isn&#8217;t it enough that your customers just wisely and cool-headedly choose what you&#8217;re offering?</p>
-<p>Yes and no. There are a few reasons why you should love your passionate users like no one else.</p>
-<h4>1. They will go to the end of the world just to get your products.</h4>
-<p>The single best success story of having passionate users is, not surprisingly, <a href="http://www.apple.com">Apple</a>. I can&#8217;t come up with any other company that would be so deeply loved by its customers. While most people hate (or even worse, couldn&#8217;t care less about) their computers, Appleists adore Macs. While that might seem like a strange kind of cult to outside, to Apple&#8212;especially before the iPod era&#8212;they&#8217;ve been worth their weight (and they&#8217;re mostly healthy, non-obese people) in gold.</p>
-<p>In the late eighties, Apple was&#8212;nicely put&#8212;in deep shit. They had kicked Steve Jobs out, taken MBAs in to replace him, and in the process done some pretty brain-dead decisions. Sales where going a-tumblin&#8217; down and all that kept them going was the crowd of users that declined to use any other type of computer. It turned out the best way in the end, but I would be lying if I said it wasn&#8217;t a close call.</p>
-<h4>2. They&#8217;re your best salesmen</h4>
-<p>Even though the evangelistic attitude of Apple users annoy a lot of outsiders, it also turns many of them into customers. It&#8217;s hard not to think that there must be <em>something</em> inside that blind enthusiasm people show towards products of a single company.</p>
-<p>If you&#8217;ve read the <a href="http://www.cluetrain.com/">Cluetrain Manifesto</a> (you have, don&#8217;t you), you know that in the place called <em>internet</em>, traditional marketing has little to no place to prosper. What matters multitudes more is human voice and conversation, and what could be more powerful and authentic source of that than thrilled, pleased customers. Heck, how do you think Jason Fried earned his Audi S4 with all but zero marketing budget?</p>
-<h3>How to get them?</h3>
-<p>There&#8217;s no single answer to this and honestly, I can only guess. There are a few obvious &#8220;tricks&#8221; like honesty, under-promising and over-delivering, being true to who you really are and keeping your human face even when you grow. However, it&#8217;s not nearly as simple. Apple has done quite a few things to piss of its customers. It&#8217;s sued rumor sites leaking information about Apple products, but the faithful have stayed. It&#8217;s released clearly unfinished products (the latest batch of 15&quot; PowerBooks, anyone?), and even that hasn&#8217;t been enough to wipe off the glow from its image.</p>
-<p>So there just has to be <em>something</em> in you that makes your customers love you. What it is, you have to figure out by yourself. There&#8217;s no one-size-fits-all recipe. Obvious places to start are <a href="http://headrush.typepad.com/creating_passionate_users/">Creating Passionate Users</a> and 37signals&#8217; <a href="http://37signals.com/svn/">Signal vs. Noise</a>. The Signals have collected some heat lately, too, but better flamed than mediocre and forgotten.</p>
-<p>Next week, 1-3-10 rule squared and a few other obsessed observations.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/02/01/best-video-capture-device-for-mac/">Best Video Capture Device for Mac?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-02-01T00:00:00+02:00" pubdate data-updated="true">Feb 1<span>st</span>, 2006</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>My dad&#8217;s in a process of moving our whole collection of old <span class="caps">VHS</span> videos to <span class="caps">DVD</span>. They have an iMac G5 with a dvd burner so afaik all that&#8217;d be needed would be a good firewire video capture device. Does anyone of you have any experience with such things? It would need to support analog video and audio input and be easy to setup.</p></div>
   
   
 
