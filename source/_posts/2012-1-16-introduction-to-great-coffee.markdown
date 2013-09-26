@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Introduction to Great Coffee
+categories: ["coffee"]
 ---
 *This is a talk I gave in the first Tampere Web Dev meetup in January 2012*.
 
