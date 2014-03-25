@@ -11,7 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="There&#8217;s a lot of sites where you have to select your time zone as part of the registration process. The zones are often displayed like this: &# &hellip;">
+  <meta name="description" content="I&#8217;m working for the first time on a project that uses the Globalize Rails plugin. It rocks. It&#8217;s about as close to an unobtrusive I18N/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,48 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/04/03/globalize-gotcha/">Globalize Gotcha</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-04-03T00:00:00+03:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m working for the first time on a project that uses the <a href="http://www.globalize-rails.org/wiki/">Globalize Rails plugin</a>. It rocks. It&#8217;s about as close to an unobtrusive <acronym title="internationalization"><span class="caps">I18N</span></acronym>/<acronym title="localization"><span class="caps">L10N</span></acronym> framework as it gets. I&#8217;ve used a couple of approaches before, both self-written and third party, but they don&#8217;t get even close to the ease of deployment with Globalize.</p>
+<p>There is one gotcha with Globalize, though, which is probably worth sharing: it overwrites Rails code. This isn&#8217;t such a surprise since runtime extensibility is one of the founding Ruby principles. It does, however, break the backwards-compatibility.</p>
+<p>One specific thing that bit me was that after starting to use Globalize, <em>assert_template</em> didn&#8217;t work anymore. Suddenly it started to get the whole path for the template, as opposed to relative from the template root which is the default Rails behaviour. So assertions like</p>
+<filter:code lang="ruby">
+<p>assert_template &#8220;admin/books/new&#8221;</p>
+</filter:code>
+<p>won&#8217;t work anymore. You <em>could</em> of course put the absolute path in your assertion but that would break the portability of the app. I guess it would work with constants like RAILS_ROOT, but using it in every assert_template call would be just plain ugly.</p>
+<p>There is a pending <a href="http://dev.rubyonrails.org/ticket/4235">patch in Rails Trac to accept regexps as assert_template arguments</a>, which would make the problem go away, but until it gets applied to the trunk, I&#8217;ll just comment out the assert_template calls.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -452,52 +494,6 @@ automated testing</li>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/02/01/redirecting-txp-style-feed-url-s-to-feedburner-in-a-lighttpd-typo-setup/">Redirecting Txp-style Feed Url&#8217;s to Feedburner in a Lighttpd/typo Setup</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-02-01T00:00:00+02:00" pubdate data-updated="true">Feb 1<span>st</span>, 2006</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I reported <a href="http://jlaine.net/articles/2006/01/27/back">earlier</a> that I hadn&#8217;t yet gotten the old textpattern-style feed urls like jlaine.net/?rss=1 to work with the setup where all requests are reverse proxied to a <a href="http://lighttpd.net/">lighttpd</a> instance through apache. That has now changed. With the help of Ryan Schwartz from <a href="http://www.textdrive.com">Textdrive</a> I was able to combine rewriting and redirecting in the lighty config file so that all my feeds now point to <a href="http://www.feedburner.com">feedburner</a>. Here&#8217;s the setup:</p>
-<filter:code lang="ruby">
-<p>$<span class="caps">HTTP</span>[&#8220;host&#8221;] =~ &#8220;mydomain.net&#8221; {<br />
-  url.rewrite-once = ( &#8220;^/?rss=1(&amp;section=blog)?&#8221; =&gt; &#8220;/xml/rss20/feed.xml&#8221;,<br />
-                       &#8220;^/?atom=1(&amp;section=blog)?&#8221; =&gt; &#8220;/xml/rss20/feed.xml&#8221;  )</p>
-$<span class="caps">HTTP</span>[&#8220;useragent&#8221;] !~ &#8220;FeedBurner&#8221; {
-url.redirect = (
-&#8220;/xml/rss20/feed.xml&#8221; =&gt; &#8220;http://feeds.feedburner.com/mydomain&#8221;
-)
-}
-</filter:code>
-<p>It might be possible to tackle it with just redirects, but I couldn&#8217;t get it understanding my regexps. In rewrite rules they work fine, though, so I don&#8217;t mind. Here we first rewrite all old school feed urls to the new typo-style, and then redirect to the FeedBurner feed unless the request comes from FeedBurner. Works a treat.</p></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -517,7 +513,7 @@ url.redirect = (
 </ul>
 
 <p>
-  Copyright &copy; 2013 - Jarkko Laine -
+  Copyright &copy; 2014 - Jarkko Laine -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 </footer>

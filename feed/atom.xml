@@ -4,7 +4,7 @@
   <title><![CDATA[jlaine.net]]></title>
   <link href="http://jlaine.net/atom.xml" rel="self"/>
   <link href="http://jlaine.net/"/>
-  <updated>2013-09-26T12:25:41+03:00</updated>
+  <updated>2014-03-25T17:10:22+02:00</updated>
   <id>http://jlaine.net/</id>
   <author>
     <name><![CDATA[Jarkko Laine]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Project 4.5]]></title>
+    <link href="http://jlaine.net/2014/01/21/project-45/"/>
+    <updated>2014-01-21T12:16:00+02:00</updated>
+    <id>http://jlaine.net/2014/01/21/project-45</id>
+    <content type="html"><![CDATA[<p>Last fall – on the brink of transferring to the masters series in sports – I started a new <a href="http://projekti45.jlaine.net">triathlon project</a>. I’ve been looking for something new for a while and this seemed like a good opportunity to take it into action. I’ve also always loved triathlon. I’m a bit of a generalist in everything and always looking for variety<sup id="fnref:entrepreneur"><a href="#fn:entrepreneur" rel="footnote">1</a></sup> in everything I do.</p>
+
+<p>The big problem in triathlon for me was that I was (and to an extent still am) a terrible swimmer. Sure, I can get by but if I tried to swim a longer distance, I quickly went out of breath, which is disturbing for someone with presumably great oxygen intake. I assume that’s very common for quite a few tri-newbs, so I also wanted to document the process as it goes.</p>
+
+<p>Writing a sport project blog is what everyone seems to be doing right now, so I wanted to do it with a twist. I have no illusions that very many people are actually interested in me or how I’m doing. Thus I’m always trying to write articles with the audience in mind: people who have a background in endurance sports but have not done (or have recently started) triathlon.</p>
+
+<p>For now I’m doing it in Finnish. But who knows, if the interest is there, I might start translating the articles in English as well. So, if the language isn’t an issue, come on <a href="http://projekti45.jlaine.net">over</a>.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:entrepreneur">
+      <p>That’s probably why I’m a software entrepreneur rather than a pure developer. I get bored quickly when I do just one thing for too long – be it coding, designing or marketing.<a href="#fnref:entrepreneur" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Open letter to specialty coffee roasters]]></title>
@@ -978,21 +1001,6 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
 <p>The actual blog/<span class="caps">CMS</span> is using Movable Type but the backend database for products and companies is built on <a href="http://merbivore.org/">Merb</a> and <a href="http://datamapper.org/">Datamapper</a>. The integration of the platforms has definitely been a challenge but the decision to use separate pieces loosely joined by web services gives us a chance to reuse the database easily in the future if need be.</p>
 <p>Playing around with new tools such as Merb, DM and jQuery (and, err&#8230; perl) has been really educational and fun. The project also gave us a chance to help hone open source products such as Datamapper even further.</p>
 <p>If you&#8217;re <a href="http://ecohomeresource.com/2008/09/cooling-heating-and-insulation.html">building a new house</a>, <a href="http://ecohomeresource.com/2008/09/photovoltaic-electricity-produ.html">renovating your existing home</a>, or just looking for <a href="http://ecohomeresource.com/2008/09/how-to-light-efficiently.html">tips to be more eco-efficient with what you already got</a>, go and check out <a href="http://ecohomeresource.com/">EcoHomeResource</a>! You won&#8217;t walk out empty-handed.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Unplugged]]></title>
-    <link href="http://jlaine.net/2008/10/03/unplugged/"/>
-    <updated>2008-10-03T00:00:00+03:00</updated>
-    <id>http://jlaine.net/2008/10/03/unplugged</id>
-    <content type="html"><![CDATA[<p>Early last year I was shopping for in-canal earplugs because I wanted a pair of reasonably sound-isolating plugs that <strong>stay in my ears</strong>, even when running or biking. The standard iPod plugs are not meant for me. Even if I could stand the sound quality (which I don&#8217;t), all I have to do is to lean my head on one side and the earplug drops on the ground. The same goes pretty much for all the &#8220;normal&#8221; earplugs, thus I needed more drastic measures.</p>
-<p>My first idea was to buy a pair of <a href="http://www.amazon.com/Sennheiser-CX300-B-Earbuds-Black/dp/B000E6G9RI/">Sennheiser CX300</a> plugs, cause I&#8217;d had a couple of different Sennheisers in the past and been fairly happy with all of them. <a href="http://imaj.es/">James</a> proposed that I&#8217;d get <a href="http://www.amazon.com/Shure-E2c-n-Sound-Isolating-Earphones/dp/B000E5GKW8">Shure E2C&#8217;s</a> instead; he&#8217;d used both and thought the Shures were vastly superior, sitting tighter in the ear and being better sound-isolating. I believed him and ordered a pair from Amazon.co.uk, which he then brought to our Caboose meetup in Paris.</p>
-<p>In general I&#8217;ve been very happy with the earphones. They sound great, pretty much as good as my <a href="http://www.amazon.com/Sennheiser-PX200-Collapsible-High-Performance-Headphones/dp/B000089GN4/">Sennheiser PX200</a> headphones. And most of all, after you find the best fitting sleeve for your ear (they come with a selection of sleeves), they sit in your ear like plague.</p>
-<p>However, while the Shures have worked really well in sometimes fairly rough use, their cables haven&#8217;t stood up the use as well. The rubber covering the cable first started cracking from behind my ears, and now there are even more cracks where the protective metal coil comes out of the cable covering.</p>
-<p>Yesterday&#8217;s <a href="http://twitter.com/lazyatom/statuses/942052102">tweet</a> by <a href="http://twitter.com/lazyatom">lazyatom</a> finally pushed me over the edge to ask for a replacement. I started with the Finnish distributor even though I bought the pair from UK, just to try out my luck. And lucky I was (unlike <a href="http://twitter.com/lazyatom/statuses/943469362">some others</a>). The distributor promised to send me a replacement pair if I&#8217;d just mail them the phones. They&#8217;re now in the mail, fingers crossed that I&#8217;ve got a new pair soon. Kudos for that to <a href="http://www.noretron.fi/">Noretron</a>.</p>
-<p>In July, when we jumped on a train for our honeymoon in Norway, I forgot my E2C&#8217;s back home. Two weeks without earplugs just couldn&#8217;t do, so I went shopping in the airport to see if they&#8217;d have some good alternatives on sale. One reasonably priced model that looked liked it would fit the bill was <a href="http://www.koss.com/koss/kossweb.nsf/p?openform&amp;pc%5Eeb%5EPLUG">Koss The Plug</a>. Priced at less than €20, I figured I wouldn&#8217;t lose much even if they wouldn&#8217;t turn out to be good. Which they didn&#8217;t.</p>
-<p>While The Plugs sit fairly well inside the ear canal, the foam plug is the only thing keeping them in place. The Shures, no the other hand, have the earphone body sitting inside the earlobe as well, and the cable going behind the ear. So sooner or later gravity will pull The Plug out of the ear, and that moment comes very soon if you&#8217;re both sweating and moving at the same time.</p>
-<p>The biggest problem with the Koss plugs, however, is that (at least with my iPod Shuffle) they somehow hugely amplify the silent humming caused by a player when it&#8217;s on. That causes the phones to be nearly unusable on lower volumes, e.g. when I listen to a podcast before falling asleep. With the lowest volume I can hardly hear the voice of the hosts from the humming. This is a problem I haven&#8217;t encountered with any other pair of plugs, including the ones coming with iPods. Thus I don&#8217;t recommend buying The Plugs even though they are cheap. Cough up a few dozen bucks more and get a good pair of Shures instead. I&#8217;m at least eagerly waiting for my replacement Shure buds, that&#8217;s how big the difference between the two is.</p>]]></content>
   </entry>
   
 </feed>

@@ -11,7 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="My friends at Starnet Systems are looking for a full-time Rails developer to join their international development team. See the full job posting and &hellip;">
+  <meta name="description" content="current_page? is a nifty Rails helper that can be used to check whether a URL points to the current page. This is very useful in navigation lists &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/07/17/current_page-and-rails-named-routes/">Current_page? And Rails Named Routes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-07-17T00:00:00+03:00" pubdate data-updated="true">Jul 17<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#M000386">current_page?</a> is a nifty Rails helper that can be used to check whether a <span class="caps">URL</span> points to the current page. This is very useful in navigation lists where you&#8217;d want the link to the current page to be styled differently from other items. However, if you&#8217;re using <a href="http://wiki.rubyonrails.org/rails/pages/NamedRoutes">named routes</a> in Rails (and you should, keep it <span class="caps">DRY</span>, man), <code>current_page?</code> doesn&#8217;t work correctly. The reason for this is that <code>request.request_uri</code> (which <code>current_page?</code> uses internally to get the current <span class="caps">URL</span>) doesn&#8217;t contain the domain name, whereas <code>your_named_route_url</code><sup><a href="#fn1">1</a></sup> will return the whole <span class="caps">URL</span>, including the domain name and the port.</p>
+<p>While this small incompatibility is being fixed, you can circumvent it by using <code>hash_for_your_named_route_url</code> instead. It is just about the same magical method as <code>your_named_route_url</code>, with one difference. It returns the params hash instead of running it through <code>url_for</code> and returning the <span class="caps">URL</span> as a string. Thus <code>current_page?</code> will work happily with it.</p>
+<p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> <code>your_named_route_url</code> will return the url you have specified in routes.rb by a route like:</p>
+<pre>
+map.your_named_route '', :controller =&gt; 'default', :action =&gt; 'index'
+</pre></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -491,48 +531,6 @@ Clerk: OK, thank you and welcome to US.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/04/03/globalize-gotcha/">Globalize Gotcha</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-04-03T00:00:00+03:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2006</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m working for the first time on a project that uses the <a href="http://www.globalize-rails.org/wiki/">Globalize Rails plugin</a>. It rocks. It&#8217;s about as close to an unobtrusive <acronym title="internationalization"><span class="caps">I18N</span></acronym>/<acronym title="localization"><span class="caps">L10N</span></acronym> framework as it gets. I&#8217;ve used a couple of approaches before, both self-written and third party, but they don&#8217;t get even close to the ease of deployment with Globalize.</p>
-<p>There is one gotcha with Globalize, though, which is probably worth sharing: it overwrites Rails code. This isn&#8217;t such a surprise since runtime extensibility is one of the founding Ruby principles. It does, however, break the backwards-compatibility.</p>
-<p>One specific thing that bit me was that after starting to use Globalize, <em>assert_template</em> didn&#8217;t work anymore. Suddenly it started to get the whole path for the template, as opposed to relative from the template root which is the default Rails behaviour. So assertions like</p>
-<filter:code lang="ruby">
-<p>assert_template &#8220;admin/books/new&#8221;</p>
-</filter:code>
-<p>won&#8217;t work anymore. You <em>could</em> of course put the absolute path in your assertion but that would break the portability of the app. I guess it would work with constants like RAILS_ROOT, but using it in every assert_template call would be just plain ugly.</p>
-<p>There is a pending <a href="http://dev.rubyonrails.org/ticket/4235">patch in Rails Trac to accept regexps as assert_template arguments</a>, which would make the problem go away, but until it gets applied to the trunk, I&#8217;ll just comment out the assert_template calls.</p></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -552,7 +550,7 @@ Clerk: OK, thank you and welcome to US.</p>
 </ul>
 
 <p>
-  Copyright &copy; 2013 - Jarkko Laine -
+  Copyright &copy; 2014 - Jarkko Laine -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 </footer>

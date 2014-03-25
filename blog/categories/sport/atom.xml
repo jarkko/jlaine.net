@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sport | jlaine.net]]></title>
+  <link href="http://jlaine.net/blog/categories/sport/atom.xml" rel="self"/>
+  <link href="http://jlaine.net/"/>
+  <updated>2014-03-25T17:10:22+02:00</updated>
+  <id>http://jlaine.net/</id>
+  <author>
+    <name><![CDATA[Jarkko Laine]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Project 4.5]]></title>
+    <link href="http://jlaine.net/2014/01/21/project-45/"/>
+    <updated>2014-01-21T12:16:00+02:00</updated>
+    <id>http://jlaine.net/2014/01/21/project-45</id>
+    <content type="html"><![CDATA[<p>Last fall – on the brink of transferring to the masters series in sports – I started a new <a href="http://projekti45.jlaine.net">triathlon project</a>. I’ve been looking for something new for a while and this seemed like a good opportunity to take it into action. I’ve also always loved triathlon. I’m a bit of a generalist in everything and always looking for variety<sup id="fnref:entrepreneur"><a href="#fn:entrepreneur" rel="footnote">1</a></sup> in everything I do.</p>
+
+<p>The big problem in triathlon for me was that I was (and to an extent still am) a terrible swimmer. Sure, I can get by but if I tried to swim a longer distance, I quickly went out of breath, which is disturbing for someone with presumably great oxygen intake. I assume that’s very common for quite a few tri-newbs, so I also wanted to document the process as it goes.</p>
+
+<p>Writing a sport project blog is what everyone seems to be doing right now, so I wanted to do it with a twist. I have no illusions that very many people are actually interested in me or how I’m doing. Thus I’m always trying to write articles with the audience in mind: people who have a background in endurance sports but have not done (or have recently started) triathlon.</p>
+
+<p>For now I’m doing it in Finnish. But who knows, if the interest is there, I might start translating the articles in English as well. So, if the language isn’t an issue, come on <a href="http://projekti45.jlaine.net">over</a>.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:entrepreneur">
+      <p>That’s probably why I’m a software entrepreneur rather than a pure developer. I get bored quickly when I do just one thing for too long – be it coding, designing or marketing.<a href="#fnref:entrepreneur" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+</feed>

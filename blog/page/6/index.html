@@ -11,7 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="Here&#8217;s the PDF export of my RailsConf slides. Unfortunately they probably don&#8217;t make much sense just by themselves. I&#8217;ll try to &hellip;">
+  <meta name="description" content="I&#8217;ve recently been looking into Starfish to provide more speed for our upcoming email alert functionality. While reading Lucas&#8217; blog I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/07/03/advanced-concepts-in-ruby-on-rails-hosting/">Advanced Concepts in Ruby on Rails Hosting</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-03T00:00:00+03:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve recently been looking into <a href="http://rufy.com/starfish/doc/">Starfish</a> to provide more speed for <a href="http://dotherightthing.com">our</a> upcoming email alert functionality. While reading <a href="http://tech.rufy.com/">Lucas&#8217; blog</a> I noticed that he&#8217;s back blogging about their experiences at <span class="caps">MOG</span>. This time he&#8217;s writing a series about Rails deployment which seems really interesting. Three parts so far, more to come:</p>
+<ul>
+	<li><a href="http://tech.rufy.com/2007/06/advanced-concepts-in-ruby-on-rails.html"> Advanced Concepts in Ruby on Rails Hosting Part I</a></li>
+	<li><a href="http://tech.rufy.com/2007/06/advanced-concepts-in-ruby-on-rails_25.html">Advanced Concepts in Ruby on Rails Hosting Part II</a></li>
+	<li><a href="http://tech.rufy.com/2007/07/advanced-concepts-in-ruby-on-rails.html">Advanced Concepts in Ruby on Rails Hosting Part <span class="caps">III</span></a></li>
+</ul></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -439,68 +479,6 @@ $20 X 200,000 = $4 million &#8230;. sweet spot</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/02/13/new-on-dotherightthing-com-atom-feeds/">New on dotherightthing.com: Atom Feeds</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-02-13T00:00:00+02:00" pubdate data-updated="true">Feb 13<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We just went live with a <a href="http://gettingreal.37signals.com/ch15_One_Month_Tuneup.php">three week tuneup</a> at <a href="http://dotherightthing.com">dotherightthing.com</a>. The main update is the introduction of a wide variety of <a href="http://en.wikipedia.org/wiki/Atom_feed">Atom feeds</a>. I just wrote an &#8220;in-depth article about all the different feeds available on the dotherighthing.com blog&#8221;:, but let me get a bit more geeky here.</p>
-<p>We&#8217;re using <a href="http://www.rubyonrails.org">Ruby on Rails</a> and the <a href="http://ryandaigle.com/articles/2006/08/01/whats-new-in-edge-rails-simply-restful-support-and-how-to-use-it">Simply Restful</a> stuff in it so adding an Atom representation for a resource like entry, company or user is dead simple: just add a new response type with respond_to:</p>
-<pre><code>  respond_to do |type|
-    type.html do
-      # normal stuff
-    end
-    type.atom do
-      # render the atom feed
-    end
-  end
-</code></pre>
-<p>Now, when someone requests the action with type atom (e.g. <a href="http://dotherightthing.com/companies/starbucks.atom">http://dotherightthing.com/companies/starbucks.atom</a>), the code inside <code>type.atom</code> will be executed. However, the niceties don&#8217;t stop there. The new <a href="http://www.ryandaigle.com/articles/2006/09/14/whats-new-in-edge-rails-get-your-rss-atom-feeds-for-free">resource_feeder</a> plugin makes everything even easier. We don&#8217;t need to setup a specific template for the feeds at all, all we have to do is to specify some options that don&#8217;t match the standard and then call render_atom_feed_for:</p>
-<pre><code>  feed_options = { :feed =&gt; 
-                      {:title =&gt; "dotherightthing.com #{params[:sort]} entries",
-                       :link =&gt; entries_url(:sort =&gt; params[:sort])},
-                   :item =&gt; {:description =&gt; :body_html},
-                   :class =&gt; Entry }
-
-                   ...
-
-  type.atom do
-    render_atom_feed_for(@entries, feed_options)
-  end
-</code></pre>
-<p>And that&#8217;s it!</p>
-<p>Another great thing about Simply Restful is that all the url&#8217;s are extremely logical. A user profile can be viewed at <a href="http://dotherightthing.com/users/jarkko">http://dotherightthing.com/users/jarkko</a>, a feed for his content is at <a href="http://dotherightthing.com/users/jarkko.atom">http://dotherightthing.com/users/jarkko.atom</a>. The same is true for companies: <a href="http://dotherightthing.com/companies/apple">http://dotherightthing.com/companies/apple</a> â†’ <a href="http://dotherightthing.com/companies/apple.atom">http://dotherightthing.com/companies/apple.atom</a>.</p>
-<p>Gotta love the RESTful features in Rails!</p>
-<p>Don&#8217;t forget to check out <a href="http://blog.dotherightthing.com/index.php/2007/02/13/three-week-tuneup-rssatom-feeds/">the variety of feeds</a> we offer at <a href="http://dotherightthing.com/">dotherightthing.com</a>.</p></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -520,7 +498,7 @@ $20 X 200,000 = $4 million &#8230;. sweet spot</p>
 </ul>
 
 <p>
-  Copyright &copy; 2013 - Jarkko Laine -
+  Copyright &copy; 2014 - Jarkko Laine -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 </footer>

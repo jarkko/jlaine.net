@@ -11,7 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="Sorry for my absence from here. I spent last week in Vuokatti, an XC skiing paradise in Northeastern Finland. With no internet connection. That can &hellip;">
+  <meta name="description" content="Rails version 0.9.4.1 is out and ohmigod. The framework is going forward so fast I have trouble following up with all the new stuff. Here&#8217;s the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,76 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/01/20/more-rails-goodness/">More Rails Goodness</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-01-20T00:00:00+02:00" pubdate data-updated="true">Jan 20<span>th</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Rails version 0.9.4.1 is out and ohmigod. The framework is going forward so fast I have trouble following up with all the new stuff. Here&#8217;s the greatest of <a href="http://weblog.rubyonrails.com/archives/2005/01/17/rails-094-caching-filters-sqlite3/">the latest</a>: <a href="http://ap.rubyonrails.com/classes/ActionController/Caching.html">Caching</a>.</p>
+<p>Well, yeah, caching is no news as such. It&#8217;s the way David implemented it (just like other things) in Rails that can&#8217;t stop astounding me. It&#8217;s so simple it almost makes me cry. Want to <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Pages.html">cache some whole pages</a> your controller is serving? Just do this:</p>
+<pre><code>
+  class WeblogController &lt; ActionController::Base
+    caches_page :show, :new
+  end
+</code></pre>
+<p>Phew, that was all good and well. But what if you have some personalized content? You can&#8217;t cache whole pages then, can you? That&#8217;s right, dear Watson. But you can cache the actions. Using <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Actions.html"><em>action caching</em></a> means that the request will go trough Action Pack so all the filters are processed before the page gets served. That way you can use authentication and other magic in your pages without having to give up the glory of caching. Here&#8217;s an example of controller that uses both page <em>and</em> action caching, stolen straight from the api docs:</p>
+<pre><code>
+  class ListsController &lt; ApplicationController
+    before_filter :authenticate, :except =&gt; :public
+    caches_page   :public
+    caches_action :show, :feed
+  end
+</code></pre>
+<p>This controller has a public action and two private actions that need authentication &#8212; and thus action-level caching.</p>
+<p>The most granular way to do caching in Rails is <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Fragments.html"><em>fragment caching</em></a>. It&#8217;s what the two higher-level caching schemes use internally. Using fragment caching is a gem when you have pages that have both highly dynamic and pretty static parts. The downside is that it&#8217;s a bit more work and you have to do it in templates. Here&#8217;s an example of fragment caching:</p>
+<pre><code>
+  &lt;b&gt;Hello &lt;%= @name %&gt;&lt;/b&gt;
+  &lt;% cache(binding) do %&gt;
+    All the topics in the system:
+    &lt;%= render_collection_of_partials "topic", Topic.find_all %&gt;
+  &lt;% end %&gt;
+</code></pre>
+<p>There. But, wait! What if the content changes in between. Will the users be served old stinkin&#8217; cheese ever after. Glad you asked. It turns out David <em>did</em> notice this possibility. That&#8217;s why controllers now have methods like <code>expire_page</code>, <code>expire_action</code> and <code>expire_fragment</code>, for all you busy bees who can&#8217;t settle with the content you once created. Here&#8217;s an action where the cache for page <em>show</em> is flushed:</p>
+<pre><code>
+  class WeblogController &lt; ActionController::Base
+    def update
+      List.update(@params["list"]["id"], @params["list"])
+      expire_page :action =&gt; "show", :id =&gt; @params["list"]["id"]
+      redirect_to :action =&gt; "show", :id =&gt; @params["list"]["id"]
+    end
+  end
+</code></pre>
+<p>OK, enough rambling. Now, go create some apps swift as an arrow.</p>
+<p>Oh, one more thing. Rails can use a bunch of different methods to store the cache. But that&#8217;s <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Fragments.html">another story</a>.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -484,43 +554,6 @@ Jarkko Laine</p></div>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2004/11/30/openacs-simulation-1-0-released/">OpenACS Simulation 1.0 Released</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2004-11-30T00:00:00+02:00" pubdate data-updated="true">Nov 30<span>th</span>, 2004</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m proud to announce that we&#8217;ve released the version 1.0 of Simulation package for <a href="http://openacs.org/">OpenACS</a> (Open Architecture Community System).</p>
-<p>The major part of the package was developed by the nice folks at <a href="http://collaboraid.biz">Collaboraid</a> and my job was to finish the project and to make minor modifications to the system to get it ready for launch.</p>
-<p>The Simulation package was developed for and financed by <a href="http://www.rechtenonline.nl">Project RechtenOnline</a>, a Dutch project to facilitate and improve virtual learning in law schools across the country.</p></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/21/">&larr; Older</a>
@@ -540,7 +573,7 @@ Jarkko Laine</p></div>
 </ul>
 
 <p>
-  Copyright &copy; 2013 - Jarkko Laine -
+  Copyright &copy; 2014 - Jarkko Laine -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 </footer>
