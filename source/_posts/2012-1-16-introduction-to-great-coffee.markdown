@@ -5,7 +5,7 @@ categories: ["coffee"]
 ---
 *This is a talk I gave in the first Tampere Web Dev meetup in January 2012*.
 
-<script src="http://speakerdeck.com/embed/4f11d91ed28ef6001f010f3e.js"></script>
+<script src="//speakerdeck.com/embed/4f11d91ed28ef6001f010f3e.js"></script>
 
 I don't have a very long history with coffee. To be honest, I really only started drinking it when I was well into my twenties. Even then, I didn't really like it, but surviving through exam periods took the better of me. It wasn't until 2010 – when I first heard about Aeropress and then stumbled upon [Mathias Meyer](http://www.paperplanes.de/) – that I found out there is a whole another world of coffee I had never before explored. Thus, with the enthusiasm of a beginner and the confidence of a 20-year-old, I shall tell you about my journey.
 
