@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: philosophy, | jlaine.net]]></title>
+  <link href="http://jlaine.net/blog/categories/philosophy-/atom.xml" rel="self"/>
+  <link href="http://jlaine.net/"/>
+  <updated>2015-02-02T11:00:12+02:00</updated>
+  <id>http://jlaine.net/</id>
+  <author>
+    <name><![CDATA[Jarkko Laine]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Your freedom is my prison]]></title>
+    <link href="http://jlaine.net/2015/02/02/your-freedom-is-my-prison/"/>
+    <updated>2015-02-02T10:56:00+02:00</updated>
+    <id>http://jlaine.net/2015/02/02/your-freedom-is-my-prison</id>
+    <content type="html"><![CDATA[<p>Your freedom to carry a gun messes with my freedom to walk around without fear.</p>
+
+<p>Your freedom to “stand your ground” with force is at odds with my <a href="http://en.wikipedia.org/wiki/Freedom_to_roam">freedom to run anywhere in the woods freely</a>.</p>
+
+<p>Your freedom to refuse to pay taxes diminishes my freedom to fall ill without the fear of it bankrupting me.</p>
+
+<p>There are many kinds of freedoms. Yours might not be the only ones or the right ones even though you’re inclined to think so. Neither do mine.</p>
+]]></content>
+  </entry>
+  
+</feed>

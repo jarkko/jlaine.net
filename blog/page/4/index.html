@@ -11,7 +11,7 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="December 2007 For gawd&#8217;s sake, what did they smoke in your company&#8217;s Christmas party? (A text message I sent to my buddy Thomas who works &hellip;">
+  <meta name="description" content="When trying to deploy an app on the production server, the deploy:cleanup task always died for me like this: * executing `deploy:cleanup' * executing &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +82,59 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2008/05/05/making-capistrano-not-pant-on-cleanup/">Making Capistrano Not Suffocate on Cleanup</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-05T00:00:00+03:00" pubdate data-updated="true">May 5<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When trying to deploy an app on the production server, the <code>deploy:cleanup</code> task always died for me like this:</p>
+<pre><code>  * executing `deploy:cleanup'
+  * executing "ls -x /opt/sites/mysite/releases"
+    servers: ["myserver"]
+    [myserver] executing command
+    command finished
+ ** keeping 3 of 4 deployed releases
+  * executing "rm -rf /opt/sites/mysite/releases/20080220092659"
+    servers: ["myserver"]
+    [myserver] executing command
+ ** [out :: myserver] sudo: no passwd entry for app!
+ ** [out :: myserver] 
+    command finished
+command "rm -rf /opt/sites/mysite/releases/20080220092659" failed on myserver
+</code></pre>
+<p>Turns out capistrano is for some reason trying to use a user called <em>app</em> in the cleanup task even though the <code>:user</code> parameter is set to something else in <code>config/deploy.rb</code>. The solution was to set the <code>:runner</code> parameter as well:</p>
+<pre><code class="ruby">set :runner, 'someotheruser'
+</code></pre>
+<p>Don&#8217;t ask me why that worked. It seems a bit counterintuitive that the cleanup task uses the <code>runner</code> param rather than <code>user</code>. Found the hint towards the solution <a href="http://groups.google.com/group/capistrano/browse_thread/thread/0d396a96d1946ba3">here</a>.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2008/04/22/hate-to-say/">Hate to Say&#8230;</a></h1>
     
     
@@ -98,7 +151,7 @@
   
 
 
-<time datetime="2008-04-22T00:00:00+02:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2008</time>
+<time datetime="2008-04-22T00:00:00+03:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2008</time>
         
       </p>
     
@@ -142,7 +195,7 @@
   
 
 
-<time datetime="2008-03-11T00:00:00+01:00" pubdate data-updated="true">Mar 11<span>th</span>, 2008</time>
+<time datetime="2008-03-11T00:00:00+02:00" pubdate data-updated="true">Mar 11<span>th</span>, 2008</time>
         
       </p>
     
@@ -179,7 +232,7 @@
   
 
 
-<time datetime="2008-02-13T00:00:00+01:00" pubdate data-updated="true">Feb 13<span>th</span>, 2008</time>
+<time datetime="2008-02-13T00:00:00+02:00" pubdate data-updated="true">Feb 13<span>th</span>, 2008</time>
         
       </p>
     
@@ -219,7 +272,7 @@
   
 
 
-<time datetime="2008-02-12T00:00:00+01:00" pubdate data-updated="true">Feb 12<span>th</span>, 2008</time>
+<time datetime="2008-02-12T00:00:00+02:00" pubdate data-updated="true">Feb 12<span>th</span>, 2008</time>
         
       </p>
     
@@ -256,7 +309,7 @@
   
 
 
-<time datetime="2008-01-15T00:00:00+01:00" pubdate data-updated="true">Jan 15<span>th</span>, 2008</time>
+<time datetime="2008-01-15T00:00:00+02:00" pubdate data-updated="true">Jan 15<span>th</span>, 2008</time>
         
       </p>
     
@@ -309,7 +362,7 @@
   
 
 
-<time datetime="2008-01-09T00:00:00+01:00" pubdate data-updated="true">Jan 9<span>th</span>, 2008</time>
+<time datetime="2008-01-09T00:00:00+02:00" pubdate data-updated="true">Jan 9<span>th</span>, 2008</time>
         
       </p>
     
@@ -364,7 +417,7 @@
   
 
 
-<time datetime="2008-01-03T00:00:00+01:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2008</time>
+<time datetime="2008-01-03T00:00:00+02:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2008</time>
         
       </p>
     
@@ -402,7 +455,7 @@ Fields Inline&#8221;. However, I don&#8217;t get any royalties from the book sal
   
 
 
-<time datetime="2008-01-01T00:00:00+01:00" pubdate data-updated="true">Jan 1<span>st</span>, 2008</time>
+<time datetime="2008-01-01T00:00:00+02:00" pubdate data-updated="true">Jan 1<span>st</span>, 2008</time>
         
       </p>
     
@@ -437,7 +490,7 @@ Fields Inline&#8221;. However, I don&#8217;t get any royalties from the book sal
   
 
 
-<time datetime="2007-12-10T00:00:00+01:00" pubdate data-updated="true">Dec 10<span>th</span>, 2007</time>
+<time datetime="2007-12-10T00:00:00+02:00" pubdate data-updated="true">Dec 10<span>th</span>, 2007</time>
         
       </p>
     
@@ -451,49 +504,6 @@ Fields Inline&#8221;. However, I don&#8217;t get any royalties from the book sal
 	<li>If you receive a proposal from them, let them know you won&#8217;t hire spammers.</li>
 </ol>
 <p>In any case, if you&#8217;re a blogger, please spread the word. iTechArt is not worth anyone&#8217;s money.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/12/06/mikontalolights/">Mikontalolights</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-12-06T00:00:00+01:00" pubdate data-updated="true">Dec 6<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>What would a bunch of geeks do while their dorm highrise is under renovation? Build <a href="http://www.mikontalolights.fi/en/technics/">the world&#8217;s biggest <span class="caps">LED</span> screen</a>, of course.</p>
-<p><a href="http://flickr.com/photos/stanestane/2086485889/"><img src="http://farm3.static.flickr.com/2118/2086485889_f4de77d344_d.jpg" alt="" /></a></p>
-<p>Photo by <a href="http://flickr.com/photos/stanestane/">StaneStane</a></p>
-<p>One of the most infamous student dorm houses in my hometown and whole Finland, <a href="http://en.wikipedia.org/wiki/Mikontalo">Mikontalo</a>, is finally put under hammer and renovated to meet the standards of the third millennium. While the construction work is underway, a bunch of <span class="caps">TUT</span> geeks decided to get something more out of the works:</p>
-<blockquote>
-<p>The object of <span class="caps">MIKONTALOLIGHTS</span> is to create the world&#8217;s physically largest colored graphics platform by using the windows of Mikontalo&#8217;s D-staircase as light pixels. The platform is used to play Tetris and other games and present demos created by the students of Tampere University of Technology.</p>
-</blockquote>
-<p>Here&#8217;s a video of the grand opening, including rounds of Space Invaders and Tetris (controlled with a mobile phone, of course). Times Square, beware!</p>
-<p><object width="425" height="355"><param name="movie" value="http://www.youtube.com/v/iyMbAI67hUM&rel=1"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/iyMbAI67hUM&rel=1" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"></embed></object></p></div>
   
   
 
@@ -519,7 +529,7 @@ Fields Inline&#8221;. However, I don&#8217;t get any royalties from the book sal
 </ul>
 
 <p>
-  Copyright &copy; 2014 - Jarkko Laine -
+  Copyright &copy; 2015 - Jarkko Laine -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 </footer>
