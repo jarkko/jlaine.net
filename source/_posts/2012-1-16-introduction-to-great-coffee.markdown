@@ -31,13 +31,13 @@ With that in mind, let's find out how to get the most out of your coffee experie
 
 1. **Fresh Beans**    Coffee is freshware. I'll paraphrase a diagram from [Tim Wendelboe's book](http://www.websitefolder.net/wendelboe/art-2.asp?id=24&iPageID=5) here:
 
-    <div class="thumbnail"><a href="https://skitch.com/jarkko/g3npf/img-0071"><img src="https://img.skitch.com/20120116-bhwhs1gjq9rne95248nbcxcnj3.preview.jpg" alt="IMG_0071" /></a><br /></div>
+   <div class="thumbnail"><img src="/images/IMG_0071.jpg" alt="" /></div>
 
    Freshly roasted coffee beans take a couple of days to settle to their best form. After that, they remain optimal for a few weeks. After about four weeks – and sooner if they are in contact with oxygen, i.e. you opened the bag – they start going stale fairly rapidly.
 
    This brings us to a measurement of roaster honesty. I'll start with the best example, Square Mile Coffee:
 
-   <div class="thumbnail"><a href="https://skitch.com/jarkko/g3npc/img-1189"><img src="https://img.skitch.com/20120116-q6p5e53t1q97nfm9j8egbk647w.preview.jpg" alt="IMG_1189" /></a></div>
+   <div class="thumbnail"><img src="/images/IMG_1188.jpg" alt="" /></div>
 
    "Brew within one month of roasting"
 
@@ -45,11 +45,7 @@ With that in mind, let's find out how to get the most out of your coffee experie
 
    The next level is Has Bean. They tell the coffee is best within one month, but you should definitively use it within three.
 
-   Down another notch, we have Kaffiino.
-   
-   <div class="thumbnail"><a href="https://skitch.com/jarkko/g3npt/img-1193"><img src="https://img.skitch.com/20120116-1i2mh47g35ntjrw318qaicyjq4.preview.jpg" alt="IMG_1193" /></a></div>
-   
-   They still mention the roasting date, but pretend the coffee is still good half a year after roasting. It isn't.
+   Down another notch, we have Kaffiino. They still mention the roasting date, but pretend the coffee is still good half a year after roasting. It isn't.
 
    On the bottom level we have most of the commodity coffees. They tend to give anything up to year before the expiry date. What's worst, *they do not tell the exact roasting date*, so you're left with guessing how much time they give their coffee to go stale and calculating from there when it was roasted. This is pure dishonesty. The roasting date is *the* most important thing on the label of a coffee bag. Unfortunately, even many reasonably good specialty coffee roasters (like Johan & Nyström and at least sometimes, Mokkamestarit) can be found on this pathetic level.
 
@@ -103,9 +99,9 @@ Just recently I learned about [Fresh Coffee Roastery](http://www.freshcoffee.fi/
 
 ## Grinding your coffee
 
-My advice is to start with a quality and grinder, not a cheap electric blade grinder. The important bit is to get a burr grinder, not a blade grinder. I use a Porlex hand grinder, which is stainless steel throughout, with ceramic burrs. Since the hopper is not plastic, it generates very little static so it's very easy to get the grinds out of it. Another great thing about Porlex is that it fits perfectly inside an Aeropress, so they make a great travel kit together.
+My advice is to start with a quality hand grinder, not a cheap electric blade grinder. The important bit is to get a burr grinder, not a blade grinder. I use a Porlex hand grinder, which is stainless steel throughout, with ceramic burrs. Since the hopper is not plastic, it generates very little static so it's very easy to get the grinds out of it. Another great thing about Porlex is that it fits perfectly inside an Aeropress, so they make a great travel kit together.
 
-<div class="thumbnail"><a href="https://skitch.com/jarkko/g3nqq/skitched-20120116-152547"><img src="https://img.skitch.com/20120116-pr39sg5137dtqc7kqdhh71ai2g.preview.jpg" alt="" /></a></div>
+<div class="thumbnail"><a href="https://www.flickr.com/photos/tangysd/8039907293"><img src="https://farm9.staticflickr.com/8030/8039907293_10700bab8c_z_d.jpg" alt="" /></a></div>
 
 Another hand grinder people seem to recommend is [Hario Skerton](http://www.crema.fi/fi/products/hario/skerton.html?gclid=CJXBpODS1K0CFYMtmAodR195Fg). I have not used it myself, but you shouldn't go astray with either of them.
 
@@ -125,13 +121,13 @@ That said, there's something deeply gratifying in having more control over your 
 
 ### Chemex
 
-<div class="thumbnail"><a href="https://skitch.com/jarkko/g3nxr/img-0538"><img src="https://img.skitch.com/20120116-g39g3atd22bu78k1fdkg4megjp.preview.jpg" alt="IMG_0538" /></a></div>
+<div class="thumbnail"><a href="https://www.flickr.com/photos/porsche-linn/6868292400"><img src="https://farm7.staticflickr.com/6043/6868292400_5d0b5715f0_z_d.jpg" alt="Chemex coffeemaker" /></a></div>
 
 The legendary Chemex coffeemaker was invented in 1941 by Dr. Peter Schlumbohm. He's famously quoted saying that “With this, even a moron can make good coffee.” To add to that, Chemex is on an ongoing [display in the Museum of Modern Art](http://www.moma.org/collection/object.php?object_id=1847) in New York. We have an 8-cup version of the brewer and use it pretty much every morning.
 
 ### Aeropress
 
-<div class="thumbnail"><a href="https://skitch.com/jarkko/g3nxt/skitched-20120116-153016"><img src="https://img.skitch.com/20120116-nsdxwka3up78eqhtjjhguya3be.preview.jpg" alt="" /></a></div>
+<div class="thumbnail"><a href="https://www.flickr.com/photos/pkhamre/13365207625/"><img src="https://farm8.staticflickr.com/7198/13365207625_7a4c8baba5_z_d.jpg" alt="" /></a></div>
 
 While it lacks the elegant looks of a Chemex, [Aeropress](http://aerobie.com/products/aeropress.htm) is a truly miraculous device. This inexpensive (and somewhat cheap-looking) device can extract some of the best brews from your beans and it does it in a time that really can't be beaten. Like said above, an Aeropress makes a great travel kit with the Porlex grinder (and some quality beans) which means you can have great coffee wherever you go. Just add water.
 
