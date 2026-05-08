@@ -7,23 +7,10 @@ I'm back from a training camp in Madeira. The week was a pleasure, although I di
 
 Here's some random thoughts about Madeira and the camp (I'm still too tired to get anything organized on paper):
 
-\* There's only a few orienteering maps from Madeira but they are invariably in very nice terrains with breath-taking views.\
-!http://photos3.flickr.com/6178810_01815ce541_m.jpg (Madeira orienteering terrain)!:http://www.flickr.com/photos/jarkko/6178810/
+- There's only a few orienteering maps from Madeira but they are invariably in very nice terrains with breath-taking views.
 
-</li>
+- The surroundings of Funchal are very crowded with a lot of traffic. Therefore, about the only good running training facilities in the neighbourhood are the (short) Lido street promenade and the (longer) "urban levada", *Levada dos Piornais*, starting right above Lido.
 
-\* The surroundings of Funchal are very crowded with a lot of traffic. Therefore, about the only good running training facilities in the neighbourhood are the (short) Lido street promenade and the (longer) "urban levada", *Levada dos Piornais*, starting right above Lido.\
-!http://photos7.flickr.com/6178612_0aa4f7fab4_m.jpg (City levada in Lido)!:http://www.flickr.com/photos/jarkko/6178612/
+- Levadas, the narrow irrigation canals Madeira is full of, are quite well suited for training. They are often really narrow, tho, and hover over 50-meter cliffs so don't even think about doing hard trainings or intervals along them.
 
-</li>
-
-\* Levadas, the narrow irrigation canals Madeira is full of, are quite well suited for training. They are often really narrow, tho, and hover over 50-meter cliffs so don't even think about doing hard trainings or intervals along them.\
-!http://photos5.flickr.com/6178700_466ba85832_m.jpg (Mats looking down from a levada)!:http://www.flickr.com/photos/jarkko/6178700/
-
-</li>
-
-\* You shouldn't miss the peninsula of Ponta de SÃ£o Lourenco in the far east end of Madeira. The place is perfect for a full day trip or (as we did) for an orienteering training extended with jogging to the end of the peninsula. Be prepared to some really strong winds, though, and leave your cowboy hats at the hotel.\
-!http://photos4.flickr.com/6178670_9ff4f2acba_m.jpg (Simon poses on a cliff edge)!:http://www.flickr.com/photos/jarkko/6178670/
-
-</li>
-</ul>
+- You shouldn't miss the peninsula of Ponta de São Lourenco in the far east end of Madeira. The place is perfect for a full day trip or (as we did) for an orienteering training extended with jogging to the end of the peninsula. Be prepared to some really strong winds, though, and leave your cowboy hats at the hotel.
