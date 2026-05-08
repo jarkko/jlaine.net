@@ -8,7 +8,6 @@ module.exports = defineConfig({
   },
   use: {
     baseURL: 'http://127.0.0.1:4173',
-    channel: 'chrome',
     trace: 'retain-on-failure',
   },
   projects: [
@@ -22,7 +21,7 @@ module.exports = defineConfig({
     },
   ],
   webServer: {
-    command: 'ruby -run -e httpd public -p 4173',
+    command: 'bundle exec ruby -run -e httpd public -p 4173',
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: !process.env.CI,
     timeout: 10_000,

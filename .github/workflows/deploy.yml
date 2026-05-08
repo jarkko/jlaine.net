@@ -28,6 +28,9 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
       - name: Build site and run browser smoke tests
         run: npm run test:map
         env:
