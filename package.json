@@ -1,0 +1,21 @@
+{
+  "name": "jlaine.net",
+  "version": "1.0.0",
+  "description": "Static site for jlaine.net",
+  "scripts": {
+    "test": "npm run test:map",
+    "test:map": "bundle exec jekyll build && playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jarkko/jlaine.net.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jarkko/jlaine.net/issues"
+  },
+  "homepage": "https://github.com/jarkko/jlaine.net#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
+  }
+}
