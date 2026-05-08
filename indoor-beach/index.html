@@ -52,7 +52,7 @@
       background: var(--bg);
       color: var(--ink);
       display: grid;
-      grid-template-rows: auto 1fr auto;
+      grid-template-rows: auto 1fr;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
@@ -69,35 +69,22 @@
     .topbar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 18px 28px;
+      gap: 12px;
+      padding: 10px 20px;
       background: linear-gradient(180deg, #fff 0%, #fbf6e8 100%);
       border-bottom: 1px solid var(--line);
     }
-    .topbar__brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
     .topbar__mark {
       flex: none;
-      width: 48px; height: 48px;
+      width: 32px; height: 32px;
     }
     .topbar__mark img {
       width: 100%; height: 100%;
       display: block;
     }
-    .topbar__title h1 { font-size: 22px; line-height: 1.15; }
-    .topbar__title p { margin: 3px 0 0; color: var(--ink-soft); font-size: 13px; }
-
-    .topbar__counts { display: flex; gap: 8px; flex-wrap: wrap; }
-    .count {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 6px 12px 6px 8px;
-      font-size: 12.5px;
-      color: var(--ink-soft);
-      box-shadow: var(--shadow-sm);
-    }
+    .topbar__title { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+    .topbar__title h1 { font-size: 17px; line-height: 1.2; white-space: nowrap; }
+    .topbar__title p { margin: 0; color: var(--ink-soft); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .count__dot { width: 10px; height: 10px; border-radius: 50%; }
     .count strong { color: var(--ink); font-weight: 600; font-size: 13px; }
 
@@ -414,33 +401,19 @@
     .popup__cta:hover { background: var(--accent); }
 
     /* ---------- Footer ---------- */
-    .credits {
-      padding: 14px 28px;
-      background: #fff;
-      border-top: 1px solid var(--line);
-      font-size: 12px;
-      color: var(--ink-soft);
-      display: flex; gap: 18px; flex-wrap: wrap;
-    }
-    .credits a { color: var(--accent); text-decoration: none; }
-    .credits a:hover { text-decoration: underline; }
-
     /* ---------- Responsive ---------- */
-    @media (max-width: 920px) {
-      .topbar { flex-wrap: wrap; }
+    @media (max-width: 600px) {
+      .topbar__title p { display: none; }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
-    <div class="topbar__brand">
-      <span class="topbar__mark"><img src="mikasa-ball.svg" alt="Beach volleyball" width="48" height="48" /></span>
-      <div class="topbar__title">
-        <h1>Nordic &amp; Baltic Indoor Beach Volleyball</h1>
-        <p>Year-round sand halls across Finland, Sweden, Norway, Denmark, Iceland, Estonia, Latvia &amp; Lithuania.</p>
-      </div>
+    <span class="topbar__mark"><img src="mikasa-ball.svg" alt="Beach volleyball" width="32" height="32" /></span>
+    <div class="topbar__title">
+      <h1>Nordic &amp; Baltic Indoor Beach Volleyball</h1>
+      <p>Year-round sand halls — Finland, Sweden, Norway, Denmark, Iceland, Estonia, Latvia &amp; Lithuania</p>
     </div>
-    <div class="topbar__counts" id="counts" role="list" aria-label="Venues per country"></div>
   </header>
 
   <main class="layout" id="layout">
@@ -497,14 +470,6 @@
     </aside>
   </main>
 
-  <footer class="credits">
-    <span>Last verified <time datetime="2026-05-07">2026-05-07</time>.</span>
-    <span>Data: site operators &amp; municipal/federation pages, cited per row in the CSV.</span>
-    <span>
-      Map © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.
-      Tiles: OSM standard. Built with <a href="https://leafletjs.com/">Leaflet</a>.
-    </span>
-  </footer>
 
   <!--
     Inline mirror of nordic_indoor_beach_volleyball_facilities.csv.
