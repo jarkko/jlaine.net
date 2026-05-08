@@ -35,6 +35,11 @@ test.describe('indoor beach map', () => {
     await expect(page.locator('#venues .card')).toContainText('Øksilhallen');
     await expect(page.locator('#venues .card')).toContainText('Støveien 24');
 
+    await page.locator('#search').fill('Gimle');
+    await expect(page.locator('#venues .card')).toHaveCount(1);
+    await expect(page.locator('#venues .card')).toContainText('Sandhallen på Gimle');
+    await expect(page.locator('#venues .card')).toContainText('Jegersbergveien 3');
+
     expect(failures).toEqual([]);
   });
 });
