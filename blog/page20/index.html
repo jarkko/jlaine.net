@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="canonical" href="https://jlaine.net/blog/page20/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/feed.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google Web Fonts-->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/01/28/mapquestioning/">MapQuestioning</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-01-28T00:00:00+00:00" pubdate>January 28, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Dave Winer <a href="http://archive.scripting.com/2005/01/27#When:8:52:35AM">reports</a> about a News.com <a href="http://news.com.com/MapPoint+users+in+for+long+and+winding+road/2100-1012_3-5552305.html?tag=nl">article</a> which describes how Norwegians wanting to go from Haugesund to Trondheim are <a href="http://mappoint.msn.com/(mrhnz1ixqxpjzei3tudrwinr)/directions.aspx?&amp;StartName=Haugesund%2c+Rogaland%2c+Norway&amp;StartLocation=59.40634%2c5.28529&amp;EndName=Trondheim%2c+SÃ¸r-TrÃ¸ndelag%2c+Norway&amp;EndLocation=63.43092%2c10.39206&amp;DataSetLangID=EUR%2c409&amp;RouteType=Quickest&amp;RouteUnit=Miles">routed</a> through England, Belgium, Germany, Denmark and Sweden. Well, according to MapQuest you wouldn’t want to live in Finland, either, because we <strong>have no friggin’ roads!</strong></p>
+
+<p>!/images/28.gif (MapQuest Route from Turku to Vaasa)!:http://mappoint.msn.com/(mrhnz1ixqxpjzei3tudrwinr)/directions.aspx?&amp;EndName=Vaasa%2c+LÃ¤nsi%2c+Finland&amp;EndLocation=63.09568%2c21.61061&amp;StartName=Turku%2c+LÃ¤nsi%2c+Finland&amp;StartLocation=60.45269%2c22.25119&amp;DataSetLangID=EUR,409&amp;RouteType=Quickest&amp;RouteUnit=Miles</p>
+
+<p>And you still wondered, why <em>msn.fi is the most popular net site in Finland</em> (you didn’t think it’s got something to do with the fact that it’s the default start page for Finnish Internet Explorer, did you?)…</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/01/20/more-rails-goodness/">More Rails Goodness</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-01-20T00:00:00+00:00" pubdate>January 20, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Rails version 0.9.4.1 is out and ohmigod. The framework is going forward so fast I have trouble following up with all the new stuff. Here’s the greatest of <a href="http://weblog.rubyonrails.com/archives/2005/01/17/rails-094-caching-filters-sqlite3/">the latest</a>: <a href="http://ap.rubyonrails.com/classes/ActionController/Caching.html">Caching</a>.</p>
+
+<p>Well, yeah, caching is no news as such. It’s the way David implemented it (just like other things) in Rails that can’t stop astounding me. It’s so simple it almost makes me cry. Want to <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Pages.html">cache some whole pages</a> your controller is serving? Just do this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  class WeblogController &lt; ActionController::Base
+    caches_page :show, :new
+  end
+</code></pre></div></div>
+
+<p>Phew, that was all good and well. But what if you have some personalized content? You can’t cache whole pages then, can you? That’s right, dear Watson. But you can cache the actions. Using <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Actions.html"><em>action caching</em></a> means that the request will go trough Action Pack so all the filters are processed before the page gets served. That way you can use authentication and other magic in your pages without having to give up the glory of caching. Here’s an example of controller that uses both page <em>and</em> action caching, stolen straight from the api docs:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  class ListsController &lt; ApplicationController
+    before_filter :authenticate, :except =&gt; :public
+    caches_page   :public
+    caches_action :show, :feed
+  end
+</code></pre></div></div>
+
+<p>This controller has a public action and two private actions that need authentication — and thus action-level caching.</p>
+
+<p>The most granular way to do caching in Rails is <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Fragments.html"><em>fragment caching</em></a>. It’s what the two higher-level caching schemes use internally. Using fragment caching is a gem when you have pages that have both highly dynamic and pretty static parts. The downside is that it’s a bit more work and you have to do it in templates. Here’s an example of fragment caching:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  &lt;b&gt;Hello &lt;%= @name %&gt;&lt;/b&gt;
+  &lt;% cache(binding) do %&gt;
+    All the topics in the system:
+    &lt;%= render_collection_of_partials "topic", Topic.find_all %&gt;
+  &lt;% end %&gt;
+</code></pre></div></div>
+
+<p>There. But, wait! What if the content changes in between. Will the users be served old stinkin’ cheese ever after. Glad you asked. It turns out David <em>did</em> notice this possibility. That’s why controllers now have methods like <code class="language-plaintext highlighter-rouge">expire_page</code>, <code class="language-plaintext highlighter-rouge">expire_action</code> and <code class="language-plaintext highlighter-rouge">expire_fragment</code>, for all you busy bees who can’t settle with the content you once created. Here’s an action where the cache for page <em>show</em> is flushed:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  class WeblogController &lt; ActionController::Base
+    def update
+      List.update(@params["list"]["id"], @params["list"])
+      expire_page :action =&gt; "show", :id =&gt; @params["list"]["id"]
+      redirect_to :action =&gt; "show", :id =&gt; @params["list"]["id"]
+    end
+  end
+</code></pre></div></div>
+
+<p>OK, enough rambling. Now, go create some apps swift as an arrow.</p>
+
+<p>Oh, one more thing. Rails can use a bunch of different methods to store the cache. But that’s <a href="http://ap.rubyonrails.com/classes/ActionController/Caching/Fragments.html">another story</a>.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/01/20/back/">Back</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-01-20T00:00:00+00:00" pubdate>January 20, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/jarkko/3567740/"><img src="http://photos1.flickr.com/3567740_336a83929a_m.jpg" alt="Sunset" title="Sunset" /></a></p>
+
+<p>Sorry for my absence from here. I spent last week in <a href="http://www.vuokatti.fi/lang/toiminto.php?mid=4_127&amp;la=uk">Vuokatti</a>, an XC skiing paradise in Northeastern Finland. With no internet connection. That can be a relaxing experience, mind you. Well, ok, I checked my email every now and then with my cellphone, but with no serious job-related thoughts involved.</p>
+
+<p><a href="http://www.flickr.com/photos/jarkko/3567762/"><img src="http://photos3.flickr.com/3567762_cde093a0d1_m.jpg" alt="Skiing track" title="Skiing track" /></a></p>
+
+<p>Anyway, the week was pretty productive. 26,5 hours and 359 kilometers of training in 8 days is pretty near my training record. And two of those days were travel days. The weather was excellent, most of the week between 0 and –10 Â°C and sunny.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/01/06/integrating-simulation-with-lrn-8212-an-openacs-microgrant-proposal/">Integrating Simulation With .LRN &#8212; an OpenACS Microgrant Proposal</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-01-06T00:00:00+00:00" pubdate>January 6, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4 id="background">Background</h4>
+
+<p>Simulation is an OpenACS package originally developed by <a href="http:/collaboraid.biz">Collaboraid</a> for project <a href="http:www.rechtenonline.nl">RechtenOnline</a>, a consortium of Dutch law faculties. As Collaboraid was having a lack of resources last fall, I was hired to finish the system. Version 1.0 of system was released in the end of November and a revised version 1.0.1 just before Christmas.</p>
+
+<p>Simulation is a package which can be used to simulate virtually any common workflows and processes. The most common example used by the original clients is the setting of a new law, with multiple students playing different roles in the process. Simulation is based on the newer, Finite State Machine Workflow package of OpenACS.</p>
+
+<h4 id="the-proposal">The Proposal</h4>
+
+<p>My proposal is to integrate the Simulation package with .LRN because the target audience of the two is clearly orthogonal.</p>
+
+<h4 id="why-would-lrn-benefit">Why would .LRN benefit</h4>
+
+<p>Integrating Simulation with .LRN would give it another member in its already extensive set of collaborative tools.</p>
+
+<h4 id="the-deliverable">The Deliverable</h4>
+
+<p>Simulation package will be possible to be installed as a part of .LRN and they will work seamlessly together. I will also create all the needed portlet packages for both normal users and simulation administrators. All the code will be committed to the OpenACS codebase (as simulation already is). As a part of this project I will also take care that the end-user documentation of Simulation will be taken to a level expected from a .LRN package.</p>
+
+<p>Tampere, January 6th 2005,<br />
+Jarkko Laine</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/01/06/integrating-s5-with-openacs-wimpypoint-8212-an-openacs-microgrant-proposal/">Integrating S5 With OpenACS/Wimpypoint &#8212; an OpenACS Microgrant Proposal</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-01-06T00:00:00+00:00" pubdate>January 6, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4 id="background">Background</h4>
+
+<p><a href="http://www.meyerweb.com/eric/tools/s5/">S\^5\^ (A Simple Standards-Based Slide Show System)</a> is a standards-based slide-show presentation system developed by CSS guru <a href="http://www.meyerweb.com">Eric Meyer</a>. It’s fully based on XHTML, CSS and W3C DOM, thus making it work in virtually all modern web browsers. An S\^5\^ presentation consists of a single XHTML file, so for users of browsers that don’t support standards the presentation is presented as a plain web page, without losing anything of the content. S\^5\^ is licensed under a <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative Commons Attribution-ShareAlike 2.0 License</a></p>
+
+<h4 id="so-wheres-the-benefit">So where’s the benefit?</h4>
+
+<p>Wimpypoint is a great tool in conjunction to .LRN. It makes it possible to integrate lecture slides to other course material. However, as it presents every slide as an individual html page, using it for presenting is kind of clunky. An S\^5\^ presentation, on the other hand, consists of a single page and supports all the usual slide-navigating keys (see the <a href="http://www.meyerweb.com/eric/tools/s5/s5-intro.html">introductory slide show</a> for examples), making it responsive to the point where it competes head-to-head with desktop products like Apple Keynote and Microsoft Powerpoint. Additionally, because of the single-file paradigm S\^5\^ makes it a whole lot easier to export a presentation for offline situations.</p>
+
+<h4 id="the-deliverable">The Deliverable</h4>
+
+<p>The Wimpypoint package will use S\^5\^ as its primary presentation mechanism. The old mechanism can be kept as an alternative method for backwards-compatibility if needed. Wimpypoint will also sport an export function which will export the presentation and all related files as a zip (or equiv.) package for offline presenting. Also the templating system of Wimpypoint will be integrated with S\^5\^. I will also do everything that is needed for fully integrating the revised package with .LRN.</p>
+
+<p>Tampere, January 6th 2005,<br />
+Jarkko Laine</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/01/06/improving-the-contingency-design-of-openacs-mdash-an-openacs-microgrant-proposal/">Improving the Contingency Design of OpenACS &mdash; an OpenACS Microgrant Proposal</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-01-06T00:00:00+00:00" pubdate>January 6, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4 id="background">Background</h4>
+
+<p>The <em>admin backend</em> is a major part of a web framework like OpenACS. As Philip Greenspun once noted, roughly half of all the pages in a dynamic website are more or less admin pages. Making administrating a system a pleasure is vital for any system, including OpenACS.</p>
+
+<p><a href="http://37signals.com">37signals</a> published a book called <a href="http://37signals.com/book/index.php">Defensive Design for the Web</a> last spring. The book was lately selected as <a href="http://www.37signals.com/svn/archives/000999.php">the best web design book of 2004</a>. Defensive Design for the Web is about improving the contingency design of a website, including e.g. error messages, help and forms. The book also provides a heuristics to analyze the contingency level of a service.</p>
+
+<h4 id="the-proposal">The Proposal</h4>
+
+<p>I will go through all the major OpenACS components, including core and .LRN, and analyze their contingency design level with the help of heuristics developed by 37signals. As a result of this analysis, I will improve the administrative and end-user visible interfaces to the point where they will score at least 80% of the applicable parts of the test.</p>
+
+<h4 id="the-deliverable">The deliverable</h4>
+
+<p>A system that is slicker and more pleasurable to use out-of-the-box. The UI of OpenACS has gotten a lot better lately, but has still room for improvement.</p>
+
+<p>Concrete improvements include e.g.:</p>
+
+<ul>
+  <li>Real double-click protection. Adding functions to ad_form that disable buttons when one is clicked and give a visual clue that the process has started. Current double-click protection protects from duplicate entries but results often in user-visible errors.</li>
+  <li>Improved error pages.</li>
+  <li>Improved “inter-page” notification/error message delivery and display system.</li>
+</ul>
+
+<p>Tampere, January 6th 2005,<br />
+Jarkko Laine</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/12/30/call-for-aid/">Call for Aid</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-12-30T00:00:00+00:00" pubdate>December 30, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.airbagindustries.com/">Airbag</a> -Greg wrote a thought-provoking <a href="http://www.airbagindustries.com/archives/006783.php">article</a> about the aid for the victims of the tsunami disaster in South-East Asia. As he also deliberately shared his help icons, I’m going to put two on this page, too.</p>
+
+<p>!/images/24.gif (Help your local Red Cross)!:http://www.ifrc.org/address/rclinks.asp</p>
+
+<p>Here’s what we’re going to do with Maria: As one commenter in Greg’s post proposed, we’re not going to buy any drinks for the New Year’s eve. On top of that, we leave firecrackers in the store shelves, a common gesture in Finland. Instead, we donate 70 euros to <a href="http://www.redcross.fi/lahjoita/">Finnish Red Cross catastroph aid</a>. That’s not a whole lot, but we’re both still students.</p>
+
+<p>And to all (two) Finnish orienteers who are reading this blog, there’s a campaign in <a href="http://suunnistus.net/apps/avustusmaksut/admin/">Suunnistus.net</a> to raise more aid for the Finnish catastroph fund. Please consider mobilizing your club for the effort.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/12/21/evolution-what-s-that-again/">Evolution? What's That Again?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-12-21T00:00:00+00:00" pubdate>December 21, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One thing that was widely accepted as a potential explanation for the result of US presidential elections was that <a href="http://www.gallup.com/poll/content/login.aspx?ci=14107"><em>almost half of Americans believe that God created human beings in their present form about 10,000 years ago</em></a>. The same research revealed that only a third of Americans believe in Darwin’s evolution theory.</p>
+
+<p>Fair enough, but that was just a gallup, right? Dream on, pal. Now <a href="http://www.cobb.k12.ga.us/news/release0822.htm">a school district in Georgia</a> has ordered these stickers applied to science textbooks teaching Darwinism:</p>
+
+<p>!/images/22.gif (Evolution sticker)!</p>
+
+<p>Scary, huh? I thought so, too. And what’s really horrifying is that the mentioned school district is probably not alone. But now the scientists are striking back. Some guys at <a href="http://swarthmore.edu">Swarthmore</a> have prepared a <a href="http://www.swarthmore.edu/NatSci/cpurrin1/textbookdisclaimers/">page of stickers</a>, ready for you to print out and consume. Take a look, they’re hilarious (in a sad clown way). This is one of my favorites:</p>
+
+<blockquote>
+  <p>This book discusses <strong>evolution</strong>. President George W. Bush said, <code class="language-plaintext highlighter-rouge">&lt;q&gt;</code>{=html}On the issue of evolution, the verdict is still out on how God created the Earth.<code class="language-plaintext highlighter-rouge">&lt;/q&gt;</code>{=html} Therefore, until 2008 this material shood be aproched with an open mind, studeed carefuly, and critcly consid’rd.</p>
+</blockquote>
+
+<p>(via <a href="http://aufrecht.org">Joel</a>)</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/12/20/open-letter-to-european-ministers-of-agriculture-on-software-patents/">Open Letter to European Ministers of Agriculture on Software Patents</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-12-20T00:00:00+00:00" pubdate>December 20, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>UPDATE 2</strong> There’s now a <a href="http://thankpoland.info/">site</a> up dedicated for thanking Poland for their extraordinary courage. Please, go ahead and express your gratitude. It’s well worth it.</p>
+
+<h2 id="software-patent-directive-on-agricultural-council-list-of-a-items">Software Patent Directive on Agricultural Council List of A-Items</h2>
+
+<p>Dear EU Minister of Agriculture and Fisheries,</p>
+
+<p>At the Agricultural Council’s meeting on Tuesday and Wednesday, the Directive’ COM 2002/0047 (COD) “On the Patentability of Computer-Implemented Inventions” (Software Patent Directive) is likely to be inserted into the list of A-items in the last minute.</p>
+
+<p>This list should not be accepted.</p>
+
+<p>Please object when the Council President asks for confirmation of the agenda (at the beginning), and demand the removal of the software patent directive from the list of A items.</p>
+
+<p>The Council’s rules of procedure demand that the provisional agenda be sent 14 days in advance. In this case, the software patent directive was set on the agenda no earlier than 2 working days in advance.</p>
+
+<p>According to Article 3 Items 7-8 of the Council’s Rules of Procedure, it is enough if one country objects to this late tabling, but support for removal may be expected from several countries.</p>
+
+<p>The proposed text does not enjoy a qualified majority. It has been inserted into the agenda on the basis of questionable interpretations if not violations of the Council’s Rules of Procedure.</p>
+
+<ol>
+  <li>The Dutch government has been obliged by its parliament to withdraw support. A proposal can not be adopted without a vote, and if it is voted, the Dutch presidency must abstain. If the Dutch presidency does not abstain, minister Brinkhorst may face a motion of distrust and be dismissed. This means that, given the continued opposition from Spain, Italy, Belgium and Austria, even without Poland’s abstention, the current Council Proposal no longer enjoys a qualified majority.</li>
+  <li>On 19th of May and on 16th of November the Polish government has stated that it can not support the Council proposal. However the Polish EU minister, who is not in charge of the dossier, has so far, under pressure from the Council presidency, been reluctant to execute the decisions of the Polish government.</li>
+  <li>The Council proposal has been criticized by all groups of the German Federal Parliament (Bundestag) as being deficient. As the inter-group resolution of the 30th of November 2004 points out, it does not satisfy the demands for clarity and balance that a proposal with such significance must fulfill.</li>
+  <li>The Latvian Government has made it clear in a unilateral statement that it does not support the proposed text. The French and Hungarian governments have also expressed reservations. In Slovenia, Slovakia, Portugal and Hungary there is practically no support for software patents anywhere in the industry or government, except in the narrow circles who dominate the Council’s patent working party.</li>
+  <li>The new vote is needed because the Rules of Procedure of the Council demand a qualified majority at the time of the formal adoption of a Common Position. A political agreement can only be adopted, if it is supported by a qualified majority of governments at the time of the vote. “Adoption as an A-item” means “adoption without discussion”, not “without vote”. There can be no adoption without vote.</li>
+  <li>The change in voting weights on 1 November means that the Council proposal now lacks a qualified majority if either the Netherlands or Poland abstain.</li>
+  <li>The explanatory documents for the Council draft were made available only very recently so that at the time of this Council meeting only half of the six-week period reserved for the consultation of national institutions will have elapsed. The urgent scheduling of a parliamentary special session in the Netherlands after the COREPER meeting on December 15 shows the importance of this consultation period. This text rejects essential amendments by the European Parliament, arguing that they are “incompatible with the TRIPs treaty” or that they would not reflect “established practice”. These arguments are new, not covered by any “political agreement” and in clear contradiction to the resolution of the German Parliament and can not be adopted without a vote.</li>
+  <li>The Protocol on the Role of National Parliaments in the Treaty of Amsterdam explicitly encourages participation by national parliaments in the EU legislative process. It does not exempt the Council of Ministers. Accordingly, attempts to thwart the integration of the positions of several national parliaments (NL and DE) at this stage would be illegitimate.</li>
+</ol>
+
+<p>The software patent directive is creating great difficulties for the Council because the Council has been nominating the goats to be the gardeners. The “Intellectual Property (Patent) Working Party” consists of the very national patent administrators who in personal union also run the European Patent Office. They have been unwilling to deal constructively with the questions at hand. They have ignored the substantial amendments of the European Parliament without justification and without addressing the problems of economic policy which the Parliament tried to address. They have in fact merely restated their previous agreement of November 2002, in which they had recited recent doctrines of the European Patent Office. These doctrines, in effect, authorise the monopolisation of business methods, algorithms, data structures and process descriptions in the same way as in the USA, without any effective limitation. The gap between these doctrines and the Parliament’s proposal is so wide that it will be impossible to overcome it within the procedure of a second reading. The Council has yet to begin a real first reading and to deliver a text which at least shows some willingness to face the issues. Now is the opportunity to take this first step. If it it is not taken in the Council’s first reading, then the directive is unlikely to get anywhere in the next steps of the co-decision procedure.</p>
+
+<p>In Summary:</p>
+
+<ul>
+  <li>The current Council Proposal can not be passed as an A-item, and there is no need for any minister in the Agriculture Council to accept it.</li>
+  <li>Any attempt to pass the proposal as it stands is higly hazardous for information society and democracy in the EU and incompatible with the Rules of Procedure of the EU Council.</li>
+</ul>
+
+<p>Yours sincerely,<br />
+Jarkko Laine</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/12/09/ruby-breakfast-anyone/">Ruby Breakfast, Anyone?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-12-09T00:00:00+00:00" pubdate>December 9, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My other programming language of choice, <a href="http://www.tcl.tk/">TCL (Tool Command Language)</a>, has had its own <a href="http://philip.greenspun.com/tcl/">merchandise</a> for a long time, so I guess it was about the time to find something for <a href="http://ruby-lang.org/en/">Ruby</a>, too. So, here you go, folks, enjoy my new breakfast juice of choice (??With juicy bits??, of course!):</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;img src="/images/21.jpg" style="height:422px;width:317px" alt="Ruby Breakfast Juice" title="Ruby Breakfast Juice" /&gt;</code>{=html}</p>
+</div>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page21/">&larr; Older</a>
+    
+    <a href="/blog/archives/">Blog Archives</a>
+    
+      <a class="next" href="/blog/page19/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><ul>
+  <li><a href="/jarkko/">About Jarkko</a></li>
+  <li><a href="http://notkea.fi"><strong>NOTKEA.FI</strong> &ndash; Notkeita ajatuksia taloudesta, teknologiasta ja elämästä suomeksi</a></li>
+</ul>
+
+<p>
+  Copyright &copy; 2026 - Jarkko Laine
+</p>
+
+</footer>
+</body>
+</html>

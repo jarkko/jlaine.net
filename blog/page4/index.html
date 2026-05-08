@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="canonical" href="https://jlaine.net/blog/page4/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/feed.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google Web Fonts-->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/05/05/making-capistrano-not-pant-on-cleanup/">Making Capistrano Not Suffocate on Cleanup</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2008-05-05T00:00:00+00:00" pubdate>May 5, 2008</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When trying to deploy an app on the production server, the <code class="language-plaintext highlighter-rouge">deploy:cleanup</code> task always died for me like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  * executing `deploy:cleanup'
+  * executing "ls -x /opt/sites/mysite/releases"
+    servers: ["myserver"]
+    [myserver] executing command
+    command finished
+ ** keeping 3 of 4 deployed releases
+  * executing "rm -rf /opt/sites/mysite/releases/20080220092659"
+    servers: ["myserver"]
+    [myserver] executing command
+ ** [out :: myserver] sudo: no passwd entry for app!
+ ** [out :: myserver]
+    command finished
+command "rm -rf /opt/sites/mysite/releases/20080220092659" failed on myserver
+</code></pre></div></div>
+
+<p>Turns out capistrano is for some reason trying to use a user called <em>app</em> in the cleanup task even though the <code class="language-plaintext highlighter-rouge">:user</code> parameter is set to something else in <code class="language-plaintext highlighter-rouge">config/deploy.rb</code>. The solution was to set the <code class="language-plaintext highlighter-rouge">:runner</code> parameter as well:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;set :runner, 'someotheruser'
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>Don’t ask me why that worked. It seems a bit counterintuitive that the cleanup task uses the <code class="language-plaintext highlighter-rouge">runner</code> param rather than <code class="language-plaintext highlighter-rouge">user</code>. Found the hint towards the solution <a href="http://groups.google.com/group/capistrano/browse_thread/thread/0d396a96d1946ba3">here</a>.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/04/22/hate-to-say/">Hate to Say...</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2008-04-22T00:00:00+00:00" pubdate>April 22, 2008</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3 id="december-2007">December 2007</h3>
+
+<blockquote>
+  <p>For gawd’s sake, what did they smoke in your company’s Christmas party?</p>
+</blockquote>
+
+<p><em>(A text message I sent to my buddy Thomas who works in Sampo Pankki in reference to the news that the bank (recently bought by Danske Bank) would deploy a new “security” system (that uses a Java applet) in their online banking solution).</em></p>
+
+<h3 id="april-2008">April 2008</h3>
+
+<blockquote>
+  <p>The latest reactions inclule [sic] 52-year old male customer returing to the bank with an axe after hearing that his account is empty, money exchange company Forex stopping accepting payment cards from Sampo Bank and Sampo Bank customers not being able to buy train tickets online.</p>
+</blockquote>
+
+<p>(<a href="http://janne.blogit.kauppalehti.fi/2008/04/03/finnish-sampo-banks-ict-problems-cause-extreme-reactions-in-their-clientele/">Finnish Sampo Bankâ€™s ICT problems cause extreme reactions in their clientele</a>)</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/03/11/on-multitasking/">On Multitasking</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2008-03-11T00:00:00+00:00" pubdate>March 11, 2008</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now, this has been <a href="http://www.joelonsoftware.com/articles/fog0000000022.html">talked about in detail in the past</a>, but here are two recent interesting discussions about multitasking. On the <a href="http://podcast.rubyonrails.org/">Ruby on Rails Podcast</a>, Geoff interviews Dr. John Medina in a “two-part series about his new book, “Brain Rules: 12 Principles for Surviving and Thriving at Work, Home, and School”:http://brainrules.net/.</p>
+
+<p>One of the most interesting topic in the discussion is about human multitasking, and to be precise, the lack of it. One of the hot topics in this discussion is the debate about talking in phone while driving. Medina brings up <a href="http://unews.utah.edu/p/?r=062206-1">recent studies</a> that show talking while driving is as dangerous as drunk-driving, <em>no matter whether you use a hands-free set or not</em>. As a reason, Medina proposes that when discussing with someone remote interactively, you build a mental image of the counterpart (just like you do when reading a novel) which takes your concentration away from driving. That sounds certainly believable. I have many times noticed that I’ve been driving for minutes while talking in the phone (with the iPhone headset, of course) and then suddenly kind of wake up back to the traffic.</p>
+
+<p>Meanwhile, <a href="http://www.randsinrepose.com/archives/2008/03/06/i_dont_multitask.html">Rands explains how he <em>doesn’t</em> multitask</a> even though it might appear as if he would to the outsider.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/02/13/a-few-photo-fyi-s/">A Track of Two</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2008-02-13T00:00:00+00:00" pubdate>February 13, 2008</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you’re into photography, here’s a couple of quick links that might be of interest:</p>
+
+<ol>
+  <li>Scott Bourne and Alex Lindsay, of <a href="http://www.twit.tv/mbw">MacBreak Weekly</a> and many other fames, have started a new podcast under the <a href="http://www.pixelcorps.tv/">Pixelcorps.tv</a> umbrella: <a href="http://twipphoto.com/">This Week in Photography</a>. The guys are really great podcasters and the content is kind of semi-advanced so that it’s not boring even if you’re fairly competent (even pro, I would say) but also not overwhelmingly technical. Great stuff during long exercises like a track of two<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>. The third episode of TWIP discussed the state of Aperture and namely the lack of announcement of version 2 during the <a href="http://www.pmai.org/index.cfm/ci_id/33573.htm">PMA</a>. That gives us a nice segue to the next topic:</li>
+  <li><a href="http://www.apple.com/aperture/">Aperture 2</a> is here! Downloading it right now and have high hopes for the performance. Especially creating previews and exporting photos leaves a lot to be desired in 1.5, and if the first comments around the ‘net are to be trusted, the newcomer should be vastly better in this regard.</li>
+</ol>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1">
+      <p>A track of two (or “kakkosen latu” in Finnish) is a term that came from a two-hour cross-country skiing (preferably classic) exercise and is now a synonym for any longer training pass (run, ski, hike, whatever) of around or over two hours. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/02/12/the-stupid-thing-aka-region-codes/">The Best of Times, the Worst of Times</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2008-02-12T00:00:00+00:00" pubdate>February 12, 2008</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’m kind of sad that Blu-ray has taken the lead in the next generation digital video disc race, and that has little to do with the fact that <a href="http://en.wikipedia.org/wiki/Sony_BMG#Controversy">I don’t really like Sony</a>. The reason <a href="http://arstechnica.com/news.ars/post/20080211-best-buy-netflix-join-hd-dvd-dogpile.html">the lurking death of HD DVD</a> makes me really sad is that while it has smaller capacity than BD, it has one thing really going for it: <strong>it’s void of one of the pests of modern times: regional codes.</strong></p>
+
+<p><a href="http://adactio.com/journal/1404">Jeremy Keith recently wrote</a> about DVD’s and Wii games that he bought during his Christmas trip to US <em>that he cannot use</em> because they are limited to be played only by a player with the US region code. Now, there are region code-free players available, but that only makes the whole scheme more pointless.</p>
+
+<p>Now, with HD DVD being free of the region codes, we could have gotten rid of them once and for all. However, with Blu-ray seemingly winning the war, we seem to be stuck with the same hassle into the unforeseeable future. And people wonder why Pirate Bay is the #1 movie distribution channel in Europe these days…</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/01/15/note-to-self-when-autotest-fails/">Note to Self: When Autotest Fails...</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2008-01-15T00:00:00+00:00" pubdate>January 15, 2008</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just run into the following error when running autotest within a Rails app:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+/Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:402:in `to_constant_name': Anonymous modules have no name to be referenced by (ArgumentError)
+	from /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:214:in `qualified_name_for'
+	from /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:477:in `const_missing'
+	from /Users/jarkko/Sites/koulutusweb/vendor/plugins/rspec/lib/spec/example/example_group_factory.rb:7:in `reset'
+	from /Users/jarkko/Sites/koulutusweb/vendor/plugins/rspec/lib/spec/example/example_group_factory.rb:59
+	from /Library/Ruby/Site/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /Library/Ruby/Site/1.8/rubygems/custom_require.rb:27:in `require'
+	from /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:496:in `require'
+	from /Users/jarkko/Sites/koulutusweb/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:342:in `new_constants_in'
+	 ... 59 levels...
+	from /Library/Ruby/Gems/1.8/gems/rspec-1.0.8/lib/spec/runner/command_line.rb:17:in `run'
+	from /Library/Ruby/Gems/1.8/gems/rspec-1.0.8/bin/spec:3
+	from /usr/bin/spec:19:in `load'
+	from /usr/bin/spec:19
+</code></pre></div></div>
+
+<p>It turned out I had typed “sudo gem update zentest” to get the latest version of the gem. However, the correct way would have been to use the camel-cased version ZenTest. The funny thing is, that if you run the command in lower case (like I’m use to do with RubyGems), you <em>will</em> get ZenTest, it’s just version 3.5.0 (as opposed to 3.8 that I supposedly got).</p>
+
+<p>So here’s hoping that the next time I do the same mistake, this page will pop up from the big G.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/01/09/sony-bmg-goes-drm-free-or-sony-bmg-the-dumbest-of-the-dumb/">Sony BMG "Goes DRM-free" (or: Sony BMG, the Dumbest of the Dumb)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2008-01-09T00:00:00+00:00" pubdate>January 9, 2008</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>(cross-posted to <a href="http://dotherightthing.com/entries/1481-sony-bmg-goes-drm-free-or-sony-bmg-the-dumbest-of-the-dumb">dotherightthing.com</a>)</p>
+
+<p>Last weeks, the air has been thick about even Sony BMG, the last of the big four music labels finally abandoning it’s rootkit-stained history of draconian DRM schemes and publishing “at least part of its collection” available DRM-free”:http://www.businessweek.com/technology/content/jan2008/tc2008013_398775.htm. However, the actual way of how it’s going to happen has been unclear until very recently. And boy, what scheme that <a href="http://www.usatoday.com/money/media/2008-01-07-sony-music_N.htm">came to be</a>:</p>
+
+<blockquote>
+  <p>The No. 2 record company after Universal Music will sell plastic cards, called Platinum MusicPass, for individual albums for a suggested price of $12.99. Buyers enter a code from the card at new Sony BMG (SNE) site MusicPass.com to download that card’s album.</p>
+</blockquote>
+
+<p>That’s right. Plastic frikkin’ cards. Marco has a <a href="http://www.marco.org/275">good view of how this happens</a>:</p>
+
+<blockquote>
+  <p>To get Sony BMGâ€™s DRM-free music files, someone burns some coal to manufacture these petroleum-based plastic cards, then delivers them to stores on a series of diesel trucks. I drive to Best Buy in my 3056-pound gas-burning car and find my particular little plastic card, assuming that store carries the album I want in plastic-card format and itâ€™s in stock. (If not, I need to drive to more stores, or just give up and try again next weekend.) But they probably have these cards taking up space somewhere in their massive store that requires tons of energy to keep well-lit and ventilated (since it has no windows).</p>
+</blockquote>
+
+<p>And as far as the “part of the collection” part goes, the DRM-free collection will be a whopping 37 albums. Three-seven. Combining the convenience of going to a store to be able to buy tunes online, and the width of the supply, I’m sure people will be buying the albums like crazy.</p>
+
+<p>John Gruber <a href="http://daringfireball.net/linked/2008/january#tue-08-scalzi">links</a> to an article by John Scalzi, aptly titled <a href="http://scalzi.com/whatever/?p=280">Why It Won’t Work</a>.</p>
+
+<blockquote>
+
+**Kid #2:** So to recap, what youâ€™ve got here is a system that makes people leave their house in order to download music at their house, and makes them go to a store to get music that they could get at the store, somewhere else.
+
+**Sony BMG dude:** Er.
+
+**Kid #1:** Why donâ€™t you just sell non-DRMâ€™d MP3s off Amazon, like every other major music corporation?
+
+**Sony BMG dude:** Well.
+
+**Kid #2:** You donâ€™t actually want to sell unprotected MP3s, do you? You want to be able to say youâ€™re doing it, but really, you want to make it so ridiculously inconvenient that people keep just keep buying CDs and DRMâ€™d tracks off iTunes. Just admit it, bro.
+
+**Sony BMG dude (pointing):** Look! Itâ€™s Celine Dion! And Barry Manilow! (runs away as kids avert their eyes in terror)
+
+</blockquote>
+
+<p>Won’t they ever learn?</p>
+
+<p><strong>[UPDATE:]</strong> They will indeed <a href="http://www.macworld.com/article/131515/2008/01/amazon.html">start selling music through Amazon MP3, according to MacWorld</a>. The question remains, why on earth did they publicize the born dead plastic card scheme if the whole Amazon deal was about to be announced. The other question is, doesn’t it sound like a cartel that three of the big four labels refuse to sell Apple DRM-free songs but sell them somewhere else? Let’s hope there are some announcements coming next week in San Francisco.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/01/03/get-your-pan-ready/">Get Your Pan Ready!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2008-01-03T00:00:00+00:00" pubdate>January 3, 2008</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It’s hard to write a full book for a seasoned Rails hacker nowadays. Most of every tutorial-like tome will be fluff and even if there are some useful tidbits to gather, they’re often hard to find among the sea of surely useful but hardly nouvelle information. That’s why I really enjoy reading concise, to-the-point articles about specific solutions, and there is a genre of books that are chock-full of those nifty solutions: the cookbook style books. <a href="http://chadfowler.com/">Chad’s</a> <a href="http://www.pragprog.com/titles/fr_rr/">Rails Recipes</a>, <a href="http://tech.rufy.com/">Lucas’s</a> and <a href="http://www.crummy.com/">Leonard’s</a> <a href="http://www.oreilly.com/catalog/rubyckbk/">Ruby Cookbook</a> and <a href="http://blog.tupleshop.com/">Rob’s</a> <a href="http://www.oreilly.com/catalog/9780596527310/">Rails Cookbook</a> have often made my day when even the mighty G has failed.</p>
+
+<p>And now, fresh from the <a href="http://www.pragprog.com/">pragmatic oven</a>, prepared with tenderness and love by <a href="http://clarkware.com/cgi/blosxom">Mike Clark</a> and a slew of contributors, comes <a href="http://www.pragprog.com/titles/fr_arr">Advanced Rails Recipes</a>. From a quick look through the beta PDF (available for purchase now through the <a href="http://pragmaticprogrammer.com/frequently-asked-questions/beta-books">beta book program</a>), this will surely be one of the most useful Rails books for an advanced hacker ever written. Mike has managed to gather a respectful pile of recipes from experienced Rails people like <a href="http://brainspl.at/">Ezra</a>, <a href="http://errtheblog.com/">PJ and Chris</a>, <a href="http://therealadam.com/">Adam</a>, <a href="http://gilesbowkett.blogspot.com/">Giles</a> and many, many more. Getting access to all these people’s heads within one book is something really unique and privileged.</p>
+
+<p><strong>Disclaimer</strong>: Advanced Rails Recipes contains a recipe written by me, “Validating Required Form<br />
+Fields Inline”. However, I don’t get any royalties from the book sales so this recommendation is an honest review of the book. I really think it’s that good.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/01/01/harvest-time/">Harvest Time</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2008-01-01T00:00:00+00:00" pubdate>January 1, 2008</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Congrats to Sami Korjus and my cousin <a href="http://www.imdb.com/name/nm1533154/">Jussi SyrjÃ¤</a> for <a href="http://www.indiewire.com/ots/2007/12/park_city_08_to.html">securing a spot</a> for their short film <a href="http://imdb.com/title/tt0997056/">Harvest Time</a> at the <a href="http://www.sundance.org/festival/">Sundance Festival</a>. I’ve seen the film now twice, in its premiere in the <a href="http://www.tamperefilmfestival.fi/2007/eng/index.htm">Tampere Film Festival</a> last year (where it <a href="http://www.filmfestivalworld.com/blog/Festival/Tampere_Film_Festival/Post/109/#comments">won the special prize</a>) and last week on the national tv, and the mojo hasn’t worn off. It was one of the few movies in the festival shot on real 35mm film and the same quality can be seen throughout the whole film. If you’re into black comedies and heading to Sundance, I heartily recommend <a href="http://www.sundance.org/festival/film_events/details1.asp?filmid=08F0255&amp;filmtype=s&amp;keepThis=true&amp;TB_iframe=true&amp;height=480&amp;width=900">giving it a shot</a>.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/12/10/do-not-hire-itechart/">Do NOT Hire iTechArt</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2007-12-10T00:00:00+00:00" pubdate>December 10, 2007</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It’s annoying enough that quite a few spam messages creep through Google Groups filters to the many mailing lists I’m subscribed to. Fortunately, SpamSieve has learned to bash them quite effectively. Today, however, spam on Rails-Core and Rails-Spinoffs hit the new low (right in there with people advertising pirate copies of the first AWDWR (Agile Web Development with Rails) book on the Rails mailing lists a while back).</p>
+
+<p>A company apparently specialized (among many other technologies, oh the irony) in Ruby on Rails development and outsourcing, iTechArt, considered it appropriate to advertise their services by <em>spamming pretty much every Ruby and Rails-related mailing list on Google Groups</em>. I not only think it’s pretty darn stupid to crap in your own cubicle (so to speak), I also think it’s worth giving them a lesson. So anyone considering outsourcing or buying Ruby or Rails development, please:</p>
+
+<ol>
+  <li>Do <strong>not</strong> hire iTechArt.</li>
+  <li>If you receive a proposal from them, let them know you won’t hire spammers.</li>
+</ol>
+
+<p>In any case, if you’re a blogger, please spread the word. iTechArt is not worth anyone’s money.</p>
+</div>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page5/">&larr; Older</a>
+    
+    <a href="/blog/archives/">Blog Archives</a>
+    
+      <a class="next" href="/blog/page3/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><ul>
+  <li><a href="/jarkko/">About Jarkko</a></li>
+  <li><a href="http://notkea.fi"><strong>NOTKEA.FI</strong> &ndash; Notkeita ajatuksia taloudesta, teknologiasta ja elämästä suomeksi</a></li>
+</ul>
+
+<p>
+  Copyright &copy; 2026 - Jarkko Laine
+</p>
+
+</footer>
+</body>
+</html>

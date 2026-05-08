@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="canonical" href="https://jlaine.net/blog/page11/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/feed.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google Web Fonts-->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/04/05/getting-naked/">Getting Naked</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-04-05T00:00:00+00:00" pubdate>April 5, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For the first time, I’m openly <a href="http://naked.dustindiaz.com/">getting naked</a> in the internet. Feel free to testify.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/04/03/globalize-gotcha/">Globalize Gotcha</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-04-03T00:00:00+00:00" pubdate>April 3, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’m working for the first time on a project that uses the <a href="http://www.globalize-rails.org/wiki/">Globalize Rails plugin</a>. It rocks. It’s about as close to an unobtrusive I18N(internationalization)/L10N(localization) framework as it gets. I’ve used a couple of approaches before, both self-written and third party, but they don’t get even close to the ease of deployment with Globalize.</p>
+
+<p>There is one gotcha with Globalize, though, which is probably worth sharing: it overwrites Rails code. This isn’t such a surprise since runtime extensibility is one of the founding Ruby principles. It does, however, break the backwards-compatibility.</p>
+
+<p>One specific thing that bit me was that after starting to use Globalize, <em>assert_template</em> didn’t work anymore. Suddenly it started to get the whole path for the template, as opposed to relative from the template root which is the default Rails behaviour. So assertions like</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code lang="ruby"&gt;</code>{=html}<br />
+assert_template “admin/books/new”<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+
+<p>won’t work anymore. You <em>could</em> of course put the absolute path in your assertion but that would break the portability of the app. I guess it would work with constants like RAILS_ROOT, but using it in every assert_template call would be just plain ugly.</p>
+
+<p>There is a pending <a href="http://dev.rubyonrails.org/ticket/4235">patch in Rails Trac to accept regexps as assert_template arguments</a>, which would make the problem go away, but until it gets applied to the trunk, I’ll just comment out the assert_template calls.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/03/14/usability-tip-display-the-city-name-first-in-a-time-zone-drop-down-list/">Usability Tip: Display the City Name First in a Time Zone Drop-down List</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-03-14T00:00:00+00:00" pubdate>March 14, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There’s a lot of sites where you have to select your time zone as part of the registration process. The zones are often displayed like this: “(GMT+02:00) Helsinki”. That sucks.</p>
+
+<p>Given that the time zone lists always have dozens of items, it’s really annoying to scroll down to items further down the list. Fortunately, browser makers have been wise enough to implement keyboard navigation for drop-down lists. Therefore, when selecting a country, I can type “fin” and hit <em>enter</em>, and be quite sure Finland is selected.</p>
+
+<p>With the time zone lists like above, I can’t use the keyboard. Or I could, but I would have to type everything until the “H” in “Helsinki” and that would pretty much cancel the benefits of using the keyboard. So if you need to implement time zone lists, do put the city name first and the time zone only after that. Sure, it’s a minor annoyance but they tend to add up.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/03/14/usability-tip-2-use-the-label-tag/">Usability Tip #2: Use the Label Tag!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-03-14T00:00:00+00:00" pubdate>March 14, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Many otherwise great web sites/applications, like <a href="http://www.basecamphq.com">Basecamp</a> and <a href="https://www.iconbuffet.com/">IconBuffet</a>, seem to share one very annoying shortcoming: <a href="http://odesign.clientsection.com/login">their</a> <a href="https://www.iconbuffet.com/account/login">forms</a> don’t use <a href="http://www.w3schools.com/tags/tag_label.asp"><em>label</em></a> elements.</p>
+
+<p>Even if you think <a href="http://37signals.com/svn/archives2/fly_on_the_wall_week_of_march_10.php">accessibility is for documents</a> (which it isn’t), please use <em>labels</em> in your forms. They are not just for blind people.</p>
+
+<p>The <em>big thing</em> for me in using labels is that they effectively make the clickable area of the form element a lot bigger. Which one would you prefer pushing? The male (without label) or the female (with label)?</p>
+
+<form name="test" action="test">
+
+`<input type="radio" name="sex" id="male" />`{=html} MALE`<br />`{=html}\
+`<input type="radio" name="sex" id="female" />`{=html} `<label for="female">`{=html}FEMALE (with label)`</label>`{=html}`<br />`{=html}
+
+</form>
+
+<p>(Of course if you use Safari you don’t care because Safari doesn’t support the label element.)</p>
+
+<p>I think using real form labels is a huge usability enhancement in addition to helping accessibility.</p>
+
+<p>For gawd’s sake, using the Rails’ form helpers to construct the form automatically uses labels, so it shouldn’t be too hard for two of the more prominent Rails showcases to use it.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/03/13/lost/">Lost</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-03-13T00:00:00+00:00" pubdate>March 13, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>OK, I guess nothing coming from the <a href="http://www.uspto.gov/">USPTO</a> could surprise me anymore, but WTF?!? This has got to be <a href="http://www.informationweek.com/story/showArticle.jhtml?articleID=180206472&amp;cid=RSSfeed_IWK_News">one of the most outrageous sweep-everything-under-one-umbrella patents</a> ever issued. I <a href="http://sidesh0w.com/weblog/2006/02/23/three_cheers_for_the_patent_office/">concur</a>.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/03/05/gbat/">GBAT</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-03-05T00:00:00+00:00" pubdate>March 5, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>First things first: <a href="http://blog.guykawasaki.com">Guy Kawasaki is blogging</a>. I know, I know, old news. But if you haven’t checked <a href="http://blog.guykawasaki.com">his blog</a> yet, do it know. The guy (pun unintended) has made an <em>extensive</em> career as an Apple evangelist and later in the VC (Venture Capital) world. He also seems to have a talent to write thoughtful and thought-provoking articles day in day out. And he’s got a proofreader for his blog.</p>
+
+<p>But that wasn’t my point today. Guy has created <a href="http://blog.guykawasaki.com/2006/02/gbat_score_high.html">a test called GBAT (Guy's Bozofication Aptitude Test)</a>, which is “a compilation of the best indicators of whether a company is sliding into bozosity”. <a href="http://electricpulp.com/gbat/">Electric Pulp has pushed the idea online</a> so you can easily test if <em>now</em> would be a good time to look for a new employer.</p>
+
+<p>I especially like the point number #6:</p>
+
+<blockquote>
+  <p>Your HR department requires an MBA degree for any position; it also requires five to ten years work experience in an industry that is only four years old.</p>
+</blockquote>
+
+<p>That’s like straight from some of the early announcements for <a href="http://jobs.rubynow.com/">Rails jobs</a>.</p>
+
+<p>BTW, <a href="http://www.odesign.fi">my company</a> scored 2. Well, maybe 1 actually, because the only two points came from the point #26:</p>
+
+<blockquote>
+  <p>Your CEO writes a book.</p>
+</blockquote>
+
+<p>I’m not a real CEO and I’m just writing a thesis, not a real book (yet), so I refuse to score the whole two points for that question.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/14/training/">Training</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-02-14T00:00:00+00:00" pubdate>February 14, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’m writing this in a train (my favorite work place — only the wifi is missing) back from two days of Rails training with the guys from <a href="http://www.reforge.fi">Reforge</a>. As <a href="http://nubyonrails.com/articles/2006/02/10/london-carson-workshops">Geoff</a>, I probably learned as much or more during the training as the students. We spent most of the second day writing unit tests and trying out interface and test driven development while coding the <a href="http://www.37signals.com/svn/archives2/product_roadmaps_are_dangerous.php?49">most important part of their upcoming application</a>. We even tried out the <a href="http://blog.viney.net.nz/articles/2006/02/09/selenium-testing">Rails Selenium plugin</a>, which turned out to be great.</p>
+
+<p>I was very pleasantly surprised by how much the guys appreciated the value of testing in both theory <em>and</em> practice. They’re sure going to succeed with that attitude (and Rails :).</p>
+
+<p>That said, while my rough schedule is pretty much fixed for March already, there’s still some place for short training and consulting gigs. So if you want to get your team a flying start in Rails development, drop <a href="mailto:jarkko@jlaine.net">me</a> a mail and we’ll arrange a session.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/06/rails-developers-wanted-in-stockholm/">Rails Developers Wanted in Stockholm</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-02-06T00:00:00+00:00" pubdate>February 6, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My friend <a href="http://marklunds.com/">Peter</a> just started as the CTO of Adocca, a company building a large community site on <a href="http://www.rubyonrails.com">Rails</a>. They’re now looking to hire several talented programmers experienced with or willing to learn Rails. So if you’re living in (or willing to move to) the Stockholm region, and want to jump on the Rails bandwagon, read on for the full announcement:</p>
+
+<blockquote>
+<p>
+
+We are building a new major community site with many cutting edge\
+features using the latest in web technologies. We now need to expand\
+our staff with several Rails programmers as well as designers and\
+system administrators.
+
+</p>
+
+The project is very ambitious and fast paced and has many talented\
+people involved. There is a stock option program offered to employees.
+
+Our development is done with Mac OS X and we deploy to Red Hat\
+Enterprise Linux and MySQL 5.
+
+We are located in a very attractive office at "Muenchen Bryggeriet"\
+overlooking the water and the old town in central Stockholm.
+
+Required Skills:
+
+- Experience with HTML, CSS, and JavaScript
+- Experience in object oriented development (for example in\
+  Java, .NET, or PHP)
+- Proficiency in relational databases and SQL
+- An interest in new web technologies such as AJAX
+- Comfortability working on the command line in a Unix environment
+- Is keen on software quality and believes in simplicity and\
+  automated testing
+- Strong written and oral communication skills in english
+- A basic understanding of website usability
+
+Desired Skills:
+
+- Experience with Ruby and/or Ruby on Rails
+- Experience with developing complex high traffic websites
+- Experience with MySQL
+- System administration skills, preferrably with Linux
+- Willingness and ability to write technical documentation
+- Ability to design nice looking and user friendly web pages
+
+</blockquote>
+
+<p>If you’re interested, contact Peter (peter_marklund AT fastmail dot fm) and ask for more info.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/03/rails-recipes-beta-is-out/">Rails Recipes Beta Is Out</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-02-03T00:00:00+00:00" pubdate>February 3, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The second English book about Rails, <a href="http://pragmaticprogrammer.com/titles/fr_rr">Rails Recipes</a> is out. Not in print, but in the PragProgs’ excellent beta book format, which means that you can get the beta pdf (+ lifetime updates for the first edition) now and the printed version when it’s ready. Obviously you can also buy just the pdf version. The book consists now of about twenty recipes but will grow to more than 70 during the spring. If <a href="http://pragmaticprogrammer.com/titles/rails/index.html">Agile Web Development with Rails</a> got you rolling on Rails, the new book will hone your skills to the extreme with proven advice for anything from user interface to <a href="http://en.wikipedia.org/wiki/Continuous_integration">continuous integration</a>. Highly recommended!</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/02/woo-hoo-multicasting-with-airport-express-is-here/">Woo Hoo! Multicasting With Airport Express Is Here</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-02-02T00:00:00+00:00" pubdate>February 2, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’ve somehow missed this: Andy Budd <a href="http://www.andybudd.com/archives/2006/01/streaming_music_to_multiple_speakers_using_itunes/index.php">reports</a> that you can now stream your iTunes music to multiple Airport Express stations simultaneously. This means that you can saturate the music needs of your whole home from a single iTunes collection. No more having to decide whether you want the music played from the living room or bedroom speakers. Reeeally nice.</p>
+</div>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page12/">&larr; Older</a>
+    
+    <a href="/blog/archives/">Blog Archives</a>
+    
+      <a class="next" href="/blog/page10/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><ul>
+  <li><a href="/jarkko/">About Jarkko</a></li>
+  <li><a href="http://notkea.fi"><strong>NOTKEA.FI</strong> &ndash; Notkeita ajatuksia taloudesta, teknologiasta ja elämästä suomeksi</a></li>
+</ul>
+
+<p>
+  Copyright &copy; 2026 - Jarkko Laine
+</p>
+
+</footer>
+</body>
+</html>

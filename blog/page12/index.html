@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="canonical" href="https://jlaine.net/blog/page12/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/feed.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google Web Fonts-->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/02/one-thing-is-sure/">One Thing Is Sure...</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-02-02T00:00:00+00:00" pubdate>February 2, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>…I’ll spend my next Midsummer eve in Chicago. <a href="http://railsconf.org/">RailsConf</a> just opened its registration and boy what an event it will be! Keynotes not just from the two Rails-Davids, but also from <a href="http://paulgraham.com/bio.html">Paul Graham</a> and <a href="http://www.martinfowler.com/">Martin Fowler</a>. Judging by the amount of interest the conf has gathered, it will be sold out sooner rather than later. So book your place in time. I’ll try to gather a Nordic Rails brigade that would take a common flight (like <a href="http://www.loudthinking.com/arc/000417.html">the <em>DHH</em> flight</a> from Copenhagen) and maybe share rooms during the event.</p>
+
+<p>This will also be my first trip to the New Continent, which makes it all even more interesting. I think I’m going to spend a few days more in there, either before or after the conference. So if you have some holiday suggestions, please do share them. The only real thing I know about Illinois are “The Land of Lincoln” license plates we got from the local gas station as kids. Oh, and that Tuomo Ruutu plays in the Black Hawks.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/01/redirecting-txp-style-feed-url-s-to-feedburner-in-a-lighttpd-typo-setup/">Redirecting Txp-style Feed Url's to Feedburner in a Lighttpd/typo Setup</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-02-01T00:00:00+00:00" pubdate>February 1, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I reported <a href="http://jlaine.net/articles/2006/01/27/back">earlier</a> that I hadn’t yet gotten the old textpattern-style feed urls like jlaine.net/?rss=1 to work with the setup where all requests are reverse proxied to a <a href="http://lighttpd.net/">lighttpd</a> instance through apache. That has now changed. With the help of Ryan Schwartz from <a href="http://www.textdrive.com">Textdrive</a> I was able to combine rewriting and redirecting in the lighty config file so that all my feeds now point to <a href="http://www.feedburner.com">feedburner</a>. Here’s the setup:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code lang="ruby"&gt;</code>{=html}<br />
+$HTTP[“host”] =~ “mydomain.net” {<br />
+url.rewrite-once = ( “\^/?rss=1(&amp;section=blog)?” =&gt; “/xml/rss20/feed.xml”,<br />
+“\^/?atom=1(&amp;section=blog)?” =&gt; “/xml/rss20/feed.xml” )</p>
+
+<p>$HTTP[“useragent”] !~ “FeedBurner” {<br />
+url.redirect = (<br />
+“/xml/rss20/feed.xml” =&gt; “http://feeds.feedburner.com/mydomain”<br />
+)<br />
+}<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+
+<p>It might be possible to tackle it with just redirects, but I couldn’t get it understanding my regexps. In rewrite rules they work fine, though, so I don’t mind. Here we first rewrite all old school feed urls to the new typo-style, and then redirect to the FeedBurner feed unless the request comes from FeedBurner. Works a treat.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/01/passion-fruits-part-i-passionate-users/">Passion Fruits, Part I. Passionate Users</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-02-01T00:00:00+00:00" pubdate>February 1, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As you might have read from yesterday’s <a href="http://jlaine.net/articles/2006/01/31/heads-up-for-passion">teaser</a>, I’ll start a series of articles about passion in web, business and life in general. Although Kathy Sierra’s blog <a href="http://headrush.typepad.com/creating_passionate_users/">Creating Passionate Users</a> has been a tremendous inspiration for the articles, they will not be restricted to just users. But for starters, we’ll take the easy route and just snatch two thirds of the name of Kathy’s blog.</p>
+
+<p>The first question is, why would you want passionate customers? Isn’t it enough that your customers just wisely and cool-headedly choose what you’re offering?</p>
+
+<p>Yes and no. There are a few reasons why you should love your passionate users like no one else.</p>
+
+<h4 id="1-they-will-go-to-the-end-of-the-world-just-to-get-your-products">1. They will go to the end of the world just to get your products.</h4>
+
+<p>The single best success story of having passionate users is, not surprisingly, <a href="http://www.apple.com">Apple</a>. I can’t come up with any other company that would be so deeply loved by its customers. While most people hate (or even worse, couldn’t care less about) their computers, Appleists adore Macs. While that might seem like a strange kind of cult to outside, to Apple—especially before the iPod era—they’ve been worth their weight (and they’re mostly healthy, non-obese people) in gold.</p>
+
+<p>In the late eighties, Apple was—nicely put—in deep shit. They had kicked Steve Jobs out, taken MBAs in to replace him, and in the process done some pretty brain-dead decisions. Sales where going a-tumblin’ down and all that kept them going was the crowd of users that declined to use any other type of computer. It turned out the best way in the end, but I would be lying if I said it wasn’t a close call.</p>
+
+<h4 id="2-theyre-your-best-salesmen">2. They’re your best salesmen</h4>
+
+<p>Even though the evangelistic attitude of Apple users annoy a lot of outsiders, it also turns many of them into customers. It’s hard not to think that there must be <em>something</em> inside that blind enthusiasm people show towards products of a single company.</p>
+
+<p>If you’ve read the <a href="http://www.cluetrain.com/">Cluetrain Manifesto</a> (you have, don’t you), you know that in the place called <em>internet</em>, traditional marketing has little to no place to prosper. What matters multitudes more is human voice and conversation, and what could be more powerful and authentic source of that than thrilled, pleased customers. Heck, how do you think Jason Fried earned his Audi S4 with all but zero marketing budget?</p>
+
+<h3 id="how-to-get-them">How to get them?</h3>
+
+<p>There’s no single answer to this and honestly, I can only guess. There are a few obvious “tricks” like honesty, under-promising and over-delivering, being true to who you really are and keeping your human face even when you grow. However, it’s not nearly as simple. Apple has done quite a few things to piss of its customers. It’s sued rumor sites leaking information about Apple products, but the faithful have stayed. It’s released clearly unfinished products (the latest batch of 15” PowerBooks, anyone?), and even that hasn’t been enough to wipe off the glow from its image.</p>
+
+<p>So there just has to be <em>something</em> in you that makes your customers love you. What it is, you have to figure out by yourself. There’s no one-size-fits-all recipe. Obvious places to start are <a href="http://headrush.typepad.com/creating_passionate_users/">Creating Passionate Users</a> and 37signals’ <a href="http://37signals.com/svn/">Signal vs. Noise</a>. The Signals have collected some heat lately, too, but better flamed than mediocre and forgotten.</p>
+
+<p>Next week, 1-3-10 rule squared and a few other obsessed observations.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/01/best-video-capture-device-for-mac/">Best Video Capture Device for Mac?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-02-01T00:00:00+00:00" pubdate>February 1, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My dad’s in a process of moving our whole collection of old VHS videos to DVD. They have an iMac G5 with a dvd burner so afaik all that’d be needed would be a good firewire video capture device. Does anyone of you have any experience with such things? It would need to support analog video and audio input and be easy to setup.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/01/31/heads-up-for-passion/">Heads Up for Passion</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-01-31T00:00:00+00:00" pubdate>January 31, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’m a huge fan of Kathy Sierra’s <a href="http://headrush.typepad.com/creating_passionate_users/">Creating Passionate Users</a> blog, as well as passion in <em>everything</em>. As a tribute to <em>CPU</em>, I will tomorrow start a series of posts about passion in web and business. Until then, you’ll have to do with a quote from Kathy’s latest <a href="http://headrush.typepad.com/creating_passionate_users/2006/01/death_by_riskav.html">article</a>:</p>
+
+<blockquote>
+  <p>…if you’re not doing something that someone hates, it’s probably mediocre.</p>
+</blockquote>
+
+<p>So true. Be hated. Be loved.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/01/31/duh/">Duh</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-01-31T00:00:00+00:00" pubdate>January 31, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>UPDATE 2</strong> Grrreat news, just in time to welcome me from a nice training camp in Czech Republic: I hoped that Apple’s estimate would be as much off as with the iMac we bought a year ago and, lo and behold, today I got the most anticipated message in a long time:</p>
+
+<blockquote>
+  <p>We are pleased to send you this shipment notification regarding your order. Your order has been dispatched and will be delivered to your shipping address.</p>
+</blockquote>
+
+<p>This is almost a month sooner than their latest estimate, proving that also others than <a href="http://www.loudthinking.com/arc/000565.html">those who opted for the 2.16GHz upgrade</a> can get their new darlings a lot sooner than expected. Come to daddy.</p>
+
+<p><strong>UPDATE</strong> Both good and bad news. Good news first: The 1.83GHz Intel Core Duo chip has been automatically replaced by a 2.0GHz one in my order. Then the bad news: the estimated shipping date has been postponed to March 21.</p>
+
+<blockquote>
+  <p><strong>How long will my order Take</strong><code class="language-plaintext highlighter-rouge">&lt;br /&gt;</code>{=html}<br />
+Your order should ship on or before 07.03.2006<code class="language-plaintext highlighter-rouge">&lt;br /&gt;</code>{=html}<br />
+Please allow a further 3-7 days from this date to deliver your order.</p>
+</blockquote>
+
+<p>Buggers. Hope the estimate is as far off as usually.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/01/27/back/">Back</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-01-27T00:00:00+00:00" pubdate>January 27, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’m back home after giving three days of intensive Ruby and Rails training in UK. Comments are also back up. That’s mainly because this blog is now running <a href="http://typo.leetsoft.com">Typo</a> where comment spam handling is a lot easier than in textpattern.</p>
+
+<p>Those of you who already were subscribed to my FeedBurner feed shouldn’t have any problems, but I’m still trying to figure out a way to make the old textpattern-style feed urls (e.g. “http://jlaine.net/?rss=1”) to redirect to FeedBurner. The problem is that they map to the index page which is cached in typo so it’s kind of hard to do the redirect in Ruby. I also haven’t found a working way in lighttpd to do redirects based on the query string. I guess it should be possible in apache running in front of lighty, but again haven’t yet figured out to do it through the webmin panel. If anyone knows how to do it in TxD, please drop me a note.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/01/12/london-calling/">London Calling</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-01-12T00:00:00+00:00" pubdate>January 12, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’m out for London on February 7th. On Wednesday 8th I’ll participate in the <a href="http://www.carsonworkshops.com/summit/index.html">Carson Workshops Summit: The Future of Web Apps</a> in Kensington with <a href="http://pinds.com/articles/2006/01/11/in-london-evening-of-feb-7th">Lars</a>, <a href="http://marklunds.com/">Peter</a> (+ his colleague I’ve not yet met) and <a href="http://www.dirkgomez.de/">Dirk</a>.</p>
+
+<p>I’ll be staying ‘til Thursday night in <a href="http://www.hilton.co.uk/kensington">Kensington Hilton</a> (why does that sound like <a href="http://en.wikipedia.org/wiki/Bangkok_Hilton?">Bangkok Hilton</a>). If you wanna hook up, there’s still places left to the 800-seat summit. With <a href="http://www.loudthinking.com">DHH</a>, <a href="http://shauninman.com/plete/">Shaun Inman</a> and many others on the speaker list, it’s surely going to be a great event. With a touch of luck we might even get to play with David’s new <a href="http://www.loudthinking.com/arc/000555.html..">toy</a>.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/01/11/torn/">Torn</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-01-11T00:00:00+00:00" pubdate>January 11, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>UPDATE</strong> I am a bit embarrassed to admit how easy I am to get persuaded, but comments from two crazy Danes (and that’s a compliment) made me change my mind. I already cancelled my PowerBook order but since it’s already shipped I’ll have to receive and send it right back. I also ordered a NuPower battery for the <em>old faithful</em> to make me survive the five weeks until the MBP’s start shipping. Hope everything’s gonna go allright, but of course I’ll have the AppleCare to secure the purchase for a long time. Anyways, <a href="http://www.commonme.org/">Thomas</a> and <a href="http://www.commonme.org/">David</a>, I will now hold you partly responsible for the decision ;-)</p>
+
+<blockquote>
+  <p>PowerBook is dead! Long live the PowerBook!</p>
+</blockquote>
+
+<p><a href="http://daringfireball.net/2006/01/mwsf_predictions">Who</a>. <a href="http://www.kottke.org/06/01/letter-to-apple-support">Would</a>. Have. <a href="http://www.apple.com/macbookpro/">Thought</a>.</p>
+
+<p>A surefire way to make Apple release a new model is to order a computer from them. Three and a half years ago in ZÃ¼rich I had just about unwrapped my then shiny new PowerBook when they announced performance upgrades.</p>
+
+<p>::: {style=”float:right;;”}
+<img src="http://images.apple.com/euro/macbookpro/includes/images/intel4xfaster20060109.png" alt="4 times faster than PowerBook G4 1.67GHz" title="4 times faster than PowerBook G4 1.67GHz" />
+:::</p>
+
+<p>This time it’s a lot more dramatic and complicated, though. PowerBook no more. <a href="http://www.apple.com/macbookpro/">MacBook Pro</a> doesn’t sound as cool to me as the holy circle around PowerBook, but it’s quite hard to dismiss the performance gains even if they would be a bit overrated.</p>
+
+<p>I’m not quite in a situation like <a href="http://www.kottke.org/06/01/letter-to-apple-support">Jason</a> this time. My 17” PowerBook has not yet arrived, and I can according to the law return it no questions asked inside two weeks after the arrival. But does it make this any easier? Not really.</p>
+
+<p>If I would have a working laptop at hand, I’d without a doubt cancel my order and place a new one for February. However, there’s a few things that make me wonder:</p>
+
+<ul>
+  <li>Like <a href="http://daringfireball.net/2006/01/mwsf_predictions">John Gruber</a> said in his this-time-not-quite-right predictions, the software firms just aren’t ready. The big ones maybe, but I haven’t upgraded to <a href="http://www.adobe.com/products/creativesuite/main.html">CS2</a> and I doubt CS1 will ever be available as a universal binary. Much less all the small apps I’ve grown just too dependent on.</li>
+  <li>There have been a lot of small problems with version 1’s of every PowerBook during the last years. Given that the transition to Intel processors is maybe the biggest leap in the Apple history, I am a bit hesitant to pay for being their beta tester.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;a href="http://www.flickr.com/photos/jarkko/74210887/" style="float:right;" &gt;</code>{=html}<code class="language-plaintext highlighter-rouge">&lt;img src="http://static.flickr.com/38/74210887_f7ea57217e_s.jpg" alt="Freiteg sleeve" /&gt;</code>{=html}<code class="language-plaintext highlighter-rouge">&lt;/a&gt;</code>{=html} I wanted, and will get, a 17” PowerBook. Even if it’s slower, it’s got more screen estate. Besides, my <a href="http://www.flickr.com/photos/jarkko/74210887/">Freitag sleeve</a> is for a 17” model.</li>
+  <li>I need my new laptop yesterday. Not in February.</li>
+</ul>
+
+<p>So, all things considered, I’m going to keep the PowerBook. I’m going to give it a spin for a good six to twelve months and see if the new model is mature enough by then. Given the good resale value of the PowerBooks, I can handle that.</p>
+
+<p>Still, I’m happy I placed the order before yesterday. Even though all the rational things speak for keeping the 17” model, it might’ve been a bit too hard a decision to make after the announcement.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/01/10/the-best-laughs-today/">The Best Laughs Today</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-01-10T00:00:00+00:00" pubdate>January 10, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote>
+  <p>A for effort, F for give me a fucking break.</p>
+</blockquote>
+
+<p>::: {style=”text-align:right;”}
+— Jason Fried in <a href="http://37signals.com/svn/archives2/creative_tries_to_redefine_podcast.php">Creative tries to redefine Podcast</a>
+:::</p>
+</div>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page13/">&larr; Older</a>
+    
+    <a href="/blog/archives/">Blog Archives</a>
+    
+      <a class="next" href="/blog/page11/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><ul>
+  <li><a href="/jarkko/">About Jarkko</a></li>
+  <li><a href="http://notkea.fi"><strong>NOTKEA.FI</strong> &ndash; Notkeita ajatuksia taloudesta, teknologiasta ja elämästä suomeksi</a></li>
+</ul>
+
+<p>
+  Copyright &copy; 2026 - Jarkko Laine
+</p>
+
+</footer>
+</body>
+</html>

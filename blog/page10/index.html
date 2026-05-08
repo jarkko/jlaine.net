@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="canonical" href="https://jlaine.net/blog/page10/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/feed.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google Web Fonts-->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/07/20/rubyonrails-fi/">rubyonrails.fi</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-07-20T00:00:00+00:00" pubdate>July 20, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few months ago I registered rubyonrails.fi to get wider adoption for Ruby and Rails in Finland, but haven’t really so far got it off the ground. The idea of the site in my mind would not be to duplicate stuff in <a href="http//www.rubyonrails.org">rubyonrails.org</a> but to bring together the Finnish Rubyists and build a real community for them. The interest in Rails and Ruby is growing rapidly in Finland and I feel lacking a central spot for that interest is slowing down the adoption.</p>
+
+<p>The initial features I’d like to have on the site would be the pretty traditional blog, mailing list/forum and a wiki. I set up a Basecamp project for the site, so if you’d like to get involved, drop me a mail and I’ll setup a user account for you. I hope a few active contributors would help to get my head out of my procrastinating ass.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/07/17/current_page-and-rails-named-routes/">Current_page? And Rails Named Routes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-07-17T00:00:00+00:00" pubdate>July 17, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#M000386">current_page?</a> is a nifty Rails helper that can be used to check whether a URL points to the current page. This is very useful in navigation lists where you’d want the link to the current page to be styled differently from other items. However, if you’re using <a href="http://wiki.rubyonrails.org/rails/pages/NamedRoutes">named routes</a> in Rails (and you should, keep it DRY, man), <code class="language-plaintext highlighter-rouge">current_page?</code> doesn’t work correctly. The reason for this is that <code class="language-plaintext highlighter-rouge">request.request_uri</code> (which <code class="language-plaintext highlighter-rouge">current_page?</code> uses internally to get the current URL) doesn’t contain the domain name, whereas <code class="language-plaintext highlighter-rouge">your_named_route_url</code><code class="language-plaintext highlighter-rouge">&lt;sup&gt;</code>{=html}<code class="language-plaintext highlighter-rouge">&lt;a href="#fn1"&gt;</code>{=html}1<code class="language-plaintext highlighter-rouge">&lt;/a&gt;</code>{=html}<code class="language-plaintext highlighter-rouge">&lt;/sup&gt;</code>{=html} will return the whole URL, including the domain name and the port.</p>
+
+<p>While this small incompatibility is being fixed, you can circumvent it by using <code class="language-plaintext highlighter-rouge">hash_for_your_named_route_url</code> instead. It is just about the same magical method as <code class="language-plaintext highlighter-rouge">your_named_route_url</code>, with one difference. It returns the params hash instead of running it through <code class="language-plaintext highlighter-rouge">url_for</code> and returning the URL as a string. Thus <code class="language-plaintext highlighter-rouge">current_page?</code> will work happily with it.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+map.your_named_route '', :controller =&gt; 'default', :action =&gt; 'index'
+</code></pre></div></div>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/07/12/rails-job/">Rails Job</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-07-12T00:00:00+00:00" pubdate>July 12, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My friends at <a href="http://www.starnet.fi/">Starnet Systems</a> are looking for a full-time Rails developer to join their international development team. See the full job posting and my translation below:</p>
+
+<h4 id="were-looking-for-a-web-application-developer-to-join-our-product-development-team-in-jyvãskylã">We’re looking for a Web Application Developer to join our product development team in <a href="http://www.jkl.fi/lang/">JyvÃ¤skylÃ¤</a>.</h4>
+
+<p>We’re awaiting skills in database-backed web applications (e.g. PHP, Python, Java, .NET), basic knowledge in web technologies (XHTML, XML, CSS, DOM, Javascript, AJAX) and experience in Unix/Linux environments and networks. University degree and knowledge in agile software development methodologies, Ruby programming language and Ruby on Rails framework are considered a plus.</p>
+
+<p>Your tasks will include:</p>
+
+<ul>
+  <li>Designing and programming web-based applications using Ruby on Rails.</li>
+  <li>Designing and maintaining databases.</li>
+  <li>Systems support.</li>
+  <li>Working as a part of a skilled team.</li>
+</ul>
+
+<p>This is a full-time position. If you’re ready to acquire new and apply old knowledge in responsible projects, send your application and resume to Hermanni HyytiÃ¤lÃ¤ (hermanni.hyytiala at starnet.fi).</p>
+
+<h4 id="etsimme-tuotekehitystiimiimme-jyvãskylããn-web-sovelluskehittãjãã-web-application-developer">Etsimme tuotekehitystiimiimme JyvÃ¤skylÃ¤Ã¤n: WEB-SOVELLUSKEHITTÃ„JÃ„Ã„ (Web Application developer).</h4>
+
+<p>Odotamme sinulta tietokantapohjaista Web-ohjelmointiosaamista (esimerkiksi PHP, Python,<br />
+Java, .NET), Web-teknologioiden perustuntemusta (HTML, XHTML, XML, CSS, Javascript, DOM, AJAX)<br />
+sekÃ¤ kokemusta Unix/Linux -ympÃ¤ristöistÃ¤ ja tietoverkoista. Korkeakoulututkinto, agiilien<br />
+ohjelmistokehitysmenetelmien, Ruby-ohjelmointikielen tai Ruby On Rails -ohjelmointikirjaston<br />
+tuntemus katsotaan eduksi.</p>
+
+<p>TehtÃ¤viisi tulee kuulumaan muun muassa:</p>
+
+<ul>
+  <li>web-pohjaisten sovellusten suunnittelu ja ohjelmointi kÃ¤yttÃ¤en Ruby On Rails -ohjelmointikirjastoa</li>
+  <li>tietokantojen suunnittelu ja yllÃ¤pito</li>
+  <li>jÃ¤rjestelmÃ¤tuki</li>
+  <li>työskentely osana taitavaa tiimiÃ¤</li>
+</ul>
+
+<p>Olet valmiina kokopÃ¤ivÃ¤iseen työhön sopimuksen mukaan sekÃ¤ oppimaan uutta ja soveltamaan<br />
+vanhaa vastuullisissa projekteissa.</p>
+
+<p>LÃ¤hetÃ¤ hakemuksesi ja ansioluettelosi Hermanni HyytiÃ¤lÃ¤lle osoitteella hermanni.hyytiala (a) starnet.fi</p>
+
+<p>(posted with the new <a href="http://macromates.com/blog/archives/2006/06/19/blogging-from-textmate/">TextMate Blogging Bundle</a>)</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/06/21/hello-chicago/">Hello Chicago</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-06-21T00:00:00+00:00" pubdate>June 21, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://nubyonrails.com/images/typo_graphs/countdown_railsconf.png" alt="Countdown to RailsConf" title="Countdown to RailsConf" /></p>
+
+<p>What does a Finn do when he gets to US for the first time in his life in the midsummer week? Watches hockey, of course. I have to admit I fell asleep during the second period, though, at about 4AM Finnish time.</p>
+
+<p>Entering the country was much more convenient than I thought.</p>
+
+<p>The clerk at the passport control: What are you here for, mister Lane?<code class="language-plaintext highlighter-rouge">&lt;br /&gt;</code>{=html}<br />
+Me: Line-eh. I’m here for a conference.<code class="language-plaintext highlighter-rouge">&lt;br /&gt;</code>{=html}<br />
+Clerk: So what do you do, mister Lane?<code class="language-plaintext highlighter-rouge">&lt;br /&gt;</code>{=html}<br />
+Me: I’m a web hacker (oops, think, man, think!)<code class="language-plaintext highlighter-rouge">&lt;br /&gt;</code>{=html}<br />
+Clerk: Oh, a web developer?<code class="language-plaintext highlighter-rouge">&lt;br /&gt;</code>{=html}<br />
+Me: Yes, that is correct.<code class="language-plaintext highlighter-rouge">&lt;br /&gt;</code>{=html}<br />
+Clerk: Ok, left index finger, please… right index finger, please… look at the camera, please… have a good day, sir.</p>
+
+<p>Customs clerk: What kind of food do you carry?<code class="language-plaintext highlighter-rouge">&lt;br /&gt;</code>{=html}<br />
+Me: Just some Finnish rye bread.<code class="language-plaintext highlighter-rouge">&lt;br /&gt;</code>{=html}<br />
+Clerk: OK, thank you and welcome to US.</p>
+
+<p>Renting a car was whole nuther story. We had just winged the reservation and thought we would compare the prices and pick the cheapest supplier. It turned out to be a lot harder than we thought. All the car rentals at O’Hare are placed quite a bit away from the airport so the companies have shuttle busses bringing customers to and from the terminal. There is a phone at the terminal that can be used to contact all the companies, <em>but we couldn’t get it to work for any of them</em>. So we just walked to the bus stop and jumped to the first bus, which happened to belong to AVIS.</p>
+
+<p>At the counter we were served by a lady who seemed to prefer to do anything else than give us a car for a good price. We withdrew from the counter to consider our options. We were in the middle of a fenced area long way from everything else. We could have taken the shuttle bus back to the terminal but that didn’t sound too pleasant either. Fortunately AVIS provides a wifi network at the service center and while a real internet connection is not free, avis.com is exempt from any fees. We did a reservation through the net and got the same car for $50 less than what the price was at the counter.</p>
+
+<p>So here we are now, everything ok. We spent most of Tuesday hanging around Woodfield mall, buying some stuff and getting my MacBook battery replaced (it was suddenly dying a few seconds after unplugging it even with a full battery) at the local AppleStore. Lauri will go golfing today, while I will do some training in the morning and then have lunch with Joe Sackett, the secretary of <a href="http://www.chicago-orienteering.org/">CAOC</a>. Later today I’ll run a local sprint-O competition further south from O’Hare. Somewhere in between we’ll need to move our bags to Wyndham O’Hare.</p>
+
+<p>(posted with the new <a href="http://macromates.com/blog/archives/2006/06/19/blogging-from-textmate/">TextMate Blogging Bundle</a>)</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/06/14/railsconf-t-8-days/">RailsConf, T-8.days</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-06-14T00:00:00+00:00" pubdate>June 14, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Instead of getting back to my backlog of blog posts, let’s look ahead. After the Christmas of every orienteer, <a href="http://www.jukola2006.net/index.php?lang=en">Jukola relay</a>, I will jump to a plane and fly to Chicago for the first-ever <a href="http://railsconf.org">RailsConf</a>.</p>
+
+<p><img src="http://nubyonrails.com/images/typo_graphs/countdown_railsconf.png" alt="Countdown to RailsConf" title="Countdown to RailsConf" /></p>
+
+<p>(I snatched the countdown pic from <a href="http://nubyonrails.com/">Geoff</a>, go see his <a href="http://nubyonrails.com/articles/2006/06/11/countdown-to-railsconf">post about the graphic</a>)</p>
+
+<p>I will travel together with <a href="http://reforge.fi/">Lauri Jutila</a> on Monday and we should be at O’Hare at around noon (SAS flight SK0945 from Stockholm). We’ll stay the first two nights in <a href="http://www.starwoodhotels.com/sheraton/search/hotel_detail.html?propertyID=91">Sheraton Suites Elk Grove Village</a> and move to the conference hotel on Wednesday.</p>
+
+<p>I will stay in Chicago (alone) until Thursday June 29th. My plans are to crash to some B&amp;B or hostel near downtown Chicago after the conference ends and do touristing, running and (maybe) bike trips from there around the city. If you’re staying in Chicago for longer than just the conf, ping me and we can hook up.</p>
+
+<p>I also contacted and got a very warm response from the <a href="http://www.chicago-orienteering.org/">Chicago Area Orienteering Club</a>. I’ll run a sprint-O event on Wednesday 21st, just before the conf, and they also promised me some maps where I can go training during my stay. I was even invited to a dinner by a local orienteer whose wife happens to be Finnish. Clark is renting out very nice <a href="http://www.aptschicago.com/">historic apartments around Chicago</a>, so if you’re looking for a place to stay there for longer periods, get in contact with him.</p>
+
+<p>I’m really excited about the whole trip. It’ll be my first visit to US and there are so many people I’ve known for a long time from the Rails community but whom I’ve never met in person. See you all in Chitown!</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/06/14/hidden-rails-goodies-blank/">Hidden Rails Goodies: Blank?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-06-14T00:00:00+00:00" pubdate>June 14, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When submitting forms in a web app, you often need to check whether a variable is set <em>and</em> not an empty string, because unfilled text input fields will be set but empty. In OpenACS there was a procedure called <code class="language-plaintext highlighter-rouge">exists_and_not_null</code> for this.</p>
+
+<p>In Ruby you could do something like:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code lang="ruby"&gt;</code>{=html}<br />
+if params[:string] and !params[:string].empty?<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+
+<p>However, that is both laborious and risky. If the variable happened to be something else than a string, calling <code class="language-plaintext highlighter-rouge">empty?</code> would bomb.</p>
+
+<p>Fortunately, Rails defines a pretty much undocumented method <code class="language-plaintext highlighter-rouge">blank?</code>. <code class="language-plaintext highlighter-rouge">blank?</code> is defined in the <code class="language-plaintext highlighter-rouge">Object</code> class so every possible class in a Rails app will respond to it. By default, <code class="language-plaintext highlighter-rouge">blank?</code> returns true only for <code class="language-plaintext highlighter-rouge">nil</code>, <code class="language-plaintext highlighter-rouge">false</code>, an empty array or hash and “” (an empty string, after stripping the whitespace). Of course, you can overwrite the method in your own classes to make <code class="language-plaintext highlighter-rouge">blank?</code> behave as you please for them.</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code lang="ruby"&gt;</code>{=html}<br />
+&gt;&gt; 5.blank?<br />
+=&gt; false<br />
+&gt;&gt; o = Object.new<br />
+=&gt; #<code class="language-plaintext highlighter-rouge">&lt;Object:0x10f8c6c&gt;</code>{=html}<br />
+&gt;&gt; o.blank?<br />
+=&gt; false<br />
+&gt;&gt; n = nil<br />
+=&gt; nil<br />
+&gt;&gt; n.blank?<br />
+=&gt; true<br />
+&gt;&gt; n = “”<br />
+=&gt; “”<br />
+&gt;&gt; n.blank?<br />
+=&gt; true<br />
+&gt;&gt; f = false<br />
+=&gt; false<br />
+&gt;&gt; f.blank?<br />
+=&gt; true<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+
+<p>So using <code class="language-plaintext highlighter-rouge">blank?</code> you can replace the code above by</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code lang="ruby"&gt;</code>{=html}<br />
+unless params[:string].blank?<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+
+<p>and you’re good to go. Enjoy!</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/06/13/jlaine-net-visualized/">jlaine.net Visualized</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-06-13T00:00:00+00:00" pubdate>June 13, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code class="language-plaintext highlighter-rouge">&lt;a href="http://www.flickr.com/photos/jarkko/166407495/" title="jlaine.net DOM structure"&gt;</code>{=html}<code class="language-plaintext highlighter-rouge">&lt;img src="http://static.flickr.com/53/166407495_472cb0f68b.jpg" width="500" height="499" alt="jlaine.net graph" /&gt;</code>{=html}<code class="language-plaintext highlighter-rouge">&lt;/a&gt;</code>{=html}</p>
+
+<p>Late as always, here’s the DOM structure of the jlaine.net homepage visualized by <code class="language-plaintext highlighter-rouge">&lt;a href="http://www.aharef.info/static/htmlgraph/"&gt;</code>{=html}Websites as Graphs<code class="language-plaintext highlighter-rouge">&lt;/a&gt;</code>{=html}. (via <code class="language-plaintext highlighter-rouge">&lt;a href="http://mentalized.net/journal/2006/06/08/mentalized_visualized/"&gt;</code>{=html}Jakob<code class="language-plaintext highlighter-rouge">&lt;/a&gt;</code>{=html})</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/06/09/rebooted/">Rebooted</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-06-09T00:00:00+00:00" pubdate>June 9, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>And from the ashes rises… No May 1st Reboot here, not even <del>redesigned</del> realigned outlook. But hopefully the June 9th Reboot made posting work again.</p>
+
+<p>Talking about <a href="http://reboot.dk">Reboot</a>, it was again a great event. There were <a href="http://www.benhammersley.com/Ben/Me.html">some</a> <a href="http://www.docsearls.com/">great</a> speeches - maybe not quite as many as last year, though - but the biggest feat for me is the passionate and enthusiastic spirit of the conference and the endless discussions it fosters.</p>
+
+<p>We had a very nice <a href="http://outside-thoughts.octopod.info/articles/2006/06/02/rails-at-reboot-8">Rails discussion</a> session where I (as promised) talked very little and let the participants take care of the talking. I met a great deal of nice people, <a href="http://pinds.com">from</a> <a href="http://marklunds.com/">old</a> <a href="http://sean.treadway.info/">friends</a> to <a href="http://blog.olle.ter.dk/">those</a> I’d only <a href="http://neubia.com/">met</a> <a href="http://not.invisible.ch/">online</a> to those I’d <a href="http://justaddwater.dk/">never</a> heard of before. We had lengthy discussions with a guy from the original Sun Java team (Hi Reno :) who was totally in love with Rails now and gathering a team for a startup. It really feels like it’s the summer of ‘99 again (with hopefully more than a few things learned).</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/04/13/sold-2-pcs-1gb-kingston-rams-for-1-67ghz-powerbook-g4-s/">SOLD: 2 Pcs 1GB Kingston RAMs for 1.67GHz Powerbook G4's</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-04-13T00:00:00+00:00" pubdate>April 13, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="update-sold-out">Update: SOLD OUT</h2>
+
+<p>I have two Kingston ValueRAM 1GHz modules (<a href="http://www.ec.kingston.com/ecom/configurator_new/partsinfo.asp?ktcpartno=KTA-PB533/1G">KTA-PB533/1G</a>) for 1.67GHz Powerbooks (both 15 and 17 inch) for sale. I bought them as upgrades for my upcoming 17-inch Powerbook, but the introduction of MacBook Pro changed my plans and now I don’t have use for these modules anymore. They sell around €125 in Finland at the moment ($140 in US). I’ll sell mine for €85/each (including VAT 22%) + shipping (which isn’t much since they’re small and light).</p>
+
+<p>The modules are unused and in unopened, sealed packages. They come with the standard 5 year Kingston guarantee. Sold on first come, first serve basis.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/04/06/lock-in-look-out/">Lock in, Look Out</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-04-06T00:00:00+00:00" pubdate>April 6, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was sitting in a workshop panel in an <a href="http://ossi.coss.fi/ossi/index.php?id=95">open source seminar</a> given by <a href="http://ossi.coss.fi/ossi/">my research group</a> this Tuesday. The idea behind the afternoon workshop was to collaboratively create a simple business plan for a company entering the “corporate wiki” market, competing with companies like <a href="http://www.socialtext.com/">SocialText</a>.</p>
+
+<p>The end result was that it’s not critical in the end whether the system is built on open source or not. Using open source can give an edge but the stack is still just a tool. I agree with all this.</p>
+
+<p>However, the final conclusion was that making the company succeed they should get a big client and build such hooks to the system that the client can never get out of the deal. That, people argued my resistance, was how all the successful software companies did it. To paraphrase Jason Fried, “F for give me a fucking break.” Granted, the conclusion was a kind of tongue-in-cheek one, but I just couldn’t help feeling like shoving <a href="http://headrush.typepad.com/">Kathy Sierra</a> down their throats. Fortunately for everyone, including Kathy, she wasn’t present.</p>
+
+<p>Sure, you can get by very well with this kind of strategy. Just look at Microsoft. But the world changes, my friend. When things get worse, you need people who love you, people who go to the end of the world to find your products. Remember Lotus, and its once infamous Notes mail and intranet system? It was once on <em>every</em> enterprise desktop. There wasn’t many options back then and Lotus did everything to create <a href="http://www.joelonsoftware.com/articles/fog0000000032.html">customer lock-in</a> to the system. And they were successful. For a while.</p>
+
+<p>But people hated Notes. I have with my own eyes seen “Notes sucks!” <a href="http://global.dymo.com/enUS/Home/default.html">Dymo</a> labels stuck on people’s monitors. So when the field evolved and companies started to have more options, some of which were very open in nature, they weren’t very fond of sticking with Notes anymore, even though the migration away from it was very painful. So Lotus tripped and ended up in the arms of IBM, and even though the Big Blue still tries to push Notes, I know of very few companies that are moving <em>towards</em> using it.</p>
+
+<p>The lesson: Be nice and honest to customers, both current and prospective. People aren’t stupid, they can see true your plots. Buy <a href="https://gettingreal.37signals.com/">Getting Real</a> (featuring yours truly) <em>and</em> <a href="http://www.cluetrain.com/">The Cluetrain Manifesto</a> and take them to the heart.</p>
+
+<p>And no, everyone else is not trying to fuck their customers. Asserting that is just like a cheating athlete assuring himself that everyone else is taking drugs, too. When you start justifying your ploys by lying to yourself, you’re in pretty deep shit. <a href="http://radar.oreilly.com/nat/">Nat Torkington</a> has an <a href="http://radar.oreilly.com/archives/2006/04/doc_searls_business_as_moralit.html">interesting discussion</a> with <a href="http://docsearls.com/">Doc Searls</a> about Business as Morality. There Doc depicts an image of Flickr as a company that understands how to succeed really long term: not by locking in customers but by <em>creating passionate users with excellent products and service</em>:</p>
+
+<blockquote>
+  <p>At eTech, I saw a preview of a browser-based Photoshop/Album organizing/print product front-end service. The biggest thing the creator wanted to show was how generous Flickr is. “Watch this,” he said, before using Flickr’s API to suck all 6000+ of my photos from Flickr into his product. All the metadata, all the tags and associations, were intact. His point: Flickr isn’t a silo. Their closed and proprietary stuff doesn’t extend, not is it used, to lock up customer or user data. It’s wide open. Free-range. Most of all, however, it is a “good citizen”. It is generous where it counts.</p>
+</blockquote>
+
+<p>P.S. As it turns out, according to <a href="http://www.paulgraham.com">Paul Graham</a>, having few big clients might not be that good <a href="http://www.paulgraham.com/start.html">a plan for a startup</a> anyway:</p>
+
+<blockquote>
+  <p>Start by writing software for smaller companies, because it’s easier to sell to them. It’s worth so much to sell stuff to big companies that the people selling them the crap they currently use spend a lot of time and money to do it. And while you can outhack Oracle with one frontal lobe tied behind your back, you can’t outsell an Oracle salesman. So if you want to win through better technology, aim at smaller customers.</p>
+</blockquote>
+</div>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page11/">&larr; Older</a>
+    
+    <a href="/blog/archives/">Blog Archives</a>
+    
+      <a class="next" href="/blog/page9/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><ul>
+  <li><a href="/jarkko/">About Jarkko</a></li>
+  <li><a href="http://notkea.fi"><strong>NOTKEA.FI</strong> &ndash; Notkeita ajatuksia taloudesta, teknologiasta ja elämästä suomeksi</a></li>
+</ul>
+
+<p>
+  Copyright &copy; 2026 - Jarkko Laine
+</p>
+
+</footer>
+</body>
+</html>

@@ -1,8 +1,5 @@
-
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<html class="no-js" lang="en">
 <head>
   <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -11,68 +8,31 @@
   <meta name="author" content="Jarkko Laine">
 
   
-  <meta name="description" content="We&#8217;re using Globalize for our latest Rails project and I just ran against a problem when running specs with rake.
-We specify the base language &hellip;">
-  
+  <meta name="description" content="We’re using Globalize for our latest Rails project and I just ran against a problem when running specs with rake.We specify the base language and...">
 
-  <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
-  <link rel="canonical" href="http://jlaine.net/2007/09/06/making-globalize-play-nice-with-specs/">
+  <link rel="canonical" href="https://jlaine.net/2007/09/06/making-globalize-play-nice-with-specs/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/feed/atom.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+  <link href="/feed.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google Web Fonts-->
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link rel="author" href="//plus.google.com/117033765270760829494/">
+
   
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-84654-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
 
 </head>
 
-<body   >
+<body>
   <header role="banner"><hgroup>
   <h1><a href="/">jlaine.net</a></h1>
   
 </hgroup>
 
 </header>
-  <!--<nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/feed/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:jlaine.net" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>-->
   <div id="main">
     <div id="content">
       <div>
@@ -86,33 +46,32 @@ We specify the base language &hellip;">
       <p class="meta">
         
 
+  <time datetime="2007-09-06T00:00:00+00:00" pubdate>September 6, 2007</time>
 
 
-
-
-
-
-
-  
-
-
-<time datetime="2007-09-06T00:00:00+03:00" pubdate data-updated="true">Sep 6<span>th</span>, 2007</time>
-        
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>We&#8217;re using <a href="http://www.globalize-rails.org/globalize/">Globalize</a> for our latest Rails project and I just ran against a problem when running specs with rake.</p>
+  <div class="entry-content"><p>We’re using <a href="http://www.globalize-rails.org/globalize/">Globalize</a> for our latest Rails project and I just ran against a problem when running specs with rake.</p>
+
 <p>We specify the base language and the locales our app supports in environment.rb:</p>
-<pre><code class="ruby">include Globalize
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;include Globalize
 Locale.set_base_language('en-US')
 SupportedLocales.define(['fi-FI', 'sv-SE', 'en-US'], 'en-US')
-</code></pre>
-<p>However, <code>SupportedLocales.define</code> expects that the language and country data exists in the database, otherwise it will die miserably. Of course, when you run specs with rake, it will wipe the database as its first action so you&#8217;re pretty much out of luck:</p>
-<pre><code>.../vendor/plugins/globalize/lib/globalize/localization/supported_locales.rb:282:in `setup': Globalize base language undefined! (RuntimeError)</code></pre>
-<p>I fixed this by copying the <code>db:test:clone</code> rake task from <code>[RAILS]/railties/lib/tasks/databases.rake</code> to its own file in <code>lib/tasks</code> and modifying it so that it will load some language and country fixtures automatically:</p>
-<pre><code class="ruby">require(File.join(RAILS_ROOT, 'vendor', 'rails', 'activerecord', 'lib', 'active_record', 'fixtures'))
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>However, <code class="language-plaintext highlighter-rouge">SupportedLocales.define</code> expects that the language and country data exists in the database, otherwise it will die miserably. Of course, when you run specs with rake, it will wipe the database as its first action so you’re pretty much out of luck:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.../vendor/plugins/globalize/lib/globalize/localization/supported_locales.rb:282:in `setup': Globalize base language undefined! (RuntimeError)
+</code></pre></div></div>
+
+<p>I fixed this by copying the <code class="language-plaintext highlighter-rouge">db:test:clone</code> rake task from <code class="language-plaintext highlighter-rouge">[RAILS]/railties/lib/tasks/databases.rake</code> to its own file in <code class="language-plaintext highlighter-rouge">lib/tasks</code> and modifying it so that it will load some language and country fixtures automatically:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;require(File.join(RAILS_ROOT, 'vendor', 'rails', 'activerecord', 'lib', 'active_record', 'fixtures'))
 
 namespace :db do
   namespace :test do
@@ -125,46 +84,28 @@ namespace :db do
     end
   end
 end
-</code></pre>
-<p>The only thing differing from the original task is the last line creating the fixtures. For some reasons I also need to explicitly require the fixtures file on the top of the file. Aside from this, I needed to change Rakefile in the root of our Rails app to require <code>config/environment.rb</code> instead of <code>config/boot.rb</code> for everything to work.</p>
-<p>Of course your fixture files need to include all the languages and countries you&#8217;re specifying in your <code>SupportedLocales.define</code> call.</p>
-<p>After these modifications, rake runs through fine again.</p></div>
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>The only thing differing from the original task is the last line creating the fixtures. For some reasons I also need to explicitly require the fixtures file on the top of the file. Aside from this, I needed to change Rakefile in the root of our Rails app to require <code class="language-plaintext highlighter-rouge">config/environment.rb</code> instead of <code class="language-plaintext highlighter-rouge">config/boot.rb</code> for everything to work.</p>
+
+<p>Of course your fixture files need to include all the languages and countries you’re specifying in your <code class="language-plaintext highlighter-rouge">SupportedLocales.define</code> call.</p>
+
+<p>After these modifications, rake runs through fine again.</p>
+</div>
 
 
   <footer>
     <p class="meta">
       
-  
 
-<span class="byline author vcard">Posted by <span class="fn">Jarkko Laine</span></span>
-
-      
+  <time datetime="2007-09-06T00:00:00+00:00" pubdate>September 6, 2007</time>
 
 
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-09-06T00:00:00+03:00" pubdate data-updated="true">Sep 6<span>th</span>, 2007</time>
       
 
 
     </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jlaine.net/2007/09/06/making-globalize-play-nice-with-specs/" data-via="" data-counturl="http://jlaine.net/2007/09/06/making-globalize-play-nice-with-specs/" >Tweet</a>
-  
-  
-  
-</div>
-
-    
     <p class="meta">
       
         <a class="basic-alignment left" href="/2007/08/22/langaton-tampere/" title="Previous Post: Langaton Tampere">&laquo; Langaton Tampere</a>
@@ -178,52 +119,17 @@ end
 
 </div>
 
-
     </div>
   </div>
   <footer role="contentinfo"><ul>
-  <li><a href="http://jlaine.net/jarkko">About Jarkko</a></li>
-  <li><a href="http://notkea.fi"><strong>NOTKEA.FI</strong> – Notkeita ajatuksia taloudesta, teknologiasta ja elämästä suomeksi</a></li>
+  <li><a href="/jarkko/">About Jarkko</a></li>
+  <li><a href="http://notkea.fi"><strong>NOTKEA.FI</strong> &ndash; Notkeita ajatuksia taloudesta, teknologiasta ja elämästä suomeksi</a></li>
 </ul>
 
 <p>
-  Copyright &copy; 2015 - Jarkko Laine -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  Copyright &copy; 2026 - Jarkko Laine
 </p>
+
 </footer>
-  
-
-
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'https://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-<script type="text/javascript">
-  var _gauges = _gauges || [];
-  (function() {
-    var t   = document.createElement('script');
-    t.type  = 'text/javascript';
-    t.async = true;
-    t.id    = 'gauges-tracker';
-    t.setAttribute('data-site-id', '50b05efb613f5d7127000040');
-    t.src = '//secure.gaug.es/track.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(t, s);
-  })();
-</script>
-
 </body>
 </html>

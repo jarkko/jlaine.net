@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="canonical" href="https://jlaine.net/blog/page19/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/feed.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google Web Fonts-->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/03/10/back-from-madeira/">Back From Madeira</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-03-10T00:00:00+00:00" pubdate>March 10, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’m back from a training camp in Madeira. The week was a pleasure, although I didn’t feel really snappy in the whole week (probably due to the preceding <a href="http://www.finlandiahiihto.fi/english/index2.htm">Finlandia-hiihto</a>).</p>
+
+<p>Here’s some random thoughts about Madeira and the camp (I’m still too tired to get anything organized on paper):</p>
+
+<ul>
+  <li>
+    <p>There’s only a few orienteering maps from Madeira but they are invariably in very nice terrains with breath-taking views.</p>
+  </li>
+  <li>
+    <p>The surroundings of Funchal are very crowded with a lot of traffic. Therefore, about the only good running training facilities in the neighbourhood are the (short) Lido street promenade and the (longer) “urban levada”, <em>Levada dos Piornais</em>, starting right above Lido.</p>
+  </li>
+  <li>
+    <p>Levadas, the narrow irrigation canals Madeira is full of, are quite well suited for training. They are often really narrow, tho, and hover over 50-meter cliffs so don’t even think about doing hard trainings or intervals along them.</p>
+  </li>
+  <li>
+    <p>You shouldn’t miss the peninsula of Ponta de São Lourenco in the far east end of Madeira. The place is perfect for a full day trip or (as we did) for an orienteering training extended with jogging to the end of the peninsula. Be prepared to some really strong winds, though, and leave your cowboy hats at the hotel.</p>
+  </li>
+</ul>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/03/09/not-your-average-speaker/">Not Your Average Speaker</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-03-09T00:00:00+00:00" pubdate>March 9, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I will not be presenting at <a href="http://conferences.oreillynet.com/os2005/">OSCON</a> like <a href="http://www.loudthinking.com/arc/000416.html">others</a> nor even at a <a href="http://jamisbuck.org/jamis/blog.cgi/programming/ruby/Rails%20Presentation_20050218124909.tx">Java Users Group</a> but I <strong>will</strong> be giving a guest lecture on <a href="http://rubyonrails.com">Rails</a> for students of <em>Programming Hypermedia</em> at the <a href="http://matriisi.ee.tut.fi/hypermedia/en/">Hypermedia Lab</a> of <a href="http://www.tut.fi/public/index.cfm?siteid=32">Tampere University of Technology</a>.</p>
+
+<p>Yes, I’m thrilled. And already tense as hell. It will be my first real talk if you don’t count the seminars in school. But, standing on the shoulders of giants (and talking about something I’ve fell in love with), I feel I just can’t fail.</p>
+
+<p>Oh, and the last October’s edition of <a href="http://www.designinflight.com/">Design In-Flight</a>, the excellent design magazine distributed as pdf, <a href="http://7nights.com/asterisk/">D. Keith Robinson</a> has a take for first-time speakers.</p>
+
+<p>Stay tuned. The lecture will be on April 13th. I hope I can get someone to tape the two-hour session but even if not, I will make the slides and notes available here. And if you happen to be in Tampere on that inevitably glorious day, why won’t you sneak in the hall S3 and give it a whirl. Maybe you’ll be bitten, too.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/02/23/undocumented-rails-finesses-part-i/">"Undocumented" Rails Finesses, Part I</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-02-23T00:00:00+00:00" pubdate>February 23, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Undocumented in quotes because they’re really not undocumented, I just didn’t know about them before.</p>
+
+<ol>
+  <li>
+    <p><strong>Automatic handling of creation time and modification time in ActiveRecord.</strong> Just put two timestamp fields in your database, <code class="language-plaintext highlighter-rouge">created_at</code> and <code class="language-plaintext highlighter-rouge">updated_at</code>, and you’re done. The fields will be automatically used by ActiveRecord whenever a new object is saved for the first time or updated. You don’t have to worry about them anymore.</p>
+  </li>
+  <li>
+    <p><strong>Optimistic locking.</strong> Just read about this one in the mailing list. Add a field called <code class="language-plaintext highlighter-rouge">lock_version</code> (integer) into your table and ActiveRecord will use optimistic locking for that table from now on, as long as you put a hidden field with that version to your edit form. What does it mean? When you start editing an object, its <code class="language-plaintext highlighter-rouge">lock_version</code> is read from the database. As you submit your changes, your <code class="language-plaintext highlighter-rouge">lock_version</code> is compared to the current one in the database and if the db version has been bumbed up, your submittal is not accepted and an exception is raised. You (as an application developer) can then inform the user (hey, that was you, too!) about the situation and show her the latest version. Preferably show her her changes, too, otherwise she has to write the whole story again. You don’t want that, do you?</p>
+  </li>
+</ol>
+
+<p>Rails is full of this kind of candies, so it’s worth exploring the <a href="http://rails.rubyonrails.com">API documentation</a>. It’s still a fairly moving target so I try to keep popping these ‘rubies’ up to the surface as I discover them.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/02/22/understanding-mvc/">Understanding MVC</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-02-22T00:00:00+00:00" pubdate>February 22, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Amy Hoy of <a href="http://www.slash7.com/flashback/2005/01/oreilly_onlamp.html#more"><em>OnLAMP Tutorial for Designers’ Brains</em></a> fame has written a great <a href="http://www.slash7.com/flashback/2005/02/mvc_the_most_ve.html">writeup</a> on MVC (Model-View-Controller) pattern and how it relates to <a href="http://rubyonrails.com">Rails</a>. So, if you’ve always wondered what the heck it means that Rails is a full-stack framework, go read it. Now.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/02/11/mpaa-in-action/">MPAA in Action</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-02-11T00:00:00+00:00" pubdate>February 11, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Boing Boing <a href="http://www.boingboing.net/2005/02/10/mpaa_shuts_down_loki.html">reports</a> that MPAA has been shutting down and <em>taking over</em> several BitTorrent hubs.</p>
+
+<blockquote>
+  <p>Reader Brad Clarke says, “Taking down a site is one thing but putting up their own content has GOT to be illegal. He’s to hoping they finally went too far.”</p>
+</blockquote>
+
+<p>This reminds me of the Monday night when I went to watch <a href="http://teamamerica.com/">Team America</a> in the local cinema. Among the pre-movie commercials there was an “infomercial” from MPAA. The shoot showed several “normal-life” crimes like burglary and then ended with huge letters stating that “<strong>DOWNLOADING IS A CRIME</strong>”.</p>
+
+<p>The problem? It’s not. Distributing copyrighted material (other than fair use) is a crime in Finland, downloading is <strong>not</strong>. That seems to be a fact conveniently “forgotten” by MPAA (and RIAA, BSA, you name it…) in <em>every possible occasion</em>. Anyone smell double standards here?</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/02/08/new-firefox-safari-exploit/">New Firefox/Safari Exploit</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-02-08T00:00:00+00:00" pubdate>February 8, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Both <a href="http://www.boingboing.net/2005/02/06/shmoo_group_exploit_.html">BoingBoing</a> and <a href="http://www.theregister.co.uk/2005/02/07/browsers_idn_spoofing/">The Register</a> report about a security exploit affecting most modern browsers. The vulnerability makes it possible to create links that look ok in the browser (like www.paypal.com) but that actually lead to another site that has non-7-bit-ascii characters in their address. <a href="http://secunia.com">Secunia</a> has prepared a <a href="http://secunia.com/multiple_browsers_idn_spoofing_test/">test</a> you can run to see if your browser is vulnerable to the exploit.</p>
+
+<p>In the BoingBoing story, they tell about a way to secure Firefox by changing a config parameter. However, in a later update they say that the fix doesn’t stand restarting the browser. Another update <a href="http://users.tns.net/~skingery/weblog/2005/02/permanent-fix-for-shmoo-group-exploit.html">tells</a> how to make the fix permanent. The fix is for Windows users, so here’s a rewrite of it for all Mac Firefox people:</p>
+
+<ol>
+  <li>Exit Firefox</li>
+  <li>Open ~/Library/Application Support/Firefox/Profiles/ ###.default (or default.###) in finder (### being a number of random characters)</li>
+  <li>Backup compreg.dat</li>
+  <li>Open compreg.dat in a text editor (right-click =&gt; open with… =&gt; other =&gt; select textedit or some other text editor)</li>
+  <li>Scroll down to [CONTRACTIDS] section and find this row: `mozilla.org/network/idn-service;1,{62b778a6-bce3-456b-8c31-2865fbb68c91}
+    <h1 id="change-the-1-after-idn-service-to-0-so-that-the-line-will-be-mozillaorgnetworkidn-service062b778a6-bce3-456b-8c31-2865fbb68c91">change the 1 after idn-service; to 0, so that the line will be `mozilla.org/network/idn-service;0,{62b778a6-bce3-456b-8c31-2865fbb68c91}</h1>
+  </li>
+  <li>Save the file and restart Firefox. Navigate to <a href="http://secunia.com/multiple_browsers_idn_spoofing_test/">Secunia’s test</a> and run the test. If you get a “not found” error, you should be all fine.</li>
+</ol>
+
+<p>I’ve tested the fix and it works fine for me, but I can’t promise it will for you. So stay tuned for security updates. And don’t forget Safari is vulnerable to this exploit, too, as is Opera.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/02/07/save-us-from-all-this/">Save Us From All This</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-02-07T00:00:00+00:00" pubdate>February 7, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Cory Doctorow <a href="http://www.boingboing.net/2005/02/07/japanese_software_pa.html">points</a> to a <a href="http://yro.slashdot.org/article.pl?sid=05/02/06/2110204&amp;from=rss">Slashdot post</a>:</p>
+
+<blockquote>
+  <p>The Tokyo District Court has ordered the destruction of Ichitaro, a software product that is the only serious competitor in Japan to Microsoft Word, and has been on sale since 1985. The ruling is based on the claim of a competitor, Matsushita, that the use of a help icon to invoke a help function infinges on one of their patents. ‘We are a global enterprise and we are just following international practice to enforce our IP rights,’ Kitadeya (Matsushita) said.”</p>
+</blockquote>
+
+<p>Please, <del>God</del> EU parliament, don’t let us sink to this level of absurdity.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/02/02/desktop-manager-sacked-for-virtue/">Desktop Manager Sacked for Virtue</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-02-02T00:00:00+00:00" pubdate>February 2, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’ve been an avid user of <a href="http://wsmanager.sourceforge.net/">Desktop Manager</a> ever since I learned about it. I’ve been a bit frustrated with some of its shortcomings, tho. The most annoying thing is that I have often a hard time finding a given window from the four desktops.</p>
+
+<h3 id="a-new-kid-in-town">A new kid in town</h3>
+
+<p><a href="http://virtuedesktops.sourceforge.net/">Virtue</a> is built on the shoulders of Desktop Manager and tries to get around the biggest cons of its predecessor. With Virtue you can click on an application icon and you’ll be swapped into the right desktop automatically. That alone made me switch to using it. There should be a lot more in it, but I haven’t yet had time to dive into other details. All in all, Virtue is a great addition to the arsenal of any hard core OS X user.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/02/01/skype-1-0-for-mac-is-out/">Skype 1.0 for Mac Is Out</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-02-01T00:00:00+00:00" pubdate>February 1, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Skype launched today <a href="http://www.skype.com/products/skype/macosx/">version 1.0 for OS X</a> (and <a href="http://www.skype.com/products/skype/linux/">Linux</a>) of its great internet phone application.</p>
+
+<p>I’ve been using the beta version for a while and although it’s got a few glitches, it has saved me a lot of time and cell phone bills. I still wish the sound quality would be better. Even though they claim to beat normal phone in quality, even domestic connections between two broadband nodes have been flaky at times.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/02/01/dave-thomas-on-textdrive/">Dave Thomas on TextDrive</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-02-01T00:00:00+00:00" pubdate>February 1, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://blogs.pragprog.com/cgi-bin/pragdave.cgi">PragDave</a> writes <a href="http://blogs.pragprog.com/cgi-bin/pragdave.cgi/Random/TwoISPs.rdoc">about TextDrive customer service</a>:</p>
+
+<blockquote>
+  <p>Not only did Jason Hoffman sort out all my problems, but he extrapoloted what I was trying to do in the long term, and preemptively offered to set it all up for me.</p>
+</blockquote>
+
+<p>Yes, <a href="http://www.textdrive.com">TextDrive</a> service is <em>that</em> good. I wouldn’t consider anything else for me or my customers.</p>
+</div>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page20/">&larr; Older</a>
+    
+    <a href="/blog/archives/">Blog Archives</a>
+    
+      <a class="next" href="/blog/page18/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><ul>
+  <li><a href="/jarkko/">About Jarkko</a></li>
+  <li><a href="http://notkea.fi"><strong>NOTKEA.FI</strong> &ndash; Notkeita ajatuksia taloudesta, teknologiasta ja elämästä suomeksi</a></li>
+</ul>
+
+<p>
+  Copyright &copy; 2026 - Jarkko Laine
+</p>
+
+</footer>
+</body>
+</html>

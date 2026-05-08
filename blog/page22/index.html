@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <script type="text/javascript" src="//use.typekit.net/wpe2bbi.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <meta charset="utf-8">
+  <title>jlaine.net</title>
+  <meta name="author" content="Jarkko Laine">
+
+  
+  <meta name="description" content="">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="canonical" href="https://jlaine.net/blog/page22/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/feed.xml" rel="alternate" title="jlaine.net" type="application/atom+xml">
+  <!--Fonts from Google Web Fonts-->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">jlaine.net</a></h1>
+  
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/10/25/brushed-metal-look/">Brushed Metal Look</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-10-25T00:00:00+00:00" pubdate>October 25, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>John Gruber on <a href="http://daringfireball.net/2004/10/does_brushed_metal_matter">Brushed Metal look</a>:</p>
+
+<blockquote>
+  <p>Letâ€™s say I have a Safari window and an iChat window open side-by-side, with no overlap. I think the Safari window is active, but itâ€™s actually the iChat window. I type Cmd-T to open a new tab in Safari, but instead, I get the Font Panel in iChat.</p>
+</blockquote>
+
+<p>Agreed. Just closed an iChat window instead of a Safari window with Cmd-w. Thankfully I have autologging enabled in iChat.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/10/10/textmate-goodie-1/">TextMate Goodie #1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-10-10T00:00:00+00:00" pubdate>October 10, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As I promised, here’s a macro/snippet trick you can use to create a ruby function definition in TextMate:</p>
+
+<ol>
+  <li>
+    <p>Create a new snippet as follows and bind it to trigger <code class="language-plaintext highlighter-rouge">_def</code>:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def ${1:funcname}
+    $2
+end
+</code></pre></div>    </div>
+  </li>
+  <li>Type word ‘test’ into a new document (to be used in the macro recording).</li>
+  <li>Start recording pressing alt-command-M.</li>
+  <li>Press alt-W to select the word you wrote in step 2. Note that this selects the word you’re in unless you already have a selection (in which case the selection stands intact). Therefore starting a new macro like this with alt-W is almost always a very neat trick.</li>
+  <li>Press command-X to cut the selected word.</li>
+  <li>Type ‘_def’ and press <code class="language-plaintext highlighter-rouge">tab</code> to invoke the snippet you created in step 1.</li>
+  <li>Press command-V to paste the word you cut a few steps ago.</li>
+  <li>Press <code class="language-plaintext highlighter-rouge">tab</code> to move the cursor to the second insertion point of the snippet (i.e. in the middle of the def block).</li>
+  <li>Stop recording the macro and save it. David Heinemeier Hansson uses keybinding command-enter for this macro and it sounds like a reasonable option to me, but feel free to select the binding as you please.</li>
+</ol>
+
+<p>There you go! Now you can just type the name of the function and hit command-enter and get the function body created for you. Note that this technique is by no means limited to ruby or function definitions. You can actually do with it almost anything. Just let your imagination fly!</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/10/07/textmate-is-here/">TextMate Is Here!!!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-10-07T00:00:00+00:00" pubdate>October 7, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>UPDATE [041007]:</strong> I’m now the licensee #75. Who’re you :op</p>
+
+<p>The long and rainy fall has turned a lot brighter today, as the highly anticipated <a href="http://macromates.com">TextMate</a> is finally here. It’s admittedly still a bit raw apple (pun intended) but still easily comes even with the huge buzz it was laden beforehand.</p>
+
+<p>Some very handy features:</p>
+
+<ul>
+  <li>Handling of projects ala Dreamweaver</li>
+  <li><em>Very</em> easily extendable with the built-in macro and snippet features</li>
+  <li>Comes pre-installed with syntax highlighting package for Ruby, Rails, and many more languages. Besides that, writing your own language bundle is a breeze.</li>
+  <li>Considering its features, TextMate is very lightweight</li>
+  <li>Most importantly, TM just feels right. It just sits a lot more naturally on my desktop than BBEdit, not to mention Emacs which I otherwise love.</li>
+</ul>
+
+<p>OK, enough of that. If you are a lucky one equipped with an OS X box, go get a copy, <a href="http://macromates.com">right now</a>, thank you very much. If you’re at all like me and fall in love with the editor, you’d be happy to shell out the forty bucks for the candy (who said a text editor should cost hundreds of dollars).</p>
+
+<p>As a final carrot, I’ll be sharing a few macro and snippet examples on this very forum. Stay tuned!</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/10/05/textdrive-rules-ok/">TextDrive Rules OK</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-10-05T00:00:00+00:00" pubdate>October 5, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://textdrive.com">TextDrive</a> announced a new <a href="http://textdrive.com/plans/">2GB/40GB hosting plan</a> and I got into the hook immediately. Well, actually I was kind of needing the extra hardrive space so a 100% increase with 50 extra bucks wasn’t that bad. Besides, if (or when 8) I get slashdotted, I’ve now got 4 times as much bandwidth to abuse. Oh, and did I mention TextDrive runs <a href="http://www.rubyonrails.org?">Rails</a> Oh, the beautiful life…</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/10/05/back-in-business/">Back in Business</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-10-05T00:00:00+00:00" pubdate>October 5, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>OK, I’m back after an eventful weekend at the coast. I run two competitions on the Saturday and then we had the housewarming party of my friend in Turku.</p>
+
+<p>The first race was the Finnish Relay League final, I ran in our second team since I was feeling really tired after the military games. The race went still quite ok.</p>
+
+<p>On the afternoon we had the first-ever SonniTonni, club championships in 1000m on the track. I finished second at 2:43, a very good time considering the hard schedule during the previous days.</p>
+
+<p>Anyway, we are moving to a new flat these days, so my posts will still be pretty irregular for a few days. I hope I can still dig into my <a href="http://www.rubyonrails.org">Rails</a> project soon again.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/10/01/still-going-strong/">Still Going Strong</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-10-01T00:00:00+00:00" pubdate>October 1, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Apologies for my few days’ absence from here. Things have not stagnated, however, I was just running the Finnish champs in military troop orienteering this week (which we — coincidentally — won ;). Have to go to drink some coffee and eat a piece of cake with a few generals now, I’ll continue my changeover later.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/09/29/test-entry/">Test Entry</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-09-29T00:00:00+00:00" pubdate>September 29, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Un web debe medical. Tote abstracte con lo, de nos celo auxiliary simplificate. Ha sed infra introductori, russo anglo-romanic le con. Nos vide facto campo su, maximo vocabulos con de.</p>
+
+<p>Lateres original per e. Duo westeuropee primarimente ha, lo duo vista inviar. Involvite dictionario international web ma, signo russo preparation se via, con debitores brevissime simplificate su. Su auxiliar greco-latin immediatemente non, publicava vocabulario intermediari da pro. Pro o usos multo, pan facto europeo es.</p>
+
+<p>Le como patre latino nos, existe mundial abstracte ha nos. In pan servi brevissime. Ma web esseva facite technic, hodie durante representantes uno su, del es inter involvite. Lo web europeo original articulo, qui tamben representantes ha. Se del celo europeo.</p>
+
+<p>Un uno anque interlingua international, campo tempore vocabulario sia o. Da infra signo secundarimente uso. Rapide parolas ascoltar o uno, duo tu ille human, uno un facite publication simplificate. Nomina rapide su con, qui capital scientific in, tote involvite movimento uno ha. Pro illo esseva o. Utilitate preparation e con.</p>
+
+<p>Su pro esseva europa practic. Celos technic uno se, via romanic greco-latin preparation lo. Vostre technologia es duo. Pan da usos unic prime, nos ma celos facite technic. Ultra nostre millennios non un, nos post articulos brevissime de.</p>
+
+<p>Le sia sine scientia. Su pro historia dictionario, ma sia tres parola scientific. Da nos vostre populos appellate, ha per ultra anteriormente, es interlingua publication sia. Interlinguistica americano al uno, qui medio abstracte o, multo parlar vocabulos un uno.</p>
+
+<p>Nos lo tote auxiliary greco-latin. Major internet americas sed e, sine celo giuseppe il uso. De involvite encyclopedia professional web. Medio cinque facite un pan. Se toto vista traducite duo.</p>
+
+<p>Tu terra capital web. Del titulo latente o, tu pan iala sine primarimente. Sia abstracte hereditage continentes lo. Uso ultra finalmente independente un, se national incorporate non, iste parlar facite via de. Lo tres nomina web. Con religion giuseppe tu. Multo lingua professional con su.</p>
+
+<p>Sia es scriber synonymo secundarimente, super personas linguistic es qui, le pan esseva complete historiettas. Signo cinque africa es per, tu facto distinguer pro. Populos secundarimente e per. Se uno regno excellente, qui infra vocabulario primarimente tu.</p>
+
+<p>Web altere parola connectiones al, ma pro westeuropee methodicamente. Le duo major vostre initialmente, o veni internet publication pan. O union inviar basate web. Nos tu texto extrahite, duo o studio incorporate, via de medio giuseppe summarios. Web o membros americano distinguer. E con primarimente sanctificate, qui il altere origine promotores. Tu scientific periodicos essentialmente web.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/09/29/new-test-entry/">New Test Entry</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-09-29T00:00:00+00:00" pubdate>September 29, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Religion avantiate gymnasios sed o, scientia complete voluntate qui se. Tu proposito hereditage vocabulario uno, pan specimen intermediari anteriormente o, per scriber specimen intermediari da. Ma qui utilitate instruction, e web gode grammatica publicationes, lo con multo parlar encyclopedia. Lo durante magazines supervivite con, se sed romanic involvite computator. Sed titulo paternoster su, sed al vista abstracte encyclopedia. Libro traduction de via, per un peano scientific.</p>
+
+<p>Pro patre responder distinguer o, le multo giuseppe duo. Active mundial supervivite es uno, da que ille contos historiettas. Ma practic continentes sia, ma pro post instituto millennios. Il del human auxiliar anglo-romanic, in web commun moderne incorporate. Le non signo publicationes. Pan lo facite lateres, post regno traduction in qui.</p>
+
+<p>Del tempore historiettas un, etiam articulo su qui. E uno addresses summarios, libera greco-latin international con le. Pan su servi vostre initialmente. Il sed sine traduction, duo existe ascoltar ma, lo voluntate angloromanic non. Sed al intention traducite.</p>
+
+<p>Subjecto questiones interlingua e duo, es nos cinque facite preparation. Inter anque durante le duo, duce programma distinguer pan ma, inviar introduction via in. Specimen presenta association pan su, duo es original westeuropee, da usate anglese magazines uso. Via le infra westeuropee initialmente, sia iste union message e, es iala patre practic web.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/09/28/switching-over/">Switching Over</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-09-28T00:00:00+00:00" pubdate>September 28, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’ll from now on stop writing entries to my Blogger.com blog <a href="http://divingfinn.blogspot.com"><em>Almost Finnished</em></a>. They will instead appear here.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2004/09/27/first-post/">First Post</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2004-09-27T00:00:00+00:00" pubdate>September 27, 2004</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Gosh, let’s take this lorem ipsum bs away from here.</p>
+</div>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives/">Blog Archives</a>
+    
+      <a class="next" href="/blog/page21/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><ul>
+  <li><a href="/jarkko/">About Jarkko</a></li>
+  <li><a href="http://notkea.fi"><strong>NOTKEA.FI</strong> &ndash; Notkeita ajatuksia taloudesta, teknologiasta ja elämästä suomeksi</a></li>
+</ul>
+
+<p>
+  Copyright &copy; 2026 - Jarkko Laine
+</p>
+
+</footer>
+</body>
+</html>
