@@ -54,6 +54,7 @@
       display: grid;
       grid-template-rows: auto 1fr;
       min-height: 100vh;
+      min-height: 100svh;
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; }
@@ -85,8 +86,6 @@
     .topbar__title { min-width: 0; }
     .topbar__title h1 { font-size: 17px; line-height: 1.2; }
     .topbar__title p { margin: 2px 0 0; color: var(--ink-soft); font-size: 12px; }
-    .count__dot { width: 10px; height: 10px; border-radius: 50%; }
-    .count strong { color: var(--ink); font-weight: 600; font-size: 13px; }
 
     /* ---------- Layout ---------- */
     .layout {
@@ -214,7 +213,7 @@
       transition: background .15s ease, border-color .15s ease, color .15s ease;
     }
     .chip:hover { border-color: var(--line-strong); }
-    .chip[aria-selected="true"] {
+    .chip[aria-pressed="true"] {
       background: var(--ink); color: #fff; border-color: var(--ink);
     }
     .chip__dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -227,6 +226,7 @@
       display: flex; flex-direction: column; gap: 8px;
       scrollbar-gutter: stable;
     }
+    .venue-list__item { margin: 0; padding: 0; }
 
     .card {
       background: var(--bg-card);
@@ -278,6 +278,9 @@
       background: var(--bg-soft);
       color: var(--ink-soft);
       white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .tag--strong { background: var(--ink); color: #fff; }
     .tag--out    { background: #ecfdf5; color: #047857; }
@@ -359,7 +362,7 @@
     /* ---------- Floating UI on map ---------- */
     .source-badge {
       position: absolute;
-      top: 14px; left: 14px;
+      bottom: 14px; left: 14px;
       background: #fff;
       border: 1px solid var(--line);
       border-radius: 999px;
@@ -401,10 +404,44 @@
     .popup__cta:hover { background: var(--accent); }
 
     /* ---------- Responsive ---------- */
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       .topbar { padding: 8px 12px; gap: 8px; }
       .topbar__title h1 { font-size: 14px; }
       .topbar__title p { display: none; }
+      .sidebar {
+        top: auto; right: 0; bottom: 0; left: 0;
+        width: 100%;
+        max-height: min(82svh, 640px);
+        border-right: 0;
+        border-top: 1px solid var(--line);
+        border-radius: 18px 18px 0 0;
+        box-shadow: 0 -18px 40px -24px rgba(15, 23, 42, .5);
+        transform: translateY(105%);
+      }
+      .sidebar.is-open { transform: translateY(0); }
+      .sidebar__header { padding: 14px 14px 0; }
+      .filters { padding: 12px 14px; }
+      .venue-list {
+        padding: 10px;
+        padding-bottom: calc(14px + env(safe-area-inset-bottom));
+      }
+      .card { padding: 12px; gap: 10px; }
+      .card__flag { width: 32px; height: 32px; border-radius: 9px; }
+      .sidebar-toggle {
+        top: 10px; left: 10px;
+        padding: 8px 12px 8px 10px;
+      }
+      .source-badge {
+        left: 10px;
+        bottom: calc(10px + env(safe-area-inset-bottom));
+        max-width: min(220px, calc(100vw - 108px));
+      }
+      .data-link {
+        right: 10px;
+        bottom: calc(10px + env(safe-area-inset-bottom));
+        padding: 7px 11px;
+      }
+      .leaflet-popup-content { max-width: min(280px, calc(100vw - 56px)); }
     }
   </style>
 </head>
@@ -419,7 +456,7 @@
 
   <main class="layout" id="layout">
     <section class="map-wrap" aria-label="Map">
-      <div id="map" role="application" aria-label="Interactive map of indoor beach-volleyball venues"></div>
+      <div id="map" aria-label="Interactive map of indoor beach-volleyball venues"></div>
 
       <button class="sidebar-toggle" id="sidebar-toggle"
               aria-controls="sidebar" aria-expanded="false"
@@ -464,7 +501,7 @@
           <input id="search" type="search"
                  placeholder="Search venues, towns, addresses…" autocomplete="off" />
         </label>
-        <div class="chips" id="chips" role="tablist"></div>
+        <div class="chips" id="chips" aria-label="Filter venues by country"></div>
       </div>
       <ol class="venue-list" id="venues" role="list"></ol>
       <p class="sidebar__hint" id="hint"></p>
@@ -611,6 +648,39 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
     }
 
     /* ---------------------- Domain mapping ---------------------- */
+    function parseCourtValue(value) {
+      if (value == null || value === '') {
+        return { count: 0, pinLabel: '?', tagLabel: 'courts n/a', detail: null };
+      }
+      if (typeof value === 'number') {
+        return {
+          count: value,
+          pinLabel: String(value),
+          tagLabel: `${value} indoor`,
+          detail: null,
+        };
+      }
+
+      const raw = String(value);
+      const label = raw.match(/^\s*(\d+(?:[\u2013\u2014-]\d+)?)/)?.[1] || '?';
+      return {
+        count: parseInt(label, 10) || 0,
+        pinLabel: label,
+        tagLabel: label === '?' ? 'indoor courts n/a' : `${label} indoor`,
+        detail: raw,
+      };
+    }
+
+    function parseOutdoorValue(value) {
+      if (value == null || value === '') return { tagLabel: '', detail: null };
+      const raw = String(value);
+      const label = raw.match(/^\s*(\d+(?:[\u2013\u2014-]\d+)?)/)?.[1];
+      return {
+        tagLabel: label ? `+ ${label} outdoor` : `+ ${raw}`,
+        detail: label ? raw : null,
+      };
+    }
+
     function rowToVenue(r, idx) {
       const country = COUNTRY_FROM_NAME[(r.country || '').toUpperCase()]
                     || (r.country || '').slice(0, 2).toUpperCase()
@@ -620,6 +690,8 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       if (!indoor || indoor === 'not_stated_publicly') courtsIndoor = null;
       else if (/^\d+$/.test(indoor)) courtsIndoor = parseInt(indoor, 10);
       else courtsIndoor = indoor;
+      const indoorDisplay = parseCourtValue(courtsIndoor);
+      const outdoorDisplay = parseOutdoorValue(r.outdoor_courts_same_venue);
       return {
         id:        slug(`${country}-${r.facility_name}`) || `venue-${idx}`,
         country,
@@ -631,7 +703,13 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
         precision: r.coord_precision || 'address',
         type:      TYPE_LABELS[r.facility_type] || r.facility_type,
         courtsIndoor,
+        courtCount: indoorDisplay.count,
+        courtPinLabel: indoorDisplay.pinLabel,
+        courtTagLabel: indoorDisplay.tagLabel,
+        courtDetail: indoorDisplay.detail,
         courtsOutdoor: r.outdoor_courts_same_venue || null,
+        outdoorTagLabel: outdoorDisplay.tagLabel,
+        outdoorDetail: outdoorDisplay.detail,
         currency:  r.currency,
         priceNote: r.price_notes,
         url:       r.booking_or_info_url,
@@ -639,7 +717,7 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
     }
 
     /* ---------------------- State ---------------------- */
-    const state = { country: 'all', query: '', selectedId: null, sidebarOpen: false };
+    const state = { country: 'all', query: '', selectedId: null, sidebarOpen: false, returnFocusTo: null };
     let VENUES = [];
 
     /* ---------------------- Map ---------------------- */
@@ -653,27 +731,6 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
     }).addTo(map);
 
     /* ---------------------- Marker building ---------------------- */
-    // Numeric value used for both the pin badge text and cluster sums.
-    function courtsNumber(v) {
-      if (typeof v.courtsIndoor === 'number') return v.courtsIndoor;
-      if (typeof v.courtsIndoor === 'string') {
-        const m = v.courtsIndoor.match(/^\s*(\d+)/);
-        if (m) return parseInt(m[1], 10);
-      }
-      return 0;
-    }
-    function pinLabel(v) {
-      if (v.courtsIndoor == null) return '?';
-      if (typeof v.courtsIndoor === 'number') return String(v.courtsIndoor);
-      if (typeof v.courtsIndoor === 'string') {
-        // pull leading "3", "2-3", "2–3" out of free-form strings like
-        // "3 training OR 2 match OR 1 international field (reconfigurable)".
-        const m = v.courtsIndoor.match(/^\s*(\d+(?:[\u2013\u2014\-]\d+)?)/);
-        if (m) return m[1];
-      }
-      return '?';
-    }
-
     const markerLayer = L.markerClusterGroup({
       showCoverageOnHover: false,
       spiderfyOnMaxZoom: true,
@@ -707,7 +764,7 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
         const colour = COUNTRIES[v.country]?.color || '#0f172a';
         const icon = L.divIcon({
           className: 'bv-marker',
-          html: `<span class="bv-marker__dot" style="--country:${colour}">${escapeHtml(pinLabel(v))}</span>`,
+          html: `<span class="bv-marker__dot" style="--country:${colour}">${escapeHtml(v.courtPinLabel)}</span>`,
           iconSize:    [32, 32],
           iconAnchor:  [16, 16],
           popupAnchor: [0, -16],
@@ -716,7 +773,7 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
           icon,
           title: v.name,
           riseOnHover: true,
-          _courts: courtsNumber(v),
+          _courts: v.courtCount,
           _country: v.country,
         });
         m.bindPopup(buildPopup(v), { closeButton: true, maxWidth: 320, minWidth: 240 });
@@ -737,14 +794,12 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
 
     function buildPopup(v) {
       const c = COUNTRIES[v.country] || { flag: '', name: v.country };
-      const courtsLabel = courtDisplay(v);
-      const courtsFull  = typeof v.courtsIndoor === 'string' ? v.courtsIndoor : null;
       const courts = v.courtsIndoor == null
         ? '<span class="tag">indoor courts n/a</span>'
-        : `<span class="tag tag--strong"${courtsFull ? ` title="${escapeHtml(courtsFull)}"` : ''}>${escapeHtml(courtsLabel)} indoor</span>`;
-      const out = (v.courtsOutdoor == null || v.courtsOutdoor === '')
+        : `<span class="tag tag--strong"${v.courtDetail ? ` title="${escapeHtml(v.courtDetail)}"` : ''}>${escapeHtml(v.courtTagLabel)}</span>`;
+      const out = !v.outdoorTagLabel
         ? ''
-        : `<span class="tag tag--out">+ ${escapeHtml(String(v.courtsOutdoor))}</span>`;
+        : `<span class="tag tag--out"${v.outdoorDetail ? ` title="${escapeHtml(v.outdoorDetail)}"` : ''}>${escapeHtml(v.outdoorTagLabel)}</span>`;
       const precisionTag = v.precision === 'town'
         ? '<span class="tag tag--note" title="Marker placed at town level — address-precise location not yet verified">~ town</span>'
         : '';
@@ -756,26 +811,6 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
           <p class="popup__price">${escapeHtml(v.priceNote || '')}</p>
           <a class="popup__cta" href="${escapeHtml(v.url)}" target="_blank" rel="noopener noreferrer">Open booking ↗</a>
         </div>`;
-    }
-
-    /* ---------------------- Render: Counts ---------------------- */
-    function renderCounts() {
-      const counts = $('#counts');
-      if (!counts) return;
-      counts.innerHTML = '';
-      const total = VENUES.length;
-      counts.append(ce('span', { class: 'count', role: 'listitem', title: 'All venues' },
-        ce('span', { class: 'count__dot', style: 'background:#0f172a' }),
-        ce('strong', {}, String(total)), ' venues'));
-      Object.entries(COUNTRIES).forEach(([code, meta]) => {
-        const n = VENUES.filter(v => v.country === code).length;
-        if (!n) return;
-        counts.append(
-          ce('span', { class: 'count', role: 'listitem', title: meta.name },
-             ce('span', { class: 'count__dot', style: `background:${meta.color}` }),
-             ce('strong', {}, String(n)), ' ', meta.flag, ' ', meta.name)
-        );
-      });
     }
 
     /* ---------------------- Render: Chips ---------------------- */
@@ -792,8 +827,8 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       const chips = $('#chips');
       chips.innerHTML = '';
       const make = (id, label, color) => ce('button', {
-        class: 'chip', type: 'button', role: 'tab',
-        'aria-selected': state.country === id ? 'true' : 'false',
+        class: 'chip', type: 'button',
+        'aria-pressed': state.country === id ? 'true' : 'false',
         'data-country': id,
         onclick: () => selectCountry(id),
       },
@@ -817,14 +852,17 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
 
       filtered.forEach(v => {
         const c = COUNTRIES[v.country] || { flag: '', name: v.country, color: '#0f172a' };
+        const item = ce('li', { class: 'venue-list__item' });
         const card = ce('button', {
           class: 'card',
           type: 'button',
-          role: 'listitem',
           'data-id': v.id,
           'aria-current': state.selectedId === v.id ? 'true' : 'false',
           style: `--country:${c.color}`,
-          onclick: () => selectVenue(v.id, { fly: true, openPopup: true }),
+          onclick: () => {
+            selectVenue(v.id, { fly: true, openPopup: true });
+            if (window.matchMedia('(max-width: 700px)').matches) setSidebar(false);
+          },
         });
 
         const flag  = ce('span', { class: 'card__flag', 'aria-hidden': 'true' }, c.flag);
@@ -833,10 +871,15 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
         const town  = ce('div',  { class: 'card__town' }, `${v.town} · ${v.address}`);
         const meta  = ce('div',  { class: 'card__meta' });
 
-        meta.append(ce('span', { class: 'tag tag--strong' },
-          v.courtsIndoor == null ? 'courts n/a' : `${v.courtsIndoor} indoor`));
-        if (v.courtsOutdoor != null && v.courtsOutdoor !== '')
-          meta.append(ce('span', { class: 'tag tag--out' }, `+ ${v.courtsOutdoor}`));
+        meta.append(ce('span', {
+          class: 'tag tag--strong',
+          title: v.courtDetail,
+        }, v.courtsIndoor == null ? 'courts n/a' : v.courtTagLabel));
+        if (v.outdoorTagLabel)
+          meta.append(ce('span', {
+            class: 'tag tag--out',
+            title: v.outdoorDetail,
+          }, v.outdoorTagLabel));
         if (v.currency)
           meta.append(ce('span', { class: 'tag' }, v.currency));
         if (v.precision === 'town')
@@ -844,7 +887,8 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
 
         body.append(name, town, meta);
         card.append(flag, body);
-        list.append(card);
+        item.append(card);
+        list.append(item);
       });
 
       hint.textContent = filtered.length
@@ -922,13 +966,36 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
 
     /* ---------------------- Sidebar drawer ---------------------- */
     function setSidebar(open) {
+      const sidebar = $('#sidebar');
+      const toggle = $('#sidebar-toggle');
       state.sidebarOpen = open;
+      if (open) state.returnFocusTo = document.activeElement;
       $('#layout').classList.toggle('is-open', open);
-      $('#sidebar').classList.toggle('is-open', open);
-      $('#sidebar-toggle').setAttribute('aria-expanded', open ? 'true' : 'false');
+      sidebar.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       if (open) {
         // give a frame for the transform to start, then focus search
         requestAnimationFrame(() => $('#search')?.focus({ preventScroll: true }));
+      } else if (state.returnFocusTo && document.contains(state.returnFocusTo)) {
+        state.returnFocusTo.focus({ preventScroll: true });
+        state.returnFocusTo = null;
+      }
+    }
+
+    function trapSidebarFocus(event) {
+      if (!state.sidebarOpen || event.key !== 'Tab') return;
+      const focusable = [...$('#sidebar').querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )].filter(el => el.offsetParent !== null);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     }
 
@@ -947,6 +1014,7 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       $('#sidebar-backdrop').addEventListener('click', () => setSidebar(false));
       document.addEventListener('keydown', e => {
         if (e.key === 'Escape' && state.sidebarOpen) setSidebar(false);
+        trapSidebarFocus(e);
       });
     }
 
@@ -961,7 +1029,6 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
         buildMarkers();
         map.fitBounds(L.latLngBounds(VENUES.map(v => [v.lat, v.lng])), { padding: [40, 40] });
 
-        renderCounts();
         render();
         attachEvents();
         showSourceBadge(source);
