@@ -1,0 +1,8 @@
+---
+layout: post
+title: Options and Opinions
+---
+
+> With Rails, the split is that opinions go into core and\
+> options go into plugins.\
+> --- David Heinemeier Hansson in [Rails-Core](http://www.ruby-forum.com/topic/77473#123386)

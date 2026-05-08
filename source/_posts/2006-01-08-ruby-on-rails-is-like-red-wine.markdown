@@ -1,0 +1,10 @@
+---
+layout: post
+title: Ruby on Rails is Like Red Wine
+---
+
+> Hopefully, cooler heads will prevail, and the medical findings that red wine is actually beneficial for oneâ€™s health will pave the way toward adopting the red wine consumption on a larger scale.
+
+::: {style="text-align:right;"}
+--- Alex Bunardzic in [Ruby On Rails Is Like Red Wine](http://lesscode.org/2006/01/08/ruby-on-rails-is-like-red-wine/) (lesscode.org)
+:::

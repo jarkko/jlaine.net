@@ -3,7 +3,7 @@ layout: post
 title: "Your freedom is my prison"
 date: 2015-02-02 10:56
 comments: true
-categories: philosophy, worldview
+categories: [philosophy, worldview]
 ---
 
 Your freedom to carry a gun messes with my freedom to walk around without fear.

@@ -1,0 +1,6 @@
+---
+layout: post
+title: First Post
+---
+
+Gosh, let's take this lorem ipsum bs away from here.

@@ -1,0 +1,8 @@
+---
+layout: post
+title: Eager to play
+---
+
+`<a href="http://www.flickr.com/photos/jarkko/74210887/" title="Photo Sharing">`{=html}`<img src="http://static.flickr.com/38/74210887_f7ea57217e_m.jpg" width="240" height="180" alt="Waiting for the brain" />`{=html}`</a>`{=html}
+
+Oh brother PB, where art thou?
