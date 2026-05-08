@@ -82,9 +82,9 @@
       width: 100%; height: 100%;
       display: block;
     }
-    .topbar__title { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
-    .topbar__title h1 { font-size: 17px; line-height: 1.2; white-space: nowrap; }
-    .topbar__title p { margin: 0; color: var(--ink-soft); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .topbar__title { min-width: 0; }
+    .topbar__title h1 { font-size: 17px; line-height: 1.2; }
+    .topbar__title p { margin: 2px 0 0; color: var(--ink-soft); font-size: 12px; }
     .count__dot { width: 10px; height: 10px; border-radius: 50%; }
     .count strong { color: var(--ink); font-weight: 600; font-size: 13px; }
 
@@ -400,9 +400,10 @@
     }
     .popup__cta:hover { background: var(--accent); }
 
-    /* ---------- Footer ---------- */
     /* ---------- Responsive ---------- */
     @media (max-width: 600px) {
+      .topbar { padding: 8px 12px; gap: 8px; }
+      .topbar__title h1 { font-size: 14px; }
       .topbar__title p { display: none; }
     }
   </style>
@@ -758,6 +759,7 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
     /* ---------------------- Render: Counts ---------------------- */
     function renderCounts() {
       const counts = $('#counts');
+      if (!counts) return;
       counts.innerHTML = '';
       const total = VENUES.length;
       counts.append(ce('span', { class: 'count', role: 'listitem', title: 'All venues' },
