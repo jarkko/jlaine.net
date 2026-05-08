@@ -737,9 +737,11 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
 
     function buildPopup(v) {
       const c = COUNTRIES[v.country] || { flag: '', name: v.country };
+      const courtsLabel = courtDisplay(v);
+      const courtsFull  = typeof v.courtsIndoor === 'string' ? v.courtsIndoor : null;
       const courts = v.courtsIndoor == null
         ? '<span class="tag">indoor courts n/a</span>'
-        : `<span class="tag tag--strong">${escapeHtml(String(v.courtsIndoor))} indoor</span>`;
+        : `<span class="tag tag--strong"${courtsFull ? ` title="${escapeHtml(courtsFull)}"` : ''}>${escapeHtml(courtsLabel)} indoor</span>`;
       const out = (v.courtsOutdoor == null || v.courtsOutdoor === '')
         ? ''
         : `<span class="tag tag--out">+ ${escapeHtml(String(v.courtsOutdoor))}</span>`;
