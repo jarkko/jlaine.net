@@ -30,6 +30,11 @@ test.describe('indoor beach map', () => {
     await expect(page.locator('#sidebar')).toHaveClass(/is-open/);
     await expect(page.locator('#venues .card').first()).toBeVisible();
 
+    await page.locator('#search').fill('Øksilhallen');
+    await expect(page.locator('#venues .card')).toHaveCount(1);
+    await expect(page.locator('#venues .card')).toContainText('Øksilhallen');
+    await expect(page.locator('#venues .card')).toContainText('Støveien 24');
+
     expect(failures).toEqual([]);
   });
 });
