@@ -31,8 +31,8 @@ PAGE_SIZE  = 100
 STATUSES   = "active"
 DATA_CUTOFF = str(date.today())
 
-OUT_CSV    = Path("source/indoor-beach/finland_outdoor_beach_volleyball_courts.csv")
-OVERRIDE_CSV = Path("source/indoor-beach/finland_outdoor_overrides.csv")
+OUT_CSV      = Path("source/beach-volleyball/finland_outdoor_beach_volleyball_courts.csv")
+OVERRIDE_CSV = Path("source/beach-volleyball/finland_outdoor_overrides.csv")
 
 HEADERS = [
     "country", "facility_name", "town", "address",
