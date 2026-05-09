@@ -96,7 +96,7 @@ def court_count_from_area(props: dict) -> str:
       • one full-size BV court ≈ 16 × 8 m (128 m²) + safety zone
       • one full-size BV field ≈ 24 × 16 m ≈ 384 m²
     If area is given, estimate n = max(1, floor(area / 384)).
-    Return as string "N" or empty string.
+    Falls back to "1" — every type-1330 entry is at least one court.
     """
     length = props.get("field-length-m", 0) or 0
     width  = props.get("field-width-m",  0) or 0
@@ -112,7 +112,7 @@ def court_count_from_area(props: dict) -> str:
     if area:
         n = max(1, round(area / 384))
         return str(n)
-    return ""
+    return "1"  # type 1330 = beach volleyball court → minimum 1 court per entry
 
 
 def surface_label(props: dict) -> str:
@@ -155,6 +155,105 @@ def to_row(item: dict) -> dict:
         "data_cutoff":      DATA_CUTOFF,
         "fact_check_notes": f"LIPAS id {item.get('lipas-id')}; type 1330; status {item.get('status')}",
     }
+
+
+def merge_nearby(rows: list[dict], threshold: float = 0.00035) -> list[dict]:
+    """
+    Merge court entries within `threshold` degrees of each other
+    (~22 m at Finnish latitudes) into a single row, summing court counts.
+
+    LIPAS often models each physical court in a multi-court complex as a
+    separate point entry (e.g. "Kupittaan kenttä 1", "Kupittaan kenttä 2")
+    with coordinates separated by only 10–30 m.  Merging them gives a single,
+    correctly-counted marker on the map.
+
+    Uses Union-Find (connected components) so that A–B and B–C chain together
+    even if A and C are farther apart than the threshold.
+    """
+    import re
+
+    n = len(rows)
+    parent = list(range(n))
+    rank   = [0] * n
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    def union(i: int, j: int) -> None:
+        ri, rj = find(i), find(j)
+        if ri == rj:
+            return
+        if rank[ri] < rank[rj]:
+            ri, rj = rj, ri
+        parent[rj] = ri
+        if rank[ri] == rank[rj]:
+            rank[ri] += 1
+
+    # Parse coordinates once
+    lats = [float(r["latitude"]  or 0) for r in rows]
+    lngs = [float(r["longitude"] or 0) for r in rows]
+
+    # Sort indices by latitude for a cheap sweep-line optimisation.
+    # Use Euclidean distance in degrees so diagonal courts also connect.
+    order = sorted(range(n), key=lambda i: lats[i])
+    for oi, i in enumerate(order):
+        for oj in range(oi + 1, n):
+            j = order[oj]
+            if lats[j] - lats[i] > threshold:
+                break
+            dlat = lats[j] - lats[i]
+            dlng = lngs[j] - lngs[i]
+            if (dlat * dlat + dlng * dlng) ** 0.5 <= threshold:
+                union(i, j)
+
+    # Collect connected components
+    groups: dict[int, list[int]] = {}
+    for i in range(n):
+        root = find(i)
+        groups.setdefault(root, []).append(i)
+
+    merged: list[dict] = []
+    n_merged = 0
+    for indices in groups.values():
+        if len(indices) == 1:
+            merged.append(rows[indices[0]])
+            continue
+
+        n_merged += 1
+        group = [rows[i] for i in sorted(indices, key=lambda i: rows[i].get("facility_name", ""))]
+
+        base = dict(group[0])
+        total = sum(int(r["outdoor_courts"]) for r in group if r["outdoor_courts"])
+        base["outdoor_courts"] = str(total) if total else "1"
+
+        # Use average coordinates as the representative point
+        base["latitude"]  = f"{sum(float(r['latitude'])  for r in group) / len(group):.6f}"
+        base["longitude"] = f"{sum(float(r['longitude']) for r in group) / len(group):.6f}"
+
+        # Strip trailing court index from the name to get the complex name
+        # e.g. "Kupittaan kenttä 1" → "Kupittaan kenttä"
+        raw_names = [r["facility_name"] for r in group]
+        clean = [re.sub(r"[\s\-]+\d+\s*$", "", nm).strip() for nm in raw_names]
+        # Find the longest common prefix of the cleaned names
+        common = clean[0]
+        for nm in clean[1:]:
+            while common and not nm.startswith(common):
+                common = common[:-1].rstrip(" \t-")
+        base["facility_name"] = common.strip() or group[0]["facility_name"]
+
+        lipas_ids = ", ".join(r["lipas_id"] for r in group)
+        base["lipas_id"] = lipas_ids
+        base["fact_check_notes"] = (
+            f"Merged {len(group)} LIPAS entries (ids: {lipas_ids}); "
+            + base.get("fact_check_notes", "")
+        )
+        merged.append(base)
+
+    print(f"  Merged {n_merged} co-located groups ({n} → {len(merged)} entries).", flush=True)
+    return merged
 
 
 def load_overrides() -> dict[str, dict]:
@@ -210,6 +309,9 @@ def main() -> None:
             print(f"  Warning: skipping lipas-id {lid}: {exc}", flush=True)
     if skipped_hard:
         print(f"  Excluded {skipped_hard} hard-surface or non-sand court(s).", flush=True)
+
+    # Merge co-located entries (LIPAS models each physical court separately)
+    rows = merge_nearby(rows)
 
     # Apply overrides
     overrides = load_overrides()
