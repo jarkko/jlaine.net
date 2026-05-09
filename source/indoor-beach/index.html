@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nordic &amp; Baltic Indoor Beach Volleyball — year-round sand halls map</title>
-  <meta name="description" content="An interactive map and directory of every dedicated indoor beach-volleyball facility we could verify across Finland, Sweden, Norway, Denmark, Iceland, Estonia, Latvia and Lithuania." />
+  <title>Nordic &amp; Baltic Beach Volleyball — indoor halls and outdoor sand courts map</title>
+  <meta name="description" content="An interactive map and directory of indoor beach-volleyball halls and outdoor sand courts across Finland, Sweden, Norway, Denmark, Iceland, Estonia, Latvia and Lithuania." />
   <meta name="color-scheme" content="light" />
 
   <link rel="icon" type="image/svg+xml" href="mikasa-ball.svg" />
@@ -32,6 +32,8 @@
       --ink-faint:   #94a3b8;
       --accent:      #0f766e;
       --accent-soft: rgba(15, 118, 110, .12);
+      --out-color:   #047857;
+      --out-soft:    rgba(4, 120, 87, .12);
 
       --c-fi: #1f4fb6;
       --c-se: #d8a200;
@@ -83,9 +85,39 @@
       width: 100%; height: 100%;
       display: block;
     }
-    .topbar__title { min-width: 0; }
+    .topbar__title { min-width: 0; flex: 1; }
     .topbar__title h1 { font-size: 17px; line-height: 1.2; }
     .topbar__title p { margin: 2px 0 0; color: var(--ink-soft); font-size: 12px; }
+
+    /* ---------- Mode switch ---------- */
+    .mode-switch {
+      flex: none;
+      display: flex;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .mode-btn {
+      border: 0;
+      background: transparent;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: background .15s, color .15s, box-shadow .15s;
+      white-space: nowrap;
+      line-height: 1.4;
+    }
+    .mode-btn[aria-pressed="true"] {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+    }
+    .mode-btn:not([aria-pressed="true"]):hover { color: var(--ink); }
 
     /* ---------- Layout ---------- */
     .layout {
@@ -218,6 +250,18 @@
     }
     .chip__dot { width: 8px; height: 8px; border-radius: 50%; }
 
+    /* Mode notice banner */
+    .mode-notice {
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      font-size: 11.5px;
+      line-height: 1.45;
+    }
+
     .venue-list {
       list-style: none;
       margin: 0; padding: 12px;
@@ -249,6 +293,10 @@
     .card[aria-current="true"] {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow-md);
+    }
+    .card--outdoor[aria-current="true"] {
+      border-color: var(--out-color);
+      box-shadow: 0 0 0 3px var(--out-soft), var(--shadow-md);
     }
     .card__flag {
       position: relative;
@@ -315,7 +363,7 @@
     }
     .data-link:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ---------- Markers ---------- */
+    /* ---------- Indoor markers ---------- */
     .bv-marker { background: transparent; border: 0; }
     .bv-marker__dot {
       display: flex;
@@ -358,6 +406,46 @@
     }
     .bv-cluster:hover .bv-cluster__inner { transform: scale(1.08); }
     .bv-cluster--lg .bv-cluster__inner { width: 48px; height: 48px; font-size: 15px; }
+
+    /* ---------- Outdoor markers ---------- */
+    .bv-out-marker { background: transparent; border: 0; }
+    .bv-out-marker__dot {
+      display: flex;
+      align-items: center; justify-content: center;
+      width: 22px; height: 22px;
+      border-radius: 5px;
+      background: var(--out-color);
+      border: 2px solid #fff;
+      box-shadow: 0 2px 5px rgba(15, 23, 42, .2);
+      color: #fff;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .bv-out-marker.is-active .bv-out-marker__dot {
+      transform: scale(1.3);
+      box-shadow: 0 0 0 3px var(--out-soft), 0 3px 8px rgba(15, 23, 42, .3);
+    }
+
+    .bv-out-cluster { background: transparent !important; border: 0 !important; }
+    .bv-out-cluster__inner {
+      display: flex;
+      align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--out-color);
+      border: 2.5px solid #fff;
+      box-shadow: 0 3px 10px rgba(15, 23, 42, .25);
+      color: #fff;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      transition: transform .15s ease;
+    }
+    .bv-out-cluster:hover .bv-out-cluster__inner { transform: scale(1.06); }
 
     /* ---------- Floating UI on map ---------- */
     .source-badge {
@@ -402,12 +490,15 @@
       text-decoration: none; font-size: 12.5px; font-weight: 500;
     }
     .popup__cta:hover { background: var(--accent); }
+    .popup__cta--out { background: var(--out-color); }
+    .popup__cta--out:hover { background: #065f46; }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 700px) {
       .topbar { padding: 8px 12px; gap: 8px; }
       .topbar__title h1 { font-size: 14px; }
       .topbar__title p { display: none; }
+      .mode-btn { padding: 4px 9px; font-size: 11px; }
       .sidebar {
         top: auto; right: 0; bottom: 0; left: 0;
         width: 100%;
@@ -449,14 +540,19 @@
   <header class="topbar">
     <span class="topbar__mark"><img src="mikasa-ball.svg" alt="Beach volleyball" width="32" height="32" /></span>
     <div class="topbar__title">
-      <h1>Nordic &amp; Baltic Indoor Beach Volleyball</h1>
-      <p>Year-round sand halls — Finland, Sweden, Norway, Denmark, Iceland, Estonia, Latvia &amp; Lithuania</p>
+      <h1>Nordic &amp; Baltic Beach Volleyball</h1>
+      <p>Indoor sand halls &amp; outdoor courts — Finland, Sweden, Norway, Denmark, Iceland, Estonia, Latvia &amp; Lithuania</p>
+    </div>
+    <div class="mode-switch" id="mode-switch" role="group" aria-label="Display mode">
+      <button class="mode-btn" data-mode="indoor"  aria-pressed="true">Indoor</button>
+      <button class="mode-btn" data-mode="outdoor" aria-pressed="false">Outdoor</button>
+      <button class="mode-btn" data-mode="both"    aria-pressed="false">Both</button>
     </div>
   </header>
 
   <main class="layout" id="layout">
     <section class="map-wrap" aria-label="Map">
-      <div id="map" aria-label="Interactive map of indoor beach-volleyball venues"></div>
+      <div id="map" aria-label="Interactive map of beach-volleyball venues"></div>
 
       <button class="sidebar-toggle" id="sidebar-toggle"
               aria-controls="sidebar" aria-expanded="false"
@@ -502,6 +598,7 @@
                  placeholder="Search venues, towns, addresses…" autocomplete="off" />
         </label>
         <div class="chips" id="chips" aria-label="Filter venues by country"></div>
+        <p class="mode-notice" id="mode-notice" hidden></p>
       </div>
       <ol class="venue-list" id="venues" role="list"></ol>
       <p class="sidebar__hint" id="hint"></p>
@@ -567,6 +664,7 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
   <script>
     'use strict';
 
+    /* ---------------------- Constants ---------------------- */
     const COUNTRIES = {
       FI: { name: 'Finland',   flag: '🇫🇮', color: '#1f4fb6' },
       SE: { name: 'Sweden',    flag: '🇸🇪', color: '#d8a200' },
@@ -577,18 +675,18 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       LV: { name: 'Latvia',    flag: '🇱🇻', color: '#7e2530' },
       LT: { name: 'Lithuania', flag: '🇱🇹', color: '#6b46c1' },
     };
-
     const COUNTRY_FROM_NAME = {
       FINLAND: 'FI', SWEDEN: 'SE', NORWAY: 'NO', DENMARK: 'DK', ICELAND: 'IS',
       ESTONIA: 'EE', LATVIA: 'LV', LITHUANIA: 'LT',
     };
-
     const TYPE_LABELS = {
       dedicated_indoor_sand_hall:        'Dedicated indoor sand hall',
       multi_activity_indoor_beach_venue: 'Multi-activity indoor beach venue',
       air_dome_seasonal_winter:          'Air dome (winter)',
       gym_with_indoor_sand_court:        'Gym with indoor sand court',
     };
+    const OUTDOOR_COLOR = '#047857';
+    const CARD_LIMIT = 100;  // max list cards rendered at once
 
     /* ---------------------- DOM helpers ---------------------- */
     const $  = sel => document.querySelector(sel);
@@ -611,7 +709,10 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
     ));
     const matchesQuery = (v, q) => {
       if (!q) return true;
-      const hay = `${v.name} ${v.town} ${v.address} ${v.priceNote || ''} ${COUNTRIES[v.country]?.name || ''}`.toLowerCase();
+      const extra = v.category === 'indoor'
+        ? (v.priceNote || '')
+        : `${v.surface || ''} ${v.access || ''}`;
+      const hay = `${v.name} ${v.town || ''} ${v.address} ${extra} ${COUNTRIES[v.country]?.name || ''}`.toLowerCase();
       return hay.includes(q);
     };
     const slug = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -621,8 +722,6 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
     function parseCsv(text) {
       const rows = [];
       let row = [], field = '', inQuotes = false;
-      // Normalise newlines and drop leading blank lines (the inline
-      // <script type="text/csv"> block always starts with a newline).
       const t = text.replace(/\r\n?/g, '\n').replace(/^\s*\n/, '');
       for (let i = 0; i < t.length; i++) {
         const c = t[i];
@@ -639,7 +738,6 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
         }
       }
       if (field !== '' || row.length) { row.push(field); rows.push(row); }
-      // Strip blank leading and trailing rows.
       while (rows.length && rows[0].every(v => v.trim() === '')) rows.shift();
       while (rows.length && rows[rows.length - 1].every(v => v.trim() === '')) rows.pop();
       if (!rows.length) return [];
@@ -649,20 +747,14 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       ));
     }
 
-    /* ---------------------- Domain mapping ---------------------- */
+    /* ---------------------- Domain mapping: indoor ---------------------- */
     function parseCourtValue(value) {
       if (value == null || value === '') {
         return { count: 0, pinLabel: '?', tagLabel: 'courts n/a', detail: null };
       }
       if (typeof value === 'number') {
-        return {
-          count: value,
-          pinLabel: String(value),
-          tagLabel: `${value} indoor`,
-          detail: null,
-        };
+        return { count: value, pinLabel: String(value), tagLabel: `${value} indoor`, detail: null };
       }
-
       const raw = String(value);
       const label = raw.match(/^\s*(\d+(?:[\u2013\u2014-]\d+)?)/)?.[1] || '?';
       return {
@@ -672,7 +764,6 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
         detail: raw,
       };
     }
-
     function parseOutdoorValue(value) {
       if (value == null || value === '') return { tagLabel: '', detail: null };
       const raw = String(value);
@@ -682,7 +773,6 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
         detail: label ? raw : null,
       };
     }
-
     function rowToVenue(r, idx) {
       const country = COUNTRY_FROM_NAME[(r.country || '').toUpperCase()]
                     || (r.country || '').slice(0, 2).toUpperCase()
@@ -692,9 +782,10 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       if (!indoor || indoor === 'not_stated_publicly') courtsIndoor = null;
       else if (/^\d+$/.test(indoor)) courtsIndoor = parseInt(indoor, 10);
       else courtsIndoor = indoor;
-      const indoorDisplay = parseCourtValue(courtsIndoor);
+      const indoorDisplay  = parseCourtValue(courtsIndoor);
       const outdoorDisplay = parseOutdoorValue(r.outdoor_courts_same_venue);
       return {
+        category: 'indoor',
         id:        slug(`${country}-${r.facility_name}`) || `venue-${idx}`,
         country,
         name:      r.facility_name,
@@ -705,22 +796,58 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
         precision: r.coord_precision || 'address',
         type:      TYPE_LABELS[r.facility_type] || r.facility_type,
         courtsIndoor,
-        courtCount: indoorDisplay.count,
+        courtCount:    indoorDisplay.count,
         courtPinLabel: indoorDisplay.pinLabel,
         courtTagLabel: indoorDisplay.tagLabel,
-        courtDetail: indoorDisplay.detail,
-        courtsOutdoor: r.outdoor_courts_same_venue || null,
+        courtDetail:   indoorDisplay.detail,
+        courtsOutdoor:   r.outdoor_courts_same_venue || null,
         outdoorTagLabel: outdoorDisplay.tagLabel,
-        outdoorDetail: outdoorDisplay.detail,
+        outdoorDetail:   outdoorDisplay.detail,
         currency:  r.currency,
         priceNote: r.price_notes,
         url:       r.booking_or_info_url,
       };
     }
 
+    /* ---------------------- Domain mapping: outdoor ---------------------- */
+    function rowToOutdoor(r, idx) {
+      const lipasId = r.lipas_id || `idx-${idx}`;
+      const courts = parseInt(r.outdoor_courts, 10) || 0;
+      return {
+        category: 'outdoor',
+        id:       `fi-out-${lipasId}`,
+        country:  'FI',
+        name:     r.facility_name,
+        town:     r.town,
+        address:  r.address,
+        lat:      parseFloat(r.latitude),
+        lng:      parseFloat(r.longitude),
+        precision: r.coord_precision || 'address',
+        courts,
+        courtsLabel: r.outdoor_courts || '',
+        surface:  r.surface || '',
+        lighting: r.lighting === 'yes',
+        freeUse:  r.free_use === 'yes',
+        access:   r.access || 'public',
+        owner:    r.owner || '',
+        lipasId,
+        url:      r.source_url || '',
+      };
+    }
+
     /* ---------------------- State ---------------------- */
-    const state = { country: 'all', query: '', selectedId: null, sidebarOpen: false, returnFocusTo: null };
-    let VENUES = [];
+    const state = {
+      category: 'indoor',   // 'indoor' | 'outdoor' | 'both'
+      country: 'all',
+      query: '',
+      selectedId: null,
+      sidebarOpen: false,
+      returnFocusTo: null,
+    };
+    let INDOOR_VENUES  = [];
+    let OUTDOOR_VENUES = [];
+    let outdoorLoaded  = false;
+    let outdoorLoading = null;  // Promise while loading
 
     /* ---------------------- Map ---------------------- */
     const map = L.map('map', { zoomControl: false, scrollWheelZoom: true, worldCopyJump: false })
@@ -732,8 +859,8 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    /* ---------------------- Marker building ---------------------- */
-    const markerLayer = L.markerClusterGroup({
+    /* ---------------------- Cluster groups ---------------------- */
+    const indoorLayer = L.markerClusterGroup({
       showCoverageOnHover: false,
       spiderfyOnMaxZoom: true,
       maxClusterRadius: zoom => zoom < 5 ? 26 : zoom < 7 ? 18 : 12,
@@ -759,10 +886,28 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       },
     }).addTo(map);
 
+    const outdoorLayer = L.markerClusterGroup({
+      showCoverageOnHover: false,
+      spiderfyOnMaxZoom: true,
+      maxClusterRadius: zoom => zoom < 6 ? 60 : zoom < 9 ? 40 : 20,
+      zoomToBoundsOnClick: true,
+      animateAddingMarkers: false,
+      disableClusteringAtZoom: 12,
+      iconCreateFunction: cluster => {
+        const count = cluster.getChildCount();
+        return L.divIcon({
+          className: 'bv-out-cluster',
+          html: `<span class="bv-out-cluster__inner">${count}</span>`,
+          iconSize: [36, 36],
+        });
+      },
+    }); // not added to map until outdoor mode is activated
+
     const markerById = new Map();
 
-    function buildMarkers() {
-      VENUES.forEach(v => {
+    /* ---------------------- Indoor marker building ---------------------- */
+    function buildIndoorMarkers() {
+      INDOOR_VENUES.forEach(v => {
         const colour = COUNTRIES[v.country]?.color || '#0f172a';
         const icon = L.divIcon({
           className: 'bv-marker',
@@ -772,39 +917,79 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
           popupAnchor: [0, -16],
         });
         const m = L.marker([v.lat, v.lng], {
-          icon,
-          title: v.name,
-          riseOnHover: true,
-          _courts: v.courtCount,
-          _country: v.country,
+          icon, title: v.name, riseOnHover: true,
+          _courts: v.courtCount, _country: v.country,
         });
-        m.bindPopup(buildPopup(v), { closeButton: true, maxWidth: 320, minWidth: 240 });
+        m.bindPopup(buildIndoorPopup(v), { closeButton: true, maxWidth: 320, minWidth: 240 });
         m.on('click', () => selectVenue(v.id, { fly: false, openPopup: false }));
         markerById.set(v.id, m);
       });
       syncMarkers();
     }
 
-    function syncMarkers() {
-      markerLayer.clearLayers();
-      const active = VENUES
-        .filter(v => state.country === 'all' || v.country === state.country)
-        .map(v => markerById.get(v.id))
-        .filter(Boolean);
-      markerLayer.addLayers(active);
+    /* ---------------------- Outdoor marker building ---------------------- */
+    function buildOutdoorMarkers() {
+      OUTDOOR_VENUES.forEach(v => {
+        const icon = L.divIcon({
+          className: 'bv-out-marker',
+          html: `<span class="bv-out-marker__dot">${escapeHtml(v.courtsLabel || '')}</span>`,
+          iconSize:    [22, 22],
+          iconAnchor:  [11, 11],
+          popupAnchor: [0, -11],
+        });
+        const m = L.marker([v.lat, v.lng], {
+          icon, title: v.name, riseOnHover: true,
+          _courts: v.courts || 1, _country: 'FI',
+        });
+        m.bindPopup(buildOutdoorPopup(v), { closeButton: true, maxWidth: 280, minWidth: 200 });
+        m.on('click', () => selectVenue(v.id, { fly: false, openPopup: false }));
+        markerById.set(v.id, m);
+      });
     }
 
-    function buildPopup(v) {
+    /* ---------------------- Sync both layers to state ---------------------- */
+    function syncMarkers() {
+      const showIndoor  = state.category !== 'outdoor';
+      const showOutdoor = state.category !== 'indoor';
+
+      // Indoor layer
+      indoorLayer.clearLayers();
+      if (showIndoor) {
+        const active = INDOOR_VENUES
+          .filter(v => state.country === 'all' || v.country === state.country)
+          .map(v => markerById.get(v.id))
+          .filter(Boolean);
+        indoorLayer.addLayers(active);
+        if (!map.hasLayer(indoorLayer)) map.addLayer(indoorLayer);
+      } else {
+        if (map.hasLayer(indoorLayer)) map.removeLayer(indoorLayer);
+      }
+
+      // Outdoor layer
+      if (showOutdoor && outdoorLoaded) {
+        outdoorLayer.clearLayers();
+        const include = state.country === 'all' || state.country === 'FI';
+        if (include) {
+          outdoorLayer.addLayers(
+            OUTDOOR_VENUES.map(v => markerById.get(v.id)).filter(Boolean)
+          );
+        }
+        if (!map.hasLayer(outdoorLayer)) map.addLayer(outdoorLayer);
+      } else {
+        if (map.hasLayer(outdoorLayer)) map.removeLayer(outdoorLayer);
+      }
+    }
+
+    /* ---------------------- Popups ---------------------- */
+    function buildIndoorPopup(v) {
       const c = COUNTRIES[v.country] || { flag: '', name: v.country };
       const courts = v.courtsIndoor == null
         ? '<span class="tag">indoor courts n/a</span>'
         : `<span class="tag tag--strong"${v.courtDetail ? ` title="${escapeHtml(v.courtDetail)}"` : ''}>${escapeHtml(v.courtTagLabel)}</span>`;
-      const out = !v.outdoorTagLabel
-        ? ''
+      const out = !v.outdoorTagLabel ? ''
         : `<span class="tag tag--out"${v.outdoorDetail ? ` title="${escapeHtml(v.outdoorDetail)}"` : ''}>${escapeHtml(v.outdoorTagLabel)}</span>`;
       const precisionTag = v.precision === 'town'
-        ? '<span class="tag tag--note" title="Marker placed at town level — address-precise location not yet verified">~ town</span>'
-        : '';
+        ? '<span class="tag tag--note" title="Marker placed at town level — address-precise location not yet verified">~ town</span>' : '';
       return `
         <div>
           <h3 class="popup__name">${escapeHtml(v.name)}</h3>
@@ -815,11 +1000,39 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
         </div>`;
     }
 
+    function buildOutdoorPopup(v) {
+      const courtStr = v.courtsLabel
+        ? `${v.courtsLabel} court${v.courts !== 1 ? 's' : ''}`
+        : 'outdoor sand';
+      const tags = [
+        `<span class="tag tag--out">${escapeHtml(courtStr)}</span>`,
+        v.surface   ? `<span class="tag">${escapeHtml(v.surface)}</span>` : '',
+        v.freeUse   ? '<span class="tag">free</span>' : '',
+        v.lighting  ? '<span class="tag">lit</span>'  : '',
+        v.precision === 'town'
+          ? '<span class="tag tag--note" title="Marker placed at town level">~ town</span>' : '',
+      ].filter(Boolean).join('');
+      const cta = v.url
+        ? `<a class="popup__cta popup__cta--out" href="${escapeHtml(v.url)}" target="_blank" rel="noopener noreferrer">LIPAS info ↗</a>`
+        : '';
+      const loc = v.town ? `${escapeHtml(v.town)}<br/>${escapeHtml(v.address)}` : escapeHtml(v.address);
+      return `
+        <div>
+          <h3 class="popup__name">${escapeHtml(v.name)}</h3>
+          <div class="popup__meta">🇫🇮 Finland · ${loc}</div>
+          <div class="popup__row">${tags}</div>
+          ${cta}
+        </div>`;
+    }
+
     /* ---------------------- Render: Chips ---------------------- */
     function selectCountry(id) {
       state.country = id;
       render();
-      const filtered = id === 'all' ? VENUES : VENUES.filter(v => v.country === id);
+      const venues = state.category === 'indoor'   ? INDOOR_VENUES :
+                     state.category === 'outdoor'  ? OUTDOOR_VENUES :
+                     [...INDOOR_VENUES, ...OUTDOOR_VENUES];
+      const filtered = id === 'all' ? venues : venues.filter(v => v.country === id);
       if (!filtered.length) return;
       const bounds = L.latLngBounds(filtered.map(v => [v.lat, v.lng]));
       map.flyToBounds(bounds, { padding: [60, 60], maxZoom: 7, duration: 0.55 });
@@ -828,6 +1041,9 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
     function renderChips() {
       const chips = $('#chips');
       chips.innerHTML = '';
+      // Outdoor is Finland-only; no country filter chip needed
+      if (state.category === 'outdoor') return;
+
       const make = (id, label, color) => ce('button', {
         class: 'chip', type: 'button',
         'aria-pressed': state.country === id ? 'true' : 'false',
@@ -841,61 +1057,138 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       Object.entries(COUNTRIES).forEach(([code, m]) => chips.append(make(code, `${m.flag} ${m.name}`, m.color)));
     }
 
+    /* ---------------------- Render: Mode notice ---------------------- */
+    function renderModeNotice() {
+      const notice = $('#mode-notice');
+      if (!notice) return;
+      if (state.category === 'outdoor') {
+        notice.hidden = false;
+        notice.textContent = '🇫🇮 Finland outdoor sand courts · LIPAS open data (CC BY 4.0) · loose sand only';
+      } else if (state.category === 'both') {
+        notice.hidden = false;
+        notice.textContent = '🌿 Outdoor courts: Finland only for now · more countries coming';
+      } else {
+        notice.hidden = true;
+      }
+    }
+
+    /* ---------------------- Render: Cards ---------------------- */
+    function buildIndoorCard(v) {
+      const c = COUNTRIES[v.country] || { flag: '', name: v.country, color: '#0f172a' };
+      const item = ce('li', { class: 'venue-list__item' });
+      const card = ce('button', {
+        class: 'card',
+        type: 'button',
+        'data-id': v.id,
+        'aria-current': state.selectedId === v.id ? 'true' : 'false',
+        style: `--country:${c.color}`,
+        onclick: () => {
+          selectVenue(v.id, { fly: true, openPopup: true });
+          if (window.matchMedia('(max-width: 700px)').matches) setSidebar(false);
+        },
+      });
+      const flag = ce('span', { class: 'card__flag', 'aria-hidden': 'true' }, c.flag);
+      const body = ce('div',  { class: 'card__body' });
+      const name = ce('div',  { class: 'card__name' }, v.name);
+      const town = ce('div',  { class: 'card__town' }, `${v.town} · ${v.address}`);
+      const meta = ce('div',  { class: 'card__meta' });
+      meta.append(ce('span', { class: 'tag tag--strong', title: v.courtDetail },
+        v.courtsIndoor == null ? 'courts n/a' : v.courtTagLabel));
+      if (v.outdoorTagLabel)
+        meta.append(ce('span', { class: 'tag tag--out', title: v.outdoorDetail }, v.outdoorTagLabel));
+      if (v.currency)
+        meta.append(ce('span', { class: 'tag' }, v.currency));
+      if (v.precision === 'town')
+        meta.append(ce('span', { class: 'tag tag--note', title: 'Marker placed at town level' }, '~ town'));
+      body.append(name, town, meta);
+      card.append(flag, body);
+      item.append(card);
+      return item;
+    }
+
+    function buildOutdoorCard(v) {
+      const item = ce('li', { class: 'venue-list__item' });
+      const card = ce('button', {
+        class: 'card card--outdoor',
+        type: 'button',
+        'data-id': v.id,
+        'aria-current': state.selectedId === v.id ? 'true' : 'false',
+        style: `--country:${OUTDOOR_COLOR}`,
+        onclick: () => {
+          selectVenue(v.id, { fly: true, openPopup: true });
+          if (window.matchMedia('(max-width: 700px)').matches) setSidebar(false);
+        },
+      });
+      const flag = ce('span', { class: 'card__flag', 'aria-hidden': 'true' }, '🏐');
+      const body = ce('div', { class: 'card__body' });
+      const name = ce('div', { class: 'card__name' }, v.name);
+      const town = ce('div', { class: 'card__town' },
+        v.town ? `${v.town} · ${v.address}` : v.address);
+      const meta = ce('div', { class: 'card__meta' });
+      const courtsStr = v.courtsLabel ? `${v.courtsLabel} outdoor` : 'outdoor';
+      meta.append(ce('span', { class: 'tag tag--out' }, courtsStr));
+      if (v.surface)  meta.append(ce('span', { class: 'tag' }, v.surface));
+      if (v.freeUse)  meta.append(ce('span', { class: 'tag' }, 'free'));
+      if (v.lighting) meta.append(ce('span', { class: 'tag' }, 'lit'));
+      body.append(name, town, meta);
+      card.append(flag, body);
+      item.append(card);
+      return item;
+    }
+
     /* ---------------------- Render: List ---------------------- */
     function renderList() {
       const list = $('#venues');
       const hint = $('#hint');
       list.innerHTML = '';
 
-      const filtered = VENUES
+      const venues =
+        state.category === 'indoor'  ? INDOOR_VENUES :
+        state.category === 'outdoor' ? (outdoorLoaded ? OUTDOOR_VENUES : []) :
+        [...INDOOR_VENUES, ...(outdoorLoaded ? OUTDOOR_VENUES : [])];
+
+      const filtered = venues
         .filter(v => state.country === 'all' || v.country === state.country)
         .filter(v => matchesQuery(v, state.query.toLowerCase()))
-        .sort((a, b) => a.country.localeCompare(b.country) || a.name.localeCompare(b.name));
-
-      filtered.forEach(v => {
-        const c = COUNTRIES[v.country] || { flag: '', name: v.country, color: '#0f172a' };
-        const item = ce('li', { class: 'venue-list__item' });
-        const card = ce('button', {
-          class: 'card',
-          type: 'button',
-          'data-id': v.id,
-          'aria-current': state.selectedId === v.id ? 'true' : 'false',
-          style: `--country:${c.color}`,
-          onclick: () => {
-            selectVenue(v.id, { fly: true, openPopup: true });
-            if (window.matchMedia('(max-width: 700px)').matches) setSidebar(false);
-          },
+        .sort((a, b) => {
+          // In mixed mode: indoor halls first, then outdoor courts
+          if (a.category !== b.category) return a.category === 'indoor' ? -1 : 1;
+          if (a.category === 'indoor')
+            return a.country.localeCompare(b.country) || a.name.localeCompare(b.name);
+          return (a.town || '').localeCompare(b.town || '') || a.name.localeCompare(b.name);
         });
 
-        const flag  = ce('span', { class: 'card__flag', 'aria-hidden': 'true' }, c.flag);
-        const body  = ce('div',  { class: 'card__body' });
-        const name  = ce('div',  { class: 'card__name' }, v.name);
-        const town  = ce('div',  { class: 'card__town' }, `${v.town} · ${v.address}`);
-        const meta  = ce('div',  { class: 'card__meta' });
-
-        meta.append(ce('span', {
-          class: 'tag tag--strong',
-          title: v.courtDetail,
-        }, v.courtsIndoor == null ? 'courts n/a' : v.courtTagLabel));
-        if (v.outdoorTagLabel)
-          meta.append(ce('span', {
-            class: 'tag tag--out',
-            title: v.outdoorDetail,
-          }, v.outdoorTagLabel));
-        if (v.currency)
-          meta.append(ce('span', { class: 'tag' }, v.currency));
-        if (v.precision === 'town')
-          meta.append(ce('span', { class: 'tag tag--note', title: 'Marker placed at town level' }, '~ town'));
-
-        body.append(name, town, meta);
-        card.append(flag, body);
-        item.append(card);
-        list.append(item);
+      filtered.slice(0, CARD_LIMIT).forEach(v => {
+        list.append(v.category === 'outdoor' ? buildOutdoorCard(v) : buildIndoorCard(v));
       });
 
-      hint.textContent = filtered.length
-        ? `Showing ${filtered.length} of ${VENUES.length} venues. Click any card to fly to it on the map.`
-        : 'No venues match your filter.';
+      // Toggle button count badge
+      const modeTotal =
+        state.category === 'indoor'  ? INDOOR_VENUES.length :
+        state.category === 'outdoor' ? (outdoorLoaded ? OUTDOOR_VENUES.length : '…') :
+        INDOOR_VENUES.length + (outdoorLoaded ? OUTDOOR_VENUES.length : 0);
+      $('#sidebar-toggle-count').textContent = String(modeTotal);
+
+      let hintText;
+      if (state.category !== 'indoor' && !outdoorLoaded) {
+        hintText = 'Loading outdoor courts…';
+      } else if (filtered.length === 0) {
+        hintText = 'No venues match your filter.';
+      } else {
+        const single =
+          state.category === 'indoor'  ? 'indoor hall' :
+          state.category === 'outdoor' ? 'outdoor sand court' : 'venue';
+        const plural =
+          state.category === 'indoor'  ? 'indoor halls' :
+          state.category === 'outdoor' ? 'outdoor sand courts' : 'venues';
+        const label = filtered.length === 1 ? single : plural;
+        if (filtered.length > CARD_LIMIT) {
+          hintText = `Showing ${CARD_LIMIT} of ${filtered.length} ${plural}. Search to narrow.`;
+        } else {
+          hintText = `Showing ${filtered.length} ${label}.`;
+        }
+      }
+      hint.textContent = hintText;
     }
 
     /* ---------------------- Selection sync ---------------------- */
@@ -908,12 +1201,10 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
 
     function selectVenue(id, { fly = true, openPopup = true } = {}) {
       state.selectedId = id;
-
       document.querySelectorAll('.card').forEach(card => {
         card.setAttribute('aria-current', card.dataset.id === id ? 'true' : 'false');
       });
-
-      const v = VENUES.find(x => x.id === id);
+      const v = INDOOR_VENUES.find(x => x.id === id) || OUTDOOR_VENUES.find(x => x.id === id);
       const m = markerById.get(id);
       if (!v || !m) return;
 
@@ -923,12 +1214,11 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       };
 
       if (fly) {
-        // Un-cluster first if the marker is hidden inside a cluster, then center.
-        if (typeof markerLayer.zoomToShowLayer === 'function') {
-          markerLayer.zoomToShowLayer(m, finish);
+        const layer = v.category === 'outdoor' ? outdoorLayer : indoorLayer;
+        if (typeof layer.zoomToShowLayer === 'function') {
+          layer.zoomToShowLayer(m, finish);
         } else {
-          const targetZoom = Math.max(map.getZoom(), 11);
-          map.flyTo([v.lat, v.lng], targetZoom, { duration: 0.6 });
+          map.flyTo([v.lat, v.lng], Math.max(map.getZoom(), 11), { duration: 0.6 });
           map.once('moveend', finish);
         }
       } else {
@@ -939,7 +1229,63 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       if (card) card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     }
 
-    /* ---------------------- Boot ---------------------- */
+    /* ---------------------- Mode switching ---------------------- */
+    async function setMode(mode) {
+      state.category = mode;
+      state.country  = 'all';
+
+      // Update button aria-pressed
+      document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.setAttribute('aria-pressed', btn.dataset.mode === mode ? 'true' : 'false');
+      });
+
+      // Show loading state immediately before async work
+      if (mode !== 'indoor' && !outdoorLoaded) {
+        render();
+        try {
+          await loadOutdoorCsv();
+        } catch (err) {
+          console.error('[nordic-bv-map] outdoor data failed:', err);
+          const hint = $('#hint');
+          if (hint) hint.textContent = 'Failed to load outdoor court data: ' + err.message;
+          return;
+        }
+      }
+
+      render();
+
+      // Fly to appropriate bounds
+      const venues =
+        mode === 'indoor'  ? INDOOR_VENUES :
+        mode === 'outdoor' ? OUTDOOR_VENUES :
+        [...INDOOR_VENUES, ...OUTDOOR_VENUES];
+      if (venues.length) {
+        map.fitBounds(
+          L.latLngBounds(venues.map(v => [v.lat, v.lng])),
+          { padding: [40, 40], maxZoom: mode === 'outdoor' ? 5 : 6 }
+        );
+      }
+    }
+
+    /* ---------------------- Lazy outdoor data load ---------------------- */
+    async function loadOutdoorCsv() {
+      if (outdoorLoaded) return;
+      if (outdoorLoading) return outdoorLoading;
+      outdoorLoading = (async () => {
+        const res = await fetch('finland_outdoor_beach_volleyball_courts.csv', { cache: 'no-cache' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const text = await res.text();
+        OUTDOOR_VENUES = parseCsv(text)
+          .map(rowToOutdoor)
+          .filter(v => Number.isFinite(v.lat) && Number.isFinite(v.lng));
+        buildOutdoorMarkers();
+        outdoorLoaded  = true;
+        outdoorLoading = null;
+      })();
+      return outdoorLoading;
+    }
+
+    /* ---------------------- Boot: indoor CSV ---------------------- */
     async function loadCsv() {
       try {
         const res = await fetch('nordic_indoor_beach_volleyball_facilities.csv', { cache: 'no-cache' });
@@ -960,23 +1306,22 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
         badge.title = 'Loaded from nordic_indoor_beach_volleyball_facilities.csv via fetch().';
       } else {
         text.textContent = 'Inline data';
-        badge.title = 'Loaded from the inline CSV mirror (file:// or fetch unavailable). Serve via HTTP for live CSV editing.';
+        badge.title = 'Loaded from the inline CSV mirror (file:// or fetch unavailable).';
       }
     }
 
-    function render() { renderChips(); renderList(); syncMarkers(); }
+    function render() { renderModeNotice(); renderChips(); renderList(); syncMarkers(); }
 
     /* ---------------------- Sidebar drawer ---------------------- */
     function setSidebar(open) {
       const sidebar = $('#sidebar');
-      const toggle = $('#sidebar-toggle');
+      const toggle  = $('#sidebar-toggle');
       state.sidebarOpen = open;
       if (open) state.returnFocusTo = document.activeElement;
       $('#layout').classList.toggle('is-open', open);
       sidebar.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       if (open) {
-        // give a frame for the transform to start, then focus search
         requestAnimationFrame(() => $('#search')?.focus({ preventScroll: true }));
       } else if (state.returnFocusTo && document.contains(state.returnFocusTo)) {
         state.returnFocusTo.focus({ preventScroll: true });
@@ -991,16 +1336,15 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       )].filter(el => el.offsetParent !== null);
       if (!focusable.length) return;
       const first = focusable[0];
-      const last = focusable[focusable.length - 1];
+      const last  = focusable[focusable.length - 1];
       if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
+        event.preventDefault(); last.focus();
       } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
+        event.preventDefault(); first.focus();
       }
     }
 
+    /* ---------------------- Event wiring ---------------------- */
     function attachEvents() {
       $('#search').addEventListener('input', e => {
         state.query = e.target.value.trim();
@@ -1010,31 +1354,33 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
         const id = [...markerById.entries()].find(([, m]) => m === e.popup._source)?.[0];
         if (id && id !== state.selectedId) selectVenue(id, { fly: false, openPopup: false });
       });
-
       $('#sidebar-toggle').addEventListener('click', () => setSidebar(!state.sidebarOpen));
-      $('#sidebar-close').addEventListener('click', () => setSidebar(false));
+      $('#sidebar-close').addEventListener('click',  () => setSidebar(false));
       $('#sidebar-backdrop').addEventListener('click', () => setSidebar(false));
       document.addEventListener('keydown', e => {
         if (e.key === 'Escape' && state.sidebarOpen) setSidebar(false);
         trapSidebarFocus(e);
       });
+      document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.addEventListener('click', () => setMode(btn.dataset.mode));
+      });
     }
 
+    /* ---------------------- Boot ---------------------- */
     (async () => {
       try {
         const { source, text } = await loadCsv();
-        VENUES = parseCsv(text)
+        INDOOR_VENUES = parseCsv(text)
           .map(rowToVenue)
           .filter(v => Number.isFinite(v.lat) && Number.isFinite(v.lng));
-        if (!VENUES.length) throw new Error('CSV produced 0 valid rows');
+        if (!INDOOR_VENUES.length) throw new Error('CSV produced 0 valid rows');
 
-        buildMarkers();
-        map.fitBounds(L.latLngBounds(VENUES.map(v => [v.lat, v.lng])), { padding: [40, 40] });
+        buildIndoorMarkers();
+        map.fitBounds(L.latLngBounds(INDOOR_VENUES.map(v => [v.lat, v.lng])), { padding: [40, 40] });
 
         render();
         attachEvents();
         showSourceBadge(source);
-        $('#sidebar-toggle-count').textContent = String(VENUES.length);
       } catch (err) {
         console.error('[nordic-bv-map] boot failed:', err);
         const hint = $('#hint');
