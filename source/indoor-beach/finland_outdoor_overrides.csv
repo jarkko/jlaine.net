@@ -1,0 +1,2 @@
+country,facility_name,town,address,latitude,longitude,coord_precision,outdoor_courts,surface,lighting,free_use,access,owner,lipas_id,source_url,data_cutoff,fact_check_notes
+FINLAND,Pyynikin uimarannan kenttä,TAMPERE,"Jalkasaarentie 7, 33230 TAMPERE",61.491722,23.729924,address,7,sand,,,public,city,"102151, 617011",http://www.tampere.fi/liikuntajavapaaaika.html,2026-05-09,"7 permanent courts confirmed by user (2026-05-09); LIPAS only registers 2 entries for this location (ids: 102151, 617011)"
