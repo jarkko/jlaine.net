@@ -362,9 +362,15 @@ test.describe('beach volleyball map', () => {
     // Matinkylän uimarannan (60.151023, 24.757439) and
     // Matinkylän uimarannan 3 (60.150580, 24.754754).
     // Zoom 16 → viewport ≈ 384 × 216 m; both courts fit; clustering disabled above zoom 12.
-    await page.evaluate(() => {
-      window.__bvTestHelpers.leafletMap.setView([60.1508, 24.756], 16);
-    });
+    // Await zoomend inside evaluate so the animation is fully settled before we continue.
+    await page.evaluate(
+      () =>
+        new Promise((resolve) => {
+          const map = window.__bvTestHelpers.leafletMap;
+          map.once('zoomend', resolve);
+          map.setView([60.1508, 24.756], 16);
+        }),
+    );
 
     // Helper: collect markers whose centre point falls inside the #map element.
     // Leaflet pre-renders a tile-width buffer beyond the viewport, so we must
