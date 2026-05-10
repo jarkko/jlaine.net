@@ -58,6 +58,16 @@
   const slug = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
                       .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
+  // Trailing-edge debounce. Each call resets the timer; the wrapped function
+  // fires once `ms` milliseconds have elapsed since the last call.
+  const debounce = (fn, ms) => {
+    let t;
+    return (...args) => {
+      clearTimeout(t);
+      t = setTimeout(() => fn(...args), ms);
+    };
+  };
+
   const matchesQuery = (v, q) => {
     if (!q) return true;
     const extra = v.category === 'indoor'
@@ -194,7 +204,7 @@
 
   return {
     COUNTRIES, COUNTRY_FROM_NAME, TYPE_LABELS, OUTDOOR_COLOR,
-    escapeHtml, safeUrl, slug, matchesQuery,
+    escapeHtml, safeUrl, slug, matchesQuery, debounce,
     parseCsv, parseCourtValue, parseOutdoorValue,
     rowToVenue, rowToOutdoor, clusterCourtTotal,
   };

@@ -620,7 +620,7 @@
     /* ---------------------- Pure helpers (see map-data.js for unit-tested impls) ---------------------- */
     const {
       COUNTRIES, COUNTRY_FROM_NAME, TYPE_LABELS, OUTDOOR_COLOR,
-      escapeHtml, safeUrl, slug, matchesQuery,
+      escapeHtml, safeUrl, slug, matchesQuery, debounce,
       parseCsv, parseCourtValue, parseOutdoorValue,
       rowToVenue, rowToOutdoor, clusterCourtTotal,
     } = window.BVMap;
@@ -1130,11 +1130,16 @@
     }
 
     /* ---------------------- Event wiring ---------------------- */
+    // Debounced because typing fast through 700+ outdoor venues otherwise
+    // re-runs renderList on every keystroke; only the sidebar list depends on
+    // state.query so we never have to touch the marker layers here.
+    const onSearchInput = debounce(value => {
+      state.query = value;
+      renderList();
+    }, 120);
+
     function attachEvents() {
-      $('#search').addEventListener('input', e => {
-        state.query = e.target.value.trim();
-        renderList();
-      });
+      $('#search').addEventListener('input', e => onSearchInput(e.target.value.trim()));
       map.on('popupopen', e => {
         const id = [...markerById.entries()].find(([, m]) => m === e.popup._source)?.[0];
         if (id && id !== state.selectedId) selectVenue(id, { fly: false, openPopup: false });

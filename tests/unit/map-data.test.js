@@ -1,6 +1,6 @@
 'use strict';
 
-const { test, describe } = require('node:test');
+const { test, describe, mock } = require('node:test');
 const assert = require('node:assert/strict');
 
 const M = require('../../source/beach-volleyball/map-data.js');
@@ -462,6 +462,41 @@ describe('rowToOutdoor', () => {
   test('courtsLabel is the raw outdoor_courts string', () => {
     assert.equal(M.rowToOutdoor(row({ outdoor_courts: '3' }), 0).courtsLabel, '3');
     assert.equal(M.rowToOutdoor(row({ outdoor_courts: '' }), 0).courtsLabel, '');
+  });
+});
+
+describe('debounce', () => {
+  test('fires once after the configured delay', () => {
+    mock.timers.enable({ apis: ['setTimeout'] });
+    try {
+      const calls = [];
+      const f = M.debounce((...args) => calls.push(args), 100);
+      f('a');
+      f('b');
+      f('c');
+      assert.equal(calls.length, 0, 'should not fire before delay');
+      mock.timers.tick(99);
+      assert.equal(calls.length, 0, 'should not fire just before delay');
+      mock.timers.tick(1);
+      assert.deepEqual(calls, [['c']], 'fires once with last call args');
+    } finally {
+      mock.timers.reset();
+    }
+  });
+
+  test('separate burst after delay produces a second invocation', () => {
+    mock.timers.enable({ apis: ['setTimeout'] });
+    try {
+      const calls = [];
+      const f = M.debounce((...args) => calls.push(args), 50);
+      f(1);
+      mock.timers.tick(50);
+      f(2);
+      mock.timers.tick(50);
+      assert.deepEqual(calls, [[1], [2]]);
+    } finally {
+      mock.timers.reset();
+    }
   });
 });
 
