@@ -511,19 +511,29 @@ describe('clusterCourtTotal', () => {
     return { options: { _courts: courts } };
   }
 
-  test('sums _courts across all child markers', () => {
+  test('sums _courts across all child markers when all are known', () => {
     const c = fakeCluster([marker(3), marker(2), marker(5)]);
     assert.equal(M.clusterCourtTotal(c), 10);
   });
 
-  test('treats missing _courts as 0', () => {
-    const c = fakeCluster([marker(2), { options: {} }, marker(1)]);
+  test('mixed known/unknown: known counted exactly, unknowns count as 1', () => {
+    const c = fakeCluster([marker(3), { options: {} }, marker(2)]);
+    assert.equal(M.clusterCourtTotal(c), 3 + 1 + 2);
+  });
+
+  test('all unknown: returns venue count (one per marker)', () => {
+    const c = fakeCluster([{ options: {} }, { options: {} }, { options: {} }]);
     assert.equal(M.clusterCourtTotal(c), 3);
   });
 
-  test('falls back to child count when total is 0', () => {
-    const c = fakeCluster([{ options: {} }, { options: {} }]);
-    assert.equal(M.clusterCourtTotal(c), 2);
+  test('zero _courts is treated as unknown (1) not as known zero', () => {
+    const c = fakeCluster([marker(0), marker(0), marker(5)]);
+    assert.equal(M.clusterCourtTotal(c), 1 + 1 + 5);
+  });
+
+  test('non-numeric _courts is treated as unknown', () => {
+    const c = fakeCluster([{ options: { _courts: 'two' } }, marker(3)]);
+    assert.equal(M.clusterCourtTotal(c), 1 + 3);
   });
 });
 

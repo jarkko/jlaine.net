@@ -226,12 +226,18 @@
     };
   }
 
-  // Sums marker._courts across a Leaflet markercluster cluster. Falls back to
-  // the marker count when no _courts data is present so empty data still draws.
+  // Sums marker._courts across a Leaflet markercluster cluster. Markers whose
+  // _courts is missing or zero (unknown-courts venues, e.g. "courts n/a"
+  // indoor halls) still contribute 1 to the total so they don't silently
+  // disappear from a mixed cluster. A cluster of all-unknown markers therefore
+  // shows the venue count, matching the previous fallback behaviour.
   function clusterCourtTotal(cluster) {
     let total = 0;
-    for (const m of cluster.getAllChildMarkers()) total += (m.options._courts || 0);
-    return total || cluster.getChildCount();
+    for (const m of cluster.getAllChildMarkers()) {
+      const c = m.options._courts;
+      total += (typeof c === 'number' && c > 0) ? c : 1;
+    }
+    return total;
   }
 
   return {
