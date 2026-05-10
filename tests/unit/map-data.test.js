@@ -500,6 +500,55 @@ describe('debounce', () => {
   });
 });
 
+describe('ctaLabelFor', () => {
+  test('returns null when there is no URL', () => {
+    assert.equal(M.ctaLabelFor({ category: 'indoor', url: '' }), null);
+    assert.equal(M.ctaLabelFor({ category: 'indoor' }), null);
+    assert.equal(M.ctaLabelFor(null), null);
+  });
+
+  test('outdoor venues always get "More info ↗"', () => {
+    assert.equal(M.ctaLabelFor({ category: 'outdoor', url: 'https://lipas.fi/x' }), 'More info ↗');
+  });
+
+  test('indoor URLs containing booking patterns get "Book ↗"', () => {
+    const cases = [
+      'https://hetkrannahall.ee/booking',
+      'https://example.com/booking',
+      'https://example.com/book',
+      'https://www.bookup.no/utleie/Index/5774',
+      'https://biitsille.fi/',
+      'https://example.com/varaa',
+      'https://example.com/varaukset',
+      'https://example.com/boka-tider',
+      'https://www.vuorovaraus.fi/x',
+    ];
+    for (const url of cases) {
+      assert.equal(
+        M.ctaLabelFor({ category: 'indoor', url }),
+        'Book ↗',
+        `expected booking label for ${url}`,
+      );
+    }
+  });
+
+  test('indoor URLs without booking patterns get "Visit site ↗"', () => {
+    const cases = [
+      'https://www.biitsihalli.fi/index_en.htm',
+      'https://example.com/about',
+      'https://example.com',
+      'https://www.fbf.fi/foreign',
+    ];
+    for (const url of cases) {
+      assert.equal(
+        M.ctaLabelFor({ category: 'indoor', url }),
+        'Visit site ↗',
+        `expected visit label for ${url}`,
+      );
+    }
+  });
+});
+
 describe('clusterCourtTotal', () => {
   function fakeCluster(markers) {
     return {

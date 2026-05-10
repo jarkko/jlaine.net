@@ -255,6 +255,34 @@
     };
   }
 
+  // Picks an honest call-to-action label for a venue's website. Outdoor
+  // venues link to LIPAS info pages, not booking systems. Indoor venues split
+  // between booking systems and plain info sites; we look for booking-shaped
+  // URL patterns (Nordic words for "book", common booking-system hostnames)
+  // and only claim "Book" when we see one. Everything else is "Visit site".
+  const BOOKING_URL_PATTERNS = [
+    /\bbook(ing)?\b/i,
+    /\bvaraa/i,
+    /\bvarauk/i,
+    /\bvarauskalenteri/i,
+    /\bboka(b|d|s)?\b/i,
+    /\bbestill/i,
+    /\breservation/i,
+    /\bbiitsille\.fi/i,
+    /\bvuorovaraus\.fi/i,
+    /\bbookup\.no/i,
+    /\bsupersaas\b/i,
+    /\bcintoo\b/i,
+    /\bplay\b.*\bbooking\b/i,
+  ];
+
+  function ctaLabelFor(v) {
+    if (!v || !v.url) return null;
+    if (v.category === 'outdoor') return 'More info ↗';
+    const url = String(v.url);
+    return BOOKING_URL_PATTERNS.some(rx => rx.test(url)) ? 'Book ↗' : 'Visit site ↗';
+  }
+
   // Sums marker._courts across a Leaflet markercluster cluster. Markers whose
   // _courts is missing or zero (unknown-courts venues, e.g. "courts n/a"
   // indoor halls) still contribute 1 to the total so they don't silently
@@ -274,7 +302,7 @@
     INDOOR_REQUIRED_COLUMNS, OUTDOOR_REQUIRED_COLUMNS,
     escapeHtml, safeUrl, slug, matchesQuery, debounce,
     parseCsv, parseCourtValue, parseOutdoorValue, validateCsvSchema,
-    rowToVenue, rowToOutdoor, clusterCourtTotal,
+    rowToVenue, rowToOutdoor, clusterCourtTotal, ctaLabelFor,
     parseHash, serializeHash,
   };
 }));

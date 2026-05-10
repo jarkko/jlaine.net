@@ -696,7 +696,7 @@
       INDOOR_REQUIRED_COLUMNS, OUTDOOR_REQUIRED_COLUMNS,
       escapeHtml, safeUrl, slug, matchesQuery, debounce,
       parseCsv, parseCourtValue, parseOutdoorValue, validateCsvSchema,
-      rowToVenue, rowToOutdoor, clusterCourtTotal,
+      rowToVenue, rowToOutdoor, clusterCourtTotal, ctaLabelFor,
       parseHash, serializeHash,
     } = window.BVMap;
 
@@ -897,8 +897,8 @@
       const c = COUNTRIES[v.country] || { flag: '', name: v.country };
       const url = safeUrl(v.url);
       const ctaClass = v.category === 'outdoor' ? 'popup__cta popup__cta--out' : 'popup__cta';
-      const ctaLabel = v.category === 'outdoor' ? 'More info ↗' : 'Open booking ↗';
-      const cta = url
+      const ctaLabel = ctaLabelFor(v);
+      const cta = url && ctaLabel
         ? `<a class="${ctaClass}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${ctaLabel}</a>`
         : '';
       const loc = v.town ? `${escapeHtml(v.town)}<br/>${escapeHtml(v.address)}` : escapeHtml(v.address);
