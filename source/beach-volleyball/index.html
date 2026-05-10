@@ -865,46 +865,46 @@
 
     const markerById = new Map();
 
-    /* ---------------------- Indoor marker building ---------------------- */
-    function buildIndoorMarkers() {
-      INDOOR_VENUES.forEach(v => {
-        const colour = COUNTRIES[v.country]?.color || '#0f172a';
-        const icon = L.divIcon({
-          className: 'bv-marker',
-          html: `<span class="bv-marker__dot" style="--country:${colour}">${escapeHtml(v.courtPinLabel)}</span>`,
-          iconSize:    [32, 32],
-          iconAnchor:  [16, 16],
-          popupAnchor: [0, -16],
-        });
-        const m = L.marker([v.lat, v.lng], {
-          icon, title: v.name, riseOnHover: true,
-          _courts: v.courtCount, _country: v.country,
-        });
-        m.bindPopup(buildIndoorPopup(v), { closeButton: true, maxWidth: 320, minWidth: 240 });
-        m.on('click', () => selectVenue(v.id, { fly: false, openPopup: false }));
-        markerById.set(v.id, m);
-      });
-      syncMarkers();
-    }
-
-    /* ---------------------- Outdoor marker building ---------------------- */
-    function buildOutdoorMarkers() {
-      OUTDOOR_VENUES.forEach(v => {
-        const icon = L.divIcon({
+    /* ---------------------- Marker building ---------------------- */
+    const MARKER_TYPES = {
+      indoor: {
+        iconSize: [32, 32], iconAnchor: [16, 16], popupAnchor: [0, -16],
+        popupOpts: { maxWidth: 320, minWidth: 240 },
+        icon: v => {
+          const colour = COUNTRIES[v.country]?.color || '#0f172a';
+          return {
+            className: 'bv-marker',
+            html: `<span class="bv-marker__dot" style="--country:${colour}">${escapeHtml(v.courtPinLabel)}</span>`,
+          };
+        },
+        clusterCount: v => v.courtCount,
+      },
+      outdoor: {
+        iconSize: [22, 22], iconAnchor: [11, 11], popupAnchor: [0, -11],
+        popupOpts: { maxWidth: 280, minWidth: 200 },
+        icon: v => ({
           className: 'bv-out-marker',
           html: `<span class="bv-out-marker__dot">${escapeHtml(v.courtsLabel || '')}</span>`,
-          iconSize:    [22, 22],
-          iconAnchor:  [11, 11],
-          popupAnchor: [0, -11],
-        });
-        const m = L.marker([v.lat, v.lng], {
-          icon, title: v.name, riseOnHover: true,
-          _courts: v.courts || 1, _country: 'FI',
-        });
-        m.bindPopup(buildOutdoorPopup(v), { closeButton: true, maxWidth: 280, minWidth: 200 });
-        m.on('click', () => selectVenue(v.id, { fly: false, openPopup: false }));
-        markerById.set(v.id, m);
+        }),
+        clusterCount: v => v.courts || 1,
+      },
+    };
+
+    function makeMarker(v) {
+      const cfg = MARKER_TYPES[v.category];
+      const { className, html } = cfg.icon(v);
+      const icon = L.divIcon({
+        className, html,
+        iconSize: cfg.iconSize, iconAnchor: cfg.iconAnchor, popupAnchor: cfg.popupAnchor,
       });
+      const m = L.marker([v.lat, v.lng], {
+        icon, title: v.name, riseOnHover: true,
+        _courts: cfg.clusterCount(v), _country: v.country,
+      });
+      m.bindPopup(buildPopup(v), { closeButton: true, ...cfg.popupOpts });
+      m.on('click', () => selectVenue(v.id, { fly: false, openPopup: false }));
+      markerById.set(v.id, m);
+      return m;
     }
 
     /* ---------------------- Sync both layers to state ---------------------- */
@@ -941,51 +941,47 @@
     }
 
     /* ---------------------- Popups ---------------------- */
-    function buildIndoorPopup(v) {
-      const c = COUNTRIES[v.country] || { flag: '', name: v.country };
-      const courts = v.courtsIndoor == null
-        ? '<span class="tag">indoor courts n/a</span>'
-        : `<span class="tag tag--strong"${v.courtDetail ? ` title="${escapeHtml(v.courtDetail)}"` : ''}>${escapeHtml(v.courtTagLabel)}</span>`;
-      const out = !v.outdoorTagLabel ? ''
-        : `<span class="tag tag--out"${v.outdoorDetail ? ` title="${escapeHtml(v.outdoorDetail)}"` : ''}>${escapeHtml(v.outdoorTagLabel)}</span>`;
-      const precisionTag = v.precision === 'town'
-        ? '<span class="tag tag--note" title="Marker placed at town level — address-precise location not yet verified">~ town</span>' : '';
-      const url = safeUrl(v.url);
-      const cta = url
-        ? `<a class="popup__cta" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Open booking ↗</a>`
-        : '';
-      return `
-        <div>
-          <h3 class="popup__name">${escapeHtml(v.name)}</h3>
-          <div class="popup__meta">${c.flag} ${escapeHtml(c.name)} · ${escapeHtml(v.town)}<br/>${escapeHtml(v.address)}</div>
-          <div class="popup__row">${courts}${out}<span class="tag">${escapeHtml(v.currency || '')}</span>${precisionTag}</div>
-          <p class="popup__price">${escapeHtml(v.priceNote || '')}</p>
-          ${cta}
-        </div>`;
+    function popupTagsHtml(v) {
+      const tags = [];
+      if (v.category === 'indoor') {
+        tags.push(v.courtsIndoor == null
+          ? '<span class="tag">indoor courts n/a</span>'
+          : `<span class="tag tag--strong"${v.courtDetail ? ` title="${escapeHtml(v.courtDetail)}"` : ''}>${escapeHtml(v.courtTagLabel)}</span>`);
+        if (v.outdoorTagLabel) {
+          tags.push(`<span class="tag tag--out"${v.outdoorDetail ? ` title="${escapeHtml(v.outdoorDetail)}"` : ''}>${escapeHtml(v.outdoorTagLabel)}</span>`);
+        }
+        if (v.currency) tags.push(`<span class="tag">${escapeHtml(v.currency)}</span>`);
+      } else {
+        const courtStr = v.courtsLabel
+          ? `${v.courtsLabel} court${v.courts !== 1 ? 's' : ''}`
+          : 'outdoor sand';
+        tags.push(`<span class="tag tag--out">${escapeHtml(courtStr)}</span>`);
+        if (v.surface)  tags.push(`<span class="tag">${escapeHtml(v.surface)}</span>`);
+        if (v.freeUse)  tags.push('<span class="tag">free</span>');
+        if (v.lighting) tags.push('<span class="tag">lit</span>');
+      }
+      if (v.precision === 'town') {
+        tags.push('<span class="tag tag--note" title="Marker placed at town level — address-precise location not yet verified">~ town</span>');
+      }
+      return tags.join('');
     }
 
-    function buildOutdoorPopup(v) {
-      const courtStr = v.courtsLabel
-        ? `${v.courtsLabel} court${v.courts !== 1 ? 's' : ''}`
-        : 'outdoor sand';
-      const tags = [
-        `<span class="tag tag--out">${escapeHtml(courtStr)}</span>`,
-        v.surface   ? `<span class="tag">${escapeHtml(v.surface)}</span>` : '',
-        v.freeUse   ? '<span class="tag">free</span>' : '',
-        v.lighting  ? '<span class="tag">lit</span>'  : '',
-        v.precision === 'town'
-          ? '<span class="tag tag--note" title="Marker placed at town level">~ town</span>' : '',
-      ].filter(Boolean).join('');
+    function buildPopup(v) {
+      const c = COUNTRIES[v.country] || { flag: '', name: v.country };
       const url = safeUrl(v.url);
+      const ctaClass = v.category === 'outdoor' ? 'popup__cta popup__cta--out' : 'popup__cta';
+      const ctaLabel = v.category === 'outdoor' ? 'More info ↗' : 'Open booking ↗';
       const cta = url
-        ? `<a class="popup__cta popup__cta--out" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">More info ↗</a>`
+        ? `<a class="${ctaClass}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${ctaLabel}</a>`
         : '';
       const loc = v.town ? `${escapeHtml(v.town)}<br/>${escapeHtml(v.address)}` : escapeHtml(v.address);
+      const price = v.priceNote ? `<p class="popup__price">${escapeHtml(v.priceNote)}</p>` : '';
       return `
         <div>
           <h3 class="popup__name">${escapeHtml(v.name)}</h3>
-          <div class="popup__meta">🇫🇮 Finland · ${loc}</div>
-          <div class="popup__row">${tags}</div>
+          <div class="popup__meta">${c.flag} ${escapeHtml(c.name)} · ${loc}</div>
+          <div class="popup__row">${popupTagsHtml(v)}</div>
+          ${price}
           ${cta}
         </div>`;
     }
@@ -1038,11 +1034,35 @@
     }
 
     /* ---------------------- Render: Cards ---------------------- */
-    function buildIndoorCard(v) {
-      const c = COUNTRIES[v.country] || { flag: '', name: v.country, color: '#0f172a' };
+    function cardMetaTags(v) {
+      const tags = [];
+      if (v.category === 'indoor') {
+        tags.push(ce('span', { class: 'tag tag--strong', title: v.courtDetail },
+          v.courtsIndoor == null ? 'courts n/a' : v.courtTagLabel));
+        if (v.outdoorTagLabel)
+          tags.push(ce('span', { class: 'tag tag--out', title: v.outdoorDetail }, v.outdoorTagLabel));
+        if (v.currency)
+          tags.push(ce('span', { class: 'tag' }, v.currency));
+      } else {
+        const courtsStr = v.courtsLabel ? `${v.courtsLabel} outdoor` : 'outdoor';
+        tags.push(ce('span', { class: 'tag tag--out' }, courtsStr));
+        if (v.surface)  tags.push(ce('span', { class: 'tag' }, v.surface));
+        if (v.freeUse)  tags.push(ce('span', { class: 'tag' }, 'free'));
+        if (v.lighting) tags.push(ce('span', { class: 'tag' }, 'lit'));
+      }
+      if (v.precision === 'town')
+        tags.push(ce('span', { class: 'tag tag--note', title: 'Marker placed at town level' }, '~ town'));
+      return tags;
+    }
+
+    function buildCard(v) {
+      const isOutdoor = v.category === 'outdoor';
+      const c = isOutdoor
+        ? { flag: '🏐', color: OUTDOOR_COLOR }
+        : (COUNTRIES[v.country] || { flag: '', color: '#0f172a' });
       const item = ce('li', { class: 'venue-list__item' });
       const card = ce('button', {
-        class: 'card',
+        class: 'card' + (isOutdoor ? ' card--outdoor' : ''),
         type: 'button',
         'data-id': v.id,
         'aria-current': state.selectedId === v.id ? 'true' : 'false',
@@ -1055,46 +1075,10 @@
       const flag = ce('span', { class: 'card__flag', 'aria-hidden': 'true' }, c.flag);
       const body = ce('div',  { class: 'card__body' });
       const name = ce('div',  { class: 'card__name' }, v.name);
-      const town = ce('div',  { class: 'card__town' }, `${v.town} · ${v.address}`);
+      const townText = v.town ? `${v.town} · ${v.address}` : v.address;
+      const town = ce('div',  { class: 'card__town' }, townText);
       const meta = ce('div',  { class: 'card__meta' });
-      meta.append(ce('span', { class: 'tag tag--strong', title: v.courtDetail },
-        v.courtsIndoor == null ? 'courts n/a' : v.courtTagLabel));
-      if (v.outdoorTagLabel)
-        meta.append(ce('span', { class: 'tag tag--out', title: v.outdoorDetail }, v.outdoorTagLabel));
-      if (v.currency)
-        meta.append(ce('span', { class: 'tag' }, v.currency));
-      if (v.precision === 'town')
-        meta.append(ce('span', { class: 'tag tag--note', title: 'Marker placed at town level' }, '~ town'));
-      body.append(name, town, meta);
-      card.append(flag, body);
-      item.append(card);
-      return item;
-    }
-
-    function buildOutdoorCard(v) {
-      const item = ce('li', { class: 'venue-list__item' });
-      const card = ce('button', {
-        class: 'card card--outdoor',
-        type: 'button',
-        'data-id': v.id,
-        'aria-current': state.selectedId === v.id ? 'true' : 'false',
-        style: `--country:${OUTDOOR_COLOR}`,
-        onclick: () => {
-          selectVenue(v.id, { fly: true, openPopup: true });
-          if (window.matchMedia('(max-width: 700px)').matches) setSidebar(false);
-        },
-      });
-      const flag = ce('span', { class: 'card__flag', 'aria-hidden': 'true' }, '🏐');
-      const body = ce('div', { class: 'card__body' });
-      const name = ce('div', { class: 'card__name' }, v.name);
-      const town = ce('div', { class: 'card__town' },
-        v.town ? `${v.town} · ${v.address}` : v.address);
-      const meta = ce('div', { class: 'card__meta' });
-      const courtsStr = v.courtsLabel ? `${v.courtsLabel} outdoor` : 'outdoor';
-      meta.append(ce('span', { class: 'tag tag--out' }, courtsStr));
-      if (v.surface)  meta.append(ce('span', { class: 'tag' }, v.surface));
-      if (v.freeUse)  meta.append(ce('span', { class: 'tag' }, 'free'));
-      if (v.lighting) meta.append(ce('span', { class: 'tag' }, 'lit'));
+      cardMetaTags(v).forEach(t => meta.append(t));
       body.append(name, town, meta);
       card.append(flag, body);
       item.append(card);
@@ -1123,9 +1107,7 @@
           return (a.town || '').localeCompare(b.town || '') || a.name.localeCompare(b.name);
         });
 
-      filtered.slice(0, CARD_LIMIT).forEach(v => {
-        list.append(v.category === 'outdoor' ? buildOutdoorCard(v) : buildIndoorCard(v));
-      });
+      filtered.slice(0, CARD_LIMIT).forEach(v => list.append(buildCard(v)));
 
       // Toggle button count badge
       const modeTotal =
@@ -1244,7 +1226,7 @@
         OUTDOOR_VENUES = parseCsv(text)
           .map(rowToOutdoor)
           .filter(v => Number.isFinite(v.lat) && Number.isFinite(v.lng));
-        buildOutdoorMarkers();
+        OUTDOOR_VENUES.forEach(makeMarker);
         outdoorLoaded  = true;
         outdoorLoading = null;
       })();
@@ -1351,7 +1333,7 @@
           .filter(v => Number.isFinite(v.lat) && Number.isFinite(v.lng));
         if (!INDOOR_VENUES.length) throw new Error('CSV produced 0 valid rows');
 
-        buildIndoorMarkers();
+        INDOOR_VENUES.forEach(makeMarker);
 
         // If starting in outdoor/both, lazy-load outdoor data before first render
         if (state.category !== 'indoor') {
