@@ -358,11 +358,9 @@ test.describe('beach volleyball map', () => {
     // Wait for outdoor data to arrive.
     await page.waitForFunction(() => document.querySelectorAll('.bv-out-marker, .bv-out-cluster').length > 0);
 
-    // Zoom to the midpoint of two Matinkylä courts that are ~157 m apart:
-    // Matinkylän uimarannan (60.151023, 24.757439) and
-    // Matinkylän uimarannan 3 (60.150580, 24.754754).
-    // Zoom 16 → viewport ≈ 384 × 216 m; both courts fit; clustering disabled above zoom 12.
-    // Await zoomend inside evaluate so the animation is fully settled before we continue.
+    // Zoom to Matinkylä (Espoo) where two specific outdoor courts are ~157 m apart.
+    // Clustering is disabled at zoom ≥ 12, so both appear as individual markers.
+    // Await zoomend inside evaluate so the animation is fully settled.
     await page.evaluate(
       () =>
         new Promise((resolve) => {
@@ -372,44 +370,28 @@ test.describe('beach volleyball map', () => {
         }),
     );
 
-    // Helper: collect markers whose centre point falls inside the #map element.
-    // Leaflet pre-renders a tile-width buffer beyond the viewport, so we must
-    // filter to truly visible markers before clicking.
-    const getInViewportMarkers = async () => {
-      const mapBox = await page.locator('#map').boundingBox();
-      const all = await page.locator('.bv-out-marker').all();
-      const visible = [];
-      for (const m of all) {
-        const box = await m.boundingBox();
-        if (!box) continue;
-        const cx = box.x + box.width / 2;
-        const cy = box.y + box.height / 2;
-        if (cx > mapBox.x && cx < mapBox.x + mapBox.width && cy > mapBox.y && cy < mapBox.y + mapBox.height) {
-          visible.push(m);
-          if (visible.length === 2) break;
-        }
-      }
-      return visible;
-    };
+    // Target the two courts by their known venue names rather than DOM order,
+    // so this test stays robust even if Leaflet buffers extra off-screen markers.
+    const markerA = page.locator('.bv-out-marker[title="Matinkylän uimarannan beachvolleykenttä"]');
+    const markerB = page.locator('.bv-out-marker[title="Matinkylän uimarannan beachvolleykenttä 3"]');
 
-    // Poll until 2 in-viewport markers are present (moveend may fire async).
-    await expect.poll(() => getInViewportMarkers().then((v) => v.length), { timeout: 5000 }).toBeGreaterThanOrEqual(2);
-    const [markerA, markerB] = await getInViewportMarkers();
+    await expect(markerA).toHaveCount(1, { timeout: 5000 });
+    await expect(markerB).toHaveCount(1, { timeout: 5000 });
 
-    // Click marker A — URL should gain an id param.
-    await markerA.click();
+    // Click A — URL should gain an id param.
+    // force:true bypasses Leaflet's animation-stability jitter.
+    await markerA.click({ force: true });
     await expect(page).toHaveURL(/[?&#]id=fi-out-/);
     const firstUrl = page.url();
 
-    // Click marker B while A's popup is still open.
-    // Popup A may visually overlap marker B; force:true bypasses Playwright's
-    // pointer-interception check while still dispatching a real DOM click on
-    // the marker element — exactly what triggers Leaflet's synchronous
-    // popupclose→popupopen chain that this test is designed to cover.
+    // Click B while A's popup is still open.
+    // force:true also bypasses Playwright's 'leaflet-popup-pane intercepts pointer
+    // events' check while still dispatching a real DOM click on the marker element,
+    // which triggers Leaflet's synchronous popupclose→popupopen chain.
     await markerB.click({ force: true });
 
-    // Only one popup visible — the Leaflet synchronous popupclose→popupopen
-    // chain must not leave a stale second popup open.
+    // Only one popup visible — the ordering invariant in onPopupClose
+    // (closedId === state.selectedId guard) must hold.
     await expect(page.locator('.leaflet-popup-content')).toHaveCount(1);
 
     // URL must have advanced to B's id (not reverted to A or cleared).
