@@ -402,7 +402,11 @@ test.describe('beach volleyball map', () => {
     const firstUrl = page.url();
 
     // Click marker B while A's popup is still open.
-    await markerB.click();
+    // Popup A may visually overlap marker B; force:true bypasses Playwright's
+    // pointer-interception check while still dispatching a real DOM click on
+    // the marker element — exactly what triggers Leaflet's synchronous
+    // popupclose→popupopen chain that this test is designed to cover.
+    await markerB.click({ force: true });
 
     // Only one popup visible — the Leaflet synchronous popupclose→popupopen
     // chain must not leave a stale second popup open.
