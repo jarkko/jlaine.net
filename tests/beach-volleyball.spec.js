@@ -358,12 +358,17 @@ test.describe('beach volleyball map', () => {
     // Wait for outdoor data to arrive (initially all in clusters at country-fit zoom).
     await page.waitForFunction(() => document.querySelectorAll('.bv-out-marker, .bv-out-cluster').length > 0);
 
-    // Zoom into Helsinki where several outdoor courts are within a few hundred metres
-    // of each other, so MarkerCluster separates them into individual .bv-out-marker icons.
+    // Zoom to Matinkylä (Espoo) where two outdoor courts sit ~270 m apart.
+    // disableClusteringAtZoom: 12 means no clustering at zoom ≥ 12; at zoom 13
+    // both courts are comfortably within the viewport on any device.
     await page.evaluate(() => {
-      window.__bvTestHelpers.leafletMap.setView([60.1699, 24.9384], 14);
+      window.__bvTestHelpers.leafletMap.setView([60.151, 24.756], 13);
     });
-    await page.waitForFunction(() => document.querySelectorAll('.bv-out-marker').length > 1);
+
+    // Poll: Leaflet fires moveend asynchronously, so markers may appear a tick later.
+    await expect
+      .poll(() => page.evaluate(() => document.querySelectorAll('.bv-out-marker').length), { timeout: 5000 })
+      .toBeGreaterThan(1);
 
     const markers = page.locator('.bv-out-marker');
 
