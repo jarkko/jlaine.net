@@ -146,9 +146,14 @@
 
       if (showOutdoor && data.outdoorLoaded) {
         outdoorLayer.clearLayers();
-        const include = state.country === 'all' || state.country === 'FI';
-        if (include)
-          outdoorLayer.addLayers(data.outdoorVenues.map((venue) => markerById.get(venue.id)).filter(Boolean));
+        const active =
+          state.country === 'all'
+            ? data.outdoorVenues.map((venue) => markerById.get(venue.id)).filter(Boolean)
+            : data.outdoorVenues
+                .filter((venue) => venue.country === state.country)
+                .map((venue) => markerById.get(venue.id))
+                .filter(Boolean);
+        outdoorLayer.addLayers(active);
         if (!map.hasLayer(outdoorLayer)) map.addLayer(outdoorLayer);
       } else if (map.hasLayer(outdoorLayer)) {
         map.removeLayer(outdoorLayer);

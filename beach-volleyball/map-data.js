@@ -193,6 +193,7 @@
   ];
 
   const OUTDOOR_REQUIRED_COLUMNS = [
+    'country',
     'facility_name',
     'town',
     'address',
@@ -265,12 +266,16 @@
   }
 
   function rowToOutdoor(r, idx) {
+    const country =
+      COUNTRY_FROM_NAME[(r.country || '').toUpperCase()] || (r.country || '').slice(0, 2).toUpperCase() || 'XX';
     const lipasId = r.lipas_id || `idx-${idx}`;
+    // Keep the historical fi-out- prefix for Finland rows so existing URL hashes stay valid.
+    const id = country === 'FI' ? `fi-out-${lipasId}` : `${country.toLowerCase()}-out-${lipasId}`;
     const courts = parseInt(r.outdoor_courts, 10) || 0;
     return {
       category: 'outdoor',
-      id: `fi-out-${lipasId}`,
-      country: 'FI',
+      id,
+      country,
       name: r.facility_name,
       town: r.town,
       address: r.address,
