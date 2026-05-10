@@ -10,8 +10,8 @@ const SEVERITIES = ['serious', 'critical'];
 
 function summarize(violations) {
   return violations
-    .filter(v => SEVERITIES.includes(v.impact))
-    .map(v => ({
+    .filter((v) => SEVERITIES.includes(v.impact))
+    .map((v) => ({
       id: v.id,
       impact: v.impact,
       help: v.help,
@@ -23,13 +23,9 @@ function summarize(violations) {
 test.describe('beach volleyball map a11y (axe-core)', () => {
   test('no serious or critical violations in default (indoor) view', async ({ page }) => {
     await page.goto('/beach-volleyball/');
-    await page.waitForFunction(() =>
-      document.querySelectorAll('.bv-marker, .bv-cluster').length > 0
-    );
+    await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
 
-    const results = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-      .analyze();
+    const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
 
     const blockers = summarize(results.violations);
     expect(blockers, JSON.stringify(blockers, null, 2)).toEqual([]);
@@ -37,15 +33,11 @@ test.describe('beach volleyball map a11y (axe-core)', () => {
 
   test('no serious or critical violations with sidebar dialog open', async ({ page }) => {
     await page.goto('/beach-volleyball/');
-    await page.waitForFunction(() =>
-      document.querySelectorAll('.bv-marker, .bv-cluster').length > 0
-    );
+    await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
     await page.getByRole('button', { name: /venues/i }).click();
     await expect(page.locator('#sidebar')).toHaveClass(/is-open/);
 
-    const results = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-      .analyze();
+    const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
 
     const blockers = summarize(results.violations);
     expect(blockers, JSON.stringify(blockers, null, 2)).toEqual([]);
