@@ -7,6 +7,24 @@
   <meta name="description" content="An interactive map and directory of indoor beach-volleyball halls and outdoor sand courts across Finland, Sweden, Norway, Denmark, Iceland, Estonia, Latvia and Lithuania." />
   <meta name="color-scheme" content="light" />
 
+  <!--
+    Page-scoped CSP. unsafe-inline is unfortunate but the inline <script>
+    and <style> blocks are hand-written, audited, and would otherwise
+    require hash-based CSP that updates on every edit. CSV-derived URLs
+    are sanitized through safeUrl() before being rendered as <a href>.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src  'self' https://unpkg.com 'unsafe-inline';
+    style-src   'self' https://fonts.googleapis.com https://unpkg.com 'unsafe-inline';
+    font-src    https://fonts.gstatic.com;
+    img-src     'self' data: https://*.tile.openstreetmap.org;
+    connect-src 'self';
+    object-src  'none';
+    base-uri    'self';
+    form-action 'self';
+  ">
+
   <link rel="icon" type="image/svg+xml" href="mikasa-ball.svg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,6 +36,7 @@
         crossorigin="anonymous" />
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+        integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV"
         crossorigin="anonymous" />
 
   <style>
@@ -611,6 +630,7 @@
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
           crossorigin="anonymous"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"
+          integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr"
           crossorigin="anonymous"></script>
   <script src="map-data.js"></script>
 
