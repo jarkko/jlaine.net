@@ -180,6 +180,10 @@
       onPopupClose,
     });
     data.setMarkerFactory(mapView.makeMarker);
+    // Expose Leaflet map on 127.0.0.1 so E2E tests can programmatically setView.
+    if (root.location && root.location.hostname === '127.0.0.1') {
+      root.__bvTestHelpers = { leafletMap: mapView.map };
+    }
     sidebarView = createSidebarView({
       state,
       data,

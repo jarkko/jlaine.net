@@ -361,7 +361,7 @@ test.describe('beach volleyball map', () => {
     // Zoom into Helsinki where several outdoor courts are within a few hundred metres
     // of each other, so MarkerCluster separates them into individual .bv-out-marker icons.
     await page.evaluate(() => {
-      document.getElementById('map')._leaflet_map.setView([60.1699, 24.9384], 14);
+      window.__bvTestHelpers.leafletMap.setView([60.1699, 24.9384], 14);
     });
     await page.waitForFunction(() => document.querySelectorAll('.bv-out-marker').length > 1);
 
