@@ -421,10 +421,15 @@ describe('rowToOutdoor', () => {
     assert.equal(v.url, '');
   });
 
-  test('country is always FI and category is always outdoor', () => {
+  test('country is read from the CSV column', () => {
     const v = M.rowToOutdoor(row(), 0);
     assert.equal(v.country, 'FI');
     assert.equal(v.category, 'outdoor');
+    const se = M.rowToOutdoor(row({ country: 'SWEDEN', lipas_id: '' }), 3);
+    assert.equal(se.country, 'SE');
+    assert.equal(se.id, 'se-out-idx-3');
+    const xx = M.rowToOutdoor(row({ country: '' }), 0);
+    assert.equal(xx.country, 'XX');
   });
 
   test('courtsLabel is the raw outdoor_courts string', () => {
@@ -535,6 +540,7 @@ describe('validateCsvSchema', () => {
   test('exposes column lists for indoor and outdoor', () => {
     assert.ok(M.INDOOR_REQUIRED_COLUMNS.includes('country'));
     assert.ok(M.INDOOR_REQUIRED_COLUMNS.includes('latitude'));
+    assert.ok(M.OUTDOOR_REQUIRED_COLUMNS.includes('country'));
     assert.ok(M.OUTDOOR_REQUIRED_COLUMNS.includes('latitude'));
     assert.ok(M.OUTDOOR_REQUIRED_COLUMNS.includes('outdoor_courts'));
   });

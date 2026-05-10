@@ -50,7 +50,7 @@
         store.outdoorLoading = (async () => {
           store.outdoorError = null;
           try {
-            const response = await fetch('finland_outdoor_beach_volleyball_courts.csv');
+            const response = await fetch('nordic_outdoor_beach_volleyball_courts.csv');
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const rows = validateCsvSchema(parseCsv(await response.text()), OUTDOOR_REQUIRED_COLUMNS, 'outdoor CSV');
             store.outdoorVenues = rows
