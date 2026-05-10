@@ -128,6 +128,20 @@ test.describe('beach volleyball map', () => {
     await expect(page.locator('.map-wrap')).not.toHaveAttribute('inert', '');
   });
 
+  test('skip link is keyboard-reachable and opens the venue directory', async ({ page }) => {
+    await page.goto('/beach-volleyball/');
+    await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
+
+    // First Tab from <body> should land on the skip link
+    await page.keyboard.press('Tab');
+    await expect(page.locator('#skip-link')).toBeFocused();
+
+    // Activating it opens the dialog and focuses the search input
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#sidebar')).toHaveClass(/is-open/);
+    await expect(page.locator('#search')).toBeFocused();
+  });
+
   test('CSV download link tracks the active mode', async ({ page }) => {
     await page.goto('/beach-volleyball/');
     await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
