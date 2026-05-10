@@ -540,6 +540,7 @@ describe('validateCsvSchema', () => {
   test('exposes column lists for indoor and outdoor', () => {
     assert.ok(M.INDOOR_REQUIRED_COLUMNS.includes('country'));
     assert.ok(M.INDOOR_REQUIRED_COLUMNS.includes('latitude'));
+    assert.ok(M.OUTDOOR_REQUIRED_COLUMNS.includes('country'));
     assert.ok(M.OUTDOOR_REQUIRED_COLUMNS.includes('latitude'));
     assert.ok(M.OUTDOOR_REQUIRED_COLUMNS.includes('outdoor_courts'));
   });

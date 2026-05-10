@@ -2,13 +2,15 @@
 """
 Fetch beach volleyball outdoor court data from OpenStreetMap Overpass API
 for Nordic/Baltic countries and output rows matching the CSV schema used
-by finland_outdoor_beach_volleyball_courts.csv.
+by nordic_outdoor_beach_volleyball_courts.csv.
 
 Usage:
   python3 scripts/fetch_outdoor_osm.py [COUNTRY_CODE ...]
   # e.g. python3 scripts/fetch_outdoor_osm.py SE NO DK EE LV LT IS
 
-Output goes to stdout so you can redirect to a file.
+Output goes to stdout so you can redirect/append to a file.
+Courts without names in OSM get a generated fallback name.
+Courts count defaults to 2 when the OSM tags omit a count.
 """
 
 import json
@@ -29,16 +31,6 @@ COUNTRIES = {
     "IS": ("ICELAND",   "IS"),
 }
 
-QUERY_TEMPLATE = """\
-[out:json][timeout:120];
-(
-  node["leisure"="pitch"]["sport"="beach_volleyball"]["access"!="private"](area.country);
-  way["leisure"="pitch"]["sport"="beach_volleyball"]["access"!="private"](area.country);
-  node["sport"="volleyball"]["surface"="sand"]["access"!="private"](area.country);
-  way["sport"="volleyball"]["surface"="sand"]["access"!="private"](area.country);
-);
-out center tags;
-"""
 
 AREA_ID_QUERY = """\
 [out:json][timeout:30];

@@ -64,7 +64,7 @@ test.describe('beach volleyball map', () => {
     await page.goto('/beach-volleyball/#both');
 
     await expect(page.locator('[data-mode="both"]')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.locator('#mode-notice')).toContainText('Outdoor courts: Finland only');
+    await expect(page.locator('#mode-notice')).toContainText('Nordic');
     await page.waitForFunction(
       () =>
         document.querySelectorAll('.bv-marker, .bv-cluster').length > 0 &&

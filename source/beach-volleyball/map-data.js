@@ -193,6 +193,7 @@
   ];
 
   const OUTDOOR_REQUIRED_COLUMNS = [
+    'country',
     'facility_name',
     'town',
     'address',

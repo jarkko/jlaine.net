@@ -24,7 +24,7 @@
   function applyHashToState() {
     const { mode, country, q, venue } = parseHash(location.hash);
     state.category = mode;
-    state.country = mode === 'outdoor' && country !== 'all' && country !== 'FI' ? 'all' : country;
+    state.country = country;
     state.query = q;
     state.selectedId = venue || null;
     const search = $('#search');
