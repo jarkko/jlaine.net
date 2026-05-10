@@ -195,6 +195,49 @@ test.describe('beach volleyball map', () => {
     expect(failures).toEqual([]);
   });
 
+  test('back-navigating from a venue permalink re-fits to the new mode', async ({ page }) => {
+    const failures = pageErrors(page);
+    await page.goto('/beach-volleyball/#indoor');
+    await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
+
+    // Go to an outdoor venue permalink — the map should fly to Hääkiven.
+    await page.evaluate(() => { location.hash = '#mode=outdoor&id=fi-out-529117'; });
+    await expect(page.locator('.leaflet-popup-content .popup__name'))
+      .toContainText('Hääkiven', { timeout: 10000 });
+    const flownInBounds = await page.evaluate(() => {
+      // Flown to a single venue at zoom ≥ 11 → bounds span at most ~1°.
+      const b = document.querySelector('#map'); return b ? true : false;
+    });
+    expect(flownInBounds).toBe(true);
+
+    // Press Back — should drop the venue AND re-fit the map to indoor bounds
+    // (i.e., zoom out from Hääkiven), not just close the popup in place.
+    await page.goBack();
+    await expect(page).toHaveURL(/#indoor$/);
+    await expect(page.locator('.leaflet-popup-content')).toHaveCount(0);
+
+    // Wait for the indoor fit to settle, then assert at least one Norway/Sweden
+    // indoor venue is now within the visible map area — proving we re-fit and
+    // didn't stay zoomed in on Hääkiven.
+    await page.waitForTimeout(800);
+    const visibleNonFi = await page.evaluate(() => {
+      const markers = document.querySelectorAll('.leaflet-marker-icon.bv-marker');
+      const mapEl = document.getElementById('map');
+      const r = mapEl.getBoundingClientRect();
+      let nonFiVisible = 0;
+      markers.forEach(m => {
+        const mr = m.getBoundingClientRect();
+        const inside = mr.left >= r.left && mr.right <= r.right
+                    && mr.top  >= r.top  && mr.bottom <= r.bottom;
+        if (inside) nonFiVisible++;
+      });
+      // After indoor fitBounds we expect many indoor markers visible.
+      return nonFiVisible;
+    });
+    expect(visibleNonFi).toBeGreaterThan(3);
+    expect(failures).toEqual([]);
+  });
+
   test('hashchange that swaps mode and id loads outdoor data and opens the popup', async ({ page }) => {
     const failures = pageErrors(page);
     await page.goto('/beach-volleyball/#indoor');

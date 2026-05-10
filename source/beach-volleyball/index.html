@@ -1124,6 +1124,11 @@
       });
     }
 
+    // Generation token: every selectVenue() bump invalidates any prior
+    // flyTo's queued moveend handler, so a rapid A → B click doesn't trip
+    // both finishA and finishB on B's moveend.
+    let flyToken = 0;
+
     function selectVenue(id, { fly = true, openPopup = true } = {}) {
       state.selectedId = id;
       document.querySelectorAll('.card').forEach(card => {
@@ -1157,6 +1162,11 @@
         if (openPopup) m.openPopup();
       };
 
+      // Re-selecting the already-open venue is a no-op: the close-and-reopen
+      // dance below would churn popupclose/popupopen handlers and double-tap
+      // the URL via replaceState for nothing.
+      const alreadyOpen = openPopup && map._popup && map._popup._source === m;
+      if (alreadyOpen) return;
       if (fly) {
         // Close any popup that's already open. Without this, switching to a
         // marker inside a different cluster can leave both popups visible —
@@ -1170,12 +1180,15 @@
         // doesn't reliably fire when the marker lives in a different cluster
         // group than the one currently rendered (e.g. cross-mode hashchange).
         const targetZoom = Math.max(map.getZoom(), 11);
+        const myToken = ++flyToken;
         if (reducedMotion()) {
           map.setView([v.lat, v.lng], targetZoom);
           finish();
         } else {
           map.flyTo([v.lat, v.lng], targetZoom, { duration: 0.6 });
-          map.once('moveend', finish);
+          // Guard against a rapid A → B → A click chain: the first flyTo's
+          // moveend would otherwise fire finishA on B's animation end.
+          map.once('moveend', () => { if (myToken === flyToken) finish(); });
         }
       } else {
         finish();
@@ -1390,10 +1403,12 @@
           // The URL has already moved; don't push a duplicate history entry,
           // and don't clobber the country filter that came in the same URL.
           // Await so the outdoor CSV is loaded before we try to selectVenue,
-          // and skip the mode-wide fitBounds when we're about to fly to a
-          // specific venue immediately after.
+          // and skip the mode-wide fitBounds only when selectVenue.flyTo will
+          // immediately move the map to a specific venue. Using state.selectedId
+          // (not venueChanged) so back-navigating from a venue permalink to a
+          // no-venue URL still re-fits to the new mode's bounds.
           await setMode(state.category, {
-            resetCountry: false, push: false, fitToBounds: !venueChanged,
+            resetCountry: false, push: false, fitToBounds: !state.selectedId,
           });
         } else if (filtersChanged) {
           render();
@@ -1421,7 +1436,11 @@
     function applyHashToState() {
       const { mode, country, q, venue } = parseHash(location.hash);
       state.category   = mode;
-      state.country    = country;
+      // Outdoor data is FI-only and the country chip-bar is hidden in outdoor
+      // mode, so a stray non-FI country in the URL would leave the map empty
+      // with no UI to recover. Normalise to 'all' (which still includes FI).
+      state.country    = (mode === 'outdoor' && country !== 'all' && country !== 'FI')
+        ? 'all' : country;
       state.query      = q;
       state.selectedId = venue || null;
       const search = $('#search');
