@@ -575,9 +575,11 @@
 
     <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
 
-    <aside class="sidebar" id="sidebar" aria-label="Venue directory">
+    <aside class="sidebar" id="sidebar"
+           role="dialog" aria-modal="true" aria-labelledby="sidebar-title"
+           tabindex="-1">
       <div class="sidebar__header">
-        <h2 class="sidebar__title">Venues</h2>
+        <h2 class="sidebar__title" id="sidebar-title">Venues</h2>
         <button class="sidebar__close" id="sidebar-close" aria-label="Close venue directory">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1085,6 +1087,13 @@
     function render() { renderModeNotice(); renderChips(); renderList(); syncMarkers(); }
 
     /* ---------------------- Sidebar drawer ---------------------- */
+    // Siblings outside the dialog that should be removed from the focus order
+    // and accessibility tree while the sidebar is open. Selectors resolved at
+    // each call so script position-in-DOM does not matter.
+    // The backdrop is intentionally excluded so clicking it can still close the
+    // dialog; inert would block its click handler.
+    const SIDEBAR_INERT_TARGETS = '.topbar, .map-wrap';
+
     function setSidebar(open) {
       const sidebar = $('#sidebar');
       const toggle  = $('#sidebar-toggle');
@@ -1093,6 +1102,10 @@
       $('#layout').classList.toggle('is-open', open);
       sidebar.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.querySelectorAll(SIDEBAR_INERT_TARGETS).forEach(el => {
+        if (open) el.setAttribute('inert', '');
+        else      el.removeAttribute('inert');
+      });
       if (open) {
         requestAnimationFrame(() => $('#search')?.focus({ preventScroll: true }));
       } else if (state.returnFocusTo && document.contains(state.returnFocusTo)) {

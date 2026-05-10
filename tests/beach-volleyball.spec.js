@@ -85,6 +85,33 @@ test.describe('beach volleyball map', () => {
     await expect(page).toHaveURL(/\/beach-volleyball\//);
   });
 
+  test('sidebar is a proper modal dialog with inert siblings', async ({ page }) => {
+    await page.goto('/beach-volleyball/');
+    await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
+
+    const sidebar = page.locator('#sidebar');
+    await expect(sidebar).toHaveAttribute('role', 'dialog');
+    await expect(sidebar).toHaveAttribute('aria-modal', 'true');
+    await expect(sidebar).toHaveAttribute('aria-labelledby', 'sidebar-title');
+
+    // Closed: siblings are interactive
+    await expect(page.locator('.topbar')).not.toHaveAttribute('inert', '');
+    await expect(page.locator('.map-wrap')).not.toHaveAttribute('inert', '');
+
+    await page.getByRole('button', { name: /venues/i }).click();
+    await expect(sidebar).toHaveClass(/is-open/);
+
+    // Open: siblings are inert
+    await expect(page.locator('.topbar')).toHaveAttribute('inert', '');
+    await expect(page.locator('.map-wrap')).toHaveAttribute('inert', '');
+
+    // Escape closes and clears inert
+    await page.keyboard.press('Escape');
+    await expect(sidebar).not.toHaveClass(/is-open/);
+    await expect(page.locator('.topbar')).not.toHaveAttribute('inert', '');
+    await expect(page.locator('.map-wrap')).not.toHaveAttribute('inert', '');
+  });
+
   test('switches to outdoor mode and shows Finland sand courts', async ({ page }) => {
     const failures = pageErrors(page);
     await page.goto('/beach-volleyball/');
