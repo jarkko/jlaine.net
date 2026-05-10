@@ -447,26 +447,6 @@
     }
     .bv-out-cluster:hover .bv-out-cluster__inner { transform: scale(1.06); }
 
-    /* ---------- Floating UI on map ---------- */
-    .source-badge {
-      position: absolute;
-      bottom: 14px; left: 14px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 6px 12px 6px 8px;
-      font-size: 11.5px;
-      color: var(--ink-soft);
-      box-shadow: var(--shadow-sm);
-      z-index: 500;
-      display: inline-flex; align-items: center; gap: 6px;
-    }
-    .source-badge__dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-soft);
-    }
-
     /* ---------- Popup ---------- */
     .leaflet-popup-content-wrapper {
       border-radius: 14px;
@@ -550,11 +530,6 @@
         top: 10px; left: 10px;
         padding: 8px 12px 8px 10px;
       }
-      .source-badge {
-        left: 10px;
-        bottom: calc(10px + env(safe-area-inset-bottom));
-        max-width: min(220px, calc(100vw - 108px));
-      }
       .data-link {
         right: 10px;
         bottom: calc(10px + env(safe-area-inset-bottom));
@@ -595,10 +570,6 @@
         <span class="sidebar-toggle__count" id="sidebar-toggle-count">…</span>
       </button>
 
-      <span class="source-badge" id="source-badge" hidden>
-        <span class="source-badge__dot" aria-hidden="true"></span>
-        <span id="source-badge-text">Loading…</span>
-      </span>
       <a class="data-link" href="nordic_indoor_beach_volleyball_facilities.csv" download>↓ CSV</a>
     </section>
 
@@ -633,55 +604,6 @@
     </aside>
   </main>
 
-
-  <!--
-    Inline mirror of nordic_indoor_beach_volleyball_facilities.csv.
-    The CSV file in the same folder is the canonical source; this block is a fallback
-    used when the page is opened from disk (file://) and fetch() is therefore blocked.
-    Keep the two in sync: editing the CSV file is enough when the page is served via HTTP;
-    when distributing as a single file, also paste the CSV body below.
-  -->
-  <script type="text/csv" id="venues-csv">
-country,facility_name,town,address,latitude,longitude,coord_precision,facility_type,indoor_sand_courts,outdoor_courts_same_venue,outdoor_address,outdoor_latitude,outdoor_longitude,price_notes,currency,booking_or_info_url,availability_utilization_note,data_cutoff,fact_check_notes
-FINLAND,Biitsihalli (Karkkimalan Beach Volley -halli),Mustasaari (Karkmo),"Karkkimalantie 654 / Karkmovägen 654, 66420 Ruto",63.0253,21.8955,address,dedicated_indoor_sand_hall,1,,,,,EN site footer (dated 2012): EUR 24 / 90 min / 4 players,EUR,https://www.biitsihalli.fi/index_en.htm,Per-slot booking only; no published aggregate utilization %,2026-05-07,"biitsihalli.fi EN: one indoor court; Karkkimalantie 654 Ruto. Geocode: OSM Biitsihalli fitness_centre, Karkmovägen, Karkmo."
-FINLAND,MOU-Areena,Mouhijärvi (Sastamala),"Pynnärinkuja 14, 38460 Sastamala",61.5069,23.0434,address,dedicated_indoor_sand_hall,3,,,,,Prices in venue booking system (biitsille.fi),EUR,https://biitsille.fi/,Per-slot booking only; no published aggregate utilization %,2026-05-07,"biitsille.fi: three full-size courts; Pynnärinkuja 14, 38460 Sastamala. Geocode: Nominatim address."
-FINLAND,Hiekka Beach Club,Vantaa (Varisto),"Martinkyläntie 59, 01720 Vantaa",60.2753,24.8121,address,dedicated_indoor_sand_hall,6,,,,,Courts and events via hiekkabeach.fi and the venue app,EUR,https://www.hiekkabeach.fi/,Per-slot booking only; no published aggregate utilization %,2026-05-07,hiekkabeach.fi/beach-volley: six indoor beach-volley courts; 1500 m² sand; Martinkyläntie 59. Geocode: Nominatim/Photon building Martinkyläntie 59.
-FINLAND,Biitsi Pasila,Helsinki (Tripla / Pasila),"Fredikanterassi 1, 00520 Helsinki",60.1984,24.9303,address,dedicated_indoor_sand_hall,3,,,,,Corporate and events; +26 °C; pricing via venue sales,EUR,https://www.biitsi.fi/pasila,Per-slot booking only; no published aggregate utilization %,2026-05-07,"biitsi.fi/pasila: Pasila / Mall of Tripla Urban Jungle; +26 °C. Geocode: OSM Mall of Tripla, Fredikanterassi 1."
-FINLAND,Biitsi Salmisaari,Helsinki (Salmisaari),"Energiakatu 3, 00180 Helsinki",60.1657,24.9030,address,dedicated_indoor_sand_hall,5,,,,,Quote and event sales (biitsi.fi),EUR,https://www.biitsi.fi/salmisaari,Per-slot booking only; no published aggregate utilization %,2026-05-07,biitsi.fi/salmisaari: Salmisaari indoor beach venue. Geocode: OSM Salmisaaren jäähalli sports_centre.
-FINLAND,Beach Jyväskylä Biitsihalli,Jyväskylä (Tikkakoski),"Vilkkutie 5, 40320 Jyväskylä",62.2922,25.7965,address,dedicated_indoor_sand_hall,1,,,,,Timma booking; info@beachjyvaskyla.fi,EUR,https://www.beachjyvaskyla.fi/,Per-slot booking only; no published aggregate utilization %,2026-05-07,"beachjyvaskyla.fi: one indoor court; Vilkkutie 5, 40320 Jyväskylä; Timma booking. Geocode: Nominatim/Photon Vilkkutie 5 Tikkakoski."
-FINLAND,Teamprint Biitsi (Kokkolan Biitsihalli),Kokkola,"Yrittäjäntie 21, 67100 Kokkola",63.8341,23.1037,address,dedicated_indoor_sand_hall,1,,,,,teamprintbiitsi.fi Hinnasto: 45–68 €/1.5 h by time band (incl. VAT 14%); book Vello,EUR,https://www.teamprintbiitsi.fi/,Self-service PIN access ma–su 06–24; per-slot only,2026-05-07,kokkola.fi and teamprintbiitsi.fi: one beach volley court; Yrittäjäntie 21. Geocode: Nominatim/Photon address.
-FINLAND,Biitsibreikki,Turku (Telekatu / Kärsämäki tehdasalue),"Telekatu 1 halli 4, 20360 Turku",60.4929,22.2905,address,dedicated_indoor_sand_hall,1,,,,,Book by phone or message: 0404 811751; rates on biitsibreikki.fi,EUR,https://www.biitsibreikki.fi/,Staff on site by arrangement only; no public utilization %,2026-05-07,"biitsibreikki.fi: single indoor sand hall; Telekatu 1 halli 4. Geocode: Nominatim Telekatu 1, 20360 Turku."
-FINLAND,Biitsiareena Oulu,Oulu (Äimärautio),"Äimäkuja 69, 90400 Oulu",64.9869,25.4669,address,dedicated_indoor_sand_hall,3,,,,,Avoimet pelivuorot 12 €/h; viikkokisat 8 €/h; viikkovalmennus 25 €/h; calendar varaa.biitsiareena.fi,EUR,https://biitsiareena.fi/,07–23 daily; per-slot booking via varaa.biitsiareena.fi (Oulu Beach Volley Oy),2026-05-07,"biitsiareena.fi: three indoor courts; +24 °C; Äimäkuja 69. Geocode: Nominatim Äimäkuja 69, Äimärautio."
-SWEDEN,Beachvolleyhallen (Oden Sportcenter),Falköping,"Odenbadet, Odengatan 24, 521 43 Falköping",58.1657,13.5640,address,dedicated_indoor_sand_hall,3,4 outdoor beside hall,,,,Municipal Actor booking,SEK,https://www.falkoping.se/uppleva--gora/idrott-motion-och-bad/idrott-inomhus-pa-oden-sportcenter/beachvolleyhallen,Per-slot booking only; no published aggregate utilization %,2026-05-07,Falköpings kommun: hall with three beach courts (tre spelplaner); year-round sand. Geocode: OSM Odenbadet; postal address Odengatan 24.
-SWEDEN,Modulen Beach & Klättercenter,Gislaved,"Bangatan 6, 332 33 Gislaved",57.3072,13.5430,address,dedicated_indoor_sand_hall,3,,,,,Current rates and opening hours on modulen.se,SEK,https://modulen.se/,Per-slot booking via modulen.se,2026-05-07,"volleyboll.se facility directory: Modulen beach volley, Bangatan 6, Gislaved. Geocode: Nominatim Bangatan 6, Gislaved."
-SWEDEN,Beach Center,Göteborg (Kviberg),"Krutvägen 6, 415 27 Göteborg",57.7384,12.0364,address,dedicated_indoor_sand_hall,16,12 outdoor at same site,,,,Venue: 16 indoor and 12 outdoor courts; book via beachcenter.se,SEK,https://beachcenter.se/boka-bana,Per-slot booking only; no published aggregate utilization %,2026-05-07,beachcenter.se/kontakt: Krutvägen 6; 16 indoor + 12 outdoor. Geocode: OSM Beach center pitch.
-SWEDEN,The Beach,Huddinge,"Novavägen 35, 141 44 Huddinge",59.2314,17.9568,address,dedicated_indoor_sand_hall,10,7 outdoor at same site,,,,thebeach.se: non-member indoor 600–840 kr/court per 1.5 h (slot bands); member discount; MATCHi booking window,SEK,https://www.matchi.se/facilities/thebeach,Per-slot booking only; no published aggregate utilization %,2026-05-07,thebeach.se: Novavägen 35 Huddinge; MATCHi facility /thebeach. Geocode: OSM The Beach sports_centre.
-SWEDEN,Beach Arena,Linköping,"Finnögatan 1, 582 78 Linköping",58.4225,15.6692,address,dedicated_indoor_sand_hall,3,,,,,MATCHi multi-pass products 2300–3900 SEK,SEK,https://www.matchi.se/facilities/beacharena,Per-slot booking only; no published aggregate utilization %,2026-05-07,beacharena.se and MATCHi: three courts; Finnögatan 1. Geocode: OSM Beach Arena sports_centre.
-SWEDEN,Hyllie Sportcenter beachvolley,Malmö,"Bollspelsvägen 3, 215 32 Malmö",55.5704,12.9704,address,dedicated_indoor_sand_hall,3,,,,,Malmö stad: balls included in booking,SEK,https://malmo.se/Uppleva-och-gora/Idrott-och-traning/Hyllie-sportcenter/Sporter-foreningar-och-aktorer/Beachvolleyboll.html,Per-slot booking only; no published aggregate utilization %,2026-05-07,Malmö stad: three heated indoor sand courts; Bollspelsvägen 3. Geocode: OSM Hyllie Sportcenter sports_centre.
-SWEDEN,Sthlm Beach Club,Sollentuna (Häggvik),"Norra Malmvägen 80, 191 62 Sollentuna",59.4397,17.9352,address,multi_activity_indoor_beach_venue,7,,,,,boka.beachclub.nu: seven indoor sand courts bookable; padel / pickleball / street basketball separate products,SEK,https://boka.beachclub.nu/boka,Per-slot booking via boka.beachclub.nu,2026-05-08,boka.beachclub.nu booking grid: seven indoor sand courts; Norra Malmvägen 80. Geocode: OSM Stockholm Beach Club pitch.
-SWEDEN,IKSU sport Las Palmas,Umeå,"Sportgränd / Sigurd Wallins väg 1, 907 36 Umeå",63.8186,20.3191,address,dedicated_indoor_sand_hall,4,,,,,Membership booking via GoActive,SEK,https://www.iksu.se/utbud/boll-och-racket/beachvolley/,Per-slot booking only; no published aggregate utilization %,2026-05-07,iksu.se: four indoor beach courts Las Palmas. Geocode: OSM IKSU sport Sportgränd (postal Sigurd Wallins väg 1).
-DENMARK,Hafnia Hallen beach courts,København SV (Valby),"Julius Andersens Vej 6, 2450 København SV",55.6478,12.5103,address,dedicated_indoor_sand_hall,3,,,,,Three indoor sand courts; beach handball and football also advertised; book via hall,DKK,https://hafnia-hallen.dk/hafnia-hallen/om-hafnia-hallen/,Per-slot booking only; no published aggregate utilization %,2026-05-07,hafnia-hallen.dk: tre indendørs sandbaner; Julius Andersens Vej 6. Geocode: Nominatim/Photon house.
-DENMARK,Beachdomen (vinter),Aarhus (Vestereng),"Paludan-Müllers Vej 110b, 8200 Aarhus N",56.1819,10.1766,address,air_dome_seasonal_winter,4,19 summer outdoor at Beachparken (separate site),"Beachparken Vestereng (Vesterengvej, 8200 Aarhus N)",56.1829,10.1827,beachdomen.dk: 50 DKK/player/hour; four winter dome courts and 19 summer outdoor courts at Beachparken,DKK,https://beachdomen.dk/,Winter air dome; outdoor courts summer season at Beachparken,2026-05-07,beachdomen.dk and aarhusbeachvolley.dk: four winter dome courts; 19 outdoor Beachparken. Indoor: Nominatim Paludan-Müllers Vej 110B. Outdoor: OSM Beach Park Aarhus Vesterengvej.
-DENMARK,OBVK indoor sand hall,Odense,"Klokkestøbervej 3, 5230 Odense M",55.3787,10.4115,address,dedicated_indoor_sand_hall,3,6 summer outdoor at Dalumhallen (separate site),"Mejerivej 1 (Dalumhallen), 5260 Odense S",55.3566,10.3777,obvk.dk beach volley: three heated indoor sand courts; six outdoor behind Dalumhallen (Mejerivej 1),DKK,https://obvk.dk/beachvolley-odense/,Per club calendar; no published aggregate utilization %,2026-05-07,obvk.dk: indoor Klokkestøbervej 3; outdoor Mejerivej 1 Dalumhallen. Geocode: Nominatim Klokkestøbervej 3; OSM Dalumhallen outdoor.
-NORWAY,Trondheim Beach Senter,Trondheim (Lademoen),"Ladebekken 4, 7042 Trondheim",63.4437,10.4280,address,dedicated_indoor_sand_hall,1,,,,,"beachsenter.no Om: 160 t sand (Danmark), 40 cm average depth; ceiling clearance 5–6 m",NOK,https://beachsenter.no/?page_id=1241,Per-slot booking only; no published aggregate utilization %,2026-05-07,beachsenter.no Om: one indoor court; Nyhavna / EC Dahls premises. Geocode: Nominatim Ladebekken 4.
-NORWAY,Saaheim Sandhall,Rjukan,"Såheimsveien, 3660 Rjukan",59.8771,8.5837,address,dedicated_indoor_sand_hall,2,,,,,no.wikipedia.org Saaheim Sandhall: two full-size courts; 12 m ceiling; Tinn kommune,NOK,https://no.wikipedia.org/wiki/Saaheim_Sandhall,Unstaffed hall; no public utilization metrics published,2026-05-07,no.wikipedia.org: Saaheim indoor sand hall; Såheimsveien. Geocode: Nominatim Rjukan station area Såheimsveien.
-NORWAY,Åsane Arena sandhall,Bergen (Åsane),"Åsane Senter, 5116 Ulset",60.4640,5.3201,address,dedicated_indoor_sand_hall,3,,,,,MATCHi facility asanearena,NOK,https://www.matchi.se/facilities/asanearena?lang=en_US,Per-slot booking only; no published aggregate utilization %,2026-05-07,MATCHi asanearena: three indoor courts; Åsane. Geocode: Nominatim Åsane senter area.
-NORWAY,Sandhallen (ToppVolley / Sauda idrettspark),Sand (Suldal),"Eidssjøvegen, 4230 Sand, Suldal",59.4939,6.2529,address,dedicated_indoor_sand_hall,3 training OR 2 match OR 1 international field (reconfigurable),,,,,ToppVolley boarding school facility; not a public consumer hall,NOK,http://www.toppvolley.no/index.php/informasjon/elever-utovere/fasiliteter,No public online booking channel listed,2026-05-07,toppvolley.no facilities: Sandhallen layout options. Geocode: OSM Suldal Bad Eidssjøvegen idrettspark.
-NORWAY,Akropolis Sports Club Åssiden,Drammen (Åssiden),"Ingvald Ludvigsens gate 14, 3027 Drammen",59.7525,10.1284,address,gym_with_indoor_sand_court,1,,,,,Sand court included for members; book at Åssiden reception,NOK,http://www.akropolis.no/,Membership venue; no aggregate utilization % published,2026-05-07,akropolis.no / Gymlink: one indoor sand volleyball court Åssiden; Ingvald Ludvigsens gate 14. Geocode: Nominatim house.
-NORWAY,Øksilhallen (ØKSIL Sandvolleyball),Myre (Øksnes / Vesterålen),"Støveien 24, 8430 Myre",68.9181,15.0854,address,dedicated_indoor_sand_hall,1,,,,,ØKSIL booking: members free when all players are members; member with guests 150 NOK/h; non-members 250 NOK/h,NOK,https://www.bookup.no/utleie/Index/5774#___/view:item/id:5774/part:/r:63/mod:book,BookUp listing; all bookers must be over 18; volunteer-run hall,2026-05-09,"BookUp listing title confirms Øksilhallen booking page. ØKSIL booking information lists indoor sandvolleyball hall with year-round booking and prices/rules. Address supplied by local report: Støveien 24, 8430 Myre. Marker uses nearby verified Støveien sports-hall coordinates from handball.no search result for Øksneshallen (Støveien 20: 68.91808, 15.08535), pending exact public geocode for Støveien 24. Court count from local/user report."
-NORWAY,Sandhallen på Gimle (KSK),Kristiansand (Gimle),"Jegersbergveien 3, 4630 Kristiansand S",58.1612,8.0090,area,dedicated_indoor_sand_hall,3,6 main outdoor courts plus temporary courts at same Gimle site,"Gimle sandvolleyballbaner, Kristiansand",58.1612,8.0090,KSK/Gimle facility; indoor hall converted from temporary swimming hall; 3 ordinary courts; up to 9 mini courts,NOK,https://www.godeidrettsanlegg.no/forbildeanlegg/gimle-sandvolleyballbaner,Club/venue use; no public aggregate utilization % published,2026-05-09,Gode idrettsanlegg: former swimming hall converted to sandhall by KSK; three ordinary indoor courts and up to nine mini courts; Gimle site near Kristiansand center. NRK 2025 confirms current hall has three courts and capacity pressure. Address/marker uses adjacent Gimlehallen municipal sports hall (Jegersbergveien 3; coords from public venue listings) because the sandhall itself has no separate street address in public sources.
-ICELAND,Sandkastalinn,Reykjavík,"Viðarhöfði 1, 110 Reykjavík",64.1254,-21.7963,address,dedicated_indoor_sand_hall,2,,,,,sandkastalinn.is Verðskrá,ISK,https://sandkastalinn.is/,Skedda booking sandkastalinn.skedda.com; per-slot only,2026-05-07,sandkastalinn.is: full-size court plus smaller training court; Viðarhöfði 1. Geocode: Nominatim Viðarhöfði 1.
-ESTONIA,Hetk Rannahall,Maardu (Tallinn area),"Kärmu tn 1, 74114 Maardu",59.4576,24.9481,address,dedicated_indoor_sand_hall,2,,,,,"hetkrannahall.ee/booking: Mon–Fri 40 €/h off-peak (09–15), 65 €/h base (07:30–09 + 15–16:30 + 21–23), 85 €/h peak (16:30–21); weekends 65 €/h all day; up to 14 days advance, 4-on-4 max",EUR,https://hetkrannahall.ee/booking,Open 7:30–23:00 daily; per-slot booking via venue,2026-05-08,"hetkrannahall.ee/booking: two sand courts; Kärmu tn 1, 74114 Maardu. Geocode: Nominatim Kärmu 1."
-ESTONIA,RING Sport,Tallinn (Õismäe / Haabersti),"Õismäe tee 130, 13513 Tallinn",59.4174,24.6450,address,multi_activity_indoor_beach_venue,3,,,,,"Sand courts plus basketball, table tennis, sauna/spa, hostel, café; ringsport.ee",EUR,http://www.ringsport.ee/,Per-slot booking; ma–pe 9–22 / la–pü 10–21,2026-05-07,ringsport.ee: three heated full-size sand courts; Õismäe tee 130. Geocode: OSM RING Sport sports_centre.
-ESTONIA,Teras Beach,Tallinn (Haabersti / Õismäe),"Lõuka tn 6, 13521 Tallinn",59.4275,24.6349,address,dedicated_indoor_sand_hall,3,6 summer outdoor at Haven Kakumäe (separate site),"Haven Kakumäe Beach Arena, Hülgemarjamäe 1, 13518 Tallinn",59.4476,24.6133,Indoor +26 °C white sand; terasbeach.ee/booking,EUR,https://www.terasbeach.ee/en/,Open year-round 9:00–22:30; per-slot booking,2026-05-07,terasbeach.ee and spordiregister.ee: three indoor beach-volley courts since 2017; Lõuka 6. Outdoor summer at Haven Kakumäe: six courts. Geocode: Nominatim Lõuka 6.
-LATVIA,Beach Box,Rīga (Teika / VEF),"Brīvības gatve 197B, LV-1039 Rīga",56.9715,24.1584,address,dedicated_indoor_sand_hall,4,5 summer outdoor at Elkor pludmale (separate site Brīvības 201),"Brīvības gatve 201, LV-1039 Rīga",56.9737,24.1597,"Winter (1 Sep–31 May): 24–48 EUR/h weekday by band, 36 EUR/h weekend; min booking 1 h",EUR,https://www.beachbox.lv/site/,Per-slot reservation; daily 09:00–24:00 (07:00–09:00 by appointment),2026-05-07,beachbox.lv: four indoor courts; 1000 m² hall; 8 m ceiling; Brīvības gatve 197B. Outdoor Elkor pludmale five courts Brīvības gatve 201 (summer).
-LATVIA,Beach Arena Rīga (Rīgas volejbola centrs),Rīga (Pētersala-Andrejsala),"Ganību dambis 20A, LV-1045 Rīga",56.9752,24.1160,address,dedicated_indoor_sand_hall,8,,,,,"beacharena.lv: 20 EUR/h (07–16), 38 EUR/h (16–21), 28 EUR/h weekends",EUR,https://beacharena.lv/,Open 07:00–24:00 daily; per-slot booking,2026-05-07,beacharena.lv: eight indoor courts; Ganību dambis 20A. Geocode: OSM Rīgas volejbola centrs.
-LATVIA,Delfi Pludmales centrs (formerly Brazīlija / Ruukki),Mārupe (Riga area),"Lavandas, Mārupes pagasts, LV-2167",56.9212,24.0013,address,dedicated_indoor_sand_hall,6,7 outdoor at same site,,,,Booking and pricing on pludmalescentrs.lv,EUR,https://pludmalescentrs.lv/en,Open 08:00–23:00 with reservation,2026-05-07,"pludmalescentrs.lv: six indoor and seven outdoor courts; 2600 m²; Lavandas, Mārupes pagasts. Geocode: Photon Ruukki Pludmales centrs Lavandas."
-LITHUANIA,Smėlio arena,Vilnius (Justiniškės),"Justiniškių g. 12, 05130 Vilnius",54.7032,25.2194,address,dedicated_indoor_sand_hall,6,,,,,smelioarena.lt and ptl.lt court directory,EUR,https://ptl.lt/en/courts/smelio-arena,Per-slot booking via venue,2026-05-07,ptl.lt: six indoor courts; Justiniškių g. 12. Geocode: OSM Smėlio arena.
-LITHUANIA,Delfi sporto centras,Vilnius (Verkiai),"Ozo g. 14C, 08243 Vilnius",54.7160,25.2760,address,multi_activity_indoor_beach_venue,4,3 outdoor at same site,,,,delfisportocentras.lt and ptl.lt court directory,EUR,https://ptl.lt/en/courts/https-www.delfisportocentras.lt-papludimio-tinklinis-,Per-slot booking; on-site showers and café,2026-05-07,ptl.lt: four indoor and three outdoor courts; Ozo g. 14C. Geocode: OSM Delfi sporto centras.
-LITHUANIA,Rio arena,Kaunas,"Kaunakiemio g. 5, 44351 Kaunas",54.8856,23.9247,address,dedicated_indoor_sand_hall,4,,,,,rioarena.lt and ptl.lt court directory,EUR,https://ptl.lt/en/courts/rio-arena,Per-slot booking via venue,2026-05-07,ptl.lt: four indoor courts; Kaunakiemio g. 5. Geocode: OSM Rio smėlio arena.
-LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kaunas",54.9084,24.0081,address,multi_activity_indoor_beach_venue,4,2 outdoor at same site,,,,bangossportoarena.lt and ptl.lt court directory,EUR,https://ptl.lt/en/courts/bangos-sporto-arena,Per-slot booking via venue,2026-05-07,ptl.lt: four indoor and two outdoor courts; Technikos g. 18. Geocode: Nominatim Technikos g. 18.
-  </script>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
@@ -735,6 +657,15 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
     const escapeHtml = s => String(s).replace(/[&<>"']/g, c => (
       { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]
     ));
+    // Returns a safe http:/https: URL string, or null. Blocks javascript:, data:,
+    // file:, vbscript:, etc. so untrusted CSV data cannot inject scripted links.
+    const safeUrl = raw => {
+      if (!raw) return null;
+      try {
+        const u = new URL(String(raw).trim(), document.baseURI);
+        return (u.protocol === 'http:' || u.protocol === 'https:') ? u.href : null;
+      } catch { return null; }
+    };
     const matchesQuery = (v, q) => {
       if (!q) return true;
       const extra = v.category === 'indoor'
@@ -888,6 +819,12 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
     }).addTo(map);
 
     /* ---------------------- Cluster groups ---------------------- */
+    function clusterCourtTotal(cluster) {
+      let total = 0;
+      for (const m of cluster.getAllChildMarkers()) total += (m.options._courts || 0);
+      return total || cluster.getChildCount();
+    }
+
     const indoorLayer = L.markerClusterGroup({
       showCoverageOnHover: false,
       spiderfyOnMaxZoom: true,
@@ -896,13 +833,8 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       animateAddingMarkers: false,
       disableClusteringAtZoom: 9,
       iconCreateFunction: cluster => {
-        let total = 0;
-        const countries = new Set();
-        for (const m of cluster.getAllChildMarkers()) {
-          total += (m.options._courts || 0);
-          countries.add(m.options._country);
-        }
-        const display = total || cluster.getChildCount();
+        const display = clusterCourtTotal(cluster);
+        const countries = new Set(cluster.getAllChildMarkers().map(m => m.options._country));
         const big = display >= 100;
         const country = countries.size === 1 ? [...countries][0] : null;
         const colour = country ? (COUNTRIES[country]?.color || '#0f172a') : '#0f172a';
@@ -922,10 +854,10 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
       animateAddingMarkers: false,
       disableClusteringAtZoom: 12,
       iconCreateFunction: cluster => {
-        const count = cluster.getChildCount();
+        const display = clusterCourtTotal(cluster);
         return L.divIcon({
           className: 'bv-out-cluster',
-          html: `<span class="bv-out-cluster__inner">${count}</span>`,
+          html: `<span class="bv-out-cluster__inner">${display}</span>`,
           iconSize: [36, 36],
         });
       },
@@ -1316,27 +1248,9 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
 
     /* ---------------------- Boot: indoor CSV ---------------------- */
     async function loadCsv() {
-      try {
-        const res = await fetch('nordic_indoor_beach_volleyball_facilities.csv', { cache: 'no-cache' });
-        if (res.ok) return { source: 'fetch', text: await res.text() };
-      } catch (_) { /* fall through to inline */ }
-      const inline = $('#venues-csv')?.textContent;
-      if (inline && inline.trim()) return { source: 'inline', text: inline };
-      throw new Error('No CSV source available');
-    }
-
-    function showSourceBadge(source) {
-      const badge = $('#source-badge');
-      const text  = $('#source-badge-text');
-      if (!badge) return;
-      badge.hidden = false;
-      if (source === 'fetch') {
-        text.textContent = 'Live from CSV';
-        badge.title = 'Loaded from nordic_indoor_beach_volleyball_facilities.csv via fetch().';
-      } else {
-        text.textContent = 'Inline data';
-        badge.title = 'Loaded from the inline CSV mirror (file:// or fetch unavailable).';
-      }
+      const res = await fetch('nordic_indoor_beach_volleyball_facilities.csv');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.text();
     }
 
     function render() { renderModeNotice(); renderChips(); renderList(); syncMarkers(); }
@@ -1426,7 +1340,7 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
           btn.setAttribute('aria-pressed', btn.dataset.mode === state.category ? 'true' : 'false');
         });
 
-        const { source, text } = await loadCsv();
+        const text = await loadCsv();
         INDOOR_VENUES = parseCsv(text)
           .map(rowToVenue)
           .filter(v => Number.isFinite(v.lat) && Number.isFinite(v.lng));
@@ -1452,7 +1366,6 @@ LITHUANIA,Bangos sporto arena,Kaunas (Petrašiūnai),"Technikos g. 18, 51211 Kau
 
         render();
         attachEvents();
-        showSourceBadge(source);
         syncHash(state.category);
       } catch (err) {
         console.error('[nordic-bv-map] boot failed:', err);
