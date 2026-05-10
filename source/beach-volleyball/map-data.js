@@ -71,12 +71,12 @@
   const VALID_MODES = ['indoor', 'outdoor', 'both'];
 
   // Decodes the hash fragment into the page's UI state. Two formats supported:
-  //   #outdoor                       (legacy: bare mode word)
-  //   #mode=outdoor&country=FI&q=hel (when extra state needs to round-trip)
+  //   #outdoor                              (legacy: bare mode word)
+  //   #mode=outdoor&country=FI&q=hel&id=foo (when extra state needs to round-trip)
   // Anything missing or invalid falls back to defaults.
   function parseHash(hash) {
     const raw = (typeof hash === 'string' ? hash : '').replace(/^#/, '').trim();
-    const defaults = { mode: 'indoor', country: 'all', q: '' };
+    const defaults = { mode: 'indoor', country: 'all', q: '', venue: '' };
     if (!raw) return defaults;
     const lower = raw.toLowerCase();
     if (VALID_MODES.includes(lower)) return { ...defaults, mode: lower };
@@ -86,17 +86,19 @@
       mode:    VALID_MODES.includes(m) ? m : 'indoor',
       country: params.get('country') || 'all',
       q:       params.get('q') || '',
+      venue:   params.get('id') || '',
     };
   }
 
-  // Inverse of parseHash. Uses the bare-word form for default country & query
-  // so the simplest URLs stay short and shareable.
-  function serializeHash({ mode = 'indoor', country = 'all', q = '' } = {}) {
-    const hasExtra = (country && country !== 'all') || !!q;
+  // Inverse of parseHash. Uses the bare-word form for default country, query
+  // and venue id so the simplest URLs stay short and shareable.
+  function serializeHash({ mode = 'indoor', country = 'all', q = '', venue = '' } = {}) {
+    const hasExtra = (country && country !== 'all') || !!q || !!venue;
     if (!hasExtra) return `#${mode}`;
     const parts = [`mode=${mode}`];
     if (country && country !== 'all') parts.push(`country=${encodeURIComponent(country)}`);
     if (q) parts.push(`q=${encodeURIComponent(q)}`);
+    if (venue) parts.push(`id=${encodeURIComponent(venue)}`);
     return '#' + parts.join('&');
   }
 

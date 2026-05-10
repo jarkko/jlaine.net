@@ -1121,6 +1121,10 @@
       document.querySelectorAll('.card').forEach(card => {
         card.setAttribute('aria-current', card.dataset.id === id ? 'true' : 'false');
       });
+      // Reflect the selection in the URL so the page is shareable. Use replace
+      // (no push) so a chain of clicks doesn't fill up history; mode changes
+      // remain the only push points.
+      syncHash(false);
       const v = INDOOR_VENUES.find(x => x.id === id) || OUTDOOR_VENUES.find(x => x.id === id);
       const m = markerById.get(id);
       if (!v || !m) return;
@@ -1291,6 +1295,18 @@
         const id = [...markerById.entries()].find(([, m]) => m === e.popup._source)?.[0];
         if (id && id !== state.selectedId) selectVenue(id, { fly: false, openPopup: false });
       });
+      map.on('popupclose', e => {
+        // Clear selection only if the popup that closed corresponds to it.
+        // Otherwise (an older popup closing while a new one opens) leave
+        // state.selectedId alone — the popupopen above already updated it.
+        const closedId = [...markerById.entries()].find(([, m]) => m === e.popup._source)?.[0];
+        if (closedId && closedId === state.selectedId) {
+          state.selectedId = null;
+          document.querySelectorAll('.card[aria-current="true"]')
+            .forEach(c => c.setAttribute('aria-current', 'false'));
+          syncHash(false);
+        }
+      });
       $('#sidebar-toggle').addEventListener('click', () => setSidebar(!state.sidebarOpen));
       $('#sidebar-close').addEventListener('click',  () => setSidebar(false));
       $('#sidebar-backdrop').addEventListener('click', () => setSidebar(false));
@@ -1305,38 +1321,56 @@
         trapSidebarFocus(e);
       });
       document.querySelectorAll('.mode-btn').forEach(btn => {
-        btn.addEventListener('click', () => setMode(btn.dataset.mode));
+        btn.addEventListener('click', () => {
+          // Close any open venue popup before switching modes so the URL
+          // doesn't keep a stale id= for a venue that may not exist in the
+          // new mode. popupclose then drops state.selectedId & syncs the URL.
+          map.closePopup();
+          setMode(btn.dataset.mode);
+        });
       });
 
-      // Browser back/forward through mode/country/query history
+      // Browser back/forward through mode/country/query/venue history
       window.addEventListener('hashchange', () => {
         const next = parseHash(location.hash);
-        const modeChanged = next.mode !== state.category;
+        const modeChanged  = next.mode  !== state.category;
+        const venueChanged = next.venue !== (state.selectedId || '');
         applyHashToState();
         if (modeChanged) {
           setMode(state.category);
         } else {
           render();
         }
+        if (venueChanged) {
+          if (next.venue) {
+            selectVenue(next.venue, { fly: true, openPopup: true });
+          } else {
+            map.closePopup();
+          }
+        }
       });
     }
 
     /* ---------------------- Hash-based navigation ---------------------- */
     function applyHashToState() {
-      const { mode, country, q } = parseHash(location.hash);
-      state.category = mode;
-      state.country  = country;
-      state.query    = q;
+      const { mode, country, q, venue } = parseHash(location.hash);
+      state.category   = mode;
+      state.country    = country;
+      state.query      = q;
+      state.selectedId = venue || null;
       const search = $('#search');
       if (search && search.value !== q) search.value = q;
     }
 
     // push=true creates a new history entry (use for mode changes); push=false
-    // replaces the current entry (use for search/country tweaks that shouldn't
-    // pollute the back button).
+    // replaces the current entry (use for search/country tweaks and venue
+    // selection that shouldn't pollute the back button).
     function syncHash(push = false) {
       const target = serializeHash({
-        mode: state.category, country: state.country, q: state.query,
+        mode:    state.category,
+        country: state.country,
+        q:       state.query,
+        venue:   state.selectedId || '',
       });
       if (location.hash !== target) {
         if (push) history.pushState(null, '', target);
@@ -1380,9 +1414,25 @@
         });
         $('#map').classList.add('is-ready');
 
+        // Drop a venue id from the URL if it doesn't match anything we loaded;
+        // it's almost certainly a stale link, and silently ignoring is kinder
+        // than leaving an unselectable id stuck in the address bar.
+        if (state.selectedId
+            && !INDOOR_VENUES.some(v => v.id === state.selectedId)
+            && !OUTDOOR_VENUES.some(v => v.id === state.selectedId)) {
+          state.selectedId = null;
+        }
+
         render();
         attachEvents();
-        syncHash(false);
+
+        // Restore the selected venue from the URL after attachEvents so the
+        // popupopen handler is wired and won't double-fire.
+        if (state.selectedId) {
+          selectVenue(state.selectedId, { fly: true, openPopup: true });
+        } else {
+          syncHash(false);
+        }
       } catch (err) {
         console.error('[nordic-bv-map] boot failed:', err);
         $('#map').classList.add('is-ready');  // still reveal the map for tile fallback

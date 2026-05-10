@@ -128,6 +128,50 @@ test.describe('beach volleyball map', () => {
     await expect(page.locator('.map-wrap')).not.toHaveAttribute('inert', '');
   });
 
+  test('venue permalink boots with the popup open', async ({ page }) => {
+    const failures = pageErrors(page);
+    await page.goto('/beach-volleyball/#mode=indoor&id=fi-biitsi-pasila');
+    await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
+
+    // Popup is open with the matching venue
+    await expect(page.locator('.leaflet-popup-content .popup__name')).toContainText('Biitsi Pasila');
+    // URL is preserved verbatim
+    await expect(page).toHaveURL(/#mode=indoor&id=fi-biitsi-pasila$/);
+    expect(failures).toEqual([]);
+  });
+
+  test('clicking a card writes id= to the URL; closing the popup removes it', async ({ page }) => {
+    await page.goto('/beach-volleyball/');
+    await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
+
+    await page.getByRole('button', { name: /venues/i }).click();
+    await page.locator('#search').fill('Biitsi Pasila');
+    await expect(page.locator('#venues .card')).toHaveCount(1);
+
+    await page.locator('#venues .card').first().click();
+    await expect(page).toHaveURL(/[?&#]id=fi-biitsi-pasila/);
+    await expect(page.locator('.leaflet-popup-content .popup__name')).toContainText('Biitsi Pasila');
+
+    // Close the sidebar so its backdrop doesn't intercept the popup-close click.
+    await page.keyboard.press('Escape');
+    await expect(page.locator('#sidebar')).not.toHaveClass(/is-open/);
+
+    // Close the popup → id should disappear from the URL
+    await page.locator('.leaflet-popup-close-button').click();
+    await expect(page).not.toHaveURL(/[?&#]id=/);
+  });
+
+  test('stale venue id in URL is silently ignored', async ({ page }) => {
+    const failures = pageErrors(page);
+    await page.goto('/beach-volleyball/#mode=indoor&id=this-venue-does-not-exist');
+    await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
+
+    // No popup, and the id is gone from the URL
+    await expect(page.locator('.leaflet-popup-content')).toHaveCount(0);
+    await expect(page).not.toHaveURL(/[?&#]id=/);
+    expect(failures).toEqual([]);
+  });
+
   test('skip link is keyboard-reachable and opens the venue directory', async ({ page }) => {
     await page.goto('/beach-volleyball/');
     await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
