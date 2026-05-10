@@ -1,19 +1,23 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nordic &amp; Baltic Beach Volleyball — indoor halls and outdoor sand courts map</title>
-  <meta name="description" content="An interactive map and directory of indoor beach-volleyball halls and outdoor sand courts across Finland, Sweden, Norway, Denmark, Iceland, Estonia, Latvia and Lithuania." />
-  <meta name="color-scheme" content="light" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nordic &amp; Baltic Beach Volleyball — indoor halls and outdoor sand courts map</title>
+    <meta
+      name="description"
+      content="An interactive map and directory of indoor beach-volleyball halls and outdoor sand courts across Finland, Sweden, Norway, Denmark, Iceland, Estonia, Latvia and Lithuania."
+    />
+    <meta name="color-scheme" content="light" />
 
-  <!--
-    Page-scoped CSP. unsafe-inline is unfortunate but the inline <script>
-    and <style> blocks are hand-written, audited, and would otherwise
-    require hash-based CSP that updates on every edit. CSV-derived URLs
-    are sanitized through safeUrl() before being rendered as <a href>.
+    <!--
+    Page-scoped CSP. unsafe-inline is only needed for the tiny pre-paint
+    mode-button script; CSV-derived URLs are sanitized through safeUrl()
+    before being rendered as <a href>.
   -->
-  <meta http-equiv="Content-Security-Policy" content="
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
     default-src 'self';
     script-src  'self' https://unpkg.com 'unsafe-inline';
     style-src   'self' https://fonts.googleapis.com https://unpkg.com 'unsafe-inline';
@@ -23,1508 +27,170 @@
     object-src  'none';
     base-uri    'self';
     form-action 'self';
-  ">
+  "
+    />
 
-  <link rel="icon" type="image/svg+xml" href="mikasa-ball.svg" />
+    <link rel="icon" type="image/svg+xml" href="mikasa-ball.svg" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin="anonymous" />
-  <link rel="stylesheet"
-        href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
-        integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV"
-        crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+      integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV"
+      crossorigin="anonymous"
+    />
 
-  <style>
-    :root {
-      --bg:          #fbf7ee;
-      --bg-card:     #ffffff;
-      --bg-soft:     #f5efe1;
-      --line:        rgba(15, 23, 42, .08);
-      --line-strong: rgba(15, 23, 42, .16);
-      --ink:         #0f172a;
-      --ink-soft:    #475569;
-      --ink-faint:   #94a3b8;
-      --accent:      #0f766e;
-      --accent-soft: rgba(15, 118, 110, .12);
-      --out-color:   #047857;
-      --out-soft:    rgba(4, 120, 87, .12);
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" id="skip-link" href="#sidebar">Skip to venue directory</a>
 
-      --c-fi: #1f4fb6;
-      --c-se: #d8a200;
-      --c-no: #c8102e;
-      --c-dk: #c8487a;
-      --c-is: #14b8a6;
-
-      --shadow-sm: 0 1px 2px rgba(15, 23, 42, .06);
-      --shadow-md: 0 8px 24px -8px rgba(15, 23, 42, .18);
-      --radius:    14px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { height: 100%; }
-
-    /* Keyboard skip link: visually hidden until focused. */
-    .skip-link {
-      position: absolute;
-      left: 8px; top: 8px;
-      background: var(--ink); color: #fff;
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      text-decoration: none;
-      transform: translateY(-150%);
-      transition: transform .15s ease;
-      z-index: 9999;
-    }
-    .skip-link:focus { transform: translateY(0); outline: 3px solid var(--accent-soft); }
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      display: grid;
-      grid-template-rows: auto 1fr;
-      min-height: 100vh;
-      min-height: 100svh;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; }
-    button { font: inherit; }
-    h1, h2, h3 {
-      font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
-      font-weight: 700;
-      letter-spacing: -.01em;
-      margin: 0;
-    }
-
-    /* ---------- Topbar ---------- */
-    .topbar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 20px;
-      background: linear-gradient(180deg, #fff 0%, #fbf6e8 100%);
-      border-bottom: 1px solid var(--line);
-    }
-    .topbar__mark {
-      flex: none;
-      width: 32px; height: 32px;
-    }
-    .topbar__mark img {
-      width: 100%; height: 100%;
-      display: block;
-    }
-    .topbar__title { min-width: 0; flex: 1; }
-    .topbar__title h1 { font-size: 17px; line-height: 1.2; }
-    .topbar__title p { margin: 2px 0 0; color: var(--ink-soft); font-size: 12px; }
-
-    /* ---------- Mode switch ---------- */
-    .mode-switch {
-      flex: none;
-      display: flex;
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 3px;
-      gap: 2px;
-    }
-    .mode-btn {
-      border: 0;
-      background: transparent;
-      border-radius: 999px;
-      padding: 5px 12px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--ink-soft);
-      cursor: pointer;
-      transition: background .15s, color .15s, box-shadow .15s;
-      white-space: nowrap;
-      line-height: 1.4;
-    }
-    .mode-btn[aria-pressed="true"] {
-      background: #fff;
-      color: var(--ink);
-      box-shadow: var(--shadow-sm);
-    }
-    .mode-btn:not([aria-pressed="true"]):hover { color: var(--ink); }
-
-    /* ---------- Layout ---------- */
-    .layout {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr;
-      min-height: 0;
-    }
-
-    /* ---------- Sidebar (overlay drawer) ---------- */
-    .sidebar {
-      position: absolute;
-      top: 0; bottom: 0; left: 0;
-      width: min(380px, 92vw);
-      z-index: 700;
-      display: flex;
-      flex-direction: column;
-      background: var(--bg);
-      border-right: 1px solid var(--line);
-      box-shadow: 14px 0 30px -18px rgba(15, 23, 42, .35);
-      transform: translateX(-100%);
-      transition: transform .28s cubic-bezier(.4, 0, .2, 1), box-shadow .28s ease;
-      min-height: 0;
-    }
-    .sidebar.is-open { transform: translateX(0); }
-    .sidebar:not(.is-open) { box-shadow: none; }
-
-    .sidebar-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(15, 23, 42, .14);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .28s ease;
-      z-index: 690;
-    }
-    .layout.is-open .sidebar-backdrop {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .sidebar__header {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 12px;
-      padding: 14px 16px 0 20px;
-    }
-    .sidebar__title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-weight: 700;
-      font-size: 16px;
-      letter-spacing: -.01em;
-      margin: 0;
-    }
-    .sidebar__close {
-      width: 32px; height: 32px;
-      display: grid; place-items: center;
-      border: 1px solid var(--line);
-      background: #fff;
-      border-radius: 10px;
-      color: var(--ink-soft);
-      cursor: pointer;
-      transition: border-color .15s, color .15s, transform .1s;
-    }
-    .sidebar__close:hover { border-color: var(--line-strong); color: var(--ink); }
-    .sidebar__close:active { transform: scale(0.96); }
-    .sidebar__close svg { width: 16px; height: 16px; }
-
-    .sidebar-toggle {
-      position: absolute;
-      top: 14px; left: 14px;
-      z-index: 510;
-      display: inline-flex; align-items: center; gap: 9px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 9px 14px 9px 11px;
-      font-family: inherit; font-size: 13px; font-weight: 500;
-      color: var(--ink);
-      cursor: pointer;
-      box-shadow: var(--shadow-md);
-      transition: border-color .15s, transform .12s;
-    }
-    .sidebar-toggle:hover { border-color: var(--line-strong); transform: translateY(-1px); }
-    .sidebar-toggle:active { transform: translateY(0); }
-    .sidebar-toggle svg { width: 18px; height: 18px; color: var(--ink-soft); flex: none; }
-    .sidebar-toggle__count {
-      background: var(--ink); color: #fff;
-      border-radius: 999px;
-      padding: 1px 8px 2px;
-      font-size: 11.5px; font-weight: 600;
-      letter-spacing: .01em;
-    }
-
-    .filters { padding: 12px 20px 12px; border-bottom: 1px solid var(--line); }
-    .search {
-      display: flex; align-items: center; gap: 10px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 10px 12px;
-      box-shadow: var(--shadow-sm);
-      transition: border-color .15s ease, box-shadow .15s ease;
-    }
-    .search:focus-within {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px var(--accent-soft);
-    }
-    .search input {
-      flex: 1;
-      border: 0; outline: 0; background: transparent;
-      font: inherit; color: inherit; min-width: 0;
-    }
-    .search svg { width: 18px; height: 18px; color: var(--ink-faint); flex: none; }
-
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-    .chip {
-      cursor: pointer;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--ink-soft);
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 12.5px;
-      display: inline-flex; align-items: center; gap: 6px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .chip:hover { border-color: var(--line-strong); }
-    .chip[aria-pressed="true"] {
-      background: var(--ink); color: #fff; border-color: var(--ink);
-    }
-    .chip__dot { width: 8px; height: 8px; border-radius: 50%; }
-
-    /* Mode notice banner */
-    .mode-notice {
-      margin-top: 10px;
-      padding: 6px 10px;
-      border-radius: 8px;
-      background: #ecfdf5;
-      border: 1px solid #bbf7d0;
-      color: #065f46;
-      font-size: 11.5px;
-      line-height: 1.45;
-    }
-
-    .venue-list {
-      list-style: none;
-      margin: 0; padding: 12px;
-      overflow-y: auto;
-      flex: 1;
-      display: flex; flex-direction: column; gap: 8px;
-      scrollbar-gutter: stable;
-    }
-    .venue-list__item { margin: 0; padding: 0; }
-
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      cursor: pointer;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 12px;
-      text-align: left;
-      width: 100%;
-      transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
-    }
-    .card:hover {
-      border-color: var(--line-strong);
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-md);
-    }
-    .card[aria-current="true"] {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow-md);
-    }
-    .card--outdoor[aria-current="true"] {
-      border-color: var(--out-color);
-      box-shadow: 0 0 0 3px var(--out-soft), var(--shadow-md);
-    }
-    .card--skeleton { pointer-events: none; cursor: default; }
-    .card--skeleton .skel {
-      background: linear-gradient(90deg,
-        rgba(15,23,42,0.06) 0%,
-        rgba(15,23,42,0.12) 50%,
-        rgba(15,23,42,0.06) 100%);
-      background-size: 200% 100%;
-      animation: bv-skel 1.4s ease-in-out infinite;
-      border-radius: 6px;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .card--skeleton .skel--block { display: block; }
-    .card--skeleton .skel--name  { height: 13px; width: 70%; }
-    .card--skeleton .skel--town  { height: 11px; width: 50%; margin-top: 6px; }
-    .card--skeleton .skel--tag   { height: 18px; width: 56px; border-radius: 999px; margin-top: 8px; margin-right: 6px; }
-    .card--skeleton .skel--flag  { width: 36px; height: 36px; border-radius: 10px; }
-    @keyframes bv-skel {
-      0%   { background-position:  100% 0; }
-      100% { background-position: -100% 0; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.001ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-    .card__flag {
-      position: relative;
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      display: grid; place-items: center;
-      background: var(--bg-soft);
-      font-size: 18px;
-      flex: none;
-    }
-    .card__flag::after {
-      content: '';
-      position: absolute; right: -3px; bottom: -3px;
-      width: 12px; height: 12px; border-radius: 50%;
-      border: 2px solid var(--bg-card);
-      background: var(--country, var(--accent));
-    }
-    .card__body { min-width: 0; }
-    .card__name { font-weight: 600; font-size: 14.5px; line-height: 1.3; }
-    .card__town { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
-    .card__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-
-    .tag {
-      font-size: 11.5px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: var(--bg-soft);
-      color: var(--ink-soft);
-      white-space: nowrap;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .tag--strong { background: var(--ink); color: #fff; }
-    .tag--out    { background: #ecfdf5; color: #047857; }
-    .tag--note   { background: #fef3c7; color: #92400e; }
-
-    .sidebar__hint {
-      padding: 10px 16px 16px;
-      font-size: 12px;
-      color: var(--ink-soft);   /* ink-faint (#94a3b8) fails WCAG AA; ink-soft (#475569) = 7.6:1 */
-      border-top: 1px solid var(--line);
-      margin: 0;
-    }
-
-    /* ---------- Map ---------- */
-    .map-wrap { position: relative; min-height: 0; }
-    #map { position: absolute; inset: 0; }
-    #map.leaflet-container { background: #e8eef2; font: inherit; }
-    /* Hide the map until the boot fitBounds has run, so users never see the
-       transient "default view → real view" jump. */
-    #map { opacity: 0; transition: opacity .2s ease-out; }
-    #map.is-ready { opacity: 1; }
-
-    .data-link {
-      position: absolute;
-      bottom: 14px; right: 14px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 8px 14px;
-      font-size: 12.5px;
-      font-weight: 500;
-      color: var(--ink);
-      text-decoration: none;
-      box-shadow: var(--shadow-md);
-      z-index: 500;
-    }
-    .data-link:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ---------- Indoor markers ---------- */
-    .bv-marker { background: transparent; border: 0; }
-    .bv-marker__dot {
-      display: flex;
-      align-items: center; justify-content: center;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: var(--country);
-      border: 3px solid #fff;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, .25);
-      color: #fff;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.01em;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .bv-marker.is-active .bv-marker__dot {
-      transform: scale(1.18);
-      box-shadow: 0 0 0 4px var(--accent-soft), 0 4px 12px rgba(15, 23, 42, .35);
-      z-index: 2;
-    }
-
-    .bv-cluster { background: transparent !important; border: 0 !important; }
-    .bv-cluster__inner {
-      display: flex;
-      align-items: center; justify-content: center;
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: #0f172a;
-      border: 3px solid #fff;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, .3);
-      color: #fff;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.01em;
-      transition: transform .15s ease;
-    }
-    .bv-cluster:hover .bv-cluster__inner { transform: scale(1.08); }
-    .bv-cluster--lg .bv-cluster__inner { width: 48px; height: 48px; font-size: 15px; }
-
-    /* ---------- Outdoor markers ---------- */
-    .bv-out-marker { background: transparent; border: 0; }
-    .bv-out-marker__dot {
-      display: flex;
-      align-items: center; justify-content: center;
-      width: 22px; height: 22px;
-      border-radius: 5px;
-      background: var(--out-color);
-      border: 2px solid #fff;
-      box-shadow: 0 2px 5px rgba(15, 23, 42, .2);
-      color: #fff;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      line-height: 1;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .bv-out-marker.is-active .bv-out-marker__dot {
-      transform: scale(1.3);
-      box-shadow: 0 0 0 3px var(--out-soft), 0 3px 8px rgba(15, 23, 42, .3);
-    }
-
-    .bv-out-cluster { background: transparent !important; border: 0 !important; }
-    .bv-out-cluster__inner {
-      display: flex;
-      align-items: center; justify-content: center;
-      width: 36px; height: 36px;
-      border-radius: 8px;
-      background: var(--out-color);
-      border: 2.5px solid #fff;
-      box-shadow: 0 3px 10px rgba(15, 23, 42, .25);
-      color: #fff;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1;
-      transition: transform .15s ease;
-    }
-    .bv-out-cluster:hover .bv-out-cluster__inner { transform: scale(1.06); }
-
-    /* ---------- Popup ---------- */
-    .leaflet-popup-content-wrapper {
-      border-radius: 14px;
-      box-shadow: var(--shadow-md);
-      padding: 0;
-    }
-    .leaflet-popup-content { margin: 0; padding: 14px 16px; font: inherit; }
-    .popup__name {
-      font-family: 'Fraunces', Georgia, serif;
-      font-weight: 700;
-      font-size: 16px;
-      margin: 0 0 2px;
-    }
-    .popup__meta { font-size: 12.5px; color: var(--ink-soft); margin-bottom: 8px; }
-    .popup__row  { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
-    .popup__price{ font-size: 12.5px; color: var(--ink); margin: 0 0 10px; line-height: 1.45; }
-    .popup__cta {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--ink); color: #fff;
-      padding: 6px 12px; border-radius: 999px;
-      text-decoration: none; font-size: 12.5px; font-weight: 500;
-    }
-    /*
-     * Leaflet sets `.leaflet-container a { color: #0078A8 }` (specificity 0-1-1)
-     * which beats `.popup__cta { color }` (0-1-0).  Bump specificity to 0-2-0
-     * so our white-on-dark text wins regardless of visited/hover state.
-     */
-    .leaflet-container .popup__cta,
-    .leaflet-container .popup__cta:visited,
-    .leaflet-container .popup__cta:hover  { color: #fff; }
-    .leaflet-container .popup__cta:hover  { background: var(--accent); }
-    .popup__cta--out { background: var(--out-color); }
-    .leaflet-container .popup__cta--out:hover { background: #065f46; }
-
-    /* ---------- Focus-visible (keyboard navigation) ---------- */
-    /*
-     * Suppress the browser's default outline on pointer/touch clicks,
-     * but keep a clear ring for keyboard navigation.
-     */
-    :focus:not(:focus-visible) { outline: none; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-    .card:focus-visible,
-    .chip:focus-visible       { outline-offset: 3px; }
-
-    .popup__cta:focus-visible {
-      outline: 2px solid #fff;
-      outline-offset: 2px;
-      box-shadow: 0 0 0 4px var(--accent);
-    }
-    .popup__cta--out:focus-visible {
-      box-shadow: 0 0 0 4px var(--out-color);
-    }
-
-    /* ---------- Responsive ---------- */
-    @media (max-width: 700px) {
-      .topbar { padding: 8px 12px; gap: 8px; }
-      .topbar__title h1 { font-size: 14px; }
-      .topbar__title p { display: none; }
-      .mode-btn { padding: 4px 9px; font-size: 11px; }
-      .sidebar {
-        top: auto; right: 0; bottom: 0; left: 0;
-        width: 100%;
-        max-height: min(82svh, 640px);
-        border-right: 0;
-        border-top: 1px solid var(--line);
-        border-radius: 18px 18px 0 0;
-        box-shadow: 0 -18px 40px -24px rgba(15, 23, 42, .5);
-        transform: translateY(105%);
-      }
-      .sidebar.is-open { transform: translateY(0); }
-      .sidebar__header { padding: 14px 14px 0; }
-      .filters { padding: 12px 14px; }
-      .venue-list {
-        padding: 10px;
-        padding-bottom: calc(14px + env(safe-area-inset-bottom));
-      }
-      .card { padding: 12px; gap: 10px; }
-      .card__flag { width: 32px; height: 32px; border-radius: 9px; }
-      .sidebar-toggle {
-        top: 10px; left: 10px;
-        padding: 8px 12px 8px 10px;
-      }
-      .data-link {
-        right: 10px;
-        bottom: calc(10px + env(safe-area-inset-bottom));
-        padding: 7px 11px;
-      }
-      .leaflet-popup-content { max-width: min(280px, calc(100vw - 56px)); }
-    }
-  </style>
-</head>
-<body>
-  <a class="skip-link" id="skip-link" href="#sidebar">Skip to venue directory</a>
-
-  <header class="topbar">
-    <span class="topbar__mark"><img src="mikasa-ball.svg" alt="" width="32" height="32" /></span>
-    <div class="topbar__title">
-      <h1>Nordic &amp; Baltic Beach Volleyball</h1>
-      <p>Indoor sand halls &amp; outdoor courts — Finland, Sweden, Norway, Denmark, Iceland, Estonia, Latvia &amp; Lithuania</p>
-    </div>
-    <div class="mode-switch" id="mode-switch" role="group" aria-label="Display mode">
-      <button class="mode-btn" data-mode="indoor"  aria-pressed="false">Indoor</button>
-      <button class="mode-btn" data-mode="outdoor" aria-pressed="false">Outdoor</button>
-      <button class="mode-btn" data-mode="both"    aria-pressed="false">Both</button>
-    </div>
-    <script>
-      // Synchronously flip the correct mode button BEFORE the browser paints,
-      // so loading /#outdoor or /#both doesn't briefly highlight "Indoor".
-      // Duplicates a sliver of map-data.js' parseHash because that module
-      // loads at end-of-body, after the topbar has already painted.
-      (function () {
-        var raw  = (location.hash || '').replace(/^#/, '').trim().toLowerCase();
-        var rx   = /^(indoor|outdoor|both)$/;
-        var mode = rx.test(raw) ? raw
-                  : (new URLSearchParams(raw)).get('mode') || 'indoor';
-        if (!rx.test(mode)) mode = 'indoor';
-        var btns = document.getElementById('mode-switch').querySelectorAll('.mode-btn');
-        for (var i = 0; i < btns.length; i++) {
-          btns[i].setAttribute('aria-pressed', btns[i].dataset.mode === mode ? 'true' : 'false');
-        }
-      })();
-    </script>
-  </header>
-
-  <main class="layout" id="layout">
-    <section class="map-wrap" aria-label="Map">
-      <div id="map" aria-label="Interactive map of beach-volleyball venues"></div>
-
-      <button class="sidebar-toggle" id="sidebar-toggle"
-              aria-controls="sidebar" aria-expanded="false"
-              title="Show venue directory">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="4" y1="6" x2="20" y2="6"/>
-          <line x1="4" y1="12" x2="20" y2="12"/>
-          <line x1="4" y1="18" x2="20" y2="18"/>
-        </svg>
-        <span>Venues</span>
-        <span class="sidebar-toggle__count" id="sidebar-toggle-count">…</span>
-      </button>
-
-      <a class="data-link" id="data-link"
-         href="nordic_indoor_beach_volleyball_facilities.csv"
-         download>↓ Indoor CSV</a>
-    </section>
-
-    <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
-
-    <aside class="sidebar" id="sidebar"
-           role="dialog" aria-modal="true" aria-labelledby="sidebar-title"
-           tabindex="-1">
-      <div class="sidebar__header">
-        <h2 class="sidebar__title" id="sidebar-title">Venues</h2>
-        <button class="sidebar__close" id="sidebar-close" aria-label="Close venue directory">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="6" y1="6" x2="18" y2="18"/>
-            <line x1="6" y1="18" x2="18" y2="6"/>
-          </svg>
-        </button>
+    <header class="topbar">
+      <span class="topbar__mark"><img src="mikasa-ball.svg" alt="" width="32" height="32" /></span>
+      <div class="topbar__title">
+        <h1>Nordic &amp; Baltic Beach Volleyball</h1>
+        <p>
+          Indoor sand halls &amp; outdoor courts — Finland, Sweden, Norway, Denmark, Iceland, Estonia, Latvia &amp;
+          Lithuania
+        </p>
       </div>
-      <div class="filters">
-        <label class="search" aria-label="Search venues">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="7"></circle>
-            <path d="M20 20l-3.5-3.5"></path>
-          </svg>
-          <input id="search" type="search"
-                 placeholder="Search venues, towns, addresses…" autocomplete="off" />
-        </label>
-        <div class="chips" id="chips" aria-label="Filter venues by country"></div>
-        <p class="mode-notice" id="mode-notice" hidden></p>
+      <div class="mode-switch" id="mode-switch" role="group" aria-label="Display mode">
+        <button class="mode-btn" data-mode="indoor" aria-pressed="false">Indoor</button>
+        <button class="mode-btn" data-mode="outdoor" aria-pressed="false">Outdoor</button>
+        <button class="mode-btn" data-mode="both" aria-pressed="false">Both</button>
       </div>
-      <ol class="venue-list" id="venues" role="list"></ol>
-      <p class="sidebar__hint" id="hint" role="status" aria-live="polite"></p>
-    </aside>
-  </main>
-
-
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-          crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"
-          integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr"
-          crossorigin="anonymous"></script>
-  <script src="map-data.js"></script>
-
-  <script>
-    'use strict';
-
-    /* ---------------------- Pure helpers (see map-data.js for unit-tested impls) ---------------------- */
-    const {
-      COUNTRIES, COUNTRY_FROM_NAME, TYPE_LABELS, OUTDOOR_COLOR, VALID_MODES,
-      INDOOR_REQUIRED_COLUMNS, OUTDOOR_REQUIRED_COLUMNS,
-      escapeHtml, safeUrl, slug, matchesQuery, debounce,
-      parseCsv, parseCourtValue, parseOutdoorValue, validateCsvSchema,
-      rowToVenue, rowToOutdoor, clusterCourtTotal, ctaLabelFor,
-      parseHash, serializeHash,
-    } = window.BVMap;
-
-    const CARD_LIMIT = 100;  // max list cards rendered at once
-
-    /* ---------------------- DOM helpers ---------------------- */
-    const $  = sel => document.querySelector(sel);
-    const ce = (tag, attrs = {}, ...kids) => {
-      const el = document.createElement(tag);
-      for (const [k, v] of Object.entries(attrs)) {
-        if (k === 'class') el.className = v;
-        else if (k === 'dataset') Object.assign(el.dataset, v);
-        else if (k.startsWith('on') && typeof v === 'function') el.addEventListener(k.slice(2), v);
-        else if (v !== false && v != null) el.setAttribute(k, v);
-      }
-      for (const kid of kids) {
-        if (kid == null || kid === false) continue;
-        el.append(kid.nodeType ? kid : document.createTextNode(kid));
-      }
-      return el;
-    };
-
-    /* ---------------------- State ---------------------- */
-    const state = {
-      category: 'indoor',   // 'indoor' | 'outdoor' | 'both'
-      country: 'all',
-      query: '',
-      selectedId: null,
-      sidebarOpen: false,
-      returnFocusTo: null,
-    };
-    let INDOOR_VENUES  = [];
-    let OUTDOOR_VENUES = [];
-    let outdoorLoaded  = false;
-    let outdoorLoading = null;  // Promise while loading
-
-    /* ---------------------- Map ---------------------- */
-    const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const map = L.map('map', {
-      zoomControl: false,
-      scrollWheelZoom: true,
-      worldCopyJump: false,
-      fadeAnimation:        !reducedMotion(),
-      zoomAnimation:        !reducedMotion(),
-      markerZoomAnimation:  !reducedMotion(),
-    }).setView([63, 16], 4);
-    L.control.zoom({ position: 'topright' }).addTo(map);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
-
-    /* ---------------------- Cluster groups ---------------------- */
-    const indoorLayer = L.markerClusterGroup({
-      showCoverageOnHover: false,
-      spiderfyOnMaxZoom: true,
-      maxClusterRadius: zoom => zoom < 5 ? 26 : zoom < 7 ? 18 : 12,
-      zoomToBoundsOnClick: true,
-      animateAddingMarkers: false,
-      disableClusteringAtZoom: 9,
-      iconCreateFunction: cluster => {
-        const display = clusterCourtTotal(cluster);
-        const countries = new Set(cluster.getAllChildMarkers().map(m => m.options._country));
-        const big = display >= 100;
-        const country = countries.size === 1 ? [...countries][0] : null;
-        const colour = country ? (COUNTRIES[country]?.color || '#0f172a') : '#0f172a';
-        return L.divIcon({
-          className: 'bv-cluster' + (big ? ' bv-cluster--lg' : ''),
-          html: `<span class="bv-cluster__inner" style="background:${colour}">${display}</span>`,
-          iconSize: big ? [48, 48] : [40, 40],
-        });
-      },
-    }).addTo(map);
-
-    const outdoorLayer = L.markerClusterGroup({
-      showCoverageOnHover: false,
-      spiderfyOnMaxZoom: true,
-      maxClusterRadius: zoom => zoom < 6 ? 60 : zoom < 9 ? 40 : 20,
-      zoomToBoundsOnClick: true,
-      animateAddingMarkers: false,
-      disableClusteringAtZoom: 12,
-      iconCreateFunction: cluster => {
-        const display = clusterCourtTotal(cluster);
-        return L.divIcon({
-          className: 'bv-out-cluster',
-          html: `<span class="bv-out-cluster__inner">${display}</span>`,
-          iconSize: [36, 36],
-        });
-      },
-    }); // not added to map until outdoor mode is activated
-
-    const markerById = new Map();
-
-    /* ---------------------- Marker building ---------------------- */
-    const MARKER_TYPES = {
-      indoor: {
-        iconSize: [32, 32], iconAnchor: [16, 16], popupAnchor: [0, -16],
-        popupOpts: { maxWidth: 320, minWidth: 240 },
-        icon: v => {
-          const colour = COUNTRIES[v.country]?.color || '#0f172a';
-          return {
-            className: 'bv-marker',
-            html: `<span class="bv-marker__dot" style="--country:${colour}">${escapeHtml(v.courtPinLabel)}</span>`,
-          };
-        },
-        clusterCount: v => v.courtCount,
-      },
-      outdoor: {
-        iconSize: [22, 22], iconAnchor: [11, 11], popupAnchor: [0, -11],
-        popupOpts: { maxWidth: 280, minWidth: 200 },
-        icon: v => ({
-          className: 'bv-out-marker',
-          html: `<span class="bv-out-marker__dot">${escapeHtml(v.courtsLabel || '')}</span>`,
-        }),
-        clusterCount: v => v.courts || 1,
-      },
-    };
-
-    function makeMarker(v) {
-      const cfg = MARKER_TYPES[v.category];
-      const { className, html } = cfg.icon(v);
-      const icon = L.divIcon({
-        className, html,
-        iconSize: cfg.iconSize, iconAnchor: cfg.iconAnchor, popupAnchor: cfg.popupAnchor,
-      });
-      const m = L.marker([v.lat, v.lng], {
-        icon, title: v.name, riseOnHover: true,
-        _courts: cfg.clusterCount(v), _country: v.country, _venueId: v.id,
-      });
-      m.bindPopup(buildPopup(v), { closeButton: true, ...cfg.popupOpts });
-      m.on('click', () => selectVenue(v.id, { fly: false, openPopup: false }));
-      markerById.set(v.id, m);
-      return m;
-    }
-
-    /* ---------------------- Sync both layers to state ---------------------- */
-    function syncMarkers() {
-      const showIndoor  = state.category !== 'outdoor';
-      const showOutdoor = state.category !== 'indoor';
-
-      // Indoor layer
-      indoorLayer.clearLayers();
-      if (showIndoor) {
-        const active = INDOOR_VENUES
-          .filter(v => state.country === 'all' || v.country === state.country)
-          .map(v => markerById.get(v.id))
-          .filter(Boolean);
-        indoorLayer.addLayers(active);
-        if (!map.hasLayer(indoorLayer)) map.addLayer(indoorLayer);
-      } else {
-        if (map.hasLayer(indoorLayer)) map.removeLayer(indoorLayer);
-      }
-
-      // Outdoor layer
-      if (showOutdoor && outdoorLoaded) {
-        outdoorLayer.clearLayers();
-        const include = state.country === 'all' || state.country === 'FI';
-        if (include) {
-          outdoorLayer.addLayers(
-            OUTDOOR_VENUES.map(v => markerById.get(v.id)).filter(Boolean)
-          );
-        }
-        if (!map.hasLayer(outdoorLayer)) map.addLayer(outdoorLayer);
-      } else {
-        if (map.hasLayer(outdoorLayer)) map.removeLayer(outdoorLayer);
-      }
-    }
-
-    /* ---------------------- Popups ---------------------- */
-    function popupTagsHtml(v) {
-      const tags = [];
-      if (v.category === 'indoor') {
-        tags.push(v.courtsIndoor == null
-          ? '<span class="tag">indoor courts n/a</span>'
-          : `<span class="tag tag--strong"${v.courtDetail ? ` title="${escapeHtml(v.courtDetail)}"` : ''}>${escapeHtml(v.courtTagLabel)}</span>`);
-        if (v.outdoorTagLabel) {
-          tags.push(`<span class="tag tag--out"${v.outdoorDetail ? ` title="${escapeHtml(v.outdoorDetail)}"` : ''}>${escapeHtml(v.outdoorTagLabel)}</span>`);
-        }
-        if (v.currency) tags.push(`<span class="tag">${escapeHtml(v.currency)}</span>`);
-      } else {
-        const courtStr = v.courtsLabel
-          ? `${v.courtsLabel} court${v.courts !== 1 ? 's' : ''}`
-          : 'outdoor sand';
-        tags.push(`<span class="tag tag--out">${escapeHtml(courtStr)}</span>`);
-        if (v.surface)  tags.push(`<span class="tag">${escapeHtml(v.surface)}</span>`);
-        if (v.freeUse)  tags.push('<span class="tag">free</span>');
-        if (v.lighting) tags.push('<span class="tag">lit</span>');
-      }
-      if (v.precision === 'town') {
-        tags.push('<span class="tag tag--note" title="Marker placed at town level — address-precise location not yet verified">~ town</span>');
-      }
-      return tags.join('');
-    }
-
-    function buildPopup(v) {
-      const c = COUNTRIES[v.country] || { flag: '', name: v.country };
-      const url = safeUrl(v.url);
-      const ctaClass = v.category === 'outdoor' ? 'popup__cta popup__cta--out' : 'popup__cta';
-      const ctaLabel = ctaLabelFor(v);
-      const cta = url && ctaLabel
-        ? `<a class="${ctaClass}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${ctaLabel}</a>`
-        : '';
-      const loc = v.town ? `${escapeHtml(v.town)}<br/>${escapeHtml(v.address)}` : escapeHtml(v.address);
-      const price = v.priceNote ? `<p class="popup__price">${escapeHtml(v.priceNote)}</p>` : '';
-      return `
-        <div>
-          <h3 class="popup__name">${escapeHtml(v.name)}</h3>
-          <div class="popup__meta">${c.flag} ${escapeHtml(c.name)} · ${loc}</div>
-          <div class="popup__row">${popupTagsHtml(v)}</div>
-          ${price}
-          ${cta}
-        </div>`;
-    }
-
-    /* ---------------------- Render: Chips ---------------------- */
-    function selectCountry(id) {
-      state.country = id;
-      // If the active selection is now hidden by the new country filter,
-      // close its popup. popupclose then clears state.selectedId and drops
-      // id= from the URL so it stops claiming a selection that isn't visible.
-      if (state.selectedId && id !== 'all') {
-        const sel = INDOOR_VENUES.find(v => v.id === state.selectedId)
-                 || OUTDOOR_VENUES.find(v => v.id === state.selectedId);
-        if (sel && sel.country !== id) map.closePopup();
-      }
-      render();
-      syncHash(false);
-      const venues = state.category === 'indoor'   ? INDOOR_VENUES :
-                     state.category === 'outdoor'  ? OUTDOOR_VENUES :
-                     [...INDOOR_VENUES, ...OUTDOOR_VENUES];
-      const filtered = id === 'all' ? venues : venues.filter(v => v.country === id);
-      if (!filtered.length) return;
-      const bounds = L.latLngBounds(filtered.map(v => [v.lat, v.lng]));
-      const opts = { padding: [60, 60], maxZoom: 7 };
-      if (reducedMotion()) map.fitBounds(bounds, opts);
-      else                 map.flyToBounds(bounds, { ...opts, duration: 0.55 });
-    }
-
-    function renderChips() {
-      const chips = $('#chips');
-      chips.innerHTML = '';
-      // Outdoor is Finland-only; no country filter chip needed
-      if (state.category === 'outdoor') return;
-
-      const make = (id, label, color) => ce('button', {
-        class: 'chip', type: 'button',
-        'aria-pressed': state.country === id ? 'true' : 'false',
-        'data-country': id,
-        onclick: () => selectCountry(id),
-      },
-        color ? ce('span', { class: 'chip__dot', style: `background:${color}` }) : null,
-        label
-      );
-      chips.append(make('all', 'All'));
-      Object.entries(COUNTRIES).forEach(([code, m]) => chips.append(make(code, `${m.flag} ${m.name}`, m.color)));
-    }
-
-    /* ---------------------- Render: Mode notice ---------------------- */
-    function renderModeNotice() {
-      const notice = $('#mode-notice');
-      if (!notice) return;
-      if (state.category === 'outdoor') {
-        notice.hidden = false;
-        notice.textContent = '🇫🇮 Finland outdoor sand courts · LIPAS open data (CC BY 4.0) · loose sand only';
-      } else if (state.category === 'both') {
-        notice.hidden = false;
-        notice.textContent = '🌿 Outdoor courts: Finland only for now · more countries coming';
-      } else {
-        notice.hidden = true;
-      }
-    }
-
-    /* ---------------------- Render: Cards ---------------------- */
-    function cardMetaTags(v) {
-      const tags = [];
-      if (v.category === 'indoor') {
-        tags.push(ce('span', { class: 'tag tag--strong', title: v.courtDetail },
-          v.courtsIndoor == null ? 'courts n/a' : v.courtTagLabel));
-        if (v.outdoorTagLabel)
-          tags.push(ce('span', { class: 'tag tag--out', title: v.outdoorDetail }, v.outdoorTagLabel));
-        if (v.currency)
-          tags.push(ce('span', { class: 'tag' }, v.currency));
-      } else {
-        const courtsStr = v.courtsLabel ? `${v.courtsLabel} outdoor` : 'outdoor';
-        tags.push(ce('span', { class: 'tag tag--out' }, courtsStr));
-        if (v.surface)  tags.push(ce('span', { class: 'tag' }, v.surface));
-        if (v.freeUse)  tags.push(ce('span', { class: 'tag' }, 'free'));
-        if (v.lighting) tags.push(ce('span', { class: 'tag' }, 'lit'));
-      }
-      if (v.precision === 'town')
-        tags.push(ce('span', { class: 'tag tag--note', title: 'Marker placed at town level' }, '~ town'));
-      return tags;
-    }
-
-    function buildCard(v) {
-      const isOutdoor = v.category === 'outdoor';
-      const c = isOutdoor
-        ? { flag: '🏐', color: OUTDOOR_COLOR }
-        : (COUNTRIES[v.country] || { flag: '', color: '#0f172a' });
-      const item = ce('li', { class: 'venue-list__item' });
-      const card = ce('button', {
-        class: 'card' + (isOutdoor ? ' card--outdoor' : ''),
-        type: 'button',
-        'data-id': v.id,
-        'aria-current': state.selectedId === v.id ? 'true' : 'false',
-        style: `--country:${c.color}`,
-        onclick: () => {
-          selectVenue(v.id, { fly: true, openPopup: true });
-          if (window.matchMedia('(max-width: 700px)').matches) setSidebar(false);
-        },
-      });
-      const flag = ce('span', { class: 'card__flag', 'aria-hidden': 'true' }, c.flag);
-      const body = ce('div',  { class: 'card__body' });
-      const name = ce('div',  { class: 'card__name' }, v.name);
-      const townText = v.town ? `${v.town} · ${v.address}` : v.address;
-      const town = ce('div',  { class: 'card__town' }, townText);
-      const meta = ce('div',  { class: 'card__meta' });
-      cardMetaTags(v).forEach(t => meta.append(t));
-      body.append(name, town, meta);
-      card.append(flag, body);
-      item.append(card);
-      return item;
-    }
-
-    /* ---------------------- Render: List ---------------------- */
-    function buildSkeletonCard() {
-      const item = ce('li', { class: 'venue-list__item' });
-      const card = ce('div', { class: 'card card--skeleton', 'aria-hidden': 'true' });
-      const flag = ce('span', { class: 'skel skel--flag' });
-      const body = ce('div',  { class: 'card__body' });
-      body.append(
-        ce('span', { class: 'skel skel--block skel--name' }),
-        ce('span', { class: 'skel skel--block skel--town' }),
-        ce('div',  { class: 'card__meta' },
-          ce('span', { class: 'skel skel--tag' }),
-          ce('span', { class: 'skel skel--tag' }),
-        ),
-      );
-      card.append(flag, body);
-      item.append(card);
-      return item;
-    }
-
-    function renderList() {
-      const list = $('#venues');
-      const hint = $('#hint');
-      list.innerHTML = '';
-
-      const loadingOutdoor = state.category !== 'indoor' && !outdoorLoaded;
-      if (loadingOutdoor) {
-        for (let i = 0; i < 5; i++) list.append(buildSkeletonCard());
-      }
-
-      const venues =
-        state.category === 'indoor'  ? INDOOR_VENUES :
-        state.category === 'outdoor' ? (outdoorLoaded ? OUTDOOR_VENUES : []) :
-        [...INDOOR_VENUES, ...(outdoorLoaded ? OUTDOOR_VENUES : [])];
-
-      const filtered = venues
-        .filter(v => state.country === 'all' || v.country === state.country)
-        .filter(v => matchesQuery(v, state.query.toLowerCase()))
-        .sort((a, b) => {
-          // In mixed mode: indoor halls first, then outdoor courts
-          if (a.category !== b.category) return a.category === 'indoor' ? -1 : 1;
-          if (a.category === 'indoor')
-            return a.country.localeCompare(b.country) || a.name.localeCompare(b.name);
-          return (a.town || '').localeCompare(b.town || '') || a.name.localeCompare(b.name);
-        });
-
-      filtered.slice(0, CARD_LIMIT).forEach(v => list.append(buildCard(v)));
-
-      // Toggle button count badge
-      const modeTotal =
-        state.category === 'indoor'  ? INDOOR_VENUES.length :
-        state.category === 'outdoor' ? (outdoorLoaded ? OUTDOOR_VENUES.length : '…') :
-        INDOOR_VENUES.length + (outdoorLoaded ? OUTDOOR_VENUES.length : 0);
-      $('#sidebar-toggle-count').textContent = String(modeTotal);
-
-      let hintText;
-      if (state.category !== 'indoor' && !outdoorLoaded) {
-        hintText = 'Loading outdoor courts…';
-      } else if (filtered.length === 0) {
-        hintText = 'No venues match your filter.';
-      } else {
-        const single =
-          state.category === 'indoor'  ? 'indoor hall' :
-          state.category === 'outdoor' ? 'outdoor sand court' : 'venue';
-        const plural =
-          state.category === 'indoor'  ? 'indoor halls' :
-          state.category === 'outdoor' ? 'outdoor sand courts' : 'venues';
-        const label = filtered.length === 1 ? single : plural;
-        if (filtered.length > CARD_LIMIT) {
-          hintText = `Showing ${CARD_LIMIT} of ${filtered.length} ${plural}. Search to narrow.`;
-        } else {
-          hintText = `Showing ${filtered.length} ${label}.`;
-        }
-      }
-      hint.textContent = hintText;
-    }
-
-    /* ---------------------- Selection sync ---------------------- */
-    function syncActiveMarker(id) {
-      markerById.forEach((mm, mid) => {
-        const el = mm.getElement();
-        if (el) el.classList.toggle('is-active', mid === id);
-      });
-    }
-
-    // Generation token: every selectVenue() bump invalidates any prior
-    // flyTo's queued moveend handler, so a rapid A → B click doesn't trip
-    // both finishA and finishB on B's moveend.
-    let flyToken = 0;
-
-    function selectVenue(id, { fly = true, openPopup = true } = {}) {
-      state.selectedId = id;
-      document.querySelectorAll('.card').forEach(card => {
-        card.setAttribute('aria-current', card.dataset.id === id ? 'true' : 'false');
-      });
-      const v = INDOOR_VENUES.find(x => x.id === id) || OUTDOOR_VENUES.find(x => x.id === id);
-      const m = markerById.get(id);
-      if (!v || !m) {
-        // Dead id (e.g. hashchange to a venue we no longer ship). Don't keep
-        // it in the URL — the boot path also strips these but a hashchange
-        // can introduce one at any time.
-        state.selectedId = null;
-        syncHash(false);
-        return;
-      }
-      // Drop a country chip that would otherwise hide this venue's marker.
-      // Mode mismatch is left alone because correcting it would need async
-      // outdoor-CSV loading; permalinks the page generates never produce that
-      // combination, and a hand-crafted one degrades gracefully.
-      if (state.country !== 'all' && v.country !== state.country) {
-        state.country = 'all';
-        render();
-      }
-      // Reflect the (now consistent) selection in the URL so the page is
-      // shareable. replaceState (push=false) so click chains don't fill up
-      // history; mode changes remain the only push points.
-      syncHash(false);
-
-      const finish = () => {
-        syncActiveMarker(id);
-        if (openPopup) m.openPopup();
-      };
-
-      // Re-selecting the already-open venue is a no-op: the close-and-reopen
-      // dance below would churn popupclose/popupopen handlers and double-tap
-      // the URL via replaceState for nothing.
-      const alreadyOpen = openPopup && map._popup && map._popup._source === m;
-      if (alreadyOpen) return;
-      if (fly) {
-        // Close any popup that's already open. Without this, switching to a
-        // marker inside a different cluster can leave both popups visible —
-        // markercluster doesn't always trip Leaflet's autoClose path. The
-        // popupclose handler skips clearing because state.selectedId is
-        // already the new id, so the URL stays correct.
-        if (openPopup) map.closePopup();
-        // flyTo at a zoom where markercluster spiderfies individual markers,
-        // then openPopup on moveend. zoomToShowLayer is "smarter" (skips
-        // animation when the marker is already in view) but its callback
-        // doesn't reliably fire when the marker lives in a different cluster
-        // group than the one currently rendered (e.g. cross-mode hashchange).
-        const targetZoom = Math.max(map.getZoom(), 11);
-        const myToken = ++flyToken;
-        if (reducedMotion()) {
-          map.setView([v.lat, v.lng], targetZoom);
-          finish();
-        } else {
-          map.flyTo([v.lat, v.lng], targetZoom, { duration: 0.6 });
-          // Guard against a rapid A → B → A click chain: the first flyTo's
-          // moveend would otherwise fire finishA on B's animation end.
-          map.once('moveend', () => { if (myToken === flyToken) finish(); });
-        }
-      } else {
-        finish();
-      }
-
-      const card = document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
-      if (card && state.sidebarOpen) card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-    }
-
-    /* ---------------------- Mode switching ---------------------- */
-    // opts.resetCountry: clear the country chip (true for user-initiated mode
-    //   change; false when this is just reflecting an external URL state).
-    // opts.push: push a new history entry (true for user clicks; false when
-    //   the URL itself drove us here, e.g. via back/forward → hashchange).
-    // opts.fitToBounds: animate the map to fit all venues in the new mode.
-    //   Set false when the caller will immediately selectVenue() and fly the
-    //   map elsewhere — otherwise the two animations fight and zoomToShowLayer
-    //   can lose its callback.
-    async function setMode(mode, { resetCountry = true, push = true, fitToBounds = true } = {}) {
-      state.category = mode;
-      if (resetCountry) state.country = 'all';
-
-      // Update button aria-pressed and (optionally) push a history entry
-      document.querySelectorAll('.mode-btn').forEach(btn => {
-        btn.setAttribute('aria-pressed', btn.dataset.mode === mode ? 'true' : 'false');
-      });
-      syncHash(push);
-
-      // Show loading state immediately before async work
-      if (mode !== 'indoor' && !outdoorLoaded) {
-        render();
-        try {
-          await loadOutdoorCsv();
-        } catch (err) {
-          console.error('[nordic-bv-map] outdoor data failed:', err);
-          const hint = $('#hint');
-          if (hint) hint.textContent = 'Failed to load outdoor court data: ' + err.message;
-          return;
-        }
-      }
-
-      render();
-
-      if (fitToBounds) {
-        const venues =
-          mode === 'indoor'  ? INDOOR_VENUES :
-          mode === 'outdoor' ? OUTDOOR_VENUES :
-          [...INDOOR_VENUES, ...OUTDOOR_VENUES];
-        if (venues.length) {
-          map.fitBounds(
-            L.latLngBounds(venues.map(v => [v.lat, v.lng])),
-            { padding: [40, 40], maxZoom: mode === 'outdoor' ? 5 : 6 }
-          );
-        }
-      }
-    }
-
-    /* ---------------------- Lazy outdoor data load ---------------------- */
-    async function loadOutdoorCsv() {
-      if (outdoorLoaded) return;
-      if (outdoorLoading) return outdoorLoading;
-      outdoorLoading = (async () => {
-        const res = await fetch('finland_outdoor_beach_volleyball_courts.csv');
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const text = await res.text();
-        const outdoorRows = validateCsvSchema(parseCsv(text), OUTDOOR_REQUIRED_COLUMNS, 'outdoor CSV');
-        OUTDOOR_VENUES = outdoorRows
-          .map(rowToOutdoor)
-          .filter(v => Number.isFinite(v.lat) && Number.isFinite(v.lng));
-        OUTDOOR_VENUES.forEach(makeMarker);
-        outdoorLoaded  = true;
-        outdoorLoading = null;
-      })();
-      return outdoorLoading;
-    }
-
-    /* ---------------------- Boot: indoor CSV ---------------------- */
-    async function loadCsv() {
-      const res = await fetch('nordic_indoor_beach_volleyball_facilities.csv');
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return res.text();
-    }
-
-    /* ---------------------- Render: CSV download link ---------------------- */
-    const CSV_LINKS = {
-      indoor:  { href: 'nordic_indoor_beach_volleyball_facilities.csv', label: '↓ Indoor CSV',  title: 'Download nordic indoor beach volleyball facilities (CSV)' },
-      outdoor: { href: 'finland_outdoor_beach_volleyball_courts.csv',   label: '↓ Outdoor CSV', title: 'Download Finland outdoor beach volleyball courts (CSV, LIPAS open data)' },
-      both:    { href: 'nordic_indoor_beach_volleyball_facilities.csv', label: '↓ Indoor CSV',  title: 'Indoor CSV — outdoor data is available in outdoor mode' },
-    };
-
-    function renderDataLink() {
-      const link = $('#data-link');
-      if (!link) return;
-      const cfg = CSV_LINKS[state.category] || CSV_LINKS.indoor;
-      link.setAttribute('href', cfg.href);
-      link.setAttribute('title', cfg.title);
-      link.textContent = cfg.label;
-    }
-
-    function render() { renderModeNotice(); renderChips(); renderList(); renderDataLink(); syncMarkers(); }
-
-    /* ---------------------- Sidebar drawer ---------------------- */
-    // Siblings outside the dialog that should be removed from the focus order
-    // and accessibility tree while the sidebar is open. Selectors resolved at
-    // each call so script position-in-DOM does not matter.
-    // The backdrop is intentionally excluded so clicking it can still close the
-    // dialog; inert would block its click handler.
-    const SIDEBAR_INERT_TARGETS = '.topbar, .map-wrap';
-
-    function setSidebar(open) {
-      const sidebar = $('#sidebar');
-      const toggle  = $('#sidebar-toggle');
-      state.sidebarOpen = open;
-      if (open) state.returnFocusTo = document.activeElement;
-      $('#layout').classList.toggle('is-open', open);
-      sidebar.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      document.querySelectorAll(SIDEBAR_INERT_TARGETS).forEach(el => {
-        if (open) el.setAttribute('inert', '');
-        else      el.removeAttribute('inert');
-      });
-      if (open) {
-        requestAnimationFrame(() => $('#search')?.focus({ preventScroll: true }));
-      } else if (state.returnFocusTo && document.contains(state.returnFocusTo)) {
-        state.returnFocusTo.focus({ preventScroll: true });
-        state.returnFocusTo = null;
-      }
-    }
-
-    function trapSidebarFocus(event) {
-      if (!state.sidebarOpen || event.key !== 'Tab') return;
-      const focusable = [...$('#sidebar').querySelectorAll(
-        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      )].filter(el => el.offsetParent !== null);
-      if (!focusable.length) return;
-      const first = focusable[0];
-      const last  = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault(); last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault(); first.focus();
-      }
-    }
-
-    /* ---------------------- Event wiring ---------------------- */
-    // Debounced because typing fast through 700+ outdoor venues otherwise
-    // re-runs renderList on every keystroke; only the sidebar list depends on
-    // state.query so we never have to touch the marker layers here.
-    const onSearchInput = debounce(value => {
-      state.query = value;
-      renderList();
-      syncHash(false);
-    }, 120);
-
-    function attachEvents() {
-      $('#search').addEventListener('input', e => onSearchInput(e.target.value.trim()));
-      map.on('popupopen', e => {
-        const id = e.popup._source?.options?._venueId;
-        if (id && id !== state.selectedId) selectVenue(id, { fly: false, openPopup: false });
-      });
-      map.on('popupclose', e => {
-        // Leaflet's Map.openPopup() closes the existing popup BEFORE opening
-        // the new one, so when the user clicks marker B with A's popup open,
-        // this handler runs first with closedId === A. The match-current-id
-        // guard exists for a different case: if some other path mutates
-        // state.selectedId underneath us (or the closed popup isn't a venue
-        // popup), we don't want to wipe an unrelated selection.
-        const id = e.popup._source?.options?._venueId;
-        if (id && id === state.selectedId) {
-          state.selectedId = null;
-          document.querySelectorAll('.card[aria-current="true"]')
-            .forEach(c => c.setAttribute('aria-current', 'false'));
-          syncHash(false);
-        }
-      });
-      $('#sidebar-toggle').addEventListener('click', () => setSidebar(!state.sidebarOpen));
-      $('#sidebar-close').addEventListener('click',  () => setSidebar(false));
-      $('#sidebar-backdrop').addEventListener('click', () => setSidebar(false));
-      // Skip link: open the dialog and focus the search input rather than
-      // letting the browser jump to a hidden element via #sidebar.
-      $('#skip-link').addEventListener('click', e => {
-        e.preventDefault();
-        setSidebar(true);
-      });
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && state.sidebarOpen) setSidebar(false);
-        trapSidebarFocus(e);
-      });
-      document.querySelectorAll('.mode-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          // Close any open venue popup before switching modes. popupclose
-          // replaceState's the URL to drop id=; setMode then pushState's the
-          // new mode. By design the prior "venue selected" URL is therefore
-          // not in history — back from the new mode lands on whatever was
-          // before the selection, not on the selection itself.
-          map.closePopup();
-          setMode(btn.dataset.mode);
-        });
-      });
-
-      // Browser back/forward through mode/country/query/venue history
-      window.addEventListener('hashchange', async () => {
-        const prevCategory = state.category;
-        const prevCountry  = state.country;
-        const prevQuery    = state.query;
-        const prevVenue    = state.selectedId || '';
-        applyHashToState();
-        const modeChanged    = state.category   !== prevCategory;
-        const filtersChanged = state.country    !== prevCountry || state.query !== prevQuery;
-        const venueChanged   = (state.selectedId || '') !== prevVenue;
-        if (modeChanged) {
-          // The URL has already moved; don't push a duplicate history entry,
-          // and don't clobber the country filter that came in the same URL.
-          // Await so the outdoor CSV is loaded before we try to selectVenue,
-          // and skip the mode-wide fitBounds only when selectVenue.flyTo will
-          // immediately move the map to a specific venue. Using state.selectedId
-          // (not venueChanged) so back-navigating from a venue permalink to a
-          // no-venue URL still re-fits to the new mode's bounds.
-          await setMode(state.category, {
-            resetCountry: false, push: false, fitToBounds: !state.selectedId,
-          });
-        } else if (filtersChanged) {
-          render();
-        }
-        // Skip render() when only the venue changed: render → syncMarkers →
-        // indoorLayer.clearLayers() detaches popups from their markers, so
-        // map.closePopup() inside selectVenue can no longer find them and we
-        // end up with two popups on the map.
-        if (venueChanged) {
-          // Close the previous popup via its marker reference. map.closePopup()
-          // in isolation isn't enough when the previous selection lives in a
-          // different cluster than the new one — Leaflet's autoClose path
-          // doesn't always trip across cluster groups.
-          if (prevVenue) markerById.get(prevVenue)?.closePopup();
-          if (state.selectedId) {
-            selectVenue(state.selectedId, { fly: true, openPopup: true });
-          } else {
-            map.closePopup();
+      <script>
+        // Synchronously flip the correct mode button BEFORE the browser paints,
+        // so loading /#outdoor or /#both doesn't briefly highlight "Indoor".
+        // Duplicates a sliver of map-data.js' parseHash because that module
+        // loads at end-of-body, after the topbar has already painted.
+        (function () {
+          var raw = (location.hash || '').replace(/^#/, '').trim().toLowerCase();
+          var rx = /^(indoor|outdoor|both)$/;
+          var mode = rx.test(raw) ? raw : new URLSearchParams(raw).get('mode') || 'indoor';
+          if (!rx.test(mode)) mode = 'indoor';
+          var btns = document.getElementById('mode-switch').querySelectorAll('.mode-btn');
+          for (var i = 0; i < btns.length; i++) {
+            btns[i].setAttribute('aria-pressed', btns[i].dataset.mode === mode ? 'true' : 'false');
           }
-        }
-      });
-    }
+        })();
+      </script>
+    </header>
 
-    /* ---------------------- Hash-based navigation ---------------------- */
-    function applyHashToState() {
-      const { mode, country, q, venue } = parseHash(location.hash);
-      state.category   = mode;
-      // Outdoor data is FI-only and the country chip-bar is hidden in outdoor
-      // mode, so a stray non-FI country in the URL would leave the map empty
-      // with no UI to recover. Normalise to 'all' (which still includes FI).
-      state.country    = (mode === 'outdoor' && country !== 'all' && country !== 'FI')
-        ? 'all' : country;
-      state.query      = q;
-      state.selectedId = venue || null;
-      const search = $('#search');
-      if (search && search.value !== q) search.value = q;
-    }
+    <main class="layout" id="layout">
+      <section class="map-wrap" aria-label="Map">
+        <div id="map" aria-label="Interactive map of beach-volleyball venues"></div>
 
-    // push=true creates a new history entry (use for mode changes); push=false
-    // replaces the current entry (use for search/country tweaks and venue
-    // selection that shouldn't pollute the back button).
-    function syncHash(push = false) {
-      const target = serializeHash({
-        mode:    state.category,
-        country: state.country,
-        q:       state.query,
-        venue:   state.selectedId || '',
-      });
-      if (location.hash !== target) {
-        if (push) history.pushState(null, '', target);
-        else      history.replaceState(null, '', target);
-      }
-    }
+        <button
+          class="sidebar-toggle"
+          id="sidebar-toggle"
+          aria-controls="sidebar"
+          aria-expanded="false"
+          title="Show venue directory"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="18" x2="20" y2="18" />
+          </svg>
+          <span>Venues</span>
+          <span class="sidebar-toggle__count" id="sidebar-toggle-count">…</span>
+        </button>
 
-    /* ---------------------- Boot ---------------------- */
-    (async () => {
-      try {
-        // Set initial state from URL hash before first render
-        applyHashToState();
-        document.querySelectorAll('.mode-btn').forEach(btn => {
-          btn.setAttribute('aria-pressed', btn.dataset.mode === state.category ? 'true' : 'false');
-        });
+        <a class="data-link" id="data-link" href="nordic_indoor_beach_volleyball_facilities.csv" download
+          >↓ Indoor CSV</a
+        >
+      </section>
 
-        const text = await loadCsv();
-        const indoorRows = validateCsvSchema(parseCsv(text), INDOOR_REQUIRED_COLUMNS, 'indoor CSV');
-        INDOOR_VENUES = indoorRows
-          .map(rowToVenue)
-          .filter(v => Number.isFinite(v.lat) && Number.isFinite(v.lng));
-        if (!INDOOR_VENUES.length) throw new Error('indoor CSV produced 0 geocoded rows');
+      <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
 
-        INDOOR_VENUES.forEach(makeMarker);
+      <aside
+        class="sidebar"
+        id="sidebar"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="sidebar-title"
+        aria-hidden="true"
+        tabindex="-1"
+        inert
+      >
+        <div class="sidebar__header">
+          <h2 class="sidebar__title" id="sidebar-title">Venues</h2>
+          <button class="sidebar__close" id="sidebar-close" aria-label="Close venue directory">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="6" y1="6" x2="18" y2="18" />
+              <line x1="6" y1="18" x2="18" y2="6" />
+            </svg>
+          </button>
+        </div>
+        <div class="filters">
+          <label class="search" aria-label="Search venues">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="M20 20l-3.5-3.5"></path>
+            </svg>
+            <input id="search" type="search" placeholder="Search venues, towns, addresses…" autocomplete="off" />
+          </label>
+          <div class="chips" id="chips" aria-label="Filter venues by country"></div>
+          <p class="mode-notice" id="mode-notice" hidden></p>
+        </div>
+        <ol class="venue-list" id="venues" role="list"></ol>
+        <p class="sidebar__hint" id="hint" role="status" aria-live="polite"></p>
+      </aside>
+    </main>
 
-        // If starting in outdoor/both, lazy-load outdoor data before first render
-        if (state.category !== 'indoor') {
-          try { await loadOutdoorCsv(); } catch (_) { /* show indoor anyway */ }
-        }
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"
+      integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr"
+      crossorigin="anonymous"
+    ></script>
+    <script src="map-data.js"></script>
 
-        const venues = state.category === 'outdoor' ? OUTDOOR_VENUES :
-                       state.category === 'both'    ? [...INDOOR_VENUES, ...(outdoorLoaded ? OUTDOOR_VENUES : [])] :
-                       INDOOR_VENUES;
-        const bounds = venues.length
-          ? L.latLngBounds(venues.map(v => [v.lat, v.lng]))
-          : L.latLngBounds(INDOOR_VENUES.map(v => [v.lat, v.lng]));
-        map.fitBounds(bounds, {
-          padding: [40, 40],
-          maxZoom: state.category === 'outdoor' ? 5 : 6,
-          animate: false,
-        });
-        $('#map').classList.add('is-ready');
-
-        // Drop a venue id from the URL if it doesn't match anything we loaded;
-        // it's almost certainly a stale link, and silently ignoring is kinder
-        // than leaving an unselectable id stuck in the address bar.
-        if (state.selectedId
-            && !INDOOR_VENUES.some(v => v.id === state.selectedId)
-            && !OUTDOOR_VENUES.some(v => v.id === state.selectedId)) {
-          state.selectedId = null;
-        }
-
-        render();
-        attachEvents();
-
-        // Restore the selected venue from the URL after attachEvents so the
-        // popupopen handler is wired by the time m.openPopup() fires.
-        if (state.selectedId) {
-          selectVenue(state.selectedId, { fly: true, openPopup: true });
-        } else {
-          syncHash(false);
-        }
-      } catch (err) {
-        console.error('[nordic-bv-map] boot failed:', err);
-        $('#map').classList.add('is-ready');  // still reveal the map for tile fallback
-        const hint = $('#hint');
-        if (hint) hint.textContent = 'Failed to load venue data: ' + err.message;
-      }
-    })();
-  </script>
-</body>
+    <script src="dom.js"></script>
+    <script src="venue-view.js"></script>
+    <script src="data-loader.js"></script>
+    <script src="map-view.js"></script>
+    <script src="sidebar-view.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
