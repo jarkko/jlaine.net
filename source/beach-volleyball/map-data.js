@@ -68,6 +68,38 @@
     };
   };
 
+  const VALID_MODES = ['indoor', 'outdoor', 'both'];
+
+  // Decodes the hash fragment into the page's UI state. Two formats supported:
+  //   #outdoor                       (legacy: bare mode word)
+  //   #mode=outdoor&country=FI&q=hel (when extra state needs to round-trip)
+  // Anything missing or invalid falls back to defaults.
+  function parseHash(hash) {
+    const raw = (typeof hash === 'string' ? hash : '').replace(/^#/, '').trim();
+    const defaults = { mode: 'indoor', country: 'all', q: '' };
+    if (!raw) return defaults;
+    const lower = raw.toLowerCase();
+    if (VALID_MODES.includes(lower)) return { ...defaults, mode: lower };
+    const params = new URLSearchParams(raw);
+    const m = params.get('mode');
+    return {
+      mode:    VALID_MODES.includes(m) ? m : 'indoor',
+      country: params.get('country') || 'all',
+      q:       params.get('q') || '',
+    };
+  }
+
+  // Inverse of parseHash. Uses the bare-word form for default country & query
+  // so the simplest URLs stay short and shareable.
+  function serializeHash({ mode = 'indoor', country = 'all', q = '' } = {}) {
+    const hasExtra = (country && country !== 'all') || !!q;
+    if (!hasExtra) return `#${mode}`;
+    const parts = [`mode=${mode}`];
+    if (country && country !== 'all') parts.push(`country=${encodeURIComponent(country)}`);
+    if (q) parts.push(`q=${encodeURIComponent(q)}`);
+    return '#' + parts.join('&');
+  }
+
   const matchesQuery = (v, q) => {
     if (!q) return true;
     const extra = v.category === 'indoor'
@@ -203,9 +235,10 @@
   }
 
   return {
-    COUNTRIES, COUNTRY_FROM_NAME, TYPE_LABELS, OUTDOOR_COLOR,
+    COUNTRIES, COUNTRY_FROM_NAME, TYPE_LABELS, OUTDOOR_COLOR, VALID_MODES,
     escapeHtml, safeUrl, slug, matchesQuery, debounce,
     parseCsv, parseCourtValue, parseOutdoorValue,
     rowToVenue, rowToOutdoor, clusterCourtTotal,
+    parseHash, serializeHash,
   };
 }));

@@ -527,6 +527,82 @@ describe('clusterCourtTotal', () => {
   });
 });
 
+describe('parseHash', () => {
+  test('empty hash returns defaults', () => {
+    assert.deepEqual(M.parseHash(''),  { mode: 'indoor', country: 'all', q: '' });
+    assert.deepEqual(M.parseHash('#'), { mode: 'indoor', country: 'all', q: '' });
+    assert.deepEqual(M.parseHash(),    { mode: 'indoor', country: 'all', q: '' });
+  });
+
+  test('legacy bare-mode form', () => {
+    assert.deepEqual(M.parseHash('#indoor'),  { mode: 'indoor',  country: 'all', q: '' });
+    assert.deepEqual(M.parseHash('#outdoor'), { mode: 'outdoor', country: 'all', q: '' });
+    assert.deepEqual(M.parseHash('#both'),    { mode: 'both',    country: 'all', q: '' });
+    assert.deepEqual(M.parseHash('#OUTDOOR'), { mode: 'outdoor', country: 'all', q: '' });
+  });
+
+  test('param form with mode, country and q', () => {
+    assert.deepEqual(
+      M.parseHash('#mode=outdoor&country=FI&q=helsinki'),
+      { mode: 'outdoor', country: 'FI', q: 'helsinki' },
+    );
+  });
+
+  test('decodes URI-encoded query', () => {
+    assert.equal(M.parseHash('#mode=indoor&q=p%C3%A4').q, 'pä');
+  });
+
+  test('rejects unknown mode and falls back to indoor', () => {
+    assert.equal(M.parseHash('#mode=galactic&country=FI').mode, 'indoor');
+  });
+
+  test('missing mode in param form falls back to indoor', () => {
+    assert.equal(M.parseHash('#country=FI').mode, 'indoor');
+  });
+
+  test('non-string input falls back to defaults', () => {
+    assert.deepEqual(M.parseHash(null),      { mode: 'indoor', country: 'all', q: '' });
+    assert.deepEqual(M.parseHash(undefined), { mode: 'indoor', country: 'all', q: '' });
+    assert.deepEqual(M.parseHash(42),        { mode: 'indoor', country: 'all', q: '' });
+  });
+});
+
+describe('serializeHash', () => {
+  test('defaults serialize to bare mode', () => {
+    assert.equal(M.serializeHash(),                     '#indoor');
+    assert.equal(M.serializeHash({}),                   '#indoor');
+    assert.equal(M.serializeHash({ mode: 'outdoor' }),  '#outdoor');
+  });
+
+  test('country adds &country= and switches to param form', () => {
+    assert.equal(
+      M.serializeHash({ mode: 'indoor', country: 'FI' }),
+      '#mode=indoor&country=FI',
+    );
+  });
+
+  test('query is URI-encoded', () => {
+    assert.equal(
+      M.serializeHash({ mode: 'indoor', country: 'all', q: 'pä' }),
+      '#mode=indoor&q=p%C3%A4',
+    );
+  });
+
+  test('round-trips parseHash → serializeHash', () => {
+    const cases = [
+      '#indoor',
+      '#outdoor',
+      '#both',
+      '#mode=outdoor&country=FI',
+      '#mode=indoor&q=helsinki',
+      '#mode=outdoor&country=FI&q=hetk',
+    ];
+    for (const h of cases) {
+      assert.equal(M.serializeHash(M.parseHash(h)), h, `round-trip failed for ${h}`);
+    }
+  });
+});
+
 describe('exported constants', () => {
   test('COUNTRIES contains all eight Nordic+Baltic codes', () => {
     assert.deepEqual(

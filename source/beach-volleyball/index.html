@@ -639,10 +639,11 @@
 
     /* ---------------------- Pure helpers (see map-data.js for unit-tested impls) ---------------------- */
     const {
-      COUNTRIES, COUNTRY_FROM_NAME, TYPE_LABELS, OUTDOOR_COLOR,
+      COUNTRIES, COUNTRY_FROM_NAME, TYPE_LABELS, OUTDOOR_COLOR, VALID_MODES,
       escapeHtml, safeUrl, slug, matchesQuery, debounce,
       parseCsv, parseCourtValue, parseOutdoorValue,
       rowToVenue, rowToOutdoor, clusterCourtTotal,
+      parseHash, serializeHash,
     } = window.BVMap;
 
     const CARD_LIMIT = 100;  // max list cards rendered at once
@@ -854,6 +855,7 @@
     function selectCountry(id) {
       state.country = id;
       render();
+      syncHash(false);
       const venues = state.category === 'indoor'   ? INDOOR_VENUES :
                      state.category === 'outdoor'  ? OUTDOOR_VENUES :
                      [...INDOOR_VENUES, ...OUTDOOR_VENUES];
@@ -1049,7 +1051,7 @@
       document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.setAttribute('aria-pressed', btn.dataset.mode === mode ? 'true' : 'false');
       });
-      syncHash(mode, true);
+      syncHash(true);
 
       // Show loading state immediately before async work
       if (mode !== 'indoor' && !outdoorLoaded) {
@@ -1156,6 +1158,7 @@
     const onSearchInput = debounce(value => {
       state.query = value;
       renderList();
+      syncHash(false);
     }, 120);
 
     function attachEvents() {
@@ -1175,26 +1178,39 @@
         btn.addEventListener('click', () => setMode(btn.dataset.mode));
       });
 
-      // Browser back/forward through mode history
+      // Browser back/forward through mode/country/query history
       window.addEventListener('hashchange', () => {
-        const mode = modeFromHash();
-        if (mode !== state.category) setMode(mode);
+        const next = parseHash(location.hash);
+        const modeChanged = next.mode !== state.category;
+        applyHashToState();
+        if (modeChanged) {
+          setMode(state.category);
+        } else {
+          render();
+        }
       });
     }
 
     /* ---------------------- Hash-based navigation ---------------------- */
-    const VALID_MODES = new Set(['indoor', 'outdoor', 'both']);
-
-    function modeFromHash() {
-      const raw = location.hash.replace(/^#/, '').toLowerCase();
-      return VALID_MODES.has(raw) ? raw : 'indoor';
+    function applyHashToState() {
+      const { mode, country, q } = parseHash(location.hash);
+      state.category = mode;
+      state.country  = country;
+      state.query    = q;
+      const search = $('#search');
+      if (search && search.value !== q) search.value = q;
     }
 
-    function syncHash(mode, push = false) {
-      const target = '#' + mode;
+    // push=true creates a new history entry (use for mode changes); push=false
+    // replaces the current entry (use for search/country tweaks that shouldn't
+    // pollute the back button).
+    function syncHash(push = false) {
+      const target = serializeHash({
+        mode: state.category, country: state.country, q: state.query,
+      });
       if (location.hash !== target) {
         if (push) history.pushState(null, '', target);
-        else       history.replaceState(null, '', target);
+        else      history.replaceState(null, '', target);
       }
     }
 
@@ -1202,7 +1218,7 @@
     (async () => {
       try {
         // Set initial state from URL hash before first render
-        state.category = modeFromHash();
+        applyHashToState();
         document.querySelectorAll('.mode-btn').forEach(btn => {
           btn.setAttribute('aria-pressed', btn.dataset.mode === state.category ? 'true' : 'false');
         });
@@ -1233,7 +1249,7 @@
 
         render();
         attachEvents();
-        syncHash(state.category);
+        syncHash(false);
       } catch (err) {
         console.error('[nordic-bv-map] boot failed:', err);
         const hint = $('#hint');

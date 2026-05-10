@@ -85,6 +85,22 @@ test.describe('beach volleyball map', () => {
     await expect(page).toHaveURL(/\/beach-volleyball\//);
   });
 
+  test('hash restores country and search query on load', async ({ page }) => {
+    const failures = pageErrors(page);
+    await page.goto('/beach-volleyball/#mode=indoor&country=NO&q=Gimle');
+    await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
+
+    await expect(page.locator('[data-mode="indoor"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('.chip[data-country="NO"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#search')).toHaveValue('Gimle');
+
+    await page.getByRole('button', { name: /venues/i }).click();
+    await expect(page.locator('#venues .card')).toHaveCount(1);
+    await expect(page.locator('#venues .card')).toContainText('Sandhallen på Gimle');
+
+    expect(failures).toEqual([]);
+  });
+
   test('sidebar is a proper modal dialog with inert siblings', async ({ page }) => {
     await page.goto('/beach-volleyball/');
     await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
