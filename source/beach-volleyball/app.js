@@ -190,7 +190,7 @@
         state.query = value;
         if (state.selectedId && value) {
           const selected = data.findVenue(state.selectedId);
-          if (selected && !matchesQuery(selected, value)) mapView.closePopup();
+          if (selected && !matchesQuery(selected, value.toLowerCase())) mapView.closePopup();
         }
         sidebarView.renderList();
         syncHash(false);
