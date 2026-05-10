@@ -843,7 +843,7 @@
       });
       const m = L.marker([v.lat, v.lng], {
         icon, title: v.name, riseOnHover: true,
-        _courts: cfg.clusterCount(v), _country: v.country,
+        _courts: cfg.clusterCount(v), _country: v.country, _venueId: v.id,
       });
       m.bindPopup(buildPopup(v), { closeButton: true, ...cfg.popupOpts });
       m.on('click', () => selectVenue(v.id, { fly: false, openPopup: false }));
@@ -933,6 +933,14 @@
     /* ---------------------- Render: Chips ---------------------- */
     function selectCountry(id) {
       state.country = id;
+      // If the active selection is now hidden by the new country filter,
+      // close its popup. popupclose then clears state.selectedId and drops
+      // id= from the URL so it stops claiming a selection that isn't visible.
+      if (state.selectedId && id !== 'all') {
+        const sel = INDOOR_VENUES.find(v => v.id === state.selectedId)
+                 || OUTDOOR_VENUES.find(v => v.id === state.selectedId);
+        if (sel && sel.country !== id) map.closePopup();
+      }
       render();
       syncHash(false);
       const venues = state.category === 'indoor'   ? INDOOR_VENUES :
@@ -1121,13 +1129,28 @@
       document.querySelectorAll('.card').forEach(card => {
         card.setAttribute('aria-current', card.dataset.id === id ? 'true' : 'false');
       });
-      // Reflect the selection in the URL so the page is shareable. Use replace
-      // (no push) so a chain of clicks doesn't fill up history; mode changes
-      // remain the only push points.
-      syncHash(false);
       const v = INDOOR_VENUES.find(x => x.id === id) || OUTDOOR_VENUES.find(x => x.id === id);
       const m = markerById.get(id);
-      if (!v || !m) return;
+      if (!v || !m) {
+        // Dead id (e.g. hashchange to a venue we no longer ship). Don't keep
+        // it in the URL — the boot path also strips these but a hashchange
+        // can introduce one at any time.
+        state.selectedId = null;
+        syncHash(false);
+        return;
+      }
+      // Drop a country chip that would otherwise hide this venue's marker.
+      // Mode mismatch is left alone because correcting it would need async
+      // outdoor-CSV loading; permalinks the page generates never produce that
+      // combination, and a hand-crafted one degrades gracefully.
+      if (state.country !== 'all' && v.country !== state.country) {
+        state.country = 'all';
+        render();
+      }
+      // Reflect the (now consistent) selection in the URL so the page is
+      // shareable. replaceState (push=false) so click chains don't fill up
+      // history; mode changes remain the only push points.
+      syncHash(false);
 
       const finish = () => {
         syncActiveMarker(id);
@@ -1135,14 +1158,23 @@
       };
 
       if (fly) {
-        const layer = v.category === 'outdoor' ? outdoorLayer : indoorLayer;
-        if (typeof layer.zoomToShowLayer === 'function') {
-          layer.zoomToShowLayer(m, finish);
-        } else if (reducedMotion()) {
-          map.setView([v.lat, v.lng], Math.max(map.getZoom(), 11));
+        // Close any popup that's already open. Without this, switching to a
+        // marker inside a different cluster can leave both popups visible —
+        // markercluster doesn't always trip Leaflet's autoClose path. The
+        // popupclose handler skips clearing because state.selectedId is
+        // already the new id, so the URL stays correct.
+        if (openPopup) map.closePopup();
+        // flyTo at a zoom where markercluster spiderfies individual markers,
+        // then openPopup on moveend. zoomToShowLayer is "smarter" (skips
+        // animation when the marker is already in view) but its callback
+        // doesn't reliably fire when the marker lives in a different cluster
+        // group than the one currently rendered (e.g. cross-mode hashchange).
+        const targetZoom = Math.max(map.getZoom(), 11);
+        if (reducedMotion()) {
+          map.setView([v.lat, v.lng], targetZoom);
           finish();
         } else {
-          map.flyTo([v.lat, v.lng], Math.max(map.getZoom(), 11), { duration: 0.6 });
+          map.flyTo([v.lat, v.lng], targetZoom, { duration: 0.6 });
           map.once('moveend', finish);
         }
       } else {
@@ -1154,15 +1186,23 @@
     }
 
     /* ---------------------- Mode switching ---------------------- */
-    async function setMode(mode) {
+    // opts.resetCountry: clear the country chip (true for user-initiated mode
+    //   change; false when this is just reflecting an external URL state).
+    // opts.push: push a new history entry (true for user clicks; false when
+    //   the URL itself drove us here, e.g. via back/forward → hashchange).
+    // opts.fitToBounds: animate the map to fit all venues in the new mode.
+    //   Set false when the caller will immediately selectVenue() and fly the
+    //   map elsewhere — otherwise the two animations fight and zoomToShowLayer
+    //   can lose its callback.
+    async function setMode(mode, { resetCountry = true, push = true, fitToBounds = true } = {}) {
       state.category = mode;
-      state.country  = 'all';
+      if (resetCountry) state.country = 'all';
 
-      // Update button aria-pressed and push a history entry for back/forward
+      // Update button aria-pressed and (optionally) push a history entry
       document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.setAttribute('aria-pressed', btn.dataset.mode === mode ? 'true' : 'false');
       });
-      syncHash(true);
+      syncHash(push);
 
       // Show loading state immediately before async work
       if (mode !== 'indoor' && !outdoorLoaded) {
@@ -1179,16 +1219,17 @@
 
       render();
 
-      // Fly to appropriate bounds
-      const venues =
-        mode === 'indoor'  ? INDOOR_VENUES :
-        mode === 'outdoor' ? OUTDOOR_VENUES :
-        [...INDOOR_VENUES, ...OUTDOOR_VENUES];
-      if (venues.length) {
-        map.fitBounds(
-          L.latLngBounds(venues.map(v => [v.lat, v.lng])),
-          { padding: [40, 40], maxZoom: mode === 'outdoor' ? 5 : 6 }
-        );
+      if (fitToBounds) {
+        const venues =
+          mode === 'indoor'  ? INDOOR_VENUES :
+          mode === 'outdoor' ? OUTDOOR_VENUES :
+          [...INDOOR_VENUES, ...OUTDOOR_VENUES];
+        if (venues.length) {
+          map.fitBounds(
+            L.latLngBounds(venues.map(v => [v.lat, v.lng])),
+            { padding: [40, 40], maxZoom: mode === 'outdoor' ? 5 : 6 }
+          );
+        }
       }
     }
 
@@ -1292,15 +1333,18 @@
     function attachEvents() {
       $('#search').addEventListener('input', e => onSearchInput(e.target.value.trim()));
       map.on('popupopen', e => {
-        const id = [...markerById.entries()].find(([, m]) => m === e.popup._source)?.[0];
+        const id = e.popup._source?.options?._venueId;
         if (id && id !== state.selectedId) selectVenue(id, { fly: false, openPopup: false });
       });
       map.on('popupclose', e => {
-        // Clear selection only if the popup that closed corresponds to it.
-        // Otherwise (an older popup closing while a new one opens) leave
-        // state.selectedId alone — the popupopen above already updated it.
-        const closedId = [...markerById.entries()].find(([, m]) => m === e.popup._source)?.[0];
-        if (closedId && closedId === state.selectedId) {
+        // Leaflet's Map.openPopup() closes the existing popup BEFORE opening
+        // the new one, so when the user clicks marker B with A's popup open,
+        // this handler runs first with closedId === A. The match-current-id
+        // guard exists for a different case: if some other path mutates
+        // state.selectedId underneath us (or the closed popup isn't a venue
+        // popup), we don't want to wipe an unrelated selection.
+        const id = e.popup._source?.options?._venueId;
+        if (id && id === state.selectedId) {
           state.selectedId = null;
           document.querySelectorAll('.card[aria-current="true"]')
             .forEach(c => c.setAttribute('aria-current', 'false'));
@@ -1322,28 +1366,50 @@
       });
       document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          // Close any open venue popup before switching modes so the URL
-          // doesn't keep a stale id= for a venue that may not exist in the
-          // new mode. popupclose then drops state.selectedId & syncs the URL.
+          // Close any open venue popup before switching modes. popupclose
+          // replaceState's the URL to drop id=; setMode then pushState's the
+          // new mode. By design the prior "venue selected" URL is therefore
+          // not in history — back from the new mode lands on whatever was
+          // before the selection, not on the selection itself.
           map.closePopup();
           setMode(btn.dataset.mode);
         });
       });
 
       // Browser back/forward through mode/country/query/venue history
-      window.addEventListener('hashchange', () => {
-        const next = parseHash(location.hash);
-        const modeChanged  = next.mode  !== state.category;
-        const venueChanged = next.venue !== (state.selectedId || '');
+      window.addEventListener('hashchange', async () => {
+        const prevCategory = state.category;
+        const prevCountry  = state.country;
+        const prevQuery    = state.query;
+        const prevVenue    = state.selectedId || '';
         applyHashToState();
+        const modeChanged    = state.category   !== prevCategory;
+        const filtersChanged = state.country    !== prevCountry || state.query !== prevQuery;
+        const venueChanged   = (state.selectedId || '') !== prevVenue;
         if (modeChanged) {
-          setMode(state.category);
-        } else {
+          // The URL has already moved; don't push a duplicate history entry,
+          // and don't clobber the country filter that came in the same URL.
+          // Await so the outdoor CSV is loaded before we try to selectVenue,
+          // and skip the mode-wide fitBounds when we're about to fly to a
+          // specific venue immediately after.
+          await setMode(state.category, {
+            resetCountry: false, push: false, fitToBounds: !venueChanged,
+          });
+        } else if (filtersChanged) {
           render();
         }
+        // Skip render() when only the venue changed: render → syncMarkers →
+        // indoorLayer.clearLayers() detaches popups from their markers, so
+        // map.closePopup() inside selectVenue can no longer find them and we
+        // end up with two popups on the map.
         if (venueChanged) {
-          if (next.venue) {
-            selectVenue(next.venue, { fly: true, openPopup: true });
+          // Close the previous popup via its marker reference. map.closePopup()
+          // in isolation isn't enough when the previous selection lives in a
+          // different cluster than the new one — Leaflet's autoClose path
+          // doesn't always trip across cluster groups.
+          if (prevVenue) markerById.get(prevVenue)?.closePopup();
+          if (state.selectedId) {
+            selectVenue(state.selectedId, { fly: true, openPopup: true });
           } else {
             map.closePopup();
           }
@@ -1427,7 +1493,7 @@
         attachEvents();
 
         // Restore the selected venue from the URL after attachEvents so the
-        // popupopen handler is wired and won't double-fire.
+        // popupopen handler is wired by the time m.openPopup() fires.
         if (state.selectedId) {
           selectVenue(state.selectedId, { fly: true, openPopup: true });
         } else {
