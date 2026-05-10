@@ -621,28 +621,31 @@ describe('validateCsvSchema', () => {
 });
 
 describe('parseHash', () => {
+  const D = { mode: 'indoor', country: 'all', q: '', venue: '' };
+
   test('empty hash returns defaults', () => {
-    assert.deepEqual(M.parseHash(''),  { mode: 'indoor', country: 'all', q: '' });
-    assert.deepEqual(M.parseHash('#'), { mode: 'indoor', country: 'all', q: '' });
-    assert.deepEqual(M.parseHash(),    { mode: 'indoor', country: 'all', q: '' });
+    assert.deepEqual(M.parseHash(''),  D);
+    assert.deepEqual(M.parseHash('#'), D);
+    assert.deepEqual(M.parseHash(),    D);
   });
 
   test('legacy bare-mode form', () => {
-    assert.deepEqual(M.parseHash('#indoor'),  { mode: 'indoor',  country: 'all', q: '' });
-    assert.deepEqual(M.parseHash('#outdoor'), { mode: 'outdoor', country: 'all', q: '' });
-    assert.deepEqual(M.parseHash('#both'),    { mode: 'both',    country: 'all', q: '' });
-    assert.deepEqual(M.parseHash('#OUTDOOR'), { mode: 'outdoor', country: 'all', q: '' });
+    assert.deepEqual(M.parseHash('#indoor'),  { ...D, mode: 'indoor' });
+    assert.deepEqual(M.parseHash('#outdoor'), { ...D, mode: 'outdoor' });
+    assert.deepEqual(M.parseHash('#both'),    { ...D, mode: 'both' });
+    assert.deepEqual(M.parseHash('#OUTDOOR'), { ...D, mode: 'outdoor' });
   });
 
-  test('param form with mode, country and q', () => {
+  test('param form with mode, country, q, id', () => {
     assert.deepEqual(
-      M.parseHash('#mode=outdoor&country=FI&q=helsinki'),
-      { mode: 'outdoor', country: 'FI', q: 'helsinki' },
+      M.parseHash('#mode=outdoor&country=FI&q=helsinki&id=fi-out-123'),
+      { mode: 'outdoor', country: 'FI', q: 'helsinki', venue: 'fi-out-123' },
     );
   });
 
-  test('decodes URI-encoded query', () => {
+  test('decodes URI-encoded query and venue id', () => {
     assert.equal(M.parseHash('#mode=indoor&q=p%C3%A4').q, 'pä');
+    assert.equal(M.parseHash('#mode=indoor&id=fi-bii%2Btsi').venue, 'fi-bii+tsi');
   });
 
   test('rejects unknown mode and falls back to indoor', () => {
@@ -654,9 +657,9 @@ describe('parseHash', () => {
   });
 
   test('non-string input falls back to defaults', () => {
-    assert.deepEqual(M.parseHash(null),      { mode: 'indoor', country: 'all', q: '' });
-    assert.deepEqual(M.parseHash(undefined), { mode: 'indoor', country: 'all', q: '' });
-    assert.deepEqual(M.parseHash(42),        { mode: 'indoor', country: 'all', q: '' });
+    assert.deepEqual(M.parseHash(null),      D);
+    assert.deepEqual(M.parseHash(undefined), D);
+    assert.deepEqual(M.parseHash(42),        D);
   });
 });
 
@@ -674,10 +677,24 @@ describe('serializeHash', () => {
     );
   });
 
-  test('query is URI-encoded', () => {
+  test('venue id alone switches to param form', () => {
     assert.equal(
-      M.serializeHash({ mode: 'indoor', country: 'all', q: 'pä' }),
-      '#mode=indoor&q=p%C3%A4',
+      M.serializeHash({ mode: 'outdoor', venue: 'fi-out-7' }),
+      '#mode=outdoor&id=fi-out-7',
+    );
+  });
+
+  test('all four params combine in stable order', () => {
+    assert.equal(
+      M.serializeHash({ mode: 'outdoor', country: 'FI', q: 'helsinki', venue: 'fi-out-7' }),
+      '#mode=outdoor&country=FI&q=helsinki&id=fi-out-7',
+    );
+  });
+
+  test('query and venue id are URI-encoded', () => {
+    assert.equal(
+      M.serializeHash({ mode: 'indoor', q: 'pä', venue: 'fi+a' }),
+      '#mode=indoor&q=p%C3%A4&id=fi%2Ba',
     );
   });
 
@@ -689,6 +706,8 @@ describe('serializeHash', () => {
       '#mode=outdoor&country=FI',
       '#mode=indoor&q=helsinki',
       '#mode=outdoor&country=FI&q=hetk',
+      '#mode=indoor&id=fi-biitsi-pasila',
+      '#mode=outdoor&country=FI&q=hetk&id=fi-out-42',
     ];
     for (const h of cases) {
       assert.equal(M.serializeHash(M.parseHash(h)), h, `round-trip failed for ${h}`);
