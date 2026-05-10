@@ -1,0 +1,10 @@
+.bundle
+.cursor
+coverage
+node_modules
+playwright-report
+public
+test-results
+vendor
+
+source/_stash
