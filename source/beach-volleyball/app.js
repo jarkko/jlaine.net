@@ -2,7 +2,7 @@
   'use strict';
 
   const { $ } = root.BVDom;
-  const { parseHash, serializeHash } = root.BVMap;
+  const { parseHash, serializeHash, matchesQuery } = root.BVMap;
   const { createDataStore } = root.BVDataLoader;
   const { createMapView } = root.BVMapView;
   const { createSidebarView } = root.BVSidebarView;
@@ -180,6 +180,10 @@
       onPopupClose,
     });
     data.setMarkerFactory(mapView.makeMarker);
+    // Expose Leaflet map on 127.0.0.1 so E2E tests can programmatically setView.
+    if (root.location && root.location.hostname === '127.0.0.1') {
+      root.__bvTestHelpers = { leafletMap: mapView.map };
+    }
     sidebarView = createSidebarView({
       state,
       data,
@@ -188,6 +192,10 @@
       onSetMode: setMode,
       onSearchChanged: (value) => {
         state.query = value;
+        if (state.selectedId && value) {
+          const selected = data.findVenue(state.selectedId);
+          if (selected && !matchesQuery(selected, value.toLowerCase())) mapView.closePopup();
+        }
         sidebarView.renderList();
         syncHash(false);
       },

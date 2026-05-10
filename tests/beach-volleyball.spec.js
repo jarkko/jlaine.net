@@ -230,12 +230,6 @@ test.describe('beach volleyball map', () => {
       location.hash = '#mode=outdoor&id=fi-out-529117';
     });
     await expect(page.locator('.leaflet-popup-content .popup__name')).toContainText('Hääkiven', { timeout: 10000 });
-    const flownInBounds = await page.evaluate(() => {
-      // Flown to a single venue at zoom ≥ 11 → bounds span at most ~1°.
-      const b = document.querySelector('#map');
-      return b ? true : false;
-    });
-    expect(flownInBounds).toBe(true);
 
     // Press Back — should drop the venue AND re-fit the map to indoor bounds
     // (i.e., zoom out from Hääkiven), not just close the popup in place.
@@ -243,24 +237,37 @@ test.describe('beach volleyball map', () => {
     await expect(page).toHaveURL(/#indoor$/);
     await expect(page.locator('.leaflet-popup-content')).toHaveCount(0);
 
-    // Wait for the indoor fit to settle, then assert at least one Norway/Sweden
-    // indoor venue is now within the visible map area — proving we re-fit and
-    // didn't stay zoomed in on Hääkiven.
-    await page.waitForTimeout(800);
-    const visibleNonFi = await page.evaluate(() => {
+    // Poll until the indoor re-fit has settled: ≥4 indoor markers visible inside
+    // the map viewport proves we zoomed back out (not stayed on Hääkiven).
+    await expect
+      .poll(
+        () =>
+          page.evaluate(() => {
+            const markers = document.querySelectorAll('.leaflet-marker-icon.bv-marker');
+            const mapEl = document.getElementById('map');
+            const r = mapEl.getBoundingClientRect();
+            let visibleCount = 0;
+            markers.forEach((m) => {
+              const mr = m.getBoundingClientRect();
+              if (mr.left >= r.left && mr.right <= r.right && mr.top >= r.top && mr.bottom <= r.bottom) visibleCount++;
+            });
+            return visibleCount;
+          }),
+        { timeout: 3000 },
+      )
+      .toBeGreaterThan(3);
+    const visibleStandaloneMarkers = await page.evaluate(() => {
       const markers = document.querySelectorAll('.leaflet-marker-icon.bv-marker');
       const mapEl = document.getElementById('map');
       const r = mapEl.getBoundingClientRect();
-      let nonFiVisible = 0;
+      let count = 0;
       markers.forEach((m) => {
         const mr = m.getBoundingClientRect();
-        const inside = mr.left >= r.left && mr.right <= r.right && mr.top >= r.top && mr.bottom <= r.bottom;
-        if (inside) nonFiVisible++;
+        if (mr.left >= r.left && mr.right <= r.right && mr.top >= r.top && mr.bottom <= r.bottom) count++;
       });
-      // After indoor fitBounds we expect many indoor markers visible.
-      return nonFiVisible;
+      return count;
     });
-    expect(visibleNonFi).toBeGreaterThan(3);
+    expect(visibleStandaloneMarkers).toBeGreaterThan(3);
     expect(failures).toEqual([]);
   });
 
@@ -340,6 +347,56 @@ test.describe('beach volleyball map', () => {
     await page.locator('#search').fill('Helsinki');
     await expect(page.locator('#venues .card').first()).toBeVisible();
     await expect(page.locator('#venues .tag--out').first()).toBeVisible();
+
+    expect(failures).toEqual([]);
+  });
+
+  test('clicking marker B while marker A popup is open ends with only B selected', async ({ page }) => {
+    const failures = pageErrors(page);
+    await page.goto('/beach-volleyball/#outdoor');
+
+    // Wait for outdoor data to arrive.
+    await page.waitForFunction(() => document.querySelectorAll('.bv-out-marker, .bv-out-cluster').length > 0);
+
+    // Zoom to Matinkylä (Espoo) where two specific outdoor courts are ~157 m apart.
+    // Clustering is disabled at zoom ≥ 12, so both appear as individual markers.
+    // Await zoomend inside evaluate so the animation is fully settled.
+    await page.evaluate(
+      () =>
+        new Promise((resolve) => {
+          const map = window.__bvTestHelpers.leafletMap;
+          map.once('zoomend', resolve);
+          map.setView([60.1508, 24.756], 16);
+        }),
+    );
+
+    // Target the two courts by their known venue names rather than DOM order,
+    // so this test stays robust even if Leaflet buffers extra off-screen markers.
+    const markerA = page.locator('.bv-out-marker[title="Matinkylän uimarannan beachvolleykenttä"]');
+    const markerB = page.locator('.bv-out-marker[title="Matinkylän uimarannan beachvolleykenttä 3"]');
+
+    await expect(markerA).toHaveCount(1, { timeout: 5000 });
+    await expect(markerB).toHaveCount(1, { timeout: 5000 });
+
+    // Click A — URL should gain an id param.
+    // force:true bypasses Leaflet's animation-stability jitter.
+    await markerA.click({ force: true });
+    await expect(page).toHaveURL(/[?&#]id=fi-out-/);
+    const firstUrl = page.url();
+
+    // Click B while A's popup is still open.
+    // force:true also bypasses Playwright's 'leaflet-popup-pane intercepts pointer
+    // events' check while still dispatching a real DOM click on the marker element,
+    // which triggers Leaflet's synchronous popupclose→popupopen chain.
+    await markerB.click({ force: true });
+
+    // Only one popup visible — the ordering invariant in onPopupClose
+    // (closedId === state.selectedId guard) must hold.
+    await expect(page.locator('.leaflet-popup-content')).toHaveCount(1);
+
+    // URL must have advanced to B's id (not reverted to A or cleared).
+    await expect(page).toHaveURL(/[?&#]id=fi-out-/);
+    expect(page.url()).not.toBe(firstUrl);
 
     expect(failures).toEqual([]);
   });
