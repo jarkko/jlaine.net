@@ -139,6 +139,35 @@
     ));
   }
 
+  // Throws if any required column is missing from the parseCsv output. The
+  // intent is that a future CSV column rename fails loudly during boot
+  // (and during the e2e/data-sanity tests in CI) instead of producing a
+  // silently empty page.
+  function validateCsvSchema(rows, required, label = 'CSV') {
+    if (!Array.isArray(rows) || !rows.length) {
+      throw new Error(`${label}: produced 0 rows`);
+    }
+    const headers = new Set(Object.keys(rows[0]));
+    const missing = required.filter(c => !headers.has(c));
+    if (missing.length) {
+      throw new Error(`${label}: missing required column(s): ${missing.join(', ')}`);
+    }
+    return rows;
+  }
+
+  const INDOOR_REQUIRED_COLUMNS = [
+    'country', 'facility_name', 'town', 'address',
+    'latitude', 'longitude',
+    'indoor_sand_courts',
+    'currency', 'booking_or_info_url',
+  ];
+
+  const OUTDOOR_REQUIRED_COLUMNS = [
+    'facility_name', 'town', 'address',
+    'latitude', 'longitude',
+    'outdoor_courts', 'surface',
+  ];
+
   function parseCourtValue(value) {
     if (value == null || value === '') {
       return { count: 0, pinLabel: '?', tagLabel: 'courts n/a', detail: null };
@@ -242,8 +271,9 @@
 
   return {
     COUNTRIES, COUNTRY_FROM_NAME, TYPE_LABELS, OUTDOOR_COLOR, VALID_MODES,
+    INDOOR_REQUIRED_COLUMNS, OUTDOOR_REQUIRED_COLUMNS,
     escapeHtml, safeUrl, slug, matchesQuery, debounce,
-    parseCsv, parseCourtValue, parseOutdoorValue,
+    parseCsv, parseCourtValue, parseOutdoorValue, validateCsvSchema,
     rowToVenue, rowToOutdoor, clusterCourtTotal,
     parseHash, serializeHash,
   };

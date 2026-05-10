@@ -676,8 +676,9 @@
     /* ---------------------- Pure helpers (see map-data.js for unit-tested impls) ---------------------- */
     const {
       COUNTRIES, COUNTRY_FROM_NAME, TYPE_LABELS, OUTDOOR_COLOR, VALID_MODES,
+      INDOOR_REQUIRED_COLUMNS, OUTDOOR_REQUIRED_COLUMNS,
       escapeHtml, safeUrl, slug, matchesQuery, debounce,
-      parseCsv, parseCourtValue, parseOutdoorValue,
+      parseCsv, parseCourtValue, parseOutdoorValue, validateCsvSchema,
       rowToVenue, rowToOutdoor, clusterCourtTotal,
       parseHash, serializeHash,
     } = window.BVMap;
@@ -1158,10 +1159,11 @@
       if (outdoorLoaded) return;
       if (outdoorLoading) return outdoorLoading;
       outdoorLoading = (async () => {
-        const res = await fetch('finland_outdoor_beach_volleyball_courts.csv', { cache: 'no-cache' });
+        const res = await fetch('finland_outdoor_beach_volleyball_courts.csv');
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
-        OUTDOOR_VENUES = parseCsv(text)
+        const outdoorRows = validateCsvSchema(parseCsv(text), OUTDOOR_REQUIRED_COLUMNS, 'outdoor CSV');
+        OUTDOOR_VENUES = outdoorRows
           .map(rowToOutdoor)
           .filter(v => Number.isFinite(v.lat) && Number.isFinite(v.lng));
         OUTDOOR_VENUES.forEach(makeMarker);
@@ -1312,10 +1314,11 @@
         });
 
         const text = await loadCsv();
-        INDOOR_VENUES = parseCsv(text)
+        const indoorRows = validateCsvSchema(parseCsv(text), INDOOR_REQUIRED_COLUMNS, 'indoor CSV');
+        INDOOR_VENUES = indoorRows
           .map(rowToVenue)
           .filter(v => Number.isFinite(v.lat) && Number.isFinite(v.lng));
-        if (!INDOOR_VENUES.length) throw new Error('CSV produced 0 valid rows');
+        if (!INDOOR_VENUES.length) throw new Error('indoor CSV produced 0 geocoded rows');
 
         INDOOR_VENUES.forEach(makeMarker);
 

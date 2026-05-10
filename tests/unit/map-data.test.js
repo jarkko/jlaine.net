@@ -537,6 +537,40 @@ describe('clusterCourtTotal', () => {
   });
 });
 
+describe('validateCsvSchema', () => {
+  test('returns rows untouched when all required columns are present', () => {
+    const rows = [{ a: '1', b: '2', c: '3' }];
+    assert.equal(M.validateCsvSchema(rows, ['a', 'b']), rows);
+  });
+
+  test('throws on empty input', () => {
+    assert.throws(() => M.validateCsvSchema([], ['a'], 'foo'), /foo: produced 0 rows/);
+  });
+
+  test('throws on non-array input', () => {
+    assert.throws(() => M.validateCsvSchema(null, ['a'], 'bar'), /bar: produced 0 rows/);
+  });
+
+  test('throws on missing required columns and lists them', () => {
+    const rows = [{ a: '1' }];
+    assert.throws(
+      () => M.validateCsvSchema(rows, ['a', 'b', 'c'], 'baz'),
+      /baz: missing required column\(s\): b, c/,
+    );
+  });
+
+  test('default label is "CSV"', () => {
+    assert.throws(() => M.validateCsvSchema([{}], ['x']), /^Error: CSV: missing/);
+  });
+
+  test('exposes column lists for indoor and outdoor', () => {
+    assert.ok(M.INDOOR_REQUIRED_COLUMNS.includes('country'));
+    assert.ok(M.INDOOR_REQUIRED_COLUMNS.includes('latitude'));
+    assert.ok(M.OUTDOOR_REQUIRED_COLUMNS.includes('latitude'));
+    assert.ok(M.OUTDOOR_REQUIRED_COLUMNS.includes('outdoor_courts'));
+  });
+});
+
 describe('parseHash', () => {
   test('empty hash returns defaults', () => {
     assert.deepEqual(M.parseHash(''),  { mode: 'indoor', country: 'all', q: '' });
