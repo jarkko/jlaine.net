@@ -395,6 +395,10 @@
     .map-wrap { position: relative; min-height: 0; }
     #map { position: absolute; inset: 0; }
     #map.leaflet-container { background: #e8eef2; font: inherit; }
+    /* Hide the map until the boot fitBounds has run, so users never see the
+       transient "default view → real view" jump. */
+    #map { opacity: 0; transition: opacity .2s ease-out; }
+    #map.is-ready { opacity: 1; }
 
     .data-link {
       position: absolute;
@@ -1329,13 +1333,16 @@
         map.fitBounds(bounds, {
           padding: [40, 40],
           maxZoom: state.category === 'outdoor' ? 5 : 6,
+          animate: false,
         });
+        $('#map').classList.add('is-ready');
 
         render();
         attachEvents();
         syncHash(false);
       } catch (err) {
         console.error('[nordic-bv-map] boot failed:', err);
+        $('#map').classList.add('is-ready');  // still reveal the map for tile fallback
         const hint = $('#hint');
         if (hint) hint.textContent = 'Failed to load venue data: ' + err.message;
       }
