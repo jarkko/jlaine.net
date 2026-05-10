@@ -323,10 +323,10 @@ test.describe('beach volleyball map', () => {
 
     await page.locator('[data-mode="outdoor"]').click();
     await expect(link).toHaveText('↓ Outdoor CSV');
-    await expect(link).toHaveAttribute('href', /finland_outdoor_beach_volleyball_courts\.csv$/);
+    await expect(link).toHaveAttribute('href', /nordic_outdoor_beach_volleyball_courts\.csv$/);
   });
 
-  test('switches to outdoor mode and shows Finland sand courts', async ({ page }) => {
+  test('switches to outdoor mode and shows sand courts', async ({ page }) => {
     const failures = pageErrors(page);
     await page.goto('/beach-volleyball/');
     await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
@@ -335,7 +335,7 @@ test.describe('beach volleyball map', () => {
     await expect(page.locator('[data-mode="outdoor"]')).toHaveAttribute('aria-pressed', 'true');
 
     await expect(page.locator('#mode-notice')).toBeVisible();
-    await expect(page.locator('#mode-notice')).toContainText('Finland');
+    await expect(page.locator('#mode-notice')).toContainText('Outdoor');
 
     await page.waitForFunction(() => document.querySelectorAll('.bv-out-marker, .bv-out-cluster').length > 0);
     expect(await page.locator('.bv-out-marker, .bv-out-cluster').count()).toBeGreaterThan(0);

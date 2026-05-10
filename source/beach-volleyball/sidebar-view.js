@@ -14,9 +14,9 @@
       title: 'Download nordic indoor beach volleyball facilities (CSV)',
     },
     outdoor: {
-      href: 'finland_outdoor_beach_volleyball_courts.csv',
+      href: 'nordic_outdoor_beach_volleyball_courts.csv',
       label: '↓ Outdoor CSV',
-      title: 'Download Finland outdoor beach volleyball courts (CSV, LIPAS open data)',
+      title: 'Download outdoor beach volleyball courts — Nordic & Baltic countries (CSV, OSM + LIPAS open data)',
     },
     both: {
       href: 'nordic_indoor_beach_volleyball_facilities.csv',
@@ -79,10 +79,11 @@
       if (!notice) return;
       if (state.category === 'outdoor') {
         notice.hidden = false;
-        notice.textContent = '🇫🇮 Finland outdoor sand courts · LIPAS open data (CC BY 4.0) · loose sand only';
+        notice.textContent =
+          '🏖️ Outdoor sand courts · Nordic & Baltic countries · Finland: LIPAS CC BY 4.0 · others: OpenStreetMap ODbL';
       } else if (state.category === 'both') {
         notice.hidden = false;
-        notice.textContent = '🌿 Outdoor courts: Finland only for now · more countries coming';
+        notice.textContent = '🌿 Outdoor courts: Nordic & Baltic countries (OSM + LIPAS open data)';
       } else {
         notice.hidden = true;
       }
