@@ -338,6 +338,15 @@
       0%   { background-position:  100% 0; }
       100% { background-position: -100% 0; }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
     .card__flag {
       position: relative;
       width: 36px; height: 36px;
@@ -701,8 +710,16 @@
     let outdoorLoading = null;  // Promise while loading
 
     /* ---------------------- Map ---------------------- */
-    const map = L.map('map', { zoomControl: false, scrollWheelZoom: true, worldCopyJump: false })
-                  .setView([63, 16], 4);
+    const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const map = L.map('map', {
+      zoomControl: false,
+      scrollWheelZoom: true,
+      worldCopyJump: false,
+      fadeAnimation:        !reducedMotion(),
+      zoomAnimation:        !reducedMotion(),
+      markerZoomAnimation:  !reducedMotion(),
+    }).setView([63, 16], 4);
     L.control.zoom({ position: 'topright' }).addTo(map);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -883,7 +900,9 @@
       const filtered = id === 'all' ? venues : venues.filter(v => v.country === id);
       if (!filtered.length) return;
       const bounds = L.latLngBounds(filtered.map(v => [v.lat, v.lng]));
-      map.flyToBounds(bounds, { padding: [60, 60], maxZoom: 7, duration: 0.55 });
+      const opts = { padding: [60, 60], maxZoom: 7 };
+      if (reducedMotion()) map.fitBounds(bounds, opts);
+      else                 map.flyToBounds(bounds, { ...opts, duration: 0.55 });
     }
 
     function renderChips() {
@@ -1074,6 +1093,9 @@
         const layer = v.category === 'outdoor' ? outdoorLayer : indoorLayer;
         if (typeof layer.zoomToShowLayer === 'function') {
           layer.zoomToShowLayer(m, finish);
+        } else if (reducedMotion()) {
+          map.setView([v.lat, v.lng], Math.max(map.getZoom(), 11));
+          finish();
         } else {
           map.flyTo([v.lat, v.lng], Math.max(map.getZoom(), 11), { duration: 0.6 });
           map.once('moveend', finish);
