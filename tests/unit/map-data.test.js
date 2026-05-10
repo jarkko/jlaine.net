@@ -1,0 +1,517 @@
+'use strict';
+
+const { test, describe } = require('node:test');
+const assert = require('node:assert/strict');
+
+const M = require('../../source/beach-volleyball/map-data.js');
+
+describe('escapeHtml', () => {
+  test('escapes the five HTML entities', () => {
+    assert.equal(M.escapeHtml(`<a href="x" data-x='y'>&</a>`),
+      '&lt;a href=&quot;x&quot; data-x=&#39;y&#39;&gt;&amp;&lt;/a&gt;');
+  });
+
+  test('passes through input without entities unchanged', () => {
+    assert.equal(M.escapeHtml('Plain text 123'), 'Plain text 123');
+  });
+
+  test('coerces non-string input', () => {
+    assert.equal(M.escapeHtml(42), '42');
+    assert.equal(M.escapeHtml(null), 'null');
+  });
+});
+
+describe('safeUrl', () => {
+  test('returns null for empty / nullish input', () => {
+    assert.equal(M.safeUrl(''), null);
+    assert.equal(M.safeUrl(null), null);
+    assert.equal(M.safeUrl(undefined), null);
+  });
+
+  test('accepts http and https URLs', () => {
+    assert.equal(M.safeUrl('http://example.com/'), 'http://example.com/');
+    assert.equal(M.safeUrl('https://example.com/path?q=1'), 'https://example.com/path?q=1');
+  });
+
+  test('rejects javascript:, data:, file:, vbscript: schemes', () => {
+    assert.equal(M.safeUrl('javascript:alert(1)'), null);
+    assert.equal(M.safeUrl('JAVASCRIPT:alert(1)'), null);
+    assert.equal(M.safeUrl('data:text/html,<script>x</script>'), null);
+    assert.equal(M.safeUrl('file:///etc/passwd'), null);
+    assert.equal(M.safeUrl('vbscript:msgbox'), null);
+  });
+
+  test('rejects relative URLs without a base (Node has no document.baseURI)', () => {
+    assert.equal(M.safeUrl('/foo/bar'), null);
+    assert.equal(M.safeUrl('foo'), null);
+  });
+
+  test('trims surrounding whitespace before parsing', () => {
+    assert.equal(M.safeUrl('  https://example.com/  '), 'https://example.com/');
+  });
+
+  describe('with document.baseURI stubbed (browser-like)', () => {
+    const realDoc = globalThis.document;
+    test.before(() => { globalThis.document = { baseURI: 'https://example.com/page/' }; });
+    test.after(()  => { globalThis.document = realDoc; });
+
+    test('resolves absolute-path URLs against document.baseURI', () => {
+      assert.equal(M.safeUrl('/foo'), 'https://example.com/foo');
+    });
+
+    test('resolves relative URLs against document.baseURI', () => {
+      assert.equal(M.safeUrl('bar.html'), 'https://example.com/page/bar.html');
+    });
+  });
+});
+
+describe('slug', () => {
+  test('lowercases ASCII and collapses non-alphanumerics', () => {
+    assert.equal(M.slug('Hello World!'), 'hello-world');
+  });
+
+  test('strips diacritics', () => {
+    assert.equal(M.slug('Sandhallen på Gimle'), 'sandhallen-pa-gimle');
+    assert.equal(M.slug('Äimäkuja Ölvi'), 'aimakuja-olvi');
+  });
+
+  test('strips leading and trailing dashes', () => {
+    assert.equal(M.slug('!!!hi!!!'), 'hi');
+    assert.equal(M.slug('---abc'), 'abc');
+  });
+
+  test('returns empty string for input with no alphanumerics', () => {
+    assert.equal(M.slug('!!!'), '');
+  });
+});
+
+describe('matchesQuery', () => {
+  const indoorVenue = {
+    category: 'indoor',
+    country:  'FI',
+    name:     'Hiekka Beach Club',
+    town:     'Vantaa',
+    address:  'Martinkyläntie 59',
+    priceNote:'40 EUR/slot',
+  };
+  const outdoorVenue = {
+    category: 'outdoor',
+    country:  'FI',
+    name:     'Pyynikin uimarannan kenttä',
+    town:     'Tampere',
+    address:  'Jalkasaarentie 7',
+    surface:  'sand',
+    access:   'public',
+  };
+
+  test('returns true for empty query', () => {
+    assert.equal(M.matchesQuery(indoorVenue, ''), true);
+  });
+
+  test('matches venue name', () => {
+    assert.equal(M.matchesQuery(indoorVenue, 'hiekka'), true);
+  });
+
+  test('matches town', () => {
+    assert.equal(M.matchesQuery(indoorVenue, 'vantaa'), true);
+  });
+
+  test('matches address', () => {
+    assert.equal(M.matchesQuery(indoorVenue, 'martinky'), true);
+  });
+
+  test('matches price note for indoor venues', () => {
+    assert.equal(M.matchesQuery(indoorVenue, 'eur/slot'), true);
+  });
+
+  test('matches surface and access for outdoor venues', () => {
+    assert.equal(M.matchesQuery(outdoorVenue, 'sand'), true);
+    assert.equal(M.matchesQuery(outdoorVenue, 'public'), true);
+  });
+
+  test('matches country name', () => {
+    assert.equal(M.matchesQuery(indoorVenue, 'finland'), true);
+  });
+
+  test('returns false when nothing matches', () => {
+    assert.equal(M.matchesQuery(indoorVenue, 'reykjavik'), false);
+  });
+
+  test('handles missing optional fields', () => {
+    const v = { category: 'indoor', country: 'XX', name: 'X', address: 'Y' };
+    assert.equal(M.matchesQuery(v, 'x'), true);
+    assert.equal(M.matchesQuery(v, 'z'), false);
+  });
+
+  test('outdoor venue without optional surface/access still searches name', () => {
+    const v = { category: 'outdoor', country: 'FI', name: 'Foo', address: 'Bar' };
+    assert.equal(M.matchesQuery(v, 'foo'), true);
+  });
+});
+
+describe('parseCsv', () => {
+  test('returns empty array for empty input', () => {
+    assert.deepEqual(M.parseCsv(''), []);
+  });
+
+  test('returns empty array when only a header is present', () => {
+    assert.deepEqual(M.parseCsv('a,b,c'), []);
+  });
+
+  test('parses a simple row to an object keyed by header', () => {
+    assert.deepEqual(
+      M.parseCsv('a,b\n1,2'),
+      [{ a: '1', b: '2' }],
+    );
+  });
+
+  test('handles quoted fields containing commas', () => {
+    assert.deepEqual(
+      M.parseCsv('name,address\nA,"Foo, Bar 7"'),
+      [{ name: 'A', address: 'Foo, Bar 7' }],
+    );
+  });
+
+  test('handles escaped double-quotes inside quoted fields', () => {
+    assert.deepEqual(
+      M.parseCsv('name,note\nA,"He said ""hi"""'),
+      [{ name: 'A', note: 'He said "hi"' }],
+    );
+  });
+
+  test('normalizes CRLF and CR line endings', () => {
+    assert.deepEqual(
+      M.parseCsv('a,b\r\n1,2\r3,4'),
+      [{ a: '1', b: '2' }, { a: '3', b: '4' }],
+    );
+  });
+
+  test('strips leading and trailing blank rows', () => {
+    assert.deepEqual(
+      M.parseCsv('\n\na,b\n1,2\n\n'),
+      [{ a: '1', b: '2' }],
+    );
+  });
+
+  test('strips leading blank rows that contain only commas', () => {
+    assert.deepEqual(
+      M.parseCsv(',,\n,\nfoo,bar\n1,2'),
+      [{ foo: '1', bar: '2' }],
+    );
+  });
+
+  test('handles missing trailing fields with empty strings', () => {
+    assert.deepEqual(
+      M.parseCsv('a,b,c\n1,2'),
+      [{ a: '1', b: '2', c: '' }],
+    );
+  });
+
+  test('trims whitespace around field values', () => {
+    assert.deepEqual(
+      M.parseCsv('a,b\n  1  ,  2  '),
+      [{ a: '1', b: '2' }],
+    );
+  });
+
+  test('keeps a final row with no trailing newline', () => {
+    assert.deepEqual(
+      M.parseCsv('a\n1'),
+      [{ a: '1' }],
+    );
+  });
+});
+
+describe('parseCourtValue', () => {
+  test('null and empty input → unknown', () => {
+    assert.deepEqual(M.parseCourtValue(null),
+      { count: 0, pinLabel: '?', tagLabel: 'courts n/a', detail: null });
+    assert.deepEqual(M.parseCourtValue(''),
+      { count: 0, pinLabel: '?', tagLabel: 'courts n/a', detail: null });
+  });
+
+  test('numeric input', () => {
+    assert.deepEqual(M.parseCourtValue(5),
+      { count: 5, pinLabel: '5', tagLabel: '5 indoor', detail: null });
+  });
+
+  test('digit-only string', () => {
+    assert.deepEqual(M.parseCourtValue('3'),
+      { count: 3, pinLabel: '3', tagLabel: '3 indoor', detail: '3' });
+  });
+
+  test('range string with hyphen', () => {
+    const r = M.parseCourtValue('3-5');
+    assert.equal(r.pinLabel, '3-5');
+    assert.equal(r.tagLabel, '3-5 indoor');
+    assert.equal(r.count, 3);
+    assert.equal(r.detail, '3-5');
+  });
+
+  test('range string with en-dash and em-dash', () => {
+    assert.equal(M.parseCourtValue('3\u20135').pinLabel, '3\u20135');
+    assert.equal(M.parseCourtValue('3\u20145').pinLabel, '3\u20145');
+  });
+
+  test('verbose string with leading number keeps full detail', () => {
+    const r = M.parseCourtValue('3 training OR 2 match');
+    assert.equal(r.pinLabel, '3');
+    assert.equal(r.tagLabel, '3 indoor');
+    assert.equal(r.detail, '3 training OR 2 match');
+  });
+
+  test('non-numeric string falls back to unknown label', () => {
+    const r = M.parseCourtValue('reconfigurable');
+    assert.equal(r.pinLabel, '?');
+    assert.equal(r.tagLabel, 'indoor courts n/a');
+    assert.equal(r.count, 0);
+    assert.equal(r.detail, 'reconfigurable');
+  });
+});
+
+describe('parseOutdoorValue', () => {
+  test('null and empty → empty tag', () => {
+    assert.deepEqual(M.parseOutdoorValue(null),  { tagLabel: '', detail: null });
+    assert.deepEqual(M.parseOutdoorValue(''),    { tagLabel: '', detail: null });
+  });
+
+  test('numeric prefix → "+ N outdoor" with detail', () => {
+    assert.deepEqual(
+      M.parseOutdoorValue('5 outdoor at same site'),
+      { tagLabel: '+ 5 outdoor', detail: '5 outdoor at same site' },
+    );
+  });
+
+  test('range prefix preserved', () => {
+    assert.deepEqual(
+      M.parseOutdoorValue('3-5 outdoor'),
+      { tagLabel: '+ 3-5 outdoor', detail: '3-5 outdoor' },
+    );
+  });
+
+  test('non-numeric → "+ raw" with no detail', () => {
+    assert.deepEqual(
+      M.parseOutdoorValue('seasonal'),
+      { tagLabel: '+ seasonal', detail: null },
+    );
+  });
+});
+
+describe('rowToVenue', () => {
+  function row(overrides = {}) {
+    return {
+      country: 'FINLAND',
+      facility_name: 'Test Hall',
+      town: 'Helsinki',
+      address: 'Foo 1',
+      latitude: '60.1',
+      longitude: '24.9',
+      coord_precision: 'address',
+      facility_type: 'dedicated_indoor_sand_hall',
+      indoor_sand_courts: '3',
+      outdoor_courts_same_venue: '',
+      currency: 'EUR',
+      booking_or_info_url: 'https://example.com',
+      price_notes: 'free',
+      ...overrides,
+    };
+  }
+
+  test('maps country name to ISO code', () => {
+    assert.equal(M.rowToVenue(row(), 0).country, 'FI');
+  });
+
+  test('falls back to first two letters of unknown country name', () => {
+    assert.equal(M.rowToVenue(row({ country: 'POLAND' }), 0).country, 'PO');
+  });
+
+  test('falls back to XX when country is missing', () => {
+    assert.equal(M.rowToVenue(row({ country: '' }), 0).country, 'XX');
+  });
+
+  test('lat/lng parsed as floats', () => {
+    const v = M.rowToVenue(row(), 0);
+    assert.equal(v.lat, 60.1);
+    assert.equal(v.lng, 24.9);
+  });
+
+  test('numeric indoor_sand_courts becomes integer', () => {
+    assert.equal(M.rowToVenue(row({ indoor_sand_courts: '7' }), 0).courtsIndoor, 7);
+  });
+
+  test('non-numeric indoor_sand_courts stays as string', () => {
+    assert.equal(
+      M.rowToVenue(row({ indoor_sand_courts: '3 training OR 2 match' }), 0).courtsIndoor,
+      '3 training OR 2 match',
+    );
+  });
+
+  test('empty indoor_sand_courts → null', () => {
+    assert.equal(M.rowToVenue(row({ indoor_sand_courts: '' }), 0).courtsIndoor, null);
+  });
+
+  test('"not_stated_publicly" indoor_sand_courts → null', () => {
+    assert.equal(
+      M.rowToVenue(row({ indoor_sand_courts: 'not_stated_publicly' }), 0).courtsIndoor,
+      null,
+    );
+  });
+
+  test('id is slugified country-name', () => {
+    assert.equal(M.rowToVenue(row({ facility_name: 'Sandhallen på Gimle' }), 0).id,
+      'fi-sandhallen-pa-gimle');
+  });
+
+  test('id falls back to idx when facility_name is missing', () => {
+    assert.equal(M.rowToVenue(row({ facility_name: '' }), 7).id, 'fi-idx-7');
+  });
+
+  test('falls back to "address" precision when missing', () => {
+    assert.equal(M.rowToVenue(row({ coord_precision: '' }), 0).precision, 'address');
+  });
+
+  test('maps known facility_type to label, passes through unknown', () => {
+    assert.equal(M.rowToVenue(row(), 0).type, 'Dedicated indoor sand hall');
+    assert.equal(M.rowToVenue(row({ facility_type: 'foo' }), 0).type, 'foo');
+  });
+
+  test('outdoor_courts_same_venue feeds outdoorTagLabel', () => {
+    const v = M.rowToVenue(row({ outdoor_courts_same_venue: '5 outdoor at same site' }), 0);
+    assert.equal(v.outdoorTagLabel, '+ 5 outdoor');
+    assert.equal(v.courtsOutdoor, '5 outdoor at same site');
+  });
+
+  test('passes through booking url, price note and currency', () => {
+    const v = M.rowToVenue(row(), 0);
+    assert.equal(v.url, 'https://example.com');
+    assert.equal(v.priceNote, 'free');
+    assert.equal(v.currency, 'EUR');
+  });
+
+  test('category is always "indoor"', () => {
+    assert.equal(M.rowToVenue(row(), 0).category, 'indoor');
+  });
+});
+
+describe('rowToOutdoor', () => {
+  function row(overrides = {}) {
+    return {
+      country: 'FINLAND',
+      facility_name: 'Outdoor Court',
+      town: 'Tampere',
+      address: 'Foo 1',
+      latitude: '61.5',
+      longitude: '23.8',
+      coord_precision: 'address',
+      outdoor_courts: '2',
+      surface: 'sand',
+      lighting: 'yes',
+      free_use: 'yes',
+      access: 'public',
+      owner: 'city',
+      lipas_id: '12345',
+      source_url: 'https://example.com',
+      ...overrides,
+    };
+  }
+
+  test('id includes lipas_id', () => {
+    assert.equal(M.rowToOutdoor(row(), 0).id, 'fi-out-12345');
+  });
+
+  test('id falls back to idx-N when lipas_id missing', () => {
+    assert.equal(M.rowToOutdoor(row({ lipas_id: '' }), 7).id, 'fi-out-idx-7');
+  });
+
+  test('outdoor_courts parses as integer with 0 fallback', () => {
+    assert.equal(M.rowToOutdoor(row({ outdoor_courts: '5' }), 0).courts, 5);
+    assert.equal(M.rowToOutdoor(row({ outdoor_courts: '' }), 0).courts, 0);
+    assert.equal(M.rowToOutdoor(row({ outdoor_courts: 'abc' }), 0).courts, 0);
+  });
+
+  test('lighting and freeUse are boolean equality with "yes"', () => {
+    const v = M.rowToOutdoor(row(), 0);
+    assert.equal(v.lighting, true);
+    assert.equal(v.freeUse, true);
+    const v2 = M.rowToOutdoor(row({ lighting: 'no', free_use: '' }), 0);
+    assert.equal(v2.lighting, false);
+    assert.equal(v2.freeUse, false);
+  });
+
+  test('access defaults to "public" when missing', () => {
+    assert.equal(M.rowToOutdoor(row({ access: '' }), 0).access, 'public');
+  });
+
+  test('precision defaults to "address" when missing', () => {
+    assert.equal(M.rowToOutdoor(row({ coord_precision: '' }), 0).precision, 'address');
+  });
+
+  test('surface, owner, source_url default to empty string', () => {
+    const v = M.rowToOutdoor(row({ surface: '', owner: '', source_url: '' }), 0);
+    assert.equal(v.surface, '');
+    assert.equal(v.owner, '');
+    assert.equal(v.url, '');
+  });
+
+  test('country is always FI and category is always outdoor', () => {
+    const v = M.rowToOutdoor(row(), 0);
+    assert.equal(v.country, 'FI');
+    assert.equal(v.category, 'outdoor');
+  });
+
+  test('courtsLabel is the raw outdoor_courts string', () => {
+    assert.equal(M.rowToOutdoor(row({ outdoor_courts: '3' }), 0).courtsLabel, '3');
+    assert.equal(M.rowToOutdoor(row({ outdoor_courts: '' }), 0).courtsLabel, '');
+  });
+});
+
+describe('clusterCourtTotal', () => {
+  function fakeCluster(markers) {
+    return {
+      getAllChildMarkers: () => markers,
+      getChildCount: () => markers.length,
+    };
+  }
+  function marker(courts) {
+    return { options: { _courts: courts } };
+  }
+
+  test('sums _courts across all child markers', () => {
+    const c = fakeCluster([marker(3), marker(2), marker(5)]);
+    assert.equal(M.clusterCourtTotal(c), 10);
+  });
+
+  test('treats missing _courts as 0', () => {
+    const c = fakeCluster([marker(2), { options: {} }, marker(1)]);
+    assert.equal(M.clusterCourtTotal(c), 3);
+  });
+
+  test('falls back to child count when total is 0', () => {
+    const c = fakeCluster([{ options: {} }, { options: {} }]);
+    assert.equal(M.clusterCourtTotal(c), 2);
+  });
+});
+
+describe('exported constants', () => {
+  test('COUNTRIES contains all eight Nordic+Baltic codes', () => {
+    assert.deepEqual(
+      Object.keys(M.COUNTRIES).sort(),
+      ['DK', 'EE', 'FI', 'IS', 'LT', 'LV', 'NO', 'SE'],
+    );
+  });
+
+  test('COUNTRY_FROM_NAME maps every full name to a code in COUNTRIES', () => {
+    for (const code of Object.values(M.COUNTRY_FROM_NAME)) {
+      assert.ok(M.COUNTRIES[code], `unknown country code ${code}`);
+    }
+  });
+
+  test('TYPE_LABELS has a label for each known facility_type key', () => {
+    assert.equal(M.TYPE_LABELS.dedicated_indoor_sand_hall, 'Dedicated indoor sand hall');
+    assert.equal(M.TYPE_LABELS.air_dome_seasonal_winter,   'Air dome (winter)');
+  });
+
+  test('OUTDOOR_COLOR is a hex colour', () => {
+    assert.match(M.OUTDOOR_COLOR, /^#[0-9a-f]{6}$/i);
+  });
+});
