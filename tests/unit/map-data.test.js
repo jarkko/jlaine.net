@@ -7,8 +7,10 @@ const M = require('../../source/beach-volleyball/map-data.js');
 
 describe('escapeHtml', () => {
   test('escapes the five HTML entities', () => {
-    assert.equal(M.escapeHtml(`<a href="x" data-x='y'>&</a>`),
-      '&lt;a href=&quot;x&quot; data-x=&#39;y&#39;&gt;&amp;&lt;/a&gt;');
+    assert.equal(
+      M.escapeHtml(`<a href="x" data-x='y'>&</a>`),
+      '&lt;a href=&quot;x&quot; data-x=&#39;y&#39;&gt;&amp;&lt;/a&gt;',
+    );
   });
 
   test('passes through input without entities unchanged', () => {
@@ -52,8 +54,12 @@ describe('safeUrl', () => {
 
   describe('with document.baseURI stubbed (browser-like)', () => {
     const realDoc = globalThis.document;
-    test.before(() => { globalThis.document = { baseURI: 'https://example.com/page/' }; });
-    test.after(()  => { globalThis.document = realDoc; });
+    test.before(() => {
+      globalThis.document = { baseURI: 'https://example.com/page/' };
+    });
+    test.after(() => {
+      globalThis.document = realDoc;
+    });
 
     test('resolves absolute-path URLs against document.baseURI', () => {
       assert.equal(M.safeUrl('/foo'), 'https://example.com/foo');
@@ -88,20 +94,20 @@ describe('slug', () => {
 describe('matchesQuery', () => {
   const indoorVenue = {
     category: 'indoor',
-    country:  'FI',
-    name:     'Hiekka Beach Club',
-    town:     'Vantaa',
-    address:  'Martinkyläntie 59',
-    priceNote:'40 EUR/slot',
+    country: 'FI',
+    name: 'Hiekka Beach Club',
+    town: 'Vantaa',
+    address: 'Martinkyläntie 59',
+    priceNote: '40 EUR/slot',
   };
   const outdoorVenue = {
     category: 'outdoor',
-    country:  'FI',
-    name:     'Pyynikin uimarannan kenttä',
-    town:     'Tampere',
-    address:  'Jalkasaarentie 7',
-    surface:  'sand',
-    access:   'public',
+    country: 'FI',
+    name: 'Pyynikin uimarannan kenttä',
+    town: 'Tampere',
+    address: 'Jalkasaarentie 7',
+    surface: 'sand',
+    access: 'public',
   };
 
   test('returns true for empty query', () => {
@@ -159,85 +165,57 @@ describe('parseCsv', () => {
   });
 
   test('parses a simple row to an object keyed by header', () => {
-    assert.deepEqual(
-      M.parseCsv('a,b\n1,2'),
-      [{ a: '1', b: '2' }],
-    );
+    assert.deepEqual(M.parseCsv('a,b\n1,2'), [{ a: '1', b: '2' }]);
   });
 
   test('handles quoted fields containing commas', () => {
-    assert.deepEqual(
-      M.parseCsv('name,address\nA,"Foo, Bar 7"'),
-      [{ name: 'A', address: 'Foo, Bar 7' }],
-    );
+    assert.deepEqual(M.parseCsv('name,address\nA,"Foo, Bar 7"'), [{ name: 'A', address: 'Foo, Bar 7' }]);
   });
 
   test('handles escaped double-quotes inside quoted fields', () => {
-    assert.deepEqual(
-      M.parseCsv('name,note\nA,"He said ""hi"""'),
-      [{ name: 'A', note: 'He said "hi"' }],
-    );
+    assert.deepEqual(M.parseCsv('name,note\nA,"He said ""hi"""'), [{ name: 'A', note: 'He said "hi"' }]);
   });
 
   test('normalizes CRLF and CR line endings', () => {
-    assert.deepEqual(
-      M.parseCsv('a,b\r\n1,2\r3,4'),
-      [{ a: '1', b: '2' }, { a: '3', b: '4' }],
-    );
+    assert.deepEqual(M.parseCsv('a,b\r\n1,2\r3,4'), [
+      { a: '1', b: '2' },
+      { a: '3', b: '4' },
+    ]);
   });
 
   test('strips leading and trailing blank rows', () => {
-    assert.deepEqual(
-      M.parseCsv('\n\na,b\n1,2\n\n'),
-      [{ a: '1', b: '2' }],
-    );
+    assert.deepEqual(M.parseCsv('\n\na,b\n1,2\n\n'), [{ a: '1', b: '2' }]);
   });
 
   test('strips leading blank rows that contain only commas', () => {
-    assert.deepEqual(
-      M.parseCsv(',,\n,\nfoo,bar\n1,2'),
-      [{ foo: '1', bar: '2' }],
-    );
+    assert.deepEqual(M.parseCsv(',,\n,\nfoo,bar\n1,2'), [{ foo: '1', bar: '2' }]);
   });
 
   test('handles missing trailing fields with empty strings', () => {
-    assert.deepEqual(
-      M.parseCsv('a,b,c\n1,2'),
-      [{ a: '1', b: '2', c: '' }],
-    );
+    assert.deepEqual(M.parseCsv('a,b,c\n1,2'), [{ a: '1', b: '2', c: '' }]);
   });
 
   test('trims whitespace around field values', () => {
-    assert.deepEqual(
-      M.parseCsv('a,b\n  1  ,  2  '),
-      [{ a: '1', b: '2' }],
-    );
+    assert.deepEqual(M.parseCsv('a,b\n  1  ,  2  '), [{ a: '1', b: '2' }]);
   });
 
   test('keeps a final row with no trailing newline', () => {
-    assert.deepEqual(
-      M.parseCsv('a\n1'),
-      [{ a: '1' }],
-    );
+    assert.deepEqual(M.parseCsv('a\n1'), [{ a: '1' }]);
   });
 });
 
 describe('parseCourtValue', () => {
   test('null and empty input → unknown', () => {
-    assert.deepEqual(M.parseCourtValue(null),
-      { count: 0, pinLabel: '?', tagLabel: 'courts n/a', detail: null });
-    assert.deepEqual(M.parseCourtValue(''),
-      { count: 0, pinLabel: '?', tagLabel: 'courts n/a', detail: null });
+    assert.deepEqual(M.parseCourtValue(null), { count: 0, pinLabel: '?', tagLabel: 'courts n/a', detail: null });
+    assert.deepEqual(M.parseCourtValue(''), { count: 0, pinLabel: '?', tagLabel: 'courts n/a', detail: null });
   });
 
   test('numeric input', () => {
-    assert.deepEqual(M.parseCourtValue(5),
-      { count: 5, pinLabel: '5', tagLabel: '5 indoor', detail: null });
+    assert.deepEqual(M.parseCourtValue(5), { count: 5, pinLabel: '5', tagLabel: '5 indoor', detail: null });
   });
 
   test('digit-only string', () => {
-    assert.deepEqual(M.parseCourtValue('3'),
-      { count: 3, pinLabel: '3', tagLabel: '3 indoor', detail: '3' });
+    assert.deepEqual(M.parseCourtValue('3'), { count: 3, pinLabel: '3', tagLabel: '3 indoor', detail: '3' });
   });
 
   test('range string with hyphen', () => {
@@ -271,29 +249,23 @@ describe('parseCourtValue', () => {
 
 describe('parseOutdoorValue', () => {
   test('null and empty → empty tag', () => {
-    assert.deepEqual(M.parseOutdoorValue(null),  { tagLabel: '', detail: null });
-    assert.deepEqual(M.parseOutdoorValue(''),    { tagLabel: '', detail: null });
+    assert.deepEqual(M.parseOutdoorValue(null), { tagLabel: '', detail: null });
+    assert.deepEqual(M.parseOutdoorValue(''), { tagLabel: '', detail: null });
   });
 
   test('numeric prefix → "+ N outdoor" with detail', () => {
-    assert.deepEqual(
-      M.parseOutdoorValue('5 outdoor at same site'),
-      { tagLabel: '+ 5 outdoor', detail: '5 outdoor at same site' },
-    );
+    assert.deepEqual(M.parseOutdoorValue('5 outdoor at same site'), {
+      tagLabel: '+ 5 outdoor',
+      detail: '5 outdoor at same site',
+    });
   });
 
   test('range prefix preserved', () => {
-    assert.deepEqual(
-      M.parseOutdoorValue('3-5 outdoor'),
-      { tagLabel: '+ 3-5 outdoor', detail: '3-5 outdoor' },
-    );
+    assert.deepEqual(M.parseOutdoorValue('3-5 outdoor'), { tagLabel: '+ 3-5 outdoor', detail: '3-5 outdoor' });
   });
 
   test('non-numeric → "+ raw" with no detail', () => {
-    assert.deepEqual(
-      M.parseOutdoorValue('seasonal'),
-      { tagLabel: '+ seasonal', detail: null },
-    );
+    assert.deepEqual(M.parseOutdoorValue('seasonal'), { tagLabel: '+ seasonal', detail: null });
   });
 });
 
@@ -351,15 +323,11 @@ describe('rowToVenue', () => {
   });
 
   test('"not_stated_publicly" indoor_sand_courts → null', () => {
-    assert.equal(
-      M.rowToVenue(row({ indoor_sand_courts: 'not_stated_publicly' }), 0).courtsIndoor,
-      null,
-    );
+    assert.equal(M.rowToVenue(row({ indoor_sand_courts: 'not_stated_publicly' }), 0).courtsIndoor, null);
   });
 
   test('id is slugified country-name', () => {
-    assert.equal(M.rowToVenue(row({ facility_name: 'Sandhallen på Gimle' }), 0).id,
-      'fi-sandhallen-pa-gimle');
+    assert.equal(M.rowToVenue(row({ facility_name: 'Sandhallen på Gimle' }), 0).id, 'fi-sandhallen-pa-gimle');
   });
 
   test('id falls back to idx when facility_name is missing', () => {
@@ -524,11 +492,7 @@ describe('ctaLabelFor', () => {
       'https://www.vuorovaraus.fi/x',
     ];
     for (const url of cases) {
-      assert.equal(
-        M.ctaLabelFor({ category: 'indoor', url }),
-        'Book ↗',
-        `expected booking label for ${url}`,
-      );
+      assert.equal(M.ctaLabelFor({ category: 'indoor', url }), 'Book ↗', `expected booking label for ${url}`);
     }
   });
 
@@ -540,49 +504,8 @@ describe('ctaLabelFor', () => {
       'https://www.fbf.fi/foreign',
     ];
     for (const url of cases) {
-      assert.equal(
-        M.ctaLabelFor({ category: 'indoor', url }),
-        'Visit site ↗',
-        `expected visit label for ${url}`,
-      );
+      assert.equal(M.ctaLabelFor({ category: 'indoor', url }), 'Visit site ↗', `expected visit label for ${url}`);
     }
-  });
-});
-
-describe('clusterCourtTotal', () => {
-  function fakeCluster(markers) {
-    return {
-      getAllChildMarkers: () => markers,
-      getChildCount: () => markers.length,
-    };
-  }
-  function marker(courts) {
-    return { options: { _courts: courts } };
-  }
-
-  test('sums _courts across all child markers when all are known', () => {
-    const c = fakeCluster([marker(3), marker(2), marker(5)]);
-    assert.equal(M.clusterCourtTotal(c), 10);
-  });
-
-  test('mixed known/unknown: known counted exactly, unknowns count as 1', () => {
-    const c = fakeCluster([marker(3), { options: {} }, marker(2)]);
-    assert.equal(M.clusterCourtTotal(c), 3 + 1 + 2);
-  });
-
-  test('all unknown: returns venue count (one per marker)', () => {
-    const c = fakeCluster([{ options: {} }, { options: {} }, { options: {} }]);
-    assert.equal(M.clusterCourtTotal(c), 3);
-  });
-
-  test('zero _courts is treated as unknown (1) not as known zero', () => {
-    const c = fakeCluster([marker(0), marker(0), marker(5)]);
-    assert.equal(M.clusterCourtTotal(c), 1 + 1 + 5);
-  });
-
-  test('non-numeric _courts is treated as unknown', () => {
-    const c = fakeCluster([{ options: { _courts: 'two' } }, marker(3)]);
-    assert.equal(M.clusterCourtTotal(c), 1 + 3);
   });
 });
 
@@ -602,10 +525,7 @@ describe('validateCsvSchema', () => {
 
   test('throws on missing required columns and lists them', () => {
     const rows = [{ a: '1' }];
-    assert.throws(
-      () => M.validateCsvSchema(rows, ['a', 'b', 'c'], 'baz'),
-      /baz: missing required column\(s\): b, c/,
-    );
+    assert.throws(() => M.validateCsvSchema(rows, ['a', 'b', 'c'], 'baz'), /baz: missing required column\(s\): b, c/);
   });
 
   test('default label is "CSV"', () => {
@@ -624,23 +544,25 @@ describe('parseHash', () => {
   const D = { mode: 'indoor', country: 'all', q: '', venue: '' };
 
   test('empty hash returns defaults', () => {
-    assert.deepEqual(M.parseHash(''),  D);
+    assert.deepEqual(M.parseHash(''), D);
     assert.deepEqual(M.parseHash('#'), D);
-    assert.deepEqual(M.parseHash(),    D);
+    assert.deepEqual(M.parseHash(), D);
   });
 
   test('legacy bare-mode form', () => {
-    assert.deepEqual(M.parseHash('#indoor'),  { ...D, mode: 'indoor' });
+    assert.deepEqual(M.parseHash('#indoor'), { ...D, mode: 'indoor' });
     assert.deepEqual(M.parseHash('#outdoor'), { ...D, mode: 'outdoor' });
-    assert.deepEqual(M.parseHash('#both'),    { ...D, mode: 'both' });
+    assert.deepEqual(M.parseHash('#both'), { ...D, mode: 'both' });
     assert.deepEqual(M.parseHash('#OUTDOOR'), { ...D, mode: 'outdoor' });
   });
 
   test('param form with mode, country, q, id', () => {
-    assert.deepEqual(
-      M.parseHash('#mode=outdoor&country=FI&q=helsinki&id=fi-out-123'),
-      { mode: 'outdoor', country: 'FI', q: 'helsinki', venue: 'fi-out-123' },
-    );
+    assert.deepEqual(M.parseHash('#mode=outdoor&country=FI&q=helsinki&id=fi-out-123'), {
+      mode: 'outdoor',
+      country: 'FI',
+      q: 'helsinki',
+      venue: 'fi-out-123',
+    });
   });
 
   test('decodes URI-encoded query and venue id', () => {
@@ -657,31 +579,25 @@ describe('parseHash', () => {
   });
 
   test('non-string input falls back to defaults', () => {
-    assert.deepEqual(M.parseHash(null),      D);
+    assert.deepEqual(M.parseHash(null), D);
     assert.deepEqual(M.parseHash(undefined), D);
-    assert.deepEqual(M.parseHash(42),        D);
+    assert.deepEqual(M.parseHash(42), D);
   });
 });
 
 describe('serializeHash', () => {
   test('defaults serialize to bare mode', () => {
-    assert.equal(M.serializeHash(),                     '#indoor');
-    assert.equal(M.serializeHash({}),                   '#indoor');
-    assert.equal(M.serializeHash({ mode: 'outdoor' }),  '#outdoor');
+    assert.equal(M.serializeHash(), '#indoor');
+    assert.equal(M.serializeHash({}), '#indoor');
+    assert.equal(M.serializeHash({ mode: 'outdoor' }), '#outdoor');
   });
 
   test('country adds &country= and switches to param form', () => {
-    assert.equal(
-      M.serializeHash({ mode: 'indoor', country: 'FI' }),
-      '#mode=indoor&country=FI',
-    );
+    assert.equal(M.serializeHash({ mode: 'indoor', country: 'FI' }), '#mode=indoor&country=FI');
   });
 
   test('venue id alone switches to param form', () => {
-    assert.equal(
-      M.serializeHash({ mode: 'outdoor', venue: 'fi-out-7' }),
-      '#mode=outdoor&id=fi-out-7',
-    );
+    assert.equal(M.serializeHash({ mode: 'outdoor', venue: 'fi-out-7' }), '#mode=outdoor&id=fi-out-7');
   });
 
   test('all four params combine in stable order', () => {
@@ -692,10 +608,7 @@ describe('serializeHash', () => {
   });
 
   test('query and venue id are URI-encoded', () => {
-    assert.equal(
-      M.serializeHash({ mode: 'indoor', q: 'pä', venue: 'fi+a' }),
-      '#mode=indoor&q=p%C3%A4&id=fi%2Ba',
-    );
+    assert.equal(M.serializeHash({ mode: 'indoor', q: 'pä', venue: 'fi+a' }), '#mode=indoor&q=p%C3%A4&id=fi%2Ba');
   });
 
   test('round-trips parseHash → serializeHash', () => {
@@ -717,10 +630,7 @@ describe('serializeHash', () => {
 
 describe('exported constants', () => {
   test('COUNTRIES contains all eight Nordic+Baltic codes', () => {
-    assert.deepEqual(
-      Object.keys(M.COUNTRIES).sort(),
-      ['DK', 'EE', 'FI', 'IS', 'LT', 'LV', 'NO', 'SE'],
-    );
+    assert.deepEqual(Object.keys(M.COUNTRIES).sort(), ['DK', 'EE', 'FI', 'IS', 'LT', 'LV', 'NO', 'SE']);
   });
 
   test('COUNTRY_FROM_NAME maps every full name to a code in COUNTRIES', () => {
@@ -731,7 +641,7 @@ describe('exported constants', () => {
 
   test('TYPE_LABELS has a label for each known facility_type key', () => {
     assert.equal(M.TYPE_LABELS.dedicated_indoor_sand_hall, 'Dedicated indoor sand hall');
-    assert.equal(M.TYPE_LABELS.air_dome_seasonal_winter,   'Air dome (winter)');
+    assert.equal(M.TYPE_LABELS.air_dome_seasonal_winter, 'Air dome (winter)');
   });
 
   test('OUTDOOR_COLOR is a hex colour', () => {

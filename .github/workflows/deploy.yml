@@ -6,8 +6,39 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Lint JavaScript
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Run unit tests with coverage
+        run: npm run test:unit
+
+  browser:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,31 +47,74 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.4"
-          bundler-cache: true   # runs `bundle install` and caches gems
+          ruby-version: '3.4.8'
+          bundler-cache: true
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: "24"
+          node-version: '24'
           cache: npm
 
       - name: Install Node dependencies
         run: npm ci
 
-      - name: Run unit tests with coverage
-        run: npm run test:unit
-
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Build site and run browser smoke tests
-        run: npm run test:map
+      - name: Build site
+        run: npm run build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Run browser regression tests
+        run: npx playwright test tests/beach-volleyball.spec.js
+
+      - name: Run accessibility tests
+        run: npx playwright test tests/a11y.spec.js
+
+      - name: Upload browser failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-failure-artifacts
+          path: |
+            playwright-report
+            test-results
+            public
+          if-no-files-found: ignore
+
+  deploy:
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    needs: [quality, browser]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4.8'
+          bundler-cache: true
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build production site
+        run: npm run build
         env:
           JEKYLL_ENV: production
 
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -13,10 +13,7 @@ function loadVenues(relPath, mapper) {
 }
 
 describe('indoor CSV data sanity', () => {
-  const venues = loadVenues(
-    'source/beach-volleyball/nordic_indoor_beach_volleyball_facilities.csv',
-    M.rowToVenue,
-  );
+  const venues = loadVenues('source/beach-volleyball/nordic_indoor_beach_volleyball_facilities.csv', M.rowToVenue);
 
   test('produces at least 30 indoor halls', () => {
     assert.ok(venues.length >= 30, `only ${venues.length} venues`);
@@ -50,10 +47,7 @@ describe('indoor CSV data sanity', () => {
 });
 
 describe('outdoor CSV data sanity', () => {
-  const venues = loadVenues(
-    'source/beach-volleyball/finland_outdoor_beach_volleyball_courts.csv',
-    M.rowToOutdoor,
-  );
+  const venues = loadVenues('source/beach-volleyball/finland_outdoor_beach_volleyball_courts.csv', M.rowToOutdoor);
 
   test('produces at least 500 outdoor courts', () => {
     assert.ok(venues.length >= 500, `only ${venues.length} venues`);
@@ -80,7 +74,7 @@ describe('outdoor CSV data sanity', () => {
 
   test('LIPAS ids (when present) are unique', () => {
     // rowToOutdoor synthesizes idx-N when no lipas_id; only check the real ones.
-    const real = venues.map(v => v.lipasId).filter(id => !/^idx-/.test(id));
+    const real = venues.map((v) => v.lipasId).filter((id) => !/^idx-/.test(id));
     assert.equal(new Set(real).size, real.length, 'duplicate lipas_id detected');
   });
 });
