@@ -317,6 +317,27 @@
       border-color: var(--out-color);
       box-shadow: 0 0 0 3px var(--out-soft), var(--shadow-md);
     }
+    .card--skeleton { pointer-events: none; cursor: default; }
+    .card--skeleton .skel {
+      background: linear-gradient(90deg,
+        rgba(15,23,42,0.06) 0%,
+        rgba(15,23,42,0.12) 50%,
+        rgba(15,23,42,0.06) 100%);
+      background-size: 200% 100%;
+      animation: bv-skel 1.4s ease-in-out infinite;
+      border-radius: 6px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .card--skeleton .skel--block { display: block; }
+    .card--skeleton .skel--name  { height: 13px; width: 70%; }
+    .card--skeleton .skel--town  { height: 11px; width: 50%; margin-top: 6px; }
+    .card--skeleton .skel--tag   { height: 18px; width: 56px; border-radius: 999px; margin-top: 8px; margin-right: 6px; }
+    .card--skeleton .skel--flag  { width: 36px; height: 36px; border-radius: 10px; }
+    @keyframes bv-skel {
+      0%   { background-position:  100% 0; }
+      100% { background-position: -100% 0; }
+    }
     .card__flag {
       position: relative;
       width: 36px; height: 36px;
@@ -621,7 +642,7 @@
         <p class="mode-notice" id="mode-notice" hidden></p>
       </div>
       <ol class="venue-list" id="venues" role="list"></ol>
-      <p class="sidebar__hint" id="hint"></p>
+      <p class="sidebar__hint" id="hint" role="status" aria-live="polite"></p>
     </aside>
   </main>
 
@@ -952,10 +973,33 @@
     }
 
     /* ---------------------- Render: List ---------------------- */
+    function buildSkeletonCard() {
+      const item = ce('li', { class: 'venue-list__item' });
+      const card = ce('div', { class: 'card card--skeleton', 'aria-hidden': 'true' });
+      const flag = ce('span', { class: 'skel skel--flag' });
+      const body = ce('div',  { class: 'card__body' });
+      body.append(
+        ce('span', { class: 'skel skel--block skel--name' }),
+        ce('span', { class: 'skel skel--block skel--town' }),
+        ce('div',  { class: 'card__meta' },
+          ce('span', { class: 'skel skel--tag' }),
+          ce('span', { class: 'skel skel--tag' }),
+        ),
+      );
+      card.append(flag, body);
+      item.append(card);
+      return item;
+    }
+
     function renderList() {
       const list = $('#venues');
       const hint = $('#hint');
       list.innerHTML = '';
+
+      const loadingOutdoor = state.category !== 'indoor' && !outdoorLoaded;
+      if (loadingOutdoor) {
+        for (let i = 0; i < 5; i++) list.append(buildSkeletonCard());
+      }
 
       const venues =
         state.category === 'indoor'  ? INDOOR_VENUES :
