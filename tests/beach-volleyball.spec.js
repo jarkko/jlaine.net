@@ -354,6 +354,15 @@ test.describe('beach volleyball map', () => {
   test('clicking marker B while marker A popup is open ends with only B selected', async ({ page }) => {
     const failures = pageErrors(page);
     await page.goto('/beach-volleyball/#outdoor');
+
+    // Wait for outdoor data to arrive (initially all in clusters at country-fit zoom).
+    await page.waitForFunction(() => document.querySelectorAll('.bv-out-marker, .bv-out-cluster').length > 0);
+
+    // Zoom into Helsinki where several outdoor courts are within a few hundred metres
+    // of each other, so MarkerCluster separates them into individual .bv-out-marker icons.
+    await page.evaluate(() => {
+      document.getElementById('map')._leaflet_map.setView([60.1699, 24.9384], 14);
+    });
     await page.waitForFunction(() => document.querySelectorAll('.bv-out-marker').length > 1);
 
     const markers = page.locator('.bv-out-marker');
