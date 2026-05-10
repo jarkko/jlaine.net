@@ -2,7 +2,7 @@
   'use strict';
 
   const { $ } = root.BVDom;
-  const { parseHash, serializeHash } = root.BVMap;
+  const { parseHash, serializeHash, matchesQuery } = root.BVMap;
   const { createDataStore } = root.BVDataLoader;
   const { createMapView } = root.BVMapView;
   const { createSidebarView } = root.BVSidebarView;
@@ -188,6 +188,10 @@
       onSetMode: setMode,
       onSearchChanged: (value) => {
         state.query = value;
+        if (state.selectedId && value) {
+          const selected = data.findVenue(state.selectedId);
+          if (selected && !matchesQuery(selected, value)) mapView.closePopup();
+        }
         sidebarView.renderList();
         syncHash(false);
       },
