@@ -617,10 +617,27 @@
       <p>Indoor sand halls &amp; outdoor courts — Finland, Sweden, Norway, Denmark, Iceland, Estonia, Latvia &amp; Lithuania</p>
     </div>
     <div class="mode-switch" id="mode-switch" role="group" aria-label="Display mode">
-      <button class="mode-btn" data-mode="indoor"  aria-pressed="true">Indoor</button>
+      <button class="mode-btn" data-mode="indoor"  aria-pressed="false">Indoor</button>
       <button class="mode-btn" data-mode="outdoor" aria-pressed="false">Outdoor</button>
       <button class="mode-btn" data-mode="both"    aria-pressed="false">Both</button>
     </div>
+    <script>
+      // Synchronously flip the correct mode button BEFORE the browser paints,
+      // so loading /#outdoor or /#both doesn't briefly highlight "Indoor".
+      // Duplicates a sliver of map-data.js' parseHash because that module
+      // loads at end-of-body, after the topbar has already painted.
+      (function () {
+        var raw  = (location.hash || '').replace(/^#/, '').trim().toLowerCase();
+        var rx   = /^(indoor|outdoor|both)$/;
+        var mode = rx.test(raw) ? raw
+                  : (new URLSearchParams(raw)).get('mode') || 'indoor';
+        if (!rx.test(mode)) mode = 'indoor';
+        var btns = document.getElementById('mode-switch').querySelectorAll('.mode-btn');
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].setAttribute('aria-pressed', btns[i].dataset.mode === mode ? 'true' : 'false');
+        }
+      })();
+    </script>
   </header>
 
   <main class="layout" id="layout">
