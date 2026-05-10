@@ -128,6 +128,19 @@ test.describe('beach volleyball map', () => {
     await expect(page.locator('.map-wrap')).not.toHaveAttribute('inert', '');
   });
 
+  test('CSV download link tracks the active mode', async ({ page }) => {
+    await page.goto('/beach-volleyball/');
+    await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
+
+    const link = page.locator('#data-link');
+    await expect(link).toHaveText('↓ Indoor CSV');
+    await expect(link).toHaveAttribute('href', /nordic_indoor_beach_volleyball_facilities\.csv$/);
+
+    await page.locator('[data-mode="outdoor"]').click();
+    await expect(link).toHaveText('↓ Outdoor CSV');
+    await expect(link).toHaveAttribute('href', /finland_outdoor_beach_volleyball_courts\.csv$/);
+  });
+
   test('switches to outdoor mode and shows Finland sand courts', async ({ page }) => {
     const failures = pageErrors(page);
     await page.goto('/beach-volleyball/');

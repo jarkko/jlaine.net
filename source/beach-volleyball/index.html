@@ -619,7 +619,9 @@
         <span class="sidebar-toggle__count" id="sidebar-toggle-count">…</span>
       </button>
 
-      <a class="data-link" href="nordic_indoor_beach_volleyball_facilities.csv" download>↓ CSV</a>
+      <a class="data-link" id="data-link"
+         href="nordic_indoor_beach_volleyball_facilities.csv"
+         download>↓ Indoor CSV</a>
     </section>
 
     <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
@@ -1172,7 +1174,23 @@
       return res.text();
     }
 
-    function render() { renderModeNotice(); renderChips(); renderList(); syncMarkers(); }
+    /* ---------------------- Render: CSV download link ---------------------- */
+    const CSV_LINKS = {
+      indoor:  { href: 'nordic_indoor_beach_volleyball_facilities.csv', label: '↓ Indoor CSV',  title: 'Download nordic indoor beach volleyball facilities (CSV)' },
+      outdoor: { href: 'finland_outdoor_beach_volleyball_courts.csv',   label: '↓ Outdoor CSV', title: 'Download Finland outdoor beach volleyball courts (CSV, LIPAS open data)' },
+      both:    { href: 'nordic_indoor_beach_volleyball_facilities.csv', label: '↓ Indoor CSV',  title: 'Indoor CSV — outdoor data is available in outdoor mode' },
+    };
+
+    function renderDataLink() {
+      const link = $('#data-link');
+      if (!link) return;
+      const cfg = CSV_LINKS[state.category] || CSV_LINKS.indoor;
+      link.setAttribute('href', cfg.href);
+      link.setAttribute('title', cfg.title);
+      link.textContent = cfg.label;
+    }
+
+    function render() { renderModeNotice(); renderChips(); renderList(); renderDataLink(); syncMarkers(); }
 
     /* ---------------------- Sidebar drawer ---------------------- */
     // Siblings outside the dialog that should be removed from the focus order
