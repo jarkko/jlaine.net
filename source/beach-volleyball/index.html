@@ -950,13 +950,17 @@
         : `<span class="tag tag--out"${v.outdoorDetail ? ` title="${escapeHtml(v.outdoorDetail)}"` : ''}>${escapeHtml(v.outdoorTagLabel)}</span>`;
       const precisionTag = v.precision === 'town'
         ? '<span class="tag tag--note" title="Marker placed at town level — address-precise location not yet verified">~ town</span>' : '';
+      const url = safeUrl(v.url);
+      const cta = url
+        ? `<a class="popup__cta" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Open booking ↗</a>`
+        : '';
       return `
         <div>
           <h3 class="popup__name">${escapeHtml(v.name)}</h3>
           <div class="popup__meta">${c.flag} ${escapeHtml(c.name)} · ${escapeHtml(v.town)}<br/>${escapeHtml(v.address)}</div>
           <div class="popup__row">${courts}${out}<span class="tag">${escapeHtml(v.currency || '')}</span>${precisionTag}</div>
           <p class="popup__price">${escapeHtml(v.priceNote || '')}</p>
-          <a class="popup__cta" href="${escapeHtml(v.url)}" target="_blank" rel="noopener noreferrer">Open booking ↗</a>
+          ${cta}
         </div>`;
     }
 
@@ -972,8 +976,9 @@
         v.precision === 'town'
           ? '<span class="tag tag--note" title="Marker placed at town level">~ town</span>' : '',
       ].filter(Boolean).join('');
-      const cta = v.url
-        ? `<a class="popup__cta popup__cta--out" href="${escapeHtml(v.url)}" target="_blank" rel="noopener noreferrer">More info ↗</a>`
+      const url = safeUrl(v.url);
+      const cta = url
+        ? `<a class="popup__cta popup__cta--out" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">More info ↗</a>`
         : '';
       const loc = v.town ? `${escapeHtml(v.town)}<br/>${escapeHtml(v.address)}` : escapeHtml(v.address);
       return `
