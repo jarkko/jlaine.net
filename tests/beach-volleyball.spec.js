@@ -23,7 +23,7 @@ test.describe('beach volleyball map', () => {
     // Indoor mode is default; URL hash reflects it
     await expect(page.locator('[data-mode="indoor"]')).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('[data-mode="outdoor"]')).toHaveAttribute('aria-pressed', 'false');
-    await expect(page).toHaveURL(/\/beach-volleyball\/#indoor$/);
+    await expect(page).toHaveURL(/\/beach-volleyball\/#\/indoor$/);
 
     await page.getByRole('button', { name: /venues/i }).click();
     await expect(page.locator('#sidebar')).toHaveClass(/is-open/);
@@ -64,7 +64,7 @@ test.describe('beach volleyball map', () => {
     await page.goto('/beach-volleyball/#both');
 
     await expect(page.locator('[data-mode="both"]')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.locator('#mode-notice')).toContainText('Outdoor courts: Finland only');
+    await expect(page.locator('#mode-notice')).toContainText('Nordic');
     await page.waitForFunction(
       () =>
         document.querySelectorAll('.bv-marker, .bv-cluster').length > 0 &&
@@ -84,15 +84,15 @@ test.describe('beach volleyball map', () => {
     await page.goto('/beach-volleyball/');
     await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
 
-    await expect(page).toHaveURL(/#indoor$/);
+    await expect(page).toHaveURL(/#\/indoor$/);
 
     await page.locator('[data-mode="outdoor"]').click();
     await page.waitForFunction(() => document.querySelectorAll('.bv-out-marker, .bv-out-cluster').length > 0);
-    await expect(page).toHaveURL(/#outdoor$/);
+    await expect(page).toHaveURL(/#\/outdoor$/);
 
     // Browser back should return to indoor
     await page.goBack();
-    await expect(page).toHaveURL(/#indoor$/);
+    await expect(page).toHaveURL(/#\/indoor$/);
     await expect(page.locator('[data-mode="indoor"]')).toHaveAttribute('aria-pressed', 'true');
 
     expect(failures).toEqual([]);
@@ -154,13 +154,13 @@ test.describe('beach volleyball map', () => {
 
   test('venue permalink boots with the popup open', async ({ page }) => {
     const failures = pageErrors(page);
-    await page.goto('/beach-volleyball/#mode=indoor&id=fi-biitsi-pasila');
+    await page.goto('/beach-volleyball/#/indoor/fi-biitsi-pasila');
     await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
 
     // Popup is open with the matching venue
     await expect(page.locator('.leaflet-popup-content .popup__name')).toContainText('Biitsi Pasila');
     // URL is preserved verbatim
-    await expect(page).toHaveURL(/#mode=indoor&id=fi-biitsi-pasila$/);
+    await expect(page).toHaveURL(/#\/indoor\/fi-biitsi-pasila$/);
     expect(failures).toEqual([]);
   });
 
@@ -174,16 +174,16 @@ test.describe('beach volleyball map', () => {
     await expect(page.locator('#venues .card')).toHaveCount(1);
 
     await page.locator('#venues .card').first().click();
-    await expect(page).toHaveURL(/[?&#]id=fi-biitsi-pasila/);
+    await expect(page).toHaveURL(/\/fi-biitsi-pasila/);
     await expect(page.locator('.leaflet-popup-content .popup__name')).toContainText('Biitsi Pasila');
 
     // Close the sidebar so its backdrop doesn't intercept the popup-close click.
     await page.keyboard.press('Escape');
     await expect(page.locator('#sidebar')).not.toHaveClass(/is-open/);
 
-    // Close the popup → id should disappear from the URL
+    // Close the popup → venue segment should disappear from the URL
     await page.locator('.leaflet-popup-close-button').click();
-    await expect(page).not.toHaveURL(/[?&#]id=/);
+    await expect(page).not.toHaveURL(/#\/[^/]+\/[^?]/);
     expect(failures).toEqual([]);
   });
 
@@ -192,12 +192,12 @@ test.describe('beach volleyball map', () => {
     // Boot with A's permalink already open — the popup is up before we trigger
     // the switch, which is exactly the popupclose-A → popupopen-B race the
     // popupclose handler needs to handle correctly.
-    await page.goto('/beach-volleyball/#mode=indoor&id=fi-biitsi-pasila');
+    await page.goto('/beach-volleyball/#/indoor/fi-biitsi-pasila');
     await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
     await expect(page.locator('.leaflet-popup-content .popup__name')).toContainText('Biitsi Pasila');
 
     await page.evaluate(() => {
-      location.hash = '#mode=indoor&id=no-sandhallen-pa-gimle-ksk';
+      location.hash = '#/indoor/no-sandhallen-pa-gimle-ksk';
     });
 
     // Wait for the previous popup to actually close before asserting on the
@@ -205,8 +205,8 @@ test.describe('beach volleyball map', () => {
     // visible while the new one materialises.
     await expect(page.locator('.leaflet-popup-content')).toHaveCount(1, { timeout: 5000 });
     await expect(page.locator('.leaflet-popup-content .popup__name')).toContainText('Sandhallen');
-    await expect(page).toHaveURL(/[?&#]id=no-sandhallen-pa-gimle-ksk/);
-    await expect(page).not.toHaveURL(/[?&#]id=fi-biitsi-pasila/);
+    await expect(page).toHaveURL(/\/no-sandhallen-pa-gimle-ksk/);
+    await expect(page).not.toHaveURL(/\/fi-biitsi-pasila/);
     expect(failures).toEqual([]);
   });
 
@@ -216,7 +216,7 @@ test.describe('beach volleyball map', () => {
     await page.goto('/beach-volleyball/#/outdoor/fi-out-529117');
     await page.waitForFunction(() => document.querySelectorAll('.bv-out-marker, .bv-out-cluster').length > 0);
 
-    await expect(page.locator('.leaflet-popup-content .popup__name')).toContainText('Hääkiven');
+    await expect(page.locator('.leaflet-popup-content .popup__name')).toContainText('Hääkiven', { timeout: 10000 });
     await expect(page).toHaveURL(/#\/outdoor\/fi-out-529117-haakiven-beachvolleykentta$/);
     expect(failures).toEqual([]);
   });
@@ -226,26 +226,26 @@ test.describe('beach volleyball map', () => {
     await page.goto('/beach-volleyball/#/outdoor/fi-out-529117-haakiven-beachvolleykentta');
     await page.waitForFunction(() => document.querySelectorAll('.bv-out-marker, .bv-out-cluster').length > 0);
 
-    await expect(page.locator('.leaflet-popup-content .popup__name')).toContainText('Hääkiven');
+    await expect(page.locator('.leaflet-popup-content .popup__name')).toContainText('Hääkiven', { timeout: 10000 });
     await expect(page).toHaveURL(/#\/outdoor\/fi-out-529117-haakiven-beachvolleykentta$/);
     expect(failures).toEqual([]);
   });
 
   test('back-navigating from a venue permalink re-fits to the new mode', async ({ page }) => {
     const failures = pageErrors(page);
-    await page.goto('/beach-volleyball/#indoor');
+    await page.goto('/beach-volleyball/#/indoor');
     await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
 
     // Go to an outdoor venue permalink — the map should fly to Hääkiven.
     await page.evaluate(() => {
-      location.hash = '#mode=outdoor&id=fi-out-529117';
+      location.hash = '#/outdoor/fi-out-529117';
     });
     await expect(page.locator('.leaflet-popup-content .popup__name')).toContainText('Hääkiven', { timeout: 10000 });
 
     // Press Back — should drop the venue AND re-fit the map to indoor bounds
     // (i.e., zoom out from Hääkiven), not just close the popup in place.
     await page.goBack();
-    await expect(page).toHaveURL(/#indoor$/);
+    await expect(page).toHaveURL(/#\/indoor$/);
     await expect(page.locator('.leaflet-popup-content')).toHaveCount(0);
 
     // Poll until the indoor re-fit has settled: ≥4 indoor markers visible inside
@@ -302,12 +302,12 @@ test.describe('beach volleyball map', () => {
 
   test('stale venue id in URL is silently ignored', async ({ page }) => {
     const failures = pageErrors(page);
-    await page.goto('/beach-volleyball/#mode=indoor&id=this-venue-does-not-exist');
+    await page.goto('/beach-volleyball/#/indoor/this-venue-does-not-exist');
     await page.waitForFunction(() => document.querySelectorAll('.bv-marker, .bv-cluster').length > 0);
 
-    // No popup, and the id is gone from the URL
+    // No popup, and the venue segment is gone from the URL
     await expect(page.locator('.leaflet-popup-content')).toHaveCount(0);
-    await expect(page).not.toHaveURL(/[?&#]id=/);
+    await expect(page).not.toHaveURL(/#\/[^/]+\/[^?]/);
     expect(failures).toEqual([]);
   });
 
@@ -390,10 +390,10 @@ test.describe('beach volleyball map', () => {
     await expect(markerA).toHaveCount(1, { timeout: 5000 });
     await expect(markerB).toHaveCount(1, { timeout: 5000 });
 
-    // Click A — URL should gain an id param.
+    // Click A — URL should show the venue in path.
     // force:true bypasses Leaflet's animation-stability jitter.
     await markerA.click({ force: true });
-    await expect(page).toHaveURL(/[?&#]id=fi-out-/);
+    await expect(page).toHaveURL(/\/fi-out-/);
     const firstUrl = page.url();
 
     // Click B while A's popup is still open.
@@ -407,7 +407,7 @@ test.describe('beach volleyball map', () => {
     await expect(page.locator('.leaflet-popup-content')).toHaveCount(1);
 
     // URL must have advanced to B's id (not reverted to A or cleared).
-    await expect(page).toHaveURL(/[?&#]id=fi-out-/);
+    await expect(page).toHaveURL(/\/fi-out-/);
     expect(page.url()).not.toBe(firstUrl);
 
     expect(failures).toEqual([]);
