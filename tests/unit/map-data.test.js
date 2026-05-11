@@ -462,8 +462,8 @@ describe('slugify', () => {
   });
 
   test('transliterates ø, æ, ß before NFD strip', () => {
-    assert.equal(M.slugify('Søndre Strandpark'), 'sondre-strandpark');
-    assert.equal(M.slugify('Ærø Beach'), 'aero-beach');
+    assert.equal(M.slugify('Søndre Strandpark'), 'soendre-strandpark');
+    assert.equal(M.slugify('Ærø Beach'), 'aeroe-beach');
     assert.equal(M.slugify('Weißensee'), 'weissensee');
   });
 

@@ -69,7 +69,7 @@
   function slugify(str) {
     if (!str) return '';
     return str
-      .replace(/[øØ]/g, 'o')
+      .replace(/[øØ]/g, 'oe')
       .replace(/[æÆ]/g, 'ae')
       .replace(/[ßẞ]/g, 'ss')
       .normalize('NFD')
