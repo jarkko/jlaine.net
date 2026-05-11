@@ -62,25 +62,16 @@
     }
   };
 
-  // Converts a string into a URL-safe slug. Transliterates ø→o, æ→ae, ß→ss
-  // first (NFD does not decompose these), then strips remaining combining marks,
-  // lowercases, collapses non-alphanumeric runs to hyphens, and trims edges.
-  // Returns '' for falsy input.
-  function slugify(str) {
-    if (!str) return '';
-    return str
-      .replace(/[øØ]/g, 'oe')
-      .replace(/[æÆ]/g, 'ae')
-      .replace(/[ßẞ]/g, 'ss')
+  // Converts a venue name into a URL-safe slug for indoor venue IDs.
+  // Indoor venues are Finnish only; NFD decomposition handles ä/ö/å/š/ž cleanly.
+  // Outdoor venue permalinks are pre-computed in the CSV by scripts/add_permalinks.py.
+  const slug = (s) =>
+    s
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '');
-  }
-
-  // Legacy alias used by rowToVenue for indoor IDs.
-  const slug = (s) => slugify(s);
 
   // Trailing-edge debounce. Each call resets the timer; the wrapped function
   // fires once `ms` milliseconds have elapsed since the last call.
@@ -245,6 +236,7 @@
     'longitude',
     'outdoor_courts',
     'surface',
+    'permalink',
   ];
 
   function parseCourtValue(value) {
@@ -316,11 +308,10 @@
     // Keep the historical fi-out- prefix for Finland rows so existing URL hashes stay valid.
     const id = country === 'FI' ? `fi-out-${lipasId}` : `${country.toLowerCase()}-out-${lipasId}`;
     const courts = parseInt(r.outdoor_courts, 10) || 0;
-    const nameSlug = slugify(r.facility_name);
     return {
       category: 'outdoor',
       id,
-      permalink: nameSlug ? `${id}-${nameSlug}` : id,
+      permalink: r.permalink || id,
       country,
       name: r.facility_name,
       town: r.town,
@@ -379,7 +370,6 @@
     escapeHtml,
     safeUrl,
     slug,
-    slugify,
     matchesQuery,
     debounce,
     parseCsv,

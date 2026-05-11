@@ -379,6 +379,7 @@ describe('rowToOutdoor', () => {
       owner: 'city',
       lipas_id: '12345',
       source_url: 'https://example.com',
+      permalink: 'fi-out-12345-outdoor-court',
       ...overrides,
     };
   }
@@ -387,17 +388,12 @@ describe('rowToOutdoor', () => {
     assert.equal(M.rowToOutdoor(row(), 0).id, 'fi-out-12345');
   });
 
-  test('permalink is id + slugified name', () => {
+  test('permalink is read directly from the CSV row', () => {
     assert.equal(M.rowToOutdoor(row(), 0).permalink, 'fi-out-12345-outdoor-court');
   });
 
-  test('permalink falls back to id when name is empty', () => {
-    assert.equal(M.rowToOutdoor(row({ facility_name: '' }), 0).permalink, 'fi-out-12345');
-  });
-
-  test('permalink handles diacritics and special chars', () => {
-    const v = M.rowToOutdoor(row({ facility_name: 'Hääkiven ulkokentät', lipas_id: '529117' }), 0);
-    assert.equal(v.permalink, 'fi-out-529117-haakiven-ulkokentat');
+  test('permalink falls back to id when CSV row has no permalink', () => {
+    assert.equal(M.rowToOutdoor(row({ permalink: '' }), 0).permalink, 'fi-out-12345');
   });
 
   test('id falls back to idx-N when lipas_id missing', () => {
@@ -448,37 +444,6 @@ describe('rowToOutdoor', () => {
   test('courtsLabel is the raw outdoor_courts string', () => {
     assert.equal(M.rowToOutdoor(row({ outdoor_courts: '3' }), 0).courtsLabel, '3');
     assert.equal(M.rowToOutdoor(row({ outdoor_courts: '' }), 0).courtsLabel, '');
-  });
-});
-
-describe('slugify', () => {
-  test('lowercases and replaces spaces with hyphens', () => {
-    assert.equal(M.slugify('Outdoor Court'), 'outdoor-court');
-  });
-
-  test('strips diacritics', () => {
-    assert.equal(M.slugify('Hääkiven ulkokentät'), 'haakiven-ulkokentat');
-    assert.equal(M.slugify('Sandhallen på Gimle'), 'sandhallen-pa-gimle');
-  });
-
-  test('transliterates ø, æ, ß before NFD strip', () => {
-    assert.equal(M.slugify('Søndre Strandpark'), 'soendre-strandpark');
-    assert.equal(M.slugify('Ærø Beach'), 'aeroe-beach');
-    assert.equal(M.slugify('Weißensee'), 'weissensee');
-  });
-
-  test('collapses multiple non-alphanumeric chars into one hyphen', () => {
-    assert.equal(M.slugify('Foo  &  Bar'), 'foo-bar');
-  });
-
-  test('trims leading and trailing hyphens', () => {
-    assert.equal(M.slugify('  Beach '), 'beach');
-  });
-
-  test('returns empty string for empty input', () => {
-    assert.equal(M.slugify(''), '');
-    assert.equal(M.slugify(null), '');
-    assert.equal(M.slugify(undefined), '');
   });
 });
 
@@ -587,6 +552,7 @@ describe('validateCsvSchema', () => {
     assert.ok(M.OUTDOOR_REQUIRED_COLUMNS.includes('country'));
     assert.ok(M.OUTDOOR_REQUIRED_COLUMNS.includes('latitude'));
     assert.ok(M.OUTDOOR_REQUIRED_COLUMNS.includes('outdoor_courts'));
+    assert.ok(M.OUTDOOR_REQUIRED_COLUMNS.includes('permalink'));
   });
 });
 
