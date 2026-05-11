@@ -335,7 +335,7 @@ test.describe('beach volleyball map', () => {
 
     await page.locator('[data-mode="outdoor"]').click();
     await expect(link).toHaveText('↓ Outdoor CSV');
-    await expect(link).toHaveAttribute('href', /finland_outdoor_beach_volleyball_courts\.csv$/);
+    await expect(link).toHaveAttribute('href', /nordic_outdoor_beach_volleyball_courts\.csv$/);
   });
 
   test('switches to outdoor mode and shows Finland sand courts', async ({ page }) => {
