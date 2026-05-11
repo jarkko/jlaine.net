@@ -171,6 +171,8 @@ def osm_to_row(el: dict, country_name: str, iso2: str) -> dict | None:
     # URL
     url = tags.get("website") or tags.get("url") or tags.get("contact:website") or ""
 
+    name_slug = slugify(name)
+
     return {
         "country": country_name,
         "facility_name": name,
@@ -189,7 +191,7 @@ def osm_to_row(el: dict, country_name: str, iso2: str) -> dict | None:
         "source_url": url,
         "data_cutoff": "2026-05-10",
         "fact_check_notes": f"OSM {el['type']} id={el['id']}",
-        "permalink": f"{bare_id}-{slugify(name)}" if slugify(name) else bare_id,
+        "permalink": f"{bare_id}-{name_slug}" if name_slug else bare_id,
     }
 
 

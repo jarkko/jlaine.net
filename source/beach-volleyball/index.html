@@ -76,12 +76,22 @@
       <script>
         // Synchronously flip the correct mode button BEFORE the browser paints,
         // so loading /#outdoor or /#both doesn't briefly highlight "Indoor".
-        // Duplicates a sliver of map-data.js' parseHash because that module
-        // loads at end-of-body, after the topbar has already painted.
+        // Duplicates a sliver of map-data.js parseHash (bare word, #/path, legacy ?mode=)
+        // because that module loads at end-of-body, after the topbar has already painted.
         (function () {
-          var raw = (location.hash || '').replace(/^#/, '').trim().toLowerCase();
+          var raw = (location.hash || '').replace(/^#/, '').trim();
+          var lower = raw.toLowerCase();
           var rx = /^(indoor|outdoor|both)$/;
-          var mode = rx.test(raw) ? raw : new URLSearchParams(raw).get('mode') || 'indoor';
+          var mode = 'indoor';
+          if (lower.charAt(0) === '/') {
+            var seg = lower.slice(1).split(/[/?]/)[0];
+            if (rx.test(seg)) mode = seg;
+          } else if (rx.test(lower)) {
+            mode = lower;
+          } else {
+            var fromQs = new URLSearchParams(lower).get('mode') || '';
+            if (rx.test(fromQs)) mode = fromQs;
+          }
           if (!rx.test(mode)) mode = 'indoor';
           var btns = document.getElementById('mode-switch').querySelectorAll('.mode-btn');
           for (var i = 0; i < btns.length; i++) {
