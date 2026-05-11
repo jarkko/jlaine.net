@@ -59,6 +59,38 @@ test.describe('beach volleyball map', () => {
     expect(failures).toEqual([]);
   });
 
+  test('hash #/outdoor (path form) boots into outdoor mode', async ({ page }) => {
+    const failures = pageErrors(page);
+    // This is the format serializeHash writes; the inline pre-paint script must agree
+    // or the wrong mode button flashes until app.js loads.
+    await page.goto('/beach-volleyball/#/outdoor');
+
+    await expect(page.locator('#map.leaflet-container')).toBeVisible();
+    await expect(page.locator('[data-mode="outdoor"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('[data-mode="indoor"]')).toHaveAttribute('aria-pressed', 'false');
+    await expect(page).toHaveURL(/#\/outdoor$/);
+
+    await page.waitForFunction(() => document.querySelectorAll('.bv-out-marker, .bv-out-cluster').length > 0);
+    expect(await page.locator('.bv-out-marker, .bv-out-cluster').count()).toBeGreaterThan(0);
+
+    expect(failures).toEqual([]);
+  });
+
+  test('hash #/both (path form) boots into both mode', async ({ page }) => {
+    const failures = pageErrors(page);
+    await page.goto('/beach-volleyball/#/both');
+
+    await expect(page.locator('[data-mode="both"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page).toHaveURL(/#\/both$/);
+    await page.waitForFunction(
+      () =>
+        document.querySelectorAll('.bv-marker, .bv-cluster').length > 0 &&
+        document.querySelectorAll('.bv-out-marker, .bv-out-cluster').length > 0,
+    );
+
+    expect(failures).toEqual([]);
+  });
+
   test('both mode renders indoor halls and outdoor courts together', async ({ page }) => {
     const failures = pageErrors(page);
     await page.goto('/beach-volleyball/#both');
