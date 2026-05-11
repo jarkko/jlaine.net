@@ -14,8 +14,10 @@ Courts count defaults to 2 when the OSM tags omit a count.
 """
 
 import json
+import re
 import sys
 import time
+import unicodedata
 import urllib.request
 import urllib.parse
 
@@ -30,6 +32,28 @@ COUNTRIES = {
     "LT": ("LITHUANIA", "LT"),
     "IS": ("ICELAND",   "IS"),
 }
+
+
+# Same transliteration table used by add_permalinks.py — keep in sync.
+_TRANSLITERATE = str.maketrans({
+    "ø": "oe", "Ø": "oe", "æ": "ae", "Æ": "ae",
+    "ð": "d",  "Ð": "d",  "þ": "th", "Þ": "th",
+    "ß": "ss", "ẞ": "ss",
+    "ģ": "g",  "Ģ": "g",  "ķ": "k",  "Ķ": "k",
+    "ļ": "l",  "Ļ": "l",  "ņ": "n",  "Ņ": "n",
+    "ŗ": "r",  "Ŗ": "r",  "ė": "e",  "Ė": "e",
+})
+
+
+def slugify(s: str) -> str:
+    if not s:
+        return ""
+    s = s.translate(_TRANSLITERATE)
+    s = unicodedata.normalize("NFD", s)
+    s = "".join(c for c in s if unicodedata.category(c) != "Mn")
+    s = s.lower()
+    s = re.sub(r"[^a-z0-9]+", "-", s)
+    return s.strip("-")
 
 
 AREA_ID_QUERY = """\
@@ -79,6 +103,8 @@ def osm_to_row(el: dict, country_name: str, iso2: str) -> dict | None:
         return None
 
     osm_id = f"osm-{el['type'][0]}{el['id']}"
+    prefix = iso2.lower()
+    bare_id = f"{prefix}-out-{osm_id}"
 
     name_raw = tags.get("name") or tags.get("name:en") or tags.get("ref") or ""
     # For unnamed courts, build a fallback from place context or operator.
@@ -163,6 +189,7 @@ def osm_to_row(el: dict, country_name: str, iso2: str) -> dict | None:
         "source_url": url,
         "data_cutoff": "2026-05-10",
         "fact_check_notes": f"OSM {el['type']} id={el['id']}",
+        "permalink": f"{bare_id}-{slugify(name)}" if slugify(name) else bare_id,
     }
 
 
@@ -170,6 +197,7 @@ CSV_COLUMNS = [
     "country", "facility_name", "town", "address", "latitude", "longitude",
     "coord_precision", "outdoor_courts", "surface", "lighting", "free_use",
     "access", "owner", "lipas_id", "source_url", "data_cutoff", "fact_check_notes",
+    "permalink",
 ]
 
 
