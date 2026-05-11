@@ -32,11 +32,12 @@
   }
 
   function syncHash(push = false) {
+    const venuePermalink = state.selectedId ? (data.findVenue(state.selectedId)?.permalink ?? state.selectedId) : '';
     const target = serializeHash({
       mode: state.category,
       country: state.country,
       q: state.query,
-      venue: state.selectedId || '',
+      venue: venuePermalink,
     });
     if (location.hash !== target) {
       if (push) history.pushState(null, '', target);
@@ -102,14 +103,15 @@
     }
   }
 
-  function selectVenue(id, { fly = true, openPopup = true } = {}) {
-    state.selectedId = id;
+  function selectVenue(idOrPermalink, { fly = true, openPopup = true } = {}) {
+    const venue = data.findVenue(idOrPermalink);
+    const internalId = venue?.id ?? idOrPermalink;
+    state.selectedId = internalId;
     document.querySelectorAll('.card').forEach((card) => {
-      card.setAttribute('aria-current', card.dataset.id === id ? 'true' : 'false');
+      card.setAttribute('aria-current', card.dataset.id === internalId ? 'true' : 'false');
     });
 
-    const venue = data.findVenue(id);
-    const marker = mapView.getMarker(id);
+    const marker = mapView.getMarker(internalId);
     if (!venue || !marker) {
       state.selectedId = null;
       syncHash(false);
@@ -124,7 +126,7 @@
     syncHash(false);
     mapView.focusVenue(venue, marker, { fly, openPopup });
 
-    const card = document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
+    const card = document.querySelector(`.card[data-id="${CSS.escape(internalId)}"]`);
     if (card && state.sidebarOpen) card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   }
 

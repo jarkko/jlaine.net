@@ -82,16 +82,50 @@
 
   const VALID_MODES = ['indoor', 'outdoor', 'both'];
 
-  // Decodes the hash fragment into the page's UI state. Two formats supported:
-  //   #outdoor                              (legacy: bare mode word)
-  //   #mode=outdoor&country=FI&q=hel&id=foo (when extra state needs to round-trip)
+  // Converts a venue name into a URL-safe suffix for outdoor permalinks.
+  // Strips diacritics, lowercases, replaces non-alphanumeric runs with hyphens,
+  // and trims edge hyphens. Returns '' for empty input.
+  function slugify(str) {
+    if (!str) return '';
+    return str
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  // Decodes the hash fragment into the page's UI state. Three formats are accepted:
+  //   #/outdoor                               (new: path-only)
+  //   #/indoor/fi-biitsiareena-oulu           (new: path with venue id)
+  //   #/indoor/fi-out-529117?country=FI&q=hel (new: path + query params)
+  //   #outdoor                                (legacy: bare mode word)
+  //   #mode=outdoor&country=FI&q=hel&id=foo   (legacy: query string)
   // Anything missing or invalid falls back to defaults.
   function parseHash(hash) {
     const raw = (typeof hash === 'string' ? hash : '').replace(/^#/, '').trim();
     const defaults = { mode: 'indoor', country: 'all', q: '', venue: '' };
     if (!raw) return defaults;
+
+    // New path-based format: /mode[/venue-id][?country=XX&q=...]
+    if (raw.startsWith('/')) {
+      const [pathPart, searchPart] = raw.slice(1).split('?');
+      const segments = pathPart.split('/');
+      const m = segments[0].toLowerCase();
+      const params = new URLSearchParams(searchPart || '');
+      return {
+        mode: VALID_MODES.includes(m) ? m : 'indoor',
+        country: params.get('country') || 'all',
+        q: params.get('q') || '',
+        venue: segments[1] ? decodeURIComponent(segments[1]) : '',
+      };
+    }
+
+    // Legacy bare-word: #indoor, #outdoor, #both
     const lower = raw.toLowerCase();
     if (VALID_MODES.includes(lower)) return { ...defaults, mode: lower };
+
+    // Legacy query-string: #mode=indoor&id=fi-biitsi-pasila&country=FI&q=...
     const params = new URLSearchParams(raw);
     const m = params.get('mode');
     return {
@@ -102,16 +136,17 @@
     };
   }
 
-  // Inverse of parseHash. Uses the bare-word form for default country, query
-  // and venue id so the simplest URLs stay short and shareable.
+  // Inverse of parseHash. Always writes the new path-based format:
+  //   #/mode[/venue-id][?country=XX&q=...]
   function serializeHash({ mode = 'indoor', country = 'all', q = '', venue = '' } = {}) {
-    const hasExtra = (country && country !== 'all') || !!q || !!venue;
-    if (!hasExtra) return `#${mode}`;
-    const parts = [`mode=${mode}`];
-    if (country && country !== 'all') parts.push(`country=${encodeURIComponent(country)}`);
-    if (q) parts.push(`q=${encodeURIComponent(q)}`);
-    if (venue) parts.push(`id=${encodeURIComponent(venue)}`);
-    return '#' + parts.join('&');
+    const m = VALID_MODES.includes(mode) ? mode : 'indoor';
+    let path = `/${m}`;
+    if (venue) path += `/${encodeURIComponent(venue)}`;
+    const params = new URLSearchParams();
+    if (country && country !== 'all') params.set('country', country);
+    if (q) params.set('q', q);
+    const search = params.toString();
+    return '#' + path + (search ? `?${search}` : '');
   }
 
   const matchesQuery = (v, q) => {
@@ -272,9 +307,11 @@
     // Keep the historical fi-out- prefix for Finland rows so existing URL hashes stay valid.
     const id = country === 'FI' ? `fi-out-${lipasId}` : `${country.toLowerCase()}-out-${lipasId}`;
     const courts = parseInt(r.outdoor_courts, 10) || 0;
+    const nameSlug = slugify(r.facility_name);
     return {
       category: 'outdoor',
       id,
+      permalink: nameSlug ? `${id}-${nameSlug}` : id,
       country,
       name: r.facility_name,
       town: r.town,
@@ -333,6 +370,7 @@
     escapeHtml,
     safeUrl,
     slug,
+    slugify,
     matchesQuery,
     debounce,
     parseCsv,

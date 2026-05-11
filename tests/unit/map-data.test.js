@@ -387,6 +387,19 @@ describe('rowToOutdoor', () => {
     assert.equal(M.rowToOutdoor(row(), 0).id, 'fi-out-12345');
   });
 
+  test('permalink is id + slugified name', () => {
+    assert.equal(M.rowToOutdoor(row(), 0).permalink, 'fi-out-12345-outdoor-court');
+  });
+
+  test('permalink falls back to id when name is empty', () => {
+    assert.equal(M.rowToOutdoor(row({ facility_name: '' }), 0).permalink, 'fi-out-12345');
+  });
+
+  test('permalink handles diacritics and special chars', () => {
+    const v = M.rowToOutdoor(row({ facility_name: 'Hääkiven ulkokentät', lipas_id: '529117' }), 0);
+    assert.equal(v.permalink, 'fi-out-529117-haakiven-ulkokentat');
+  });
+
   test('id falls back to idx-N when lipas_id missing', () => {
     assert.equal(M.rowToOutdoor(row({ lipas_id: '' }), 7).id, 'fi-out-idx-7');
   });
@@ -435,6 +448,31 @@ describe('rowToOutdoor', () => {
   test('courtsLabel is the raw outdoor_courts string', () => {
     assert.equal(M.rowToOutdoor(row({ outdoor_courts: '3' }), 0).courtsLabel, '3');
     assert.equal(M.rowToOutdoor(row({ outdoor_courts: '' }), 0).courtsLabel, '');
+  });
+});
+
+describe('slugify', () => {
+  test('lowercases and replaces spaces with hyphens', () => {
+    assert.equal(M.slugify('Outdoor Court'), 'outdoor-court');
+  });
+
+  test('strips diacritics', () => {
+    assert.equal(M.slugify('Hääkiven ulkokentät'), 'haakiven-ulkokentat');
+    assert.equal(M.slugify('Sandhallen på Gimle'), 'sandhallen-pa-gimle');
+  });
+
+  test('collapses multiple non-alphanumeric chars into one hyphen', () => {
+    assert.equal(M.slugify('Foo  &  Bar'), 'foo-bar');
+  });
+
+  test('trims leading and trailing hyphens', () => {
+    assert.equal(M.slugify('  Beach '), 'beach');
+  });
+
+  test('returns empty string for empty input', () => {
+    assert.equal(M.slugify(''), '');
+    assert.equal(M.slugify(null), '');
+    assert.equal(M.slugify(undefined), '');
   });
 });
 
@@ -555,14 +593,53 @@ describe('parseHash', () => {
     assert.deepEqual(M.parseHash(), D);
   });
 
-  test('legacy bare-mode form', () => {
+  test('new path-only form', () => {
+    assert.deepEqual(M.parseHash('#/indoor'), { ...D, mode: 'indoor' });
+    assert.deepEqual(M.parseHash('#/outdoor'), { ...D, mode: 'outdoor' });
+    assert.deepEqual(M.parseHash('#/both'), { ...D, mode: 'both' });
+    assert.deepEqual(M.parseHash('#/OUTDOOR'), { ...D, mode: 'outdoor' });
+  });
+
+  test('new path with venue id', () => {
+    assert.deepEqual(M.parseHash('#/indoor/fi-biitsiareena-oulu'), {
+      ...D,
+      mode: 'indoor',
+      venue: 'fi-biitsiareena-oulu',
+    });
+    assert.deepEqual(M.parseHash('#/outdoor/fi-out-529117'), {
+      ...D,
+      mode: 'outdoor',
+      venue: 'fi-out-529117',
+    });
+  });
+
+  test('new path with query params', () => {
+    assert.deepEqual(M.parseHash('#/indoor?country=FI&q=helsinki'), {
+      mode: 'indoor',
+      country: 'FI',
+      q: 'helsinki',
+      venue: '',
+    });
+    assert.deepEqual(M.parseHash('#/indoor/fi-biitsiareena-oulu?country=FI&q=oulu'), {
+      mode: 'indoor',
+      country: 'FI',
+      q: 'oulu',
+      venue: 'fi-biitsiareena-oulu',
+    });
+  });
+
+  test('new path: unknown mode falls back to indoor', () => {
+    assert.equal(M.parseHash('#/galactic/fi-out-1').mode, 'indoor');
+  });
+
+  test('legacy bare-mode form (backward compat)', () => {
     assert.deepEqual(M.parseHash('#indoor'), { ...D, mode: 'indoor' });
     assert.deepEqual(M.parseHash('#outdoor'), { ...D, mode: 'outdoor' });
     assert.deepEqual(M.parseHash('#both'), { ...D, mode: 'both' });
     assert.deepEqual(M.parseHash('#OUTDOOR'), { ...D, mode: 'outdoor' });
   });
 
-  test('param form with mode, country, q, id', () => {
+  test('legacy query-string form (backward compat)', () => {
     assert.deepEqual(M.parseHash('#mode=outdoor&country=FI&q=helsinki&id=fi-out-123'), {
       mode: 'outdoor',
       country: 'FI',
@@ -571,16 +648,16 @@ describe('parseHash', () => {
     });
   });
 
-  test('decodes URI-encoded query and venue id', () => {
+  test('legacy query-string: URI-encoded query and venue id', () => {
     assert.equal(M.parseHash('#mode=indoor&q=p%C3%A4').q, 'pä');
     assert.equal(M.parseHash('#mode=indoor&id=fi-bii%2Btsi').venue, 'fi-bii+tsi');
   });
 
-  test('rejects unknown mode and falls back to indoor', () => {
+  test('legacy query-string: unknown mode falls back to indoor', () => {
     assert.equal(M.parseHash('#mode=galactic&country=FI').mode, 'indoor');
   });
 
-  test('missing mode in param form falls back to indoor', () => {
+  test('legacy query-string: missing mode falls back to indoor', () => {
     assert.equal(M.parseHash('#country=FI').mode, 'indoor');
   });
 
@@ -592,45 +669,57 @@ describe('parseHash', () => {
 });
 
 describe('serializeHash', () => {
-  test('defaults serialize to bare mode', () => {
-    assert.equal(M.serializeHash(), '#indoor');
-    assert.equal(M.serializeHash({}), '#indoor');
-    assert.equal(M.serializeHash({ mode: 'outdoor' }), '#outdoor');
+  test('defaults serialize to path mode', () => {
+    assert.equal(M.serializeHash(), '#/indoor');
+    assert.equal(M.serializeHash({}), '#/indoor');
+    assert.equal(M.serializeHash({ mode: 'outdoor' }), '#/outdoor');
+    assert.equal(M.serializeHash({ mode: 'both' }), '#/both');
+    assert.equal(M.serializeHash({ mode: 'galactic' }), '#/indoor');
   });
 
-  test('country adds &country= and switches to param form', () => {
-    assert.equal(M.serializeHash({ mode: 'indoor', country: 'FI' }), '#mode=indoor&country=FI');
+  test('venue id goes in path segment', () => {
+    assert.equal(M.serializeHash({ mode: 'outdoor', venue: 'fi-out-7' }), '#/outdoor/fi-out-7');
+    assert.equal(M.serializeHash({ mode: 'indoor', venue: 'fi-biitsiareena-oulu' }), '#/indoor/fi-biitsiareena-oulu');
   });
 
-  test('venue id alone switches to param form', () => {
-    assert.equal(M.serializeHash({ mode: 'outdoor', venue: 'fi-out-7' }), '#mode=outdoor&id=fi-out-7');
+  test('country becomes a query param', () => {
+    assert.equal(M.serializeHash({ mode: 'indoor', country: 'FI' }), '#/indoor?country=FI');
   });
 
-  test('all four params combine in stable order', () => {
+  test('all four params combine correctly', () => {
     assert.equal(
       M.serializeHash({ mode: 'outdoor', country: 'FI', q: 'helsinki', venue: 'fi-out-7' }),
-      '#mode=outdoor&country=FI&q=helsinki&id=fi-out-7',
+      '#/outdoor/fi-out-7?country=FI&q=helsinki',
     );
   });
 
-  test('query and venue id are URI-encoded', () => {
-    assert.equal(M.serializeHash({ mode: 'indoor', q: 'pä', venue: 'fi+a' }), '#mode=indoor&q=p%C3%A4&id=fi%2Ba');
+  test('special characters in query and venue are URI-encoded', () => {
+    assert.equal(M.serializeHash({ mode: 'indoor', q: 'pä', venue: 'fi+a' }), '#/indoor/fi%2Ba?q=p%C3%A4');
   });
 
-  test('round-trips parseHash → serializeHash', () => {
+  test('round-trips serializeHash → parseHash', () => {
     const cases = [
-      '#indoor',
-      '#outdoor',
-      '#both',
-      '#mode=outdoor&country=FI',
-      '#mode=indoor&q=helsinki',
-      '#mode=outdoor&country=FI&q=hetk',
-      '#mode=indoor&id=fi-biitsi-pasila',
-      '#mode=outdoor&country=FI&q=hetk&id=fi-out-42',
+      { mode: 'indoor', country: 'all', q: '', venue: '' },
+      { mode: 'outdoor', country: 'all', q: '', venue: '' },
+      { mode: 'both', country: 'all', q: '', venue: '' },
+      { mode: 'outdoor', country: 'FI', q: '', venue: '' },
+      { mode: 'indoor', country: 'all', q: 'helsinki', venue: '' },
+      { mode: 'indoor', country: 'all', q: '', venue: 'fi-biitsiareena-oulu' },
+      { mode: 'outdoor', country: 'FI', q: 'hetk', venue: 'fi-out-42' },
     ];
-    for (const h of cases) {
-      assert.equal(M.serializeHash(M.parseHash(h)), h, `round-trip failed for ${h}`);
+    for (const state of cases) {
+      assert.deepEqual(M.parseHash(M.serializeHash(state)), state, `round-trip failed for ${JSON.stringify(state)}`);
     }
+  });
+
+  test('legacy hashes parse and re-serialize to new format', () => {
+    assert.equal(M.serializeHash(M.parseHash('#outdoor')), '#/outdoor');
+    assert.equal(M.serializeHash(M.parseHash('#mode=outdoor&country=FI')), '#/outdoor?country=FI');
+    assert.equal(M.serializeHash(M.parseHash('#mode=indoor&id=fi-biitsi-pasila')), '#/indoor/fi-biitsi-pasila');
+    assert.equal(
+      M.serializeHash(M.parseHash('#mode=outdoor&country=FI&q=hetk&id=fi-out-42')),
+      '#/outdoor/fi-out-42?country=FI&q=hetk',
+    );
   });
 });
 

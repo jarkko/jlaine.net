@@ -21,9 +21,10 @@
         return [...store.indoorVenues, ...store.outdoorVenues];
       },
 
-      findVenue(id) {
+      findVenue(idOrPermalink) {
         return (
-          store.indoorVenues.find((venue) => venue.id === id) || store.outdoorVenues.find((venue) => venue.id === id)
+          store.indoorVenues.find((v) => v.id === idOrPermalink) ||
+          store.outdoorVenues.find((v) => v.id === idOrPermalink || v.permalink === idOrPermalink)
         );
       },
 
