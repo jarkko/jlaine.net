@@ -58,10 +58,19 @@ def slugify(s: str) -> str:
     return s.strip("-")
 
 
+def normalize_lipas_id(raw: str, idx: int) -> str:
+    """Comma-separated merged LIPAS ids → hyphen-separated (URL-safe, no %2C)."""
+    s = (raw or "").strip()
+    if not s:
+        return f"idx-{idx}"
+    s = re.sub(r"\s*,\s*", "-", s)
+    return re.sub(r"-+", "-", s).strip("-")
+
+
 def make_permalink(row: dict, idx: int) -> str:
     raw_country = (row.get("country") or "").upper()
     country = COUNTRY_FROM_NAME.get(raw_country, raw_country[:2] or "XX")
-    lipas_id = row.get("lipas_id") or f"idx-{idx}"
+    lipas_id = normalize_lipas_id(row.get("lipas_id") or "", idx)
     prefix = "fi" if country == "FI" else country.lower()
     bare_id = f"{prefix}-out-{lipas_id}"
     name_slug = slugify(row.get("facility_name") or "")

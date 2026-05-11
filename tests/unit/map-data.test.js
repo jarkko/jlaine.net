@@ -400,6 +400,32 @@ describe('rowToOutdoor', () => {
     assert.equal(M.rowToOutdoor(row({ lipas_id: '' }), 7).id, 'fi-out-idx-7');
   });
 
+  test('comma-separated lipas_id is normalized to hyphens in id and permalink', () => {
+    const v = M.rowToOutdoor(
+      row({
+        lipas_id: '102151, 617011',
+        permalink: 'fi-out-102151, 617011-pyynikin-uimarannan-kentta',
+      }),
+      0,
+    );
+    assert.equal(v.lipasId, '102151-617011');
+    assert.equal(v.id, 'fi-out-102151-617011');
+    assert.equal(v.permalink, 'fi-out-102151-617011-pyynikin-uimarannan-kentta');
+  });
+
+  test('normalizeOutdoorLipasId collapses commas and falls back to idx', () => {
+    assert.equal(M.normalizeOutdoorLipasId('102151, 617011', 0), '102151-617011');
+    assert.equal(M.normalizeOutdoorLipasId('', 3), 'idx-3');
+    assert.equal(M.normalizeOutdoorLipasId(null, 2), 'idx-2');
+    assert.equal(M.normalizeOutdoorLipasId('---', 4), 'idx-4');
+    assert.equal(M.normalizeOutdoorLipasId(12345, 0), '12345');
+  });
+
+  test('normalizeVenuePathCommas leaves falsy and strips commas in strings', () => {
+    assert.equal(M.normalizeVenuePathCommas(''), '');
+    assert.equal(M.normalizeVenuePathCommas('fi-out-1, 2-slug'), 'fi-out-1-2-slug');
+  });
+
   test('outdoor_courts parses as integer with 0 fallback', () => {
     assert.equal(M.rowToOutdoor(row({ outdoor_courts: '5' }), 0).courts, 5);
     assert.equal(M.rowToOutdoor(row({ outdoor_courts: '' }), 0).courts, 0);
