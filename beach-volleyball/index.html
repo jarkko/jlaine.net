@@ -30,7 +30,7 @@
   "
     />
 
-    <link rel="icon" type="image/svg+xml" href="mikasa-ball.svg?v=1778483000" />
+    <link rel="icon" type="image/svg+xml" href="mikasa-ball.svg?v=1778484454" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -51,7 +51,7 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="styles.css?v=1778483000" />
+    <link rel="stylesheet" href="styles.css?v=1778484454" />
   </head>
   <body>
     <a class="skip-link" id="skip-link" href="#sidebar">Skip to venue directory</a>
@@ -73,12 +73,22 @@
       <script>
         // Synchronously flip the correct mode button BEFORE the browser paints,
         // so loading /#outdoor or /#both doesn't briefly highlight "Indoor".
-        // Duplicates a sliver of map-data.js' parseHash because that module
-        // loads at end-of-body, after the topbar has already painted.
+        // Duplicates a sliver of map-data.js parseHash (bare word, #/path, legacy ?mode=)
+        // because that module loads at end-of-body, after the topbar has already painted.
         (function () {
-          var raw = (location.hash || '').replace(/^#/, '').trim().toLowerCase();
+          var raw = (location.hash || '').replace(/^#/, '').trim();
+          var lower = raw.toLowerCase();
           var rx = /^(indoor|outdoor|both)$/;
-          var mode = rx.test(raw) ? raw : new URLSearchParams(raw).get('mode') || 'indoor';
+          var mode = 'indoor';
+          if (lower.charAt(0) === '/') {
+            var seg = lower.slice(1).split(/[/?]/)[0];
+            if (rx.test(seg)) mode = seg;
+          } else if (rx.test(lower)) {
+            mode = lower;
+          } else {
+            var fromQs = new URLSearchParams(lower).get('mode') || '';
+            if (rx.test(fromQs)) mode = fromQs;
+          }
           if (!rx.test(mode)) mode = 'indoor';
           var btns = document.getElementById('mode-switch').querySelectorAll('.mode-btn');
           for (var i = 0; i < btns.length; i++) {
@@ -184,13 +194,13 @@
       integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr"
       crossorigin="anonymous"
     ></script>
-    <script src="map-data.js?v=1778483000"></script>
+    <script src="map-data.js?v=1778484454"></script>
 
-    <script src="dom.js?v=1778483000"></script>
-    <script src="venue-view.js?v=1778483000"></script>
-    <script src="data-loader.js?v=1778483000"></script>
-    <script src="map-view.js?v=1778483000"></script>
-    <script src="sidebar-view.js?v=1778483000"></script>
-    <script src="app.js?v=1778483000"></script>
+    <script src="dom.js?v=1778484454"></script>
+    <script src="venue-view.js?v=1778484454"></script>
+    <script src="data-loader.js?v=1778484454"></script>
+    <script src="map-view.js?v=1778484454"></script>
+    <script src="sidebar-view.js?v=1778484454"></script>
+    <script src="app.js?v=1778484454"></script>
   </body>
 </html>

@@ -62,8 +62,8 @@
     }
   };
 
-  // Converts a venue name into a URL-safe slug for indoor venue IDs.
-  // Indoor venues are Finnish only; NFD decomposition handles ä/ö/å/š/ž cleanly.
+  // Converts a venue name into a URL-safe slug for indoor venue IDs (Nordic+Baltic CSV).
+  // NFD decomposition handles most Latin diacritics (e.g. ä/ö/å for Finnish/Swedish).
   // Outdoor venue permalinks are pre-computed in the CSV by scripts/add_permalinks.py.
   const slug = (s) =>
     s
