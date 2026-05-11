@@ -6,6 +6,10 @@
 
   function createDataStore() {
     let markerFactory = () => {};
+    // Legacy URLs used comma-separated LIPAS ids before we normalized them to hyphens.
+    const commaFreeKey = (k) => (typeof k === 'string' ? k.replace(/\s*,\s*/g, '-').replace(/-+/g, '-') : k);
+    const venueKeys = (k) => (k ? [...new Set([k, commaFreeKey(k)].filter(Boolean))] : []);
+
     const store = {
       indoorVenues: [],
       outdoorVenues: [],
@@ -22,9 +26,11 @@
       },
 
       findVenue(idOrPermalink) {
+        if (!idOrPermalink) return undefined;
+        const keys = venueKeys(idOrPermalink);
         return (
-          store.indoorVenues.find((v) => v.id === idOrPermalink) ||
-          store.outdoorVenues.find((v) => v.id === idOrPermalink || v.permalink === idOrPermalink)
+          store.indoorVenues.find((v) => keys.some((key) => v.id === key)) ||
+          store.outdoorVenues.find((v) => keys.some((key) => v.id === key || v.permalink === key))
         );
       },
 

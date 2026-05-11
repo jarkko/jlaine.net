@@ -301,17 +301,36 @@
     };
   }
 
+  // Merged LIPAS rows sometimes store several ids as "102151, 617011". Commas in
+  // the path segment become %2C after encodeURIComponent — normalize to hyphens.
+  function normalizeOutdoorLipasId(raw, idx) {
+    const s = String(raw == null ? '' : raw).trim();
+    if (!s) return `idx-${idx}`;
+    const out = s
+      .replace(/\s*,\s*/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    return out || `idx-${idx}`;
+  }
+
+  function normalizeVenuePathCommas(segment) {
+    if (!segment) return segment;
+    return segment.replace(/\s*,\s*/g, '-').replace(/-+/g, '-');
+  }
+
   function rowToOutdoor(r, idx) {
     const country =
       COUNTRY_FROM_NAME[(r.country || '').toUpperCase()] || (r.country || '').slice(0, 2).toUpperCase() || 'XX';
-    const lipasId = r.lipas_id || `idx-${idx}`;
+    const lipasId = normalizeOutdoorLipasId(r.lipas_id, idx);
     // Keep the historical fi-out- prefix for Finland rows so existing URL hashes stay valid.
     const id = country === 'FI' ? `fi-out-${lipasId}` : `${country.toLowerCase()}-out-${lipasId}`;
     const courts = parseInt(r.outdoor_courts, 10) || 0;
+    const rawPermalink = String(r.permalink || '').trim();
+    const permalink = rawPermalink ? normalizeVenuePathCommas(rawPermalink) : id;
     return {
       category: 'outdoor',
       id,
-      permalink: r.permalink || id,
+      permalink,
       country,
       name: r.facility_name,
       town: r.town,
@@ -378,6 +397,8 @@
     validateCsvSchema,
     rowToVenue,
     rowToOutdoor,
+    normalizeOutdoorLipasId,
+    normalizeVenuePathCommas,
     ctaLabelFor,
     parseHash,
     serializeHash,
