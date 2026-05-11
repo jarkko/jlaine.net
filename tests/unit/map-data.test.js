@@ -461,6 +461,12 @@ describe('slugify', () => {
     assert.equal(M.slugify('Sandhallen på Gimle'), 'sandhallen-pa-gimle');
   });
 
+  test('transliterates ø, æ, ß before NFD strip', () => {
+    assert.equal(M.slugify('Søndre Strandpark'), 'sondre-strandpark');
+    assert.equal(M.slugify('Ærø Beach'), 'aero-beach');
+    assert.equal(M.slugify('Weißensee'), 'weissensee');
+  });
+
   test('collapses multiple non-alphanumeric chars into one hyphen', () => {
     assert.equal(M.slugify('Foo  &  Bar'), 'foo-bar');
   });
@@ -665,6 +671,11 @@ describe('parseHash', () => {
     assert.deepEqual(M.parseHash(null), D);
     assert.deepEqual(M.parseHash(undefined), D);
     assert.deepEqual(M.parseHash(42), D);
+  });
+
+  test('malformed percent-sequence in path venue segment does not throw', () => {
+    assert.doesNotThrow(() => M.parseHash('#/outdoor/fi%ZZ'));
+    assert.equal(M.parseHash('#/outdoor/fi%ZZ').venue, 'fi%ZZ');
   });
 });
 

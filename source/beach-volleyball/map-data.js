@@ -62,13 +62,25 @@
     }
   };
 
-  const slug = (s) =>
-    s
+  // Converts a string into a URL-safe slug. Transliterates ø→o, æ→ae, ß→ss
+  // first (NFD does not decompose these), then strips remaining combining marks,
+  // lowercases, collapses non-alphanumeric runs to hyphens, and trims edges.
+  // Returns '' for falsy input.
+  function slugify(str) {
+    if (!str) return '';
+    return str
+      .replace(/[øØ]/g, 'o')
+      .replace(/[æÆ]/g, 'ae')
+      .replace(/[ßẞ]/g, 'ss')
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '');
+  }
+
+  // Legacy alias used by rowToVenue for indoor IDs.
+  const slug = (s) => slugify(s);
 
   // Trailing-edge debounce. Each call resets the timer; the wrapped function
   // fires once `ms` milliseconds have elapsed since the last call.
@@ -82,32 +94,29 @@
 
   const VALID_MODES = ['indoor', 'outdoor', 'both'];
 
-  // Converts a venue name into a URL-safe suffix for outdoor permalinks.
-  // Strips diacritics, lowercases, replaces non-alphanumeric runs with hyphens,
-  // and trims edge hyphens. Returns '' for empty input.
-  function slugify(str) {
-    if (!str) return '';
-    return str
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '');
-  }
+  // Guards against malformed percent-sequences in hash segments (e.g. %ZZ).
+  const safeDecode = (s) => {
+    try {
+      return decodeURIComponent(s);
+    } catch {
+      return s;
+    }
+  };
 
   // Decodes the hash fragment into the page's UI state. Three formats are accepted:
-  //   #/outdoor                               (new: path-only)
-  //   #/indoor/fi-biitsiareena-oulu           (new: path with venue id)
-  //   #/indoor/fi-out-529117?country=FI&q=hel (new: path + query params)
-  //   #outdoor                                (legacy: bare mode word)
-  //   #mode=outdoor&country=FI&q=hel&id=foo   (legacy: query string)
+  //   #/outdoor                                        (new: path-only)
+  //   #/indoor/fi-biitsiareena-oulu                   (new: path with venue id or permalink)
+  //   #/outdoor/fi-out-529117-haakiven-ulkokentat      (new: path with outdoor permalink)
+  //   #/indoor/fi-biitsi-pasila?country=FI&q=hel      (new: path + query params)
+  //   #outdoor                                         (legacy: bare mode word)
+  //   #mode=outdoor&country=FI&q=hel&id=foo            (legacy: query string)
   // Anything missing or invalid falls back to defaults.
   function parseHash(hash) {
     const raw = (typeof hash === 'string' ? hash : '').replace(/^#/, '').trim();
     const defaults = { mode: 'indoor', country: 'all', q: '', venue: '' };
     if (!raw) return defaults;
 
-    // New path-based format: /mode[/venue-id][?country=XX&q=...]
+    // New path-based format: /mode[/venue-id-or-permalink][?country=XX&q=...]
     if (raw.startsWith('/')) {
       const [pathPart, searchPart] = raw.slice(1).split('?');
       const segments = pathPart.split('/');
@@ -117,7 +126,7 @@
         mode: VALID_MODES.includes(m) ? m : 'indoor',
         country: params.get('country') || 'all',
         q: params.get('q') || '',
-        venue: segments[1] ? decodeURIComponent(segments[1]) : '',
+        venue: segments[1] ? safeDecode(segments[1]) : '',
       };
     }
 
