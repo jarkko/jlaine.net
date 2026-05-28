@@ -15,7 +15,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
-  <link href="/favicon.png" rel="icon">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="{{ site.subscribe_rss | default: '/feed.xml' }}" rel="alternate" title="{{ site.title }}" type="application/atom+xml">
   {% include custom/head.html %}
