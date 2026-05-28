@@ -92,4 +92,10 @@ This is precisely what a well-designed constraint does: it makes the aggregate c
 
 This generalises beyond block/defense. Many "stuck" coaching problems are aggregate-cost problems that the player's local picture hides. The pedagogical move is the same: design a constraint that makes the aggregate cost local. [tags: insight, pedagogy, constraints, aggregation, invisible-cost, both-back, beach, scoring-design, generalisable]
 
+### 2026-05-28 [insight]
+
+Everything we did in the "Change the game, not the player" post was *playing the game*. The constraints changed the rules and the starting points — verkkokosketus tuplaa, etukenttä on kallis, painealue, triple ball with one-touch — but we never took what we wanted to learn out of context. The thing being practised stayed the thing the players need to do in a match.
+
+This is worth its own follow-up post, tying to the literature on open vs. closed drills, decontextualised technique work, and representative learning design. The piece that argues the constraints-led approach isn't just a different way to teach — it's a refusal to remove the context. Possible titles: *"Älä irrota harjoitusta pelistä"* / *"Don't take the practice out of the game."* Sources to actually check (not assume): Renshaw & Davids on representative learning design; Wulf on external focus; Kessel's "Stop Teaching" series on game-based learning; Mark Lebedew on game-rules vs. coach-rules. [tags: idea, follow-up-post, open-vs-closed-drills, representative-learning, context, constraints, change-the-game-not-the-player]
+
 

@@ -3,9 +3,10 @@ layout: post
 title: "Change the game, not the player"
 date: 2026-05-28
 categories: [coaching, en]
+tags: [volleyball, beach volleyball]
 ---
 
-Two of my players on the sand, Saturday morning. The smaller one serves short into the middle. Both stay back. The opponent picks a corner and lands one in the empty front court. Easy point.
+Imagine the scenario. Two juniors on the sand. The smaller one serves short into the middle. Both stay back. The opponent picks a corner and lands one in the empty front court. Easy point.
 
 "One of you, up!" I call out after the rally. They glance back at me with blank stares.
 
@@ -21,13 +22,15 @@ What the local picture hides is the aggregate. The set that drifts over the net 
 
 They had also never *felt* what was good about being at the net. They'd been told. That's different.
 
-The issue wasn't that I needed to tell them better. The issue was that telling — any amount, any tone, any volume — was the wrong tool. So I changed the game instead.
+The issue wasn't that I needed to tell them better. The issue was that telling — any amount, any tone, any volume — was the wrong tool. So I changed the *game* instead.
 
 ---
 
 ## The session
 
-Same court, same kids, different rules. I said nothing about positioning.
+Below is the session — five steps, one court, about an hour. Same court, same kids, different rules. I said nothing about positioning.
+
+A note before you start: if you haven't already watched the team default to both-back in match play, run 5–10 minutes of normal 2v2 first, with no constraints and no coaching. You need a baseline — and you need clean data to ask honest questions about it later. Once you've coached, you've poisoned the well.
 
 ### 1. Net touches pay
 
@@ -53,7 +56,9 @@ What surfaces in the second-ball play is the transition problem: both players mo
 
 ### 5. Fade the rules
 
-Remove the bonuses. Play normal 2v2. Watch whether someone goes to the net without being told.
+Remove the bonuses. Play normal 2v2 — no commentary, no corrections, no scoring tweaks. Watch whether someone goes to the net without being told. The silence is part of the test: any coaching now puts the question back in the verbal channel the whole session was built to escape.
+
+That's the session. The numbers and bonus sizes are mine — adapt them to the level you're working with.
 
 ---
 
