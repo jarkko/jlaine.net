@@ -7,9 +7,9 @@ categories: [coaching, en]
 
 Two of my players on the sand, Saturday morning. The smaller one serves short into the middle. Both stay back. The opponent picks a corner and lands one in the empty front court. Easy point.
 
-"One of you, up!" I call out after the rally. They glance back at me. Nothing changes.
+"One of you, up!" I call out after the rally. They glance back at me with blank stares.
 
-We lose serve. Get it back two rallies later. Her partner serves now. Both back again. This time the opposing reception comes off the arms badly and floats back across the net — nobody is there to attack it, and it drops on our side on the first touch. Another point against us.
+Two rallies later, her partner serves. Both back again. This time the opposing reception comes off the arms badly and floats back across the net — nobody is there to attack it, and it drops on our side on the first touch. Another point against us.
 
 I have been telling these two the same thing for four weeks. The cones are out. I have drawn the diagram in the sand. I have given the speech about pressure at the net — first calmly, then with what I'd call professional irritation. It works for two points. Then both back again. Always both back.
 
