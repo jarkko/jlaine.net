@@ -8,6 +8,9 @@
     {% unless page.meta == false %}
       <p class="meta">
         {% include post/date.html post=post page=page %}
+        {% unless index %}
+          {% include post/reading_time.html post=post page=page %}
+        {% endunless %}
       </p>
     {% endunless %}
   </header>

@@ -1,0 +1,7 @@
+{% assign _post = post | default: page %}
+{% if _post.content %}
+  {% assign _words = _post.content | strip_html | number_of_words %}
+  {% assign _minutes = _words | divided_by: 200.0 | ceil %}
+  {% if _minutes < 1 %}{% assign _minutes = 1 %}{% endif %}
+  <span class="reading-time">{{ _words }} words, {{ _minutes }} min read</span>
+{% endif %}
