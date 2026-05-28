@@ -5,11 +5,9 @@ date: 2026-05-28
 categories: [coaching, en]
 ---
 
-Two of my players on the sand, Saturday morning. The smaller one serves short into the middle. Both stay back.
+Two of my players on the sand, Saturday morning. The smaller one serves short into the middle. Both stay back. The opponent picks a corner and lands one in the empty front court. Easy point.
 
-I yell from the sideline: "One of you, up!"
-
-They look at each other. Nobody moves. The opponent picks a corner and lands one in the empty front court. Easy point.
+"One of you, up!" I call out after the rally. They glance back at me. Nothing changes.
 
 We lose serve. Get it back two rallies later. Her partner serves now. Both back again. This time the opposing reception comes off the arms badly and floats back across the net — nobody is there to attack it, and it drops on our side on the first touch. Another point against us.
 
