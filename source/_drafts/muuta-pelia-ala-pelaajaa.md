@@ -14,13 +14,13 @@ Olen toistanut pelaajille samaa asiaa neljä viikkoa. Sijoitellut kartioita stra
 
 Suurimman osan noista viikoista oletin, että ongelma oli heissä. Eivät kuunnelleet, tai olivat liian varovaisia, tai eivät olleet sisäistäneet taktiikkaa. Jos joku olisi siihen aikaan kysynyt, olisin vastannut työstäväni asiaa.
 
-Lopulta jouduin myöntämään jotain vähemmän mairittelevaa. He tekivät sen, mikä omasta näkökulmastaan oli järkevää. Molemmat taakse on turvallisempi valinta — maksimi reaktioaika, ei päätettävää. Yksittäisessä pallossa rangaistus ei tule selkein etiketein. Vastustaja valitsi nurkan. Vastustajan vastaanotto livahti yli, eikä kukaan ollut paikalla. Hyökkääjä ajoitti hyvin. Jokaisella pallolla on oma näkyvä syynsä häviölle, eikä mikään niistä sano *teidän olisi pitänyt olla verkolla.* Kun molemmat-taakse onnistuu — hyökkääjä lyö ohi, vastustajat hukkaavat pallon itse — sekään ei kerro mitään. Paikallinen kuva — *tämä* pallo, *tämä* hyökkääjä, *tämä* nosto — toistaa heille, että taakse jääminen oli ihan ok.
+Lopulta jouduin myöntämään jotain vähemmän mairittelevaa. He tekivät sen, mikä heistä tuntui järkevältä. Molemmat takana on turvallisempi valinta — maksimaalinen reaktioaika, ei päätettävää. Yksittäisessä pallossa syy häviöön ei ole selvä. Vastustaja valitsi nurkan. Vastustajan vastaanotto livahti yli, eikä kukaan ollut paikalla. Hyökkääjä ajoitti hyvin. Jokaisella pallolla on oma näkyvä syynsä häviölle, eikä mikään niistä kerro, että *teidän olisi pitänyt olla verkolla.* Kun molemmat-takana onnistuu — hyökkääjä lyö ulos tai vastustajat tuhrivat pallon itse — sekään ei kerro mitään. Paikallinen kuva — *tämä* pallo, *tämä* hyökkääjä, *tämä* passi — toistaa heille, että taakse jääminen oli ihan ok.
 
-Sen mitä paikallinen kuva piilottaa, on kokonaisuus. Nosto joka kelluu verkon yli ja tippuu, kun kukaan ei ole ylhäällä iskemässä sitä alas. Nosto joka tulee niin tiukasti, että matalakin torjunta olisi parempi kuin ei torjuntaa. Tapa jolla hyökkääjä ottaa aikaa kun tietää, ettei verkolla ole ketään, valitsee nurkan, lyö vapaasti. Torjujan ei tarvitse osua palloon tehdäkseen työn — pelkkä läsnäolo muuttaa vastustajan nostoa, hyökkääjän iskua, pallon muotoa. Mikään tästä ei näy lapsen paikallisessa kuvassa. Treenin aikana se kasaantuu ja maksaa heille pisteitä. Yhden pallon sisällä se on näkymätöntä.
+Se, minkä paikallinen kuva piilottaa, on kokonaisuus. Passi joka tippuu vastapallona kenttään, kun kukaan ei ole verkolla tappamassa sitä. Passi joka tulee niin lähelle verkkoa, että matalakin torjunta olisi parempi kuin ei mitään. Tapa jolla hyökkääjä ottaa aikaa kun tietää, ettei verkolla ole ketään, valitsee nurkan, lyö vapaasti. Torjujan ei tarvitse osua palloon tehdäkseen työnsä — pelkkä läsnäolo muuttaa vastustajan passia, hyökkääjän iskua, pallon muotoa. Mikään näistä ei näy lapsen paikallisessa kuvassa. Treenin aikana se kasaantuu ja vie heiltä pisteitä. Yhden pallon aikana se on näkymätöntä.
 
 He eivät myöskään olleet koskaan *tunteneet* sitä, mikä verkolla olemisessa on hyvää. Heille oli kerrottu. Se on eri asia.
 
-Kysymys ei ollut siitä, että minun olisi pitänyt kertoa paremmin. Kysymys oli siitä, että kertominen — minkä tahansa määrä, minkä tahansa sävy, minkä tahansa äänenvoimakkuus — oli väärä työkalu. Joten muutin pelin sen sijaan.
+Kyse ei ollut siitä, että minun olisi pitänyt kertoa paremmin. Kyse oli siitä, että kertominen — määrästä, sävystä tai äänenvoimakkuudesta riippumatta — oli väärä työkalu. Joten muutin pelin sen sijaan.
 
 ---
 
@@ -30,41 +30,41 @@ Sama kenttä, samat lapset, eri säännöt. En sanonut mitään asemista.
 
 ### 1. Verkkokosketus tuplaa
 
-Normaali 2v2 syötöstä. Yksi sääntö: jos verkonpuoleinen pelaaja koskee palloon ennen pallon voittamista — torjuntakosketus, käsiltä ohjaus, mikä tahansa sallittu — piste on tuplan arvoinen. Ei ohjeita kenen pitäisi mennä eteen, ei tekniikkavinkkejä, ei kuvioita. Pelkkä: verkkotyö maksaa.
+Normaali 2v2 syötöstä. Yksi sääntö: jos verkonpuoleinen pelaaja koskee palloon ennen pallon voittamista — torjuntakosketus, käsiltä ohjaus, mikä tahansa sallittu — piste on tuplan arvoinen. Ei ohjeita kenen pitäisi mennä eteen, ei tekniikkavinkkejä, ei kuvioita. Pelkkä: verkkotyö kannattaa.
 
 ### 2. Etukenttä on kallis
 
-Pidetään 2v2. Lisäsääntö ensimmäisen päälle: jos vastaanottava joukkue voittaa pallon pallon tippuessa etukolmannekseen, kaksi pistettä. Molempien jääminen taakse muuttuu aktiivisesti kalliiksi — etukenttä on auki ja vastustajat näkevät sen. Syöttävän joukkueen on ratkaistava ongelma itse.
+Pidetään 2v2. Lisäsääntö ensimmäisen jatkoksi: jos vastaanottava joukkue voittaa pallon, joka tippuu etukolmannekseen, kaksi pistettä. Molempien jääminen takakentälle muuttuu kalliiksi — etukenttä on auki ja vastustajat näkevät sen. Syöttävän joukkueen on ratkaistava ongelma itse.
 
 ### 3. Painealue
 
-Merkitse alue, joka on noin 2–2,5 metriä verkosta. Bonus pallosta, jos vastustajan nostajan koskettaessa palloon toinen teistä on tällä alueella, ja joukkue joko voittaa pallon tai pakottaa helpon pallon. "Paineonnistuminen" ei ole vain torjunta — se on hyökkääjä joka pakotetaan kierrelyöntiin tai pönäykseen puhtaan iskun sijaan, korkea helppo pallo takaisin, puolustaja joka kaivaa koska etupelaaja muutti kulman.
+Merkitse alue, joka on noin 2–2,5 metriä verkosta. Bonus pallosta, jos vastustajan passarin koskettaessa palloon toinen teistä on tällä alueella, ja joukkue joko voittaa pallon tai pakottaa vastustajalta helpon pallon. "Paineonnistuminen" ei ole vain torjunta — se on hyökkääjä joka pakotetaan kierrelyöntiin tai pönäykseen puhtaan iskun sijaan, korkea helppo pallo takaisin, puolustaja joka kaivaa koska etupelaaja muutti kulmaa.
 
 ### 4. Triple ball, yhden kosketuksen säännöllä
 
-Kun ensimmäiset kolme rajoitusta ovat tehneet työnsä, lapset ovat toimintakykyisiä syötönvastaanotossa — syötön vastaanottaja syöttää, syöttäjä puolustaa. Mutta junioritasolla pallot päättyvät usein syöttöön — syöttövirhe tai ässä. Ne jotka selviävät syötöstä, päättyvät yleensä ensimmäiseen hyökkäykseen. Kumminkin siirtymäongelma — molemmat pelaajat ovat liikkuneet pallon aikana, sääntö ei enää kerro kenen pitäisi olla ylhäällä — ei koskaan nouse esiin, koska pallo ei yllä siihen asti.
+Kun ensimmäiset kolme rajoitetta ovat tehneet työnsä, lapset pärjäävät syötönvastaanotossa — syötön vastaanottaja syöttää, syöttäjä puolustaa. Mutta junioritasolla pallot päättyvät usein syöttöön — syöttövirhe tai ässä. Ne jotka selviävät syötöstä, päättyvät yleensä ensimmäiseen hyökkäykseen. Siirtymäongelma — molemmat pelaajat ovat liikkuneet pallon aikana, sääntö ei enää kerro kenen pitäisi olla verkolla — ei kuitenkaan koskaan nouse esiin, koska pallo ei kestä niin pitkään.
 
 Triple ball on tähän vakioratkaisu. Kun syöttöpallo on päättynyt, valmentaja syöttää lisäpalloja peliin pitääkseen harjoittelua käynnissä yli luonnollisen junioripäätepisteen. Itsessään se tuottaa vain enemmän toistoja.
 
-Jotta nuo ylimääräiset toistot nostaisivat siirtymäongelman esiin, lisää säännön päälle: kun valmentaja heittää vapaapallon toiselle puolelle, sillä puolella saa olla vain yksi kosketus. Heidän on lähetettävä pallo verkon yli, ei rakennettava kunnollista hyökkäystä. Toinen puoli, saatuaan puhtaan pallon, rakentaa ja hyökkää takaisin. Yhden kosketuksen puolen pitää nyt puolustaa tuo hyökkäys — sama etukenttä/takakenttä-työ jota he ovat opetelleet syötönvastaanotossa, paitsi ettei kumpikaan pelaaja ollut valmiiksi paikoillaan.
+Jotta nuo ylimääräiset toistot nostaisivat siirtymäongelman esiin, lisää sääntö: kun valmentaja heittää vapaapallon toiselle puolelle, sillä puolella saa olla vain yksi kosketus. Heidän on lähetettävä pallo verkon yli, ei rakennettava kunnollista hyökkäystä. Toinen puoli, saatuaan puhtaan pallon, rakentaa ja hyökkää takaisin. Yhden kosketuksen puolen pitää nyt puolustaa tuo hyökkäys — sama etukenttä/takakenttä-työ jota he ovat opetelleet syötönvastaanotossa, paitsi ettei kumpikaan pelaaja ollut valmiiksi paikoillaan.
 
-Mitä toisen pallon pelissä nousee esiin, on siirtymäongelma: molemmat pelaajat liikkuivat yhden kosketuksen palautuksen aikana, kumpikaan ei ole valmiiksi paikoillaan sille mikä tulee takaisin. Syötönvastaanotossa toimiva konventio (ei-syöttäjä ylös) ei kerro heille kuka torjuu tämän hyökkäyksen. Heidän on löydettävä toinen tapa.
+Toisen pallon pelissä nousee esiin siirtymäongelma: molemmat pelaajat liikkuivat yhden kosketuksen palautuksen aikana, kumpikaan ei ole valmiiksi paikoillaan sitä varten, mikä tulee takaisin. Syötönvastaanotossa toimiva konventio (ei-syöttäjä ylös) ei kerro heille kuka torjuu tämän hyökkäyksen. Heidän on löydettävä toinen tapa.
 
 ### 5. Häivytä säännöt
 
-Poista bonukset. Pelaa normaalia 2v2. Katso meneekö joku verkolle ilman, että sitä käsketään.
+Poista bonukset. Pelaa normaalia 2v2. Katso, meneekö joku verkolle ilman käskyä.
 
 ---
 
-Muutaman pallon sisällä ensimmäisestä rajoitteesta pienempi alkoi ajautua kohti verkkoa parinsa syöttäessä — silloin kun hän oli ei-syöttäjä, se jonka kuuluu olla ylhäällä. Ei sitoutuneesti. Katsoi taakseen pariinsa, katsoi minua nähdäkseen aionko sanoa jotain. En aikonut.
+Muutaman pallon päästä ensimmäisestä rajoitteesta pienempi alkoi ajautua kohti verkkoa parinsa syöttäessä — silloin kun hän oli ei-syöttäjä, se jonka kuuluu olla verkolla. Ei sitoutuneesti. Katsoi taakseen pariinsa, katsoi minua nähdäkseen aionko sanoa jotain. En aikonut.
 
 Muutaman pallon päästä hän oli verkolla, kun vastustaja iski. Sai käden palloon. Pari kaivoi sen mikä siitä lähti. He voittivat. Tupla.
 
-Kolmannen tai neljännen syötönvastaanottosarjan kohdalla molemmat menivät ylös parinsa syötön jälkeen ajattelematta. Syöttäjä taakse, ei-syöttäjä ylös — konventio joka oli sata kertaa kerrottu, tapahtui nyt koska peli palkitsi siitä.
+Kolmannen tai neljännen syötönvastaanottosarjan kohdalla molemmat menivät ylös parinsa syötön jälkeen ajattelematta. Syöttäjä taakse, ei-syöttäjä ylös — konventio, joka oli kerrottu sata kertaa, tapahtui nyt koska peli palkitsi siitä.
 
 ## Miten puhuin harjoituksen aikana
 
-Sanoin vähän pelin aikana — rajoitteet tekivät suurimman osan työstä. Se mitä sanoin, olivat kysymyksiä, useimmiten pelien välissä eikä niiden sisällä.
+Sanoin vähän pelin aikana — rajoitteet tekivät suurimman osan työstä. Sanomani olivat kysymyksiä, useimmiten pelien välissä, ei niiden aikana.
 
 *Seisotte liian kaukana takana* sijaan: *missä pallo halusi mennä — olisitteko ehtineet siihen sieltä?*
 
@@ -82,9 +82,9 @@ Jotkut lapset eivät mene eteen ensimmäisessä sessiossa. Tai kolmannessa. Kuvi
 
 Joskus molempien jääminen taakse ON oikea vastaus — heikko hyökkäys, kaaos, joku on poikki. Päämäärä ei ole sääntö, vaan lukema.
 
-Tämä ei opeta torjuntatekniikkaa — käden muoto, hypyn ajoitus, nostajan käden lukeminen. Eri ongelma, eri sessio. Mitä rajoitepelit opettavat, on *haluaminen* olla siellä. Kaikki muu olettaa että haluaminen on ilmaista, mutta se ei ole.
+Tämä ei opeta torjuntatekniikkaa — käden muoto, hypyn ajoitus, passarin käden lukeminen. Eri ongelma, eri sessio. Se, mitä rajoitepelit opettavat, on *haluaminen* olla siellä. Kaikki muu olettaa että haluaminen on ilmaista, mutta se ei ole.
 
-Triple ball etenee hitaammin kuin syötönvastaanoton rajoitteet etenivät. Ei-syöttäjä-ylös-sääntö joka ratkaisi helpomman tapauksen, ei kerro heille mitä tehdä kun pallo on jatkunut ensimmäisen hyökkäyksen yli, ja rajoitteet jotka TOIMIVAT tuossa toisen pallon maailmassa, vievät edelleen sessioita ratkaistaviksi. Vaihtoehto — kertoa mitä tehdä keskellä palloa — ei selviä yhtään paremmin kuin alussa kertominen selvisi.
+Triple ball etenee hitaammin kuin syötönvastaanoton rajoitteet etenivät. Ei-syöttäjä-ylös-sääntö joka ratkaisi helpomman tapauksen, ei kerro heille mitä tehdä kun pallo on jatkunut ensimmäisen hyökkäyksen yli, ja rajoitteet jotka TOIMIVAT tuossa toisen pallon maailmassa, vievät edelleen sessioita ratkaistaviksi. Vaihtoehto — kertoa mitä tehdä kesken pallon — ei selviä yhtään paremmin kuin kertominen alussa selvisi.
 
 ---
 

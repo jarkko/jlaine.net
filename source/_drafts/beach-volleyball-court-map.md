@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A beach volleyball court map for the Nordics and Baltics"
+title: 'A beach volleyball court map for the Nordics and Baltics'
 categories: [project, en]
 ---
 
@@ -26,21 +26,11 @@ So the itch was straightforward. I wanted a map I could send to a player, a pare
 
 ## How it works
 
-The stack is deliberately small. The site is Jekyll, the map page is a static HTML file with vanilla JavaScript and [Leaflet](https://leafletjs.com/). No build step beyond Jekyll itself. The map reads CSV files at runtime in the browser.
+It is a small site. A single page with a map, plus a couple of data files behind it. Nothing about it needs a server or a database, which is part of why I trust it to still work in five years.
 
-The data comes from two pipelines, both written in Python with only the standard library:
+The data comes from two sources. Finnish courts come from LIPAS, the national sports facility register run by the University of Jyväskylä. Everywhere else comes from OpenStreetMap. A short script pulls fresh data from both, merges them, and writes the file the map loads.
 
-- `scripts/update_finland_outdoor_courts.py` pulls Finnish courts from the LIPAS API (type code 1330, "beachvolley-/rantalentopallokenttä"), filters to loose sand and active status, and writes them to a Finland-only CSV. There is also a small overrides file for cases where I want to correct something or add a venue LIPAS does not know about.
-- `scripts/fetch_outdoor_osm.py` queries the [Overpass API](https://overpass-api.de/) for `leisure=pitch` combined with `sport=beachvolleyball` (and the legacy `beach_volleyball` alias, and the `sport=volleyball + surface=sand` mapping that some countries prefer) inside each country's administrative boundary.
-- `scripts/build_nordic_outdoor_csv.py` glues the two sources together into a single `nordic_outdoor_beach_volleyball_courts.csv` that the page actually loads.
-
-Each row keeps its origin. Finnish rows carry their `lipas_id` and link back to LIPAS. OSM rows carry a stable `w{way_id}` or `n{node_id}` and link back to the OSM object. Attribution is rendered in the sidebar — CC BY 4.0 for LIPAS, ODbL for OpenStreetMap — and the CSV is downloadable from the map page so anyone can audit or reuse it.
-
-A couple of small details took more time than they should have. LIPAS sometimes models a multi-court venue as several separate records — a row per court, all at the same address — which means the same place shows up two or three times on the map. The Finland pipeline merges those into a single venue and records every original LIPAS id in a merged-id field. That sounds tidy until it hits the URL: `?venue=fi-out-509930%2C509931-…` is ugly and brittle. So the merged ids get hyphenated for permalinks: `fi-out-509930-509931-kupittaan-rantalentopallokentta`. The page reads either format, but the canonical one is the clean hyphenated slug.
-
-The URL scheme itself is path-style: `/beach-volleyball/#/outdoor/fi-out-509930-509931-kupittaan-rantalentopallokentta` opens straight to outdoor mode with that specific court selected and the map zoomed in. `/#/indoor` and `/#/both` jump to the right view. A tiny inline script runs before paint so the correct mode button is highlighted on first render — without it, loading an outdoor permalink would briefly show the indoor view before the rest of the JavaScript caught up. Small thing, but it matters when you share a link.
-
-Testing is split in two. Pure data and URL logic live in unit tests run under Node. The map itself, the sidebar, the search, the mode switch, the permalink resolution — those are covered by Playwright end-to-end tests that boot the page with real hash URLs and click around. That has caught more bugs than I expected, including most of the recent ones around merged LIPAS ids and pretty path hashes.
+Each court keeps a link back to where it came from — to its LIPAS record, or to the OpenStreetMap object you can correct yourself if you spot a mistake. Attribution is shown in the sidebar (CC BY 4.0 for LIPAS, ODbL for OpenStreetMap), and the merged data file is downloadable from the map page, so anyone can audit it or build on top of it.
 
 ## Where it goes
 
