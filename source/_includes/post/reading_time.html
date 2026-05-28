@@ -3,5 +3,5 @@
   {% assign _words = _post.content | strip_html | number_of_words %}
   {% assign _minutes = _words | divided_by: 200.0 | ceil %}
   {% if _minutes < 1 %}{% assign _minutes = 1 %}{% endif %}
-  <span class="reading-time">{{ _words }} words, {{ _minutes }} min read</span>
+  <span class="meta-sep" aria-hidden="true"> &middot; </span><span class="reading-time">{{ _words }} words &middot; {{ _minutes }} min read</span>
 {% endif %}

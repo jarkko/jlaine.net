@@ -2,8 +2,7 @@
 layout: post
 title: "Change the game, not the player"
 date: 2026-05-28
-categories: [coaching, en]
-tags: [volleyball, beach volleyball]
+categories: [coaching, en, volleyball, beach volleyball]
 ---
 
 Imagine the scenario. Two juniors on the sand. The smaller one serves short into the middle. Both stay back. The opponent picks a corner and lands one in the empty front court. Easy point.

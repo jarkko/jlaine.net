@@ -2,7 +2,8 @@
 {% if _post.categories.size > 0 %}
 <span class="categories">
   {% for cat in _post.categories %}
-    <a href="{{ '/blog/categories/' | append: cat | slugify | append: '/' | relative_url }}">{{ cat }}</a>{% unless forloop.last %}, {% endunless %}
+    {% assign _slug = cat | slugify %}
+    <a href="{{ '/blog/categories/' | append: _slug | append: '/' | relative_url }}">{{ cat }}</a>{% unless forloop.last %}, {% endunless %}
   {% endfor %}
 </span>
 {% endif %}
