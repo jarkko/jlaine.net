@@ -100,7 +100,9 @@ The constraints were not the hard part. Being quiet long enough for them to work
 
 ## Further reading
 
-Practitioner-friendly starting points — read these first if this is new ground:
+What you just read has a name in the literature — the *constraints-led approach*, commonly abbreviated **CLA**, and one strand of the broader *nonlinear pedagogy*. The body of the post never needed to say so; you don't need the term to run the session. But if you want to read your way in, the practitioners below are the doors I'd walk through first.
+
+Practitioner-friendly starting points:
 
 - **Rob Gray** runs *[The Perception & Action Podcast](https://perceptionaction.com/)* and has built the single best entry point on the web for coaches who want to read about skill acquisition and the constraints-led approach. His *[CLA Resources](https://perceptionaction.com/cla/)* page is the place to start. His book *[How We Learn to Move](https://www.amazon.com/How-We-Learn-Move-Revolution/dp/B09KDSQD9Q)* turns the same material into a coach's manual; there's a useful *[review on Coaching Volleyball](https://coachingvb.com/book-review-how-we-learn-to-move-by-rob-gray/)* that explains who it's for.
 
