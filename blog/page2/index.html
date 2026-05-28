@@ -42,6 +42,41 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2012/01/02/ruby-meet-quickroute/">Ruby, Meet QuickRoute</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2012-01-02T00:00:00+00:00" pubdate>January 2, 2012</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>While I missed the tradition of releasing Ruby gems on the Christmas day, I did meet my own tradition of not doing anything with the computer that day. That said, I had something interesting in the works that just needed to be wrapped up as a Ruby gem—namely, a library for parsing the GPS data out of JPEG files produced by <a href="http://www.matstroeng.se/quickroute/en/">QuickRoute</a>. Without further ado, may I present <a href="https://github.com/jarkko/quickroute-ruby">quickroute-ruby</a>.</p>
+
+<p>The task wasn’t exactly trivial, as the data is embedded in binary format in an <a href="http://en.wikipedia.org/wiki/JPEG_File_Interchange_Format#JFIF_segment_format">APP0 segment</a> inside the image. Moreover, the data format was basically undocumented. However, with the help of <a href="http://www.matstroeng.se/">Mats</a> I managed to reverse-engineer the original C# and PHP libraries to an extent that I seemed to get correct output out of the file.</p>
+
+<p>The library is still very young, and while it seems to work correctly with my test images, I have no doubt there are a bunch of bugs hidden. If you seem to run into one, please file an <a href="https://github.com/jarkko/quickroute-ruby/issues">issue in the tracker</a>, or better yet, send me a <a href="https://github.com/jarkko/quickroute-ruby/pulls">pull request</a> with a test-driven fix.</p>
+
+<p>For usage, check out the GitHub page. I’ll work on cleaning up the code and writing some more documentation in the coming days, but the code itself should be fairly self-explanatory.</p>
+
+<p>Happy New Year!</p>
+
+<p><strong>P.S</strong> <a href="https://github.com/jarkko/quickroute-gps">I’m also mirroring</a> the complete (GPL licensed) <a href="http://code.google.com/p/quickroute-gps/">QuickRoute C# code repository</a> on GitHub. So if you prefer working with Git instead of Subversion + Google Code, you might want to start off there.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2011/09/30/blade-runner/">Blade Runner</a></h1>
     
     
@@ -782,54 +817,6 @@ poistaneet muistutuksen ja kaikki on aivan ok asiakastililläsi!</p>
 <p><strong>Shopping4net doesn’t have a fucking clue about how to run a retail business.</strong></p>
 
 <p>So save yourself from what we went through and order from someone else. Their cheaper prices won’t come close to making up for the shitty experience.</p>
-</div>
-  
-
-
-    </article>
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/02/19/ruby-rails-bdd-training-in-helsinki-in-april/">Ruby/Rails/BDD Training in Helsinki in April</a></h1>
-    
-    
-      <p class="meta">
-        
-
-  <time datetime="2009-02-19T00:00:00+00:00" pubdate>February 19, 2009</time>
-
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Note</strong> The actual class will be taught in Finnish</p>
-
-<p>Two years ago we joined forces with Helsinki Polytechnic Stadia to organize a Ruby/Rails class for both students of the school and a couple of attendees from the business world. The class was a success.</p>
-
-<p>Now we’re doing it again. The name of the school has changed to <a href="http://www.metropolia.fi/">Metropolia</a>, and the venue of the class from Arabia to Leppävaara, but the theme of the class will remain the same: teach both newbie and intermediate Ruby hackers to real wizards that can confidently write their ideas in Ruby.</p>
-
-<p>Because of the joined effort, we are able to keep the price (like really) low, at €700 + VAT for the whole 4-day course. That should make the class affordable even for freelancers and individuals who’re just dabbling with Ruby and Rails.</p>
-
-<p>There will be some differences as well. We’ll use more time to teach TDD/BDD and Ajax-related stuff, because of their increased importance lately. Most of the 4th (BDD) day will be taught by <a href="http://tarvainen.wordpress.com/">Antti Tarvainen</a>, a Rails and Agile wizard from <a href="http://www.leonidasoy.com/">Leonidas</a> who is also famous for his Rails workshop at the Tampere University of Technology.</p>
-
-<p>The program of the class:</p>
-
-<ol>
-  <li><strong>Monday, April 6th</strong> Basics of Ruby, including what’s new in Ruby 1.9.</li>
-  <li><strong>Tuesday, April 7th</strong> Introduction to Ruby on Rails, based on Rails 2.2.</li>
-  <li><strong>Wednesday, April 8th</strong> Ajax development on Rails, Protype, script.aculo.us and accessible Ajax.</li>
-  <li><strong>Thursday, April 9th</strong> Test-Driven and Behaviour-Driven Development on Rails; RSpec and Cucumber.</li>
-</ol>
-
-<p>Since alumni of our previous classes already snitched part of the spots on the class, we only have a couple places left for sale in the open. It thus pays off to be quick. As an added bonus for the fast ones, you’ll receive an extra 100€ discount if you register within a week, that is before February 26th.</p>
-
-<p>You can register by sending email directly to <a href="mailto:jarkko@jlaine.net">me</a> .</p>
-
-<p>Welcome to have some fun with us and challenge yourself to learn new exciting skills at the same time!</p>
 </div>
   
 

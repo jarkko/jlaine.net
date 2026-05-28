@@ -42,6 +42,48 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2006/09/30/installing-subversion-1-4-on-os-x/">Installing Subversion 1.4 on OS X</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-09-30T00:00:00+00:00" pubdate>September 30, 2006</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>UPDATE, 1.11.2006</strong> I updated the script to build neon (and thus subversion) with SSL support.</p>
+
+<p>I just got my MacBook Pro back from a repair where its faulty hard drive was replaced. All the data was migrated but the system folder was for some reason rebuilt so I lost the installed Developer Tools, and along with that, subversion.</p>
+
+<p>I installed the latest Developer Tools from <a href="http://developer.apple.com">developer.apple.com</a>, but for some reason they don’t include subversion anymore. My next attempt was to install subversion from darwinports, but that didn’t succeed either. It seems that the ports version of subversion depends on apr-1.2.2, but all the mirror sites only have apr versions 1.2.6 and 1.2.7. I probably could’ve hacked it to use one of them, but then I figured the ports version would be kind of old anyway, since subversion was just updated to version 1.4. Thus, I decided to build it from scratch.</p>
+
+<p>The problem with installing subversion from scratch is that it depends on a few other packages (included in the subversion-deps package) that need to be built as well, separately. So I hacked together a shell script that downloads the current subversion and subversion-deps packages and compiles and installs them:</p>
+
+<p><a href="http://jlaine.net/assets/2006/11/1/subversion-1.4-install-all.sh">subversion-1.4-install-all.sh</a><br />
+Usage:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}<br />
+sudo sh subversion-1.4-install-all.sh<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+
+<p>(use sudo here to avoid writing your password multiple times during the course of the script)</p>
+
+<p><strong>Disclaimer</strong> The script worked fine on both my MBP and a G4 PowerBook. It should probably work fine on any *nix, but use at your own risk. If it doesn’t work, I will only return the price of the script.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2006/09/26/do-the-right-thing/">Do the Right Thing</a></h1>
     
     
@@ -332,40 +374,6 @@ options go into plugins.<br />
 
 </div>
 </form>
-</div>
-  
-
-
-    </article>
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/07/31/closing-and-opening/">Closing... And Opening</a></h1>
-    
-    
-      <p class="meta">
-        
-
-  <time datetime="2006-07-31T00:00:00+00:00" pubdate>July 31, 2006</time>
-
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>After a magnificent week sunbathing and orienteering in <a href="http://www.gotland.se/imcms/9646">Gotland</a>, we finished the week by moving our stuff from the well-served <a href="http://beta.plazes.com/plaze/33120826ca6d5d7cb9dcee6538b221c1/">jlaine.net mansion</a> to our new home. I always tend to be really tired after week-long training camps, but topping it off by two days of hauling things over has got the better of me. I’m thus closing this office now, wishing for two things:</p>
-
-<ol>
-  <li>A long night sleep.</li>
-  <li>A fast broadband delivery to the new apt. Until then, I will be heading a mobile office from cafes and universities around <a href="http://www.43places.com/places/view/700129">Tampere</a>.</li>
-</ol>
-
-<p>Oh, and did I mention the just ripened raspberries in our new garden?</p>
-
-<p><strong>[]{lang=”UPDATE”}</strong> I finally settled on an ADSL provider and the connection should be live mid next week. The lead time for an installation ranged from a decent 9 days to a staggering 6 weeks, which is pretty amazing for a flip of a switch (there is no work needed on site). I’ve been burned by the unreliability of ADSL a few times before, so I was contemplating getting a business broadband and circumventing the aging phone lines altogether. However, with prices starting from 400\€/month for a 4/4Mb connection I decided I would settle for an 8/1Mb ADSL (for 10% of the price) for now and see whether the service has gotten any better.</p>
 </div>
   
 

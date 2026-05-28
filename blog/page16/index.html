@@ -42,6 +42,113 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2005/08/25/using-rails-ajax-helpers-to-create-safe-state-changing-links/">Using Rails AJAX Helpers to Create Safe State-changing Links</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2005-08-25T00:00:00+00:00" pubdate>August 25, 2005</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few months ago there was <a href="http://www.loudthinking.com/arc/000454.html">a</a> <a href="http://37signals.com/svn/archives2/google_web_accelerator_hey_not_so_fast_an_alert_for_web_app_designers.php">heated</a> <a href="http://jlaine.net/blog/56/google-web-accelerator-considered-harmful">discussion</a> going on about Google Web Accelerator prefetching links and at the same time wreaking havoc in web apps that used plain GET links to change the state of an application. A few <a href="http://david.backpackit.com/pub/37983">tricks</a> came up on how one could block GWA from accessing given pages, but in the end, using GET requests for operations such as deleting records in your app remained dangerous.</p>
+
+<p>The traditional means to avoid the perils of GWA and friends are two-fold: either use only form buttons (and thus POST requests) to commit these mission-critical actions, or link to a confirmation page that does the same. Unfortunately, these solutions are less than optimal. Using dozens of forms in a web page (think “delete” links in a product listing) makes the code a bit messy and a plethora of delete buttons doesn’t make the page look very nice, either. The problem with a confirmation page is that it adds one more step to the process and thus <a href="http://sensible.com/buythebook.html">makes the user think</a> one more time. One part of the beauty of OS X compared to Windows is that it doesn’t try to intervene in every action I make. I like to adhere to the same standards so I want to leave confirmation pages for situations where I really, <em>really</em> think they are crucial.</p>
+
+<p>If you’re using <a href="http://www.rubyonrails.com">Ruby on Rails</a> to build your next killer web app, consider yourself lucky. In the following paragraphs, I’m going to teach you how to use the Ã¼bercool <a href="http://rails.rubyonrails.com/classes/ActionView/Helpers/JavaScriptHelper.html">AJAX helpers</a> in Rails to create action links that are both slick, accessible and about as safe as you can get in the wild wide web.</p>
+
+<p>OK, let’s assume you have an app ready that uses the following <code class="language-plaintext highlighter-rouge">link_to</code> helper call to destroy an item from your collection of <a href="http://www.sock-monkey.com/sockmonkey.html">sock monkeys</a>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;macro:code lang="ruby"&gt;</code>{=html}<br />
+&lt;%= link_to “Delete”, :controller =&gt; “monkey”,<br />
+:action =&gt; “delete”, :id =&gt; monkey.id %&gt;<br />
+<code class="language-plaintext highlighter-rouge">&lt;/macro:code&gt;</code>{=html}</p>
+
+<p>This would serve you well, that is, until your uncle Enoch finds an abandoned Google Web Accelerator from the trash bin and your beloved monkeys start evaporating in the thin air. So what’s to the rescue? <a href="http://rails.rubyonrails.com/classes/ActionView/Helpers/JavaScriptHelper.html#M000395"><code class="language-plaintext highlighter-rouge">link_to_remote</code></a>!</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;macro:code lang="ruby"&gt;</code>{=html}<br />
+&lt;%= link_to_remote “Delete”,<br />
+:url =&gt; {:controller =&gt; “monkey”,<br />
+:action =&gt; “delete”,<br />
+:id =&gt; monkey.id},<br />
+:update =&gt; “monkeys” %&gt;<br />
+<code class="language-plaintext highlighter-rouge">&lt;/macro:code&gt;</code>{=html}</p>
+
+<p>Now we’re talking! You’re from this day on using AJAX in your app. Your monkeys are now destroyed without a refresh of a page, and no GET request is ever made. And as your <code class="language-plaintext highlighter-rouge">delete</code> action renders the monkey list when called by AJAX, the list updates itself as if magically. As simple as that. But wait! Aunt Marge (your unpaid tester) yells something behind her AS/400. She can’t use your app, nothing happens in her <em>lynx</em> even though she tries to follow the link. Crap. No javascript.</p>
+
+<p>Fortunately <code class="language-plaintext highlighter-rouge">link_to_remote</code> has a fallback system:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;macro:code lang="ruby"&gt;</code>{=html}<br />
+&lt;%= link_to_remote “Delete”,<br />
+{:url =&gt; {:controller =&gt; “monkey”,<br />
+:action =&gt; “delete”,<br />
+:id =&gt; monkey.id},<br />
+:update =&gt; “monkeys”},<br />
+{:href =&gt; url_for(:controller =&gt; “monkey”,<br />
+:action =&gt; “delete”,<br />
+:id =&gt; monkey.id)} %&gt;<br />
+<code class="language-plaintext highlighter-rouge">&lt;/macro:code&gt;</code>{=html}</p>
+
+<p>Using the <em>href</em> parameter makes <code class="language-plaintext highlighter-rouge">link_to_remote</code> to include a (tada!) <em>href</em> attribute in the anchor tag it creates. You can use <code class="language-plaintext highlighter-rouge">url_for</code> to create the address for it just like in normal links.</p>
+
+<p>Ok, time for a little retrospective. What does our little link widget really do? In normal case, when the user has a modern browser with javascript enabled, when clicked, it calls the delete action with an <a href="http://developer.apple.com/internet/webcontent/xmlhttpreq.html"><em>XMLHttpRequest</em></a>, and upon success updates the element with id “monkeys” in the current page. If javascript is disabled, the browser will follow the traditional href link to the delete page.</p>
+
+<p>Note that both the AJAX url and the old-fashioned href point to the same action. This is intentional. It gives us the possibility to do pretty powerful things with a tiny little action. We’ll take a look at that action, <code class="language-plaintext highlighter-rouge">MonkeyController::delete</code>, next.</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;macro:code lang="ruby"&gt;</code>{=html}<br />
+def delete<br />
+if request.xhr?<br />
+# … deletion code here …<br />
+render :partial =&gt; “monkey”, :collection =&gt; \@monkeys<br />
+elsif request.post?<br />
+# … deletion code here …<br />
+redirect_to :action =&gt; “list”<br />
+else # we assume this is a get message<br />
+render :action =&gt; “delete_confirmation”<br />
+end<br />
+end<br />
+<code class="language-plaintext highlighter-rouge">&lt;/macro:code&gt;</code>{=html}</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">delete</code> function above handles three kinds of requests. If it’s called by AJAX (remember the normal case above?), it deletes the monkey and renders the list of remaining monkeys that will then be displayed in the calling page. If the action is called by a POST request (we’ll get into when this happens in just a few seconds), the monkey is also deleted but this time, the browser is redirected to the original monkey list page with an external redirect. In third case, when this action is called by a GET request, we show the user a confirmation page by rendering them delete_confirmation.rhtml (only the important parts of the template are shown here):</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;macro:code lang="ruby"&gt;</code>{=html}<br />
+&lt;%= form_tag :controller =&gt; “monkey”,<br />
+:action =&gt; “delete” %&gt;<br />
+&lt;%= hidden_field_tag “id”, \@params[:id] %&gt;<br />
+&lt;%= submit_tag “Really, please get rid of the monkey” %&gt;<br />
+&lt;%= end_form_tag %&gt;<br />
+<code class="language-plaintext highlighter-rouge">&lt;/macro:code&gt;</code>{=html}</p>
+
+<p>This is the page shown to old-world users with javascript disabled that clicked on the delete link on the monkey list page, resulting in calling the <code class="language-plaintext highlighter-rouge">delete</code> action with a GET request. This page is effectively, as you can see, a form that points to the same old <code class="language-plaintext highlighter-rouge">delete</code> method. We need to pass the monkey id in the form and we use the convenient hidden_field_tag helper method for that. Requests from this form page constitute the second case of calling <code class="language-plaintext highlighter-rouge">delete</code>, making request.post? return true (because POST is the default method for form_tag).</p>
+
+<h3 id="why-is-this-method-cool">Why is this method cool?</h3>
+
+<p>You can use what kind of text or image links on your pages you ever want to, just like with normal links. That’s got to be nicer than a battery of submit buttons that look all different in different browsers. Even cooler, you don’t have to stuff your users through the tunnel of indifferent confirmation pages. Just one click, and away they go!</p>
+
+<p>But that’s not all, folks! The approach is also accesible. People with text browsers or screen readers (or the paranoid with javascript disabled) will be presented a traditional link followed by (sigh!) a confirmation page, for their own safety.</p>
+
+<h3 id="why-is-this-method-safe">Why is this method safe?</h3>
+
+<p>No critical action is made with a GET request. In the most common case the deletion is made through an XMLHttpRequest, which is a) using POST method and b) launched by javascript so robots or Accelerators or other villains couldn’t even invoke it. The fallback method, on the other hand, uses the traditional confirmation page idea, forcing the user to submit a POST form before the actual deletion is made.</p>
+
+<p>So, here’ya go! A complete system for deleting monkeys. Well, maybe not complete but you get the idea. And all with just a single controller method. And like with all AJAX helpers in Rails, it’s really easy to turn a traditional, link- or form-based approach to full-blown AJAX goodness in a matter of minutes.</p>
+
+<p><strong>Disclaimer:</strong> The point of this article is not to teach all the goodies of link_to_remote or other AJAX helpers in Rails. There’s a lot <a href="http://www.rubyonrails.com/media/video/rails-ajax.mov">better(AJAX on Rails video)</a> <a href="http://mir.aculo.us/">resources</a> for that and I intentionally left the code barebones simple. You’d certainly want to give the user some kind of indication that an AJAX process is underway, for example. Search the Rails <a href="http://wiki.rubyonrails.com/">wiki</a> and <a href="http://rails.rubyonrails.com/">API docs</a> for more info.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2005/08/17/false-insecurity/">False Insecurity</a></h1>
     
     
@@ -321,48 +428,6 @@ Clearly, the world needs more crusaders against patent abuse like Jeff Bezos.</p
 <p>After Calacanis, David Axmark of <a href="http://www.mysql.com">MySQL</a> fame talked about how to make money with Open Source software. The topic was really up my alley, maybe a bit too much, since I didn’t find anything really new from his speech. Maybe his quite monotonic presentation had something to do with that, too.</p>
 
 <p>The lunch was predated by a talk by <a href="http://www.ludicorp.com/team_member.php?id=7">Ben Cerveny</a>, an interface designer behind e.g. <a href="http://www.flickr.com/">Flickr</a> and Quake. The presentation on Game theory was a disappointment for me as I had waited quite a bit more. It all just went flying high past me, don’t really know why. Lars offers one <a href="http://www.pinds.com/blog/one-entry?entry%5fid=39969">explanation</a> with comments from Ben.</p>
-</div>
-  
-
-
-    </article>
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/06/10/maximizer/">Maximizer</a></h1>
-    
-    
-      <p class="meta">
-        
-
-  <time datetime="2005-06-10T00:00:00+00:00" pubdate>June 10, 2005</time>
-
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>It’s always an illuminating event to find a name for a phenomenon you’ve known existed but didn’t really find a way to communicate it to others. One famous example of it is <a href="http://en.wikipedia.org/wiki/AJAX">AJAX (Asynchronous JavaScript and XML)</a>. It’s been around for years, got more exposure upon <a href="http://maps.google.com/">Google Maps</a>, but didn’t really hit the mainstream until <a href="http://www.jjg.net/">Jesse James Garrett</a> <a href="http://www.adaptivepath.com/publications/essays/archives/000385.php">labeled</a> the technique AJAX and wrote an article about it.</p>
-
-<p>I have an (annoying, some people say) habit to not only strive for but also buy the best. I don’t really understand people who when seeing me carrying a Powerbook come and wonder: “isn’t it terribly expensive?” Well, yeah, if you compare it to a €799 wholesale store laptop. But come on, it’s my workplace, a hobby and a communication vehicle in one. Why should I settle for anything short of the best?</p>
-
-<p><a href="http://www.pinds.com/blog/">Lars Pind</a>, my kind host here in Copenhagen, recently posted an <a href="http://www.pinds.com/blog/one-entry?entry%5fid=39915">entry</a> that really resonated with me:</p>
-
-<blockquote>
-  <p>When you’re a <a href="http://www.baylor.edu/stren€dex.php?id=25460#%20q26">maximizer</a>, second best is not good enough. Good enough isn’t good enough.<br />
-It’s not a materialistic thing at all. And it’s not snobbish. It’s a question of aesthetics and value. Why waste this precious life surrounding us with anything less? It’s greatly motivating and uplifting to surround yourself with the best there is, and help make it even better.</p>
-</blockquote>
-
-<p>That’s me. A <a href="http://www.baylor.edu/strengths/index.php?id=25460#%20q26">maximizer</a>. It’s heartening to find out I’m not that freaky after all.</p>
-
-<blockquote>
-  <p>Me, I find that same kind of satisfaction in a really well thought out business model, in well performed music, in a slick software user interface, in a superbly written article about Ketchup in the New Yorker, in a perfect piece of Parmigiano, a well-executed business move, in an outstanding show by Eddie Izzard, in a beautiful piece of clothing, in a uber-functional perambulator, or in the Californian coast line (yeah, this isn’t man-made like the others, but whoever did it did a pretty impressive job. Kudos!)</p>
-</blockquote>
-
-<p>Amen. Thank you, Lars, for (among many other things) helping me to take another step towards finding out who I really am.</p>
 </div>
   
 

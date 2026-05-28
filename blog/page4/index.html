@@ -42,6 +42,166 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2008/05/08/amp-lified/">&amp;lified</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2008-05-08T00:00:00+00:00" pubdate>May 8, 2008</time>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>UPDATE</strong> Now <a href="http://ampersand.gosedesign.net/">ampersand even has its own blog</a>.</p>
+
+<p>Ampersand has received a lot of <a href="http://www.typography.com/ask/showBlog.php?blogID=98">press</a> <a href="http://www.kottke.org/08/05/ampersands">lately</a> and I decided to put my oar in as well.</p>
+
+<p>My recent history with ampersand is kind of embarrassing, to say the least. I was giving a Ruby class in UK a few years back and during a class, I asked a participant whether there is some other term for the <em>at sign</em> in English. “Sure”, she said, “it’s ampersand.” To this day I’m not sure whether she thought I said <em>et sign</em>, or genuinely mixed up <a href="http://en.wikipedia.org/wiki/Asperand">asperand</a> and <a href="http://en.wikipedia.org/wiki/Ampersand">ampersand</a>. But for quite some time after that, I happily treated @ as ampersand.</p>
+
+<p>But neither linguistics or typography is the topic of today’s article. Let’s rather talk about ampersand (the real one) in Ruby.</p>
+
+<p>In Ruby, an ampersand denotes a block parameter. But let’s not get ahead of ourselves. A little background might be in place.</p>
+
+<p>One of the coolest features in Ruby are <em>code blocks</em>, or <em>closures</em>. <del>They are basically anonymous functions, but as pretty much everything in Ruby, they are also objects.</del> They are anonymous functions, that have little use just by themselves. However, you can turn them into <code class="language-plaintext highlighter-rouge">Proc</code> objects either with the <code class="language-plaintext highlighter-rouge">Proc.new</code> constructor or using the <code class="language-plaintext highlighter-rouge">lambda</code> kernel method. The common best practice to mark code blocks is to use the curly braces with one-liners and <code class="language-plaintext highlighter-rouge">do..end</code> with blocks that span multiple lines:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;yell = lambda { puts "AAARGH!!!" }
+whisper = Proc.new do
+ puts "whee"
+end
+yell.call
+whisper.call
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>âž¥</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;AAARGH!!!
+whee&lt;/code&gt;
+</code></pre></div></div>
+
+<p>Maybe the most useful application of <code class="language-plaintext highlighter-rouge">Proc</code> objects in Ruby are block parameters. Anyone with some knowledge of Ruby is familiar with the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&gt;&gt; arr = %w(apple orange kiwi)
+=&gt; ["apple", "orange", "kiwi"]
+&gt;&gt; arr.each {|i| puts i[0,2]}
+ap
+or
+ki
+=&gt; ["apple", "orange", "kiwi"]&lt;/code&gt;
+</code></pre></div></div>
+
+<p>As you can see, in this case you need to use neither <code class="language-plaintext highlighter-rouge">Proc.new</code> nor <code class="language-plaintext highlighter-rouge">lambda</code> with the block; it’s converted to a <code class="language-plaintext highlighter-rouge">Proc</code> object implicitly. But as the method receives just a <code class="language-plaintext highlighter-rouge">Proc</code> object as its parameter, you could also say something like this, right:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&gt;&gt; put_two = lambda {|i| puts i[0,2]}
+=&gt; #&lt;Proc:0x00329060@(irb):41&gt;
+&gt;&gt; arr.each(put_two)&lt;/code&gt;
+</code></pre></div></div>
+
+<p>Err, not quite. It turns out Ruby methods can take two kinds of parametersâ€”a number of normal parameters and a block parameter. In the code above the interpreter will think that the <code class="language-plaintext highlighter-rouge">put_two</code> <code class="language-plaintext highlighter-rouge">Proc</code> object is passed as a normal parameter to the <code class="language-plaintext highlighter-rouge">each</code> call, and since <code class="language-plaintext highlighter-rouge">each</code> doesn’t take any normal parameters, you will get an error:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&gt;&gt; arr.each(put_two)
+ArgumentError: wrong number of arguments (1 for 0)
+	from (irb):42:in `each'
+	from (irb):42&lt;/code&gt;
+</code></pre></div></div>
+
+<p>And this is what brings us back to the ampersand:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&gt;&gt; arr.each(&amp;put_two)
+ap
+or
+ki
+=&gt; ["apple", "orange", "kiwi"]&lt;/code&gt;
+</code></pre></div></div>
+
+<p>So <strong>the ampersand is used to tell the interpreter that the following reference is the block parameter of the method</strong>.</p>
+
+<p>One fairly common idiom in the Rails world is this kind of construct:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&gt;&gt; arr.map(&amp;:length)&lt;/code&gt;
+</code></pre></div></div>
+
+<p>It is effectively the same as</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&gt;&gt; arr.map {|i| i.length }
+=&gt; [5, 6, 4]&lt;/code&gt;
+</code></pre></div></div>
+
+<p>However, if you start a plain irb session, you will notice something isn’t quite right:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&gt;&gt; arr.map(&amp;:length)
+TypeError: wrong argument type Symbol (expected Proc)
+	from (irb):2&lt;/code&gt;
+</code></pre></div></div>
+
+<p>That’s right. The cool shorthand method that worked so nicely in your Rails app doesn’t work in plain Ruby. That’s because there is some Rails magic behind the <code class="language-plaintext highlighter-rouge">&amp;:method</code> call. This magic is e.g. the reason why <a href="http://goruco2008.confreaks.com/06_zygmuntowicz.html">Ezra has prohibited using the shortcut in Merb framework code</a>.</p>
+
+<p>But let’s have a closer look at what’s actually happening behind the scenes in the shortcut. The thing that’s different from our earlier calls is that there is a colon between the ampersand and the word “length”. This means that we’re not using a variable or method called <code class="language-plaintext highlighter-rouge">length</code>, but the symbol <code class="language-plaintext highlighter-rouge">:length</code>. If you’re not familiar with Ruby symbols (or even if you are), reading <a href="http://blog.hasmanythrough.com/2008/4/19/symbols-are-not-pretty-strings">Josh’s recent article on symbols</a> is a worthwhile read.</p>
+
+<p>Now that we know that we’re trying to pass a symbol as the block parameter to a method (and that it’s not really working, as the error above indicates), we need a way to convert it to a <code class="language-plaintext highlighter-rouge">Proc</code> object like expected by the method. Ruby has a slew of type conversion methods that are called implicitly whenever it’s clear that a certain type of object is needed. Inside a string for example, <code class="language-plaintext highlighter-rouge">to_s</code> is called automatically for every object that is not a string itself:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&gt;&gt; "Nice array: " + arr
+TypeError: can't convert Array into String
+	from (irb):6:in `+'
+	from (irb):6
+&gt;&gt; "Nice array: #{arr}"
+=&gt; "Nice array: appleorangekiwi"
+&gt;&gt; "Nice array: " + arr.to_s
+=&gt; "Nice array: appleorangekiwi"&lt;/code&gt;
+</code></pre></div></div>
+
+<p>In the same vein, since a block parameter of a method needs to be a <code class="language-plaintext highlighter-rouge">Proc</code> object, <code class="language-plaintext highlighter-rouge">to_proc</code> is called automatically for all other objects in an effort to get a hold of a proc. So could it work if we just added a <code class="language-plaintext highlighter-rouge">to_proc</code> method to the <code class="language-plaintext highlighter-rouge">Symbol</code> class? Let’s find out!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;class Symbol
+  def to_proc
+    lambda {|i| i.send(self)}
+  end
+end&lt;/code&gt;
+</code></pre></div></div>
+
+<p><del>Here we make <code class="language-plaintext highlighter-rouge">to_proc</code> a lambda function that will use the <code class="language-plaintext highlighter-rouge">send</code> method to call the method with the same name as the <code class="language-plaintext highlighter-rouge">Symbol</code> object in question (self) for the element that’s passed to it.</del> <em>[]{.examples .use .just .let’s .so .confusing .too .got .That}</em>. So</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;arr.send(:length)&lt;/code&gt;
+</code></pre></div></div>
+
+<p>is the same as</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;arr.length&lt;/code&gt;
+</code></pre></div></div>
+
+<p>And thus</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;:length.to_proc&lt;/code&gt;
+</code></pre></div></div>
+
+<p>would become</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;lambda {|i| i.send(:length)}&lt;/code&gt;
+</code></pre></div></div>
+
+<p>Now, let’s see how our new method performs:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&gt;&gt; arr.map(&amp;:reverse)
+=&gt; ["elppa", "egnaro", "iwik"]&lt;/code&gt;
+</code></pre></div></div>
+
+<p>Perfect!</p>
+
+<p>While <code class="language-plaintext highlighter-rouge">Symbol#to_proc</code> is a clever and perhaps an elegant hack, it’s still kind of a hack. So should you use it in your code? I tend to side with Ezra on this. If you’re writing framework code, you should probably err on the side of readability and common usage, and thus avoid “magical shortcuts” like these. But in application code, why not. I certainly do.</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2008/05/05/making-capistrano-not-pant-on-cleanup/">Making Capistrano Not Suffocate on Cleanup</a></h1>
     
     
@@ -377,40 +537,6 @@ Fields Inline”. However, I don’t get any royalties from the book sales so th
 
 
   <div class="entry-content"><p>Congrats to Sami Korjus and my cousin <a href="http://www.imdb.com/name/nm1533154/">Jussi SyrjÃ¤</a> for <a href="http://www.indiewire.com/ots/2007/12/park_city_08_to.html">securing a spot</a> for their short film <a href="http://imdb.com/title/tt0997056/">Harvest Time</a> at the <a href="http://www.sundance.org/festival/">Sundance Festival</a>. I’ve seen the film now twice, in its premiere in the <a href="http://www.tamperefilmfestival.fi/2007/eng/index.htm">Tampere Film Festival</a> last year (where it <a href="http://www.filmfestivalworld.com/blog/Festival/Tampere_Film_Festival/Post/109/#comments">won the special prize</a>) and last week on the national tv, and the mojo hasn’t worn off. It was one of the few movies in the festival shot on real 35mm film and the same quality can be seen throughout the whole film. If you’re into black comedies and heading to Sundance, I heartily recommend <a href="http://www.sundance.org/festival/film_events/details1.asp?filmid=08F0255&amp;filmtype=s&amp;keepThis=true&amp;TB_iframe=true&amp;height=480&amp;width=900">giving it a shot</a>.</p>
-</div>
-  
-
-
-    </article>
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/12/10/do-not-hire-itechart/">Do NOT Hire iTechArt</a></h1>
-    
-    
-      <p class="meta">
-        
-
-  <time datetime="2007-12-10T00:00:00+00:00" pubdate>December 10, 2007</time>
-
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>It’s annoying enough that quite a few spam messages creep through Google Groups filters to the many mailing lists I’m subscribed to. Fortunately, SpamSieve has learned to bash them quite effectively. Today, however, spam on Rails-Core and Rails-Spinoffs hit the new low (right in there with people advertising pirate copies of the first AWDWR (Agile Web Development with Rails) book on the Rails mailing lists a while back).</p>
-
-<p>A company apparently specialized (among many other technologies, oh the irony) in Ruby on Rails development and outsourcing, iTechArt, considered it appropriate to advertise their services by <em>spamming pretty much every Ruby and Rails-related mailing list on Google Groups</em>. I not only think it’s pretty darn stupid to crap in your own cubicle (so to speak), I also think it’s worth giving them a lesson. So anyone considering outsourcing or buying Ruby or Rails development, please:</p>
-
-<ol>
-  <li>Do <strong>not</strong> hire iTechArt.</li>
-  <li>If you receive a proposal from them, let them know you won’t hire spammers.</li>
-</ol>
-
-<p>In any case, if you’re a blogger, please spread the word. iTechArt is not worth anyone’s money.</p>
 </div>
   
 
