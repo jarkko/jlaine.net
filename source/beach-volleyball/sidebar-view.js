@@ -16,7 +16,8 @@
     outdoor: {
       href: 'nordic_outdoor_beach_volleyball_courts.csv',
       label: '↓ Outdoor CSV',
-      title: 'Download outdoor beach volleyball courts — Nordic & Baltic countries (CSV, OSM + LIPAS open data)',
+      title:
+        'Download outdoor beach volleyball courts — Nordic & Baltic (CSV). Finland: LIPAS (CC BY 4.0). Other countries: OpenStreetMap Overpass (ODbL), see scripts/build_nordic_outdoor_csv.py for sources.',
     },
     both: {
       href: 'nordic_indoor_beach_volleyball_facilities.csv',

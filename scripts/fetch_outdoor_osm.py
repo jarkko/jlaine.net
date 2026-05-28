@@ -2,7 +2,16 @@
 """
 Fetch beach volleyball outdoor court data from OpenStreetMap Overpass API
 for Nordic/Baltic countries and output rows matching the CSV schema used
-by nordic_outdoor_beach_volleyball_courts.csv.
+by nordic_outdoor_beach_volleyball_courts.csv (see also
+scripts/build_nordic_outdoor_csv.py).
+
+OSM tagging (ODbL, https://www.openstreetmap.org/copyright ):
+  - Primary: leisure=pitch + sport=beachvolleyball (wiki-approved value, no underscore).
+  - Legacy alias: sport=beach_volleyball (underscore) — still queried for completeness.
+  - Extra: leisure=pitch + sport=volleyball + surface=sand (common alternate mapping).
+
+Each row gets a stable lipas_id of the form w{way_id} or n{node_id} (used as the
+non-Finland venue id prefix) and source_url pointing at the OSM object.
 
 Usage:
   python3 scripts/fetch_outdoor_osm.py [COUNTRY_CODE ...]
@@ -14,12 +23,11 @@ Courts count defaults to 2 when the OSM tags omit a count.
 """
 
 import json
-import re
 import sys
 import time
-import unicodedata
 import urllib.request
 import urllib.parse
+from datetime import date
 
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
 
@@ -32,28 +40,6 @@ COUNTRIES = {
     "LT": ("LITHUANIA", "LT"),
     "IS": ("ICELAND",   "IS"),
 }
-
-
-# Same transliteration table used by add_permalinks.py — keep in sync.
-_TRANSLITERATE = str.maketrans({
-    "ø": "oe", "Ø": "oe", "æ": "ae", "Æ": "ae",
-    "ð": "d",  "Ð": "d",  "þ": "th", "Þ": "th",
-    "ß": "ss", "ẞ": "ss",
-    "ģ": "g",  "Ģ": "g",  "ķ": "k",  "Ķ": "k",
-    "ļ": "l",  "Ļ": "l",  "ņ": "n",  "Ņ": "n",
-    "ŗ": "r",  "Ŗ": "r",  "ė": "e",  "Ė": "e",
-})
-
-
-def slugify(s: str) -> str:
-    if not s:
-        return ""
-    s = s.translate(_TRANSLITERATE)
-    s = unicodedata.normalize("NFD", s)
-    s = "".join(c for c in s if unicodedata.category(c) != "Mn")
-    s = s.lower()
-    s = re.sub(r"[^a-z0-9]+", "-", s)
-    return s.strip("-")
 
 
 AREA_ID_QUERY = """\
@@ -77,16 +63,28 @@ def get_area_id(iso2: str) -> int:
 
 
 def fetch_courts(area_id: int) -> list:
-    query = f"[out:json][timeout:120];\n(\n  node[\"leisure\"=\"pitch\"][\"sport\"=\"beach_volleyball\"][\"access\"!=\"private\"](area:{area_id});\n  way[\"leisure\"=\"pitch\"][\"sport\"=\"beach_volleyball\"][\"access\"!=\"private\"](area:{area_id});\n  node[\"sport\"=\"volleyball\"][\"surface\"=\"sand\"][\"access\"!=\"private\"](area:{area_id});\n  way[\"sport\"=\"volleyball\"][\"surface\"=\"sand\"][\"access\"!=\"private\"](area:{area_id});\n);\nout center tags;\n"
+    # sport=beachvolleyball is the documented OSM value; sport=beach_volleyball is a rare legacy typo.
+    # Restrict volleyball+sand to leisure=pitch to avoid unrelated sand courts.
+    query = f"""[out:json][timeout:180];
+(
+  node["leisure"="pitch"]["sport"="beachvolleyball"]["access"!="private"](area:{area_id});
+  way["leisure"="pitch"]["sport"="beachvolleyball"]["access"!="private"](area:{area_id});
+  node["leisure"="pitch"]["sport"="beach_volleyball"]["access"!="private"](area:{area_id});
+  way["leisure"="pitch"]["sport"="beach_volleyball"]["access"!="private"](area:{area_id});
+  node["leisure"="pitch"]["sport"="volleyball"]["surface"="sand"]["access"!="private"](area:{area_id});
+  way["leisure"="pitch"]["sport"="volleyball"]["surface"="sand"]["access"!="private"](area:{area_id});
+);
+out center tags;
+"""
     data = urllib.parse.urlencode({"data": query}).encode()
     req = urllib.request.Request(OVERPASS_URL, data=data)
     req.add_header("User-Agent", "jlaine.net beach-volleyball data collector (+https://jlaine.net)")
-    with urllib.request.urlopen(req, timeout=140) as resp:
+    with urllib.request.urlopen(req, timeout=200) as resp:
         result = json.load(resp)
     return result.get("elements", [])
 
 
-def osm_to_row(el: dict, country_name: str, iso2: str) -> dict | None:
+def osm_to_row(el: dict, country_name: str) -> dict | None:
     tags = el.get("tags", {})
     if el["type"] == "way":
         center = el.get("center", {})
@@ -102,9 +100,8 @@ def osm_to_row(el: dict, country_name: str, iso2: str) -> dict | None:
     if not (-90 <= lat <= 90 and -180 <= lon <= 180):
         return None
 
-    osm_id = f"osm-{el['type'][0]}{el['id']}"
-    prefix = iso2.lower()
-    bare_id = f"{prefix}-out-{osm_id}"
+    t = el["type"]
+    oid = f"{'n' if t == 'node' else 'w'}{el['id']}"
 
     name_raw = tags.get("name") or tags.get("name:en") or tags.get("ref") or ""
     # For unnamed courts, build a fallback from place context or operator.
@@ -168,10 +165,13 @@ def osm_to_row(el: dict, country_name: str, iso2: str) -> dict | None:
     # Operator/owner
     operator = tags.get("operator") or tags.get("owner") or ""
 
-    # URL
+    # Prefer venue website; always fall back to the OSM feature page.
     url = tags.get("website") or tags.get("url") or tags.get("contact:website") or ""
+    osm_page = f"https://www.openstreetmap.org/{t}/{el['id']}"
+    if not url:
+        url = osm_page
 
-    name_slug = slugify(name)
+    cutoff = str(date.today())
 
     return {
         "country": country_name,
@@ -187,11 +187,10 @@ def osm_to_row(el: dict, country_name: str, iso2: str) -> dict | None:
         "free_use": free_use,
         "access": access,
         "owner": operator,
-        "lipas_id": "",
+        "lipas_id": oid,
         "source_url": url,
-        "data_cutoff": "2026-05-10",
-        "fact_check_notes": f"OSM {el['type']} id={el['id']}",
-        "permalink": f"{bare_id}-{name_slug}" if name_slug else bare_id,
+        "data_cutoff": cutoff,
+        "fact_check_notes": f"OSM {t} id={el['id']}; openstreetmap.org (ODbL)",
     }
 
 
@@ -199,7 +198,6 @@ CSV_COLUMNS = [
     "country", "facility_name", "town", "address", "latitude", "longitude",
     "coord_precision", "outdoor_courts", "surface", "lighting", "free_use",
     "access", "owner", "lipas_id", "source_url", "data_cutoff", "fact_check_notes",
-    "permalink",
 ]
 
 
@@ -247,7 +245,7 @@ def main():
             if dedup_key in seen_ids:
                 continue
             seen_ids.add(dedup_key)
-            row = osm_to_row(el, country_name, iso2)
+            row = osm_to_row(el, country_name)
             if row is None:
                 continue
             print(",".join(csv_escape(row[col]) for col in CSV_COLUMNS))

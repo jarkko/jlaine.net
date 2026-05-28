@@ -49,8 +49,8 @@ describe('indoor CSV data sanity', () => {
 describe('outdoor CSV data sanity', () => {
   const venues = loadVenues('source/beach-volleyball/nordic_outdoor_beach_volleyball_courts.csv', M.rowToOutdoor);
 
-  test('produces at least 900 outdoor courts across all countries', () => {
-    assert.ok(venues.length >= 900, `only ${venues.length} venues`);
+  test('produces at least 3500 outdoor venues across all countries', () => {
+    assert.ok(venues.length >= 3500, `only ${venues.length} venues`);
   });
 
   test('all rows have finite lat/lng inside Nordic + Baltic bounds', () => {

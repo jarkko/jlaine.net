@@ -2,10 +2,13 @@
 """
 Fetch Finnish outdoor beach volleyball courts from the LIPAS open-data API
 (type-code 1330, CC BY 4.0) and write them to
-source/indoor-beach/finland_outdoor_beach_volleyball_courts.csv.
+source/beach-volleyball/finland_outdoor_beach_volleyball_courts.csv.
+
+To refresh the combined Nordic+Baltic map file, run next:
+  python3 scripts/build_nordic_outdoor_csv.py && python3 scripts/add_permalinks.py
 
 Manual overrides can be added to
-source/indoor-beach/finland_outdoor_overrides.csv using the same schema.
+source/beach-volleyball/finland_outdoor_overrides.csv using the same schema.
 Overrides are matched by lipas_id; a row with the same lipas_id replaces the
 generated row entirely.  Rows in the overrides file without a lipas_id are
 appended as extra venues not in LIPAS.
