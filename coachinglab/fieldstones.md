@@ -41,7 +41,7 @@ Guidelines:
 3. Name it **"Add fieldstone"**
 4. Add to lock screen / Action Button / Siri
 
-(Note: this file lives at `/Users/jarkko/code/coachinglab/fieldstones.md` — not in Dropbox by default. If Files.app can't reach it via iOS, the simplest fix is to symlink or move the repo into Dropbox, or to capture into the self-leadership inbox and move stones over at shutdown as a fallback.)
+(Note: this file lives at `/Users/jarkko/Sites/jlaine.net/coachinglab/fieldstones.md` — not in Dropbox by default. If Files.app can't reach it via iOS, the simplest fix is to symlink or move the repo into Dropbox, or to capture into the self-leadership inbox and move stones over at shutdown as a fallback.)
 
 **Fallback:** capture into the self-leadership `inbox.md` using whichever Shortcut is closest at hand, prefix with `#fieldstone`, and route to here at shutdown.
 
