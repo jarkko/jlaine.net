@@ -47,6 +47,119 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2006/10/03/installing-ruby-mysql-driver-on-os-x/">Installing Ruby MySQL Driver on OS X</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2006-10-03T00:00:00+00:00" pubdate>October 3, 2006</time>
+
+
+        
+
+  
+  
+  
+  <span class="meta-sep" aria-hidden="true"> &middot; </span><span class="reading-time">460 words &middot; 3 min read</span>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just noticed that I hadn’t installed the native Ruby mysql driver after getting the laptop back from repair. The reason it took a few days is that Rails just happily churns away with it’s built-in pure-ruby driver. However, the native binary driver is considerably faster and more stable, so you should never go into production without it. It won’t hurt having it installed on all your dev boxes, too.</p>
+
+<p>However, installing the native driver on OS X wasn’t as easy as one would assume. If you have the MySQL binary OS X version from <a href="http://www.mysql.com">MySQL.com</a>, it’s installed under /usr/local/mysql, and the gem can’t find it there. You can fix this by hinting the gem install command about the location of MySQL:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}sudo gem install mysql — —with-mysql-dir=/usr/local/mysql<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+
+<p>Unfortunately, this resulted in errors:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}Probutanol:~ jarkko$ sudo gem install mysql — —with-mysql-dir=/usr/local/mysql/<br />
+Attempting local installation of ‘mysql’<br />
+Local gem file not found: mysql*.gem<br />
+Attempting remote installation of ‘mysql’<br />
+Select which gem to install for your platform (i686-darwin8.6.1)\</p>
+<ol>
+  <li>mysql 2.7.1 (mswin32)\</li>
+  <li>mysql 2.7 (ruby)\</li>
+  <li>mysql 2.6 (ruby)\</li>
+  <li>mysql 2.5.1 (ruby)\</li>
+  <li>Cancel installation<br />
+&gt; 2<br />
+Building native extensions. This could take a while…<br />
+mysql.c: In function Ã¢Init_mysqlÃ¢:<br />
+mysql.c:2015: error: Ã¢ulongÃ¢ undeclared (first use in this function)<br />
+mysql.c:2015: error: (Each undeclared identifier is reported only once<br />
+mysql.c:2015: error: for each function it appears in.)<br />
+mysql.c:2015: error: parse error before numeric constant<br />
+mysql.c:2018: error: parse error before numeric constant<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</li>
+</ol>
+
+<p>Googling around helped, and <a href="http://i.nfectio.us/articles/2006/09/12/running-rails-on-os-x-with-mysql-5-0-24">Bob Silva came to the rescue</a>: you can fix the errors by adding the following line to the mysql.c file of the mysql gem (/opt/local/lib/ruby/gems/1.8/gems/mysql-2.7/mysql.c for me):</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}#define ulong unsigned long<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+
+<p>However, just adding it and re-running the gem install command doesn’t work. It turns out the mysql.c file is recreated by the extconf.rb configuration, so you need to do a bit of handiwork:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}cd /opt/local/lib/ruby/gems/1.8/gems/mysql-2.7<br />
+sudo ruby extconf.rb install mysql — —with-mysql-dir=/usr/local/mysql/<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+
+<p>Now add the line above to the created mysql.c file, and after that compile and install the driver by hand:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}sudo make<br />
+sudo make install<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+
+<p>That’s it, the driver should be installed. You can check it by running the gem list command:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}$ gem list</p>
+
+<p>* LOCAL GEMS *</p>
+
+<p>…</p>
+
+<p>mysql (2.7)<br />
+MySQL/Ruby provides the same functions for Ruby programs that the<br />
+MySQL C API provides for C programs.</p>
+
+<p>…<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+
+<p>Note that you might have the native driver installed even if you don’t have the gem (e.g. via darwinports). You can check whether the library is installed in irb:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}$ irb<br />
+irb(main):001:0&gt; require ‘mysql’<br />
+=&gt; true<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+
+<p>If it’s not installed, you will get something like this:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}$ irb<br />
+irb(main):001:0&gt; require ‘rubygems’<br />
+=&gt; true<br />
+irb(main):002:0&gt; require ‘mysql’<br />
+LoadError: no such file to load — mysql<br />
+from /opt/local/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:21:in `require__’<br />
+from /opt/local/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:21:in `require’<br />
+from (irb):2<br />
+<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2006/09/30/installing-subversion-1-4-on-os-x/">Installing Subversion 1.4 on OS X</a></h1>
     
     
@@ -404,61 +517,6 @@ options go into plugins.<br />
   <div class="entry-content"><p>Late as always:</p>
 
 <p>Congrats <a href="http://weblog.rubyonrails.org/2006/7/26/rails-is-2-years-old">Rails</a> and thank you, <a href="http://www.loudthinking.com">David</a>, for having been able to share the <a href="http://www.loudthinking.com/arc/000594.html">two years of beauty and passion</a>. There’s nothing better than a guilty pleasure. Here’s for many more years to come!</p>
-</div>
-  
-
-
-    </article>
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/08/05/beginning-ruby-on-rails-e-commerce/">Beginning Ruby on Rails E-Commerce</a></h1>
-    
-    
-      <p class="meta">
-        
-
-  <time datetime="2006-08-05T00:00:00+00:00" pubdate>August 5, 2006</time>
-
-
-        
-
-  
-  
-  
-  <span class="meta-sep" aria-hidden="true"> &middot; </span><span class="reading-time">197 words &middot; 1 min read</span>
-
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Now that <a href="http://poocs.net/articles/2006/07/25/look-ma-im-on-amazon">Scoop started</a>, I’m going to follow the pack:</p>
-
-<p><a href="http://www.amazon.com/gp/redirect.html?link_code=ur2&amp;tag=jlainenet-20&amp;camp=1789&amp;creative=9325&amp;location=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fproduct%2F1590597362%2Fsr%3D1-1%2Fqid%3D1154757427%2Fref%3Dsr_1_1%3Fie%3DUTF8%26s%3Dbooks"><img src="http://images.amazon.com/images/P/1590597362.01._SS500_SCLZZZZZZZ_V64475437_.jpg" alt="Cover of our upcoming book, Beginning Ruby on Rails E-Commerce" title="Cover of our upcoming book, Beginning Ruby on Rails E-Commerce" /></a></p>
-
-<p><a href="http://www.amazon.com/gp/redirect.html?link_code=ur2&amp;tag=jlainenet-20&amp;camp=1789&amp;creative=9325&amp;location=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fproduct%2F1590597362%2Fsr%3D1-1%2Fqid%3D1154757427%2Fref%3Dsr_1_1%3Fie%3DUTF8%26s%3Dbooks">Beginning Ruby on Rails E-Commerce</a> is one of the reasons it’s been so quiet on this channel during the last months. We’re writing the last chapters now and the book will hopefully go to print in September, so there’s not a whole lot of waiting time left anymore.</p>
-
-<p>Our goal was to make the book a bit different. It is a how-to book, going through building a complete E-Commerce site. So if you’re into learning by doing, you might enjoy it. We also wanted to promote the good Rails development practices. That’s why we use test-driven development always when it’s appropriate, teaching the different testing approaches in Rails on-the-fly. And since Apress is also the publisher of <a href="http://www.joelonsoftware.com">Joel</a>, it would have been a pity if we couldn’t have sprinkled a bit of humor in the book.</p>
-
-<p>If you want to be notified when the book is out, please do fill the following form and we’ll keep you up to date. We won’t share your email address with anyone and the mails sent to the list will be strictly related to this particular book.</p>
-
-<form action="http://odesign.cmail1.com/.aspx/s/37018/" method="post" id="cm">
-<div>
-
-`<span class="label">`{=html}`<label for="l37018-37018">`{=html}Email Address:`</label>`{=html}`</span>`{=html}\
-`<span>`{=html}`<input type="text" name="cm-37018-37018" id="l37018-37018" size="25" />`{=html}`</span>`{=html}
-
-</div>
-<div>
-
-`<span class="button">`{=html}`<input type="submit" value="Subscribe" />`{=html}`</span>`{=html}
-
-</div>
-</form>
 </div>
   
 

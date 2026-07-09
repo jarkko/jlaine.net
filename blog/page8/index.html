@@ -47,6 +47,39 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2007/01/18/finally/">Finally</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2007-01-18T00:00:00+00:00" pubdate>January 18, 2007</time>
+
+
+        
+
+  
+  
+  
+  <span class="meta-sep" aria-hidden="true"> &middot; </span><span class="reading-time">10 words &middot; 1 min read</span>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code class="language-plaintext highlighter-rouge">&lt;a href="http://www.flickr.com/photos/jarkko/361453361/" title="Photo Sharing"&gt;</code>{=html}<code class="language-plaintext highlighter-rouge">&lt;img src="http://farm1.static.flickr.com/157/361453361_e33e67d290.jpg" width="500" height="333" alt="Winter Arrives" /&gt;</code>{=html}<code class="language-plaintext highlighter-rouge">&lt;/a&gt;</code>{=html}</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2007/01/16/dotherightthing-com-news/">dotherightthing.com News</a></h1>
     
     
@@ -600,119 +633,6 @@ end</p>
 <p>remove_column :contents, :image_id<br />
 end<br />
 <code class="language-plaintext highlighter-rouge">&lt;/filter:jscode&gt;</code>{=html}</p>
-</div>
-  
-
-
-    </article>
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/10/03/installing-ruby-mysql-driver-on-os-x/">Installing Ruby MySQL Driver on OS X</a></h1>
-    
-    
-      <p class="meta">
-        
-
-  <time datetime="2006-10-03T00:00:00+00:00" pubdate>October 3, 2006</time>
-
-
-        
-
-  
-  
-  
-  <span class="meta-sep" aria-hidden="true"> &middot; </span><span class="reading-time">460 words &middot; 3 min read</span>
-
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Just noticed that I hadn’t installed the native Ruby mysql driver after getting the laptop back from repair. The reason it took a few days is that Rails just happily churns away with it’s built-in pure-ruby driver. However, the native binary driver is considerably faster and more stable, so you should never go into production without it. It won’t hurt having it installed on all your dev boxes, too.</p>
-
-<p>However, installing the native driver on OS X wasn’t as easy as one would assume. If you have the MySQL binary OS X version from <a href="http://www.mysql.com">MySQL.com</a>, it’s installed under /usr/local/mysql, and the gem can’t find it there. You can fix this by hinting the gem install command about the location of MySQL:</p>
-
-<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}sudo gem install mysql — —with-mysql-dir=/usr/local/mysql<br />
-<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
-
-<p>Unfortunately, this resulted in errors:</p>
-
-<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}Probutanol:~ jarkko$ sudo gem install mysql — —with-mysql-dir=/usr/local/mysql/<br />
-Attempting local installation of ‘mysql’<br />
-Local gem file not found: mysql*.gem<br />
-Attempting remote installation of ‘mysql’<br />
-Select which gem to install for your platform (i686-darwin8.6.1)\</p>
-<ol>
-  <li>mysql 2.7.1 (mswin32)\</li>
-  <li>mysql 2.7 (ruby)\</li>
-  <li>mysql 2.6 (ruby)\</li>
-  <li>mysql 2.5.1 (ruby)\</li>
-  <li>Cancel installation<br />
-&gt; 2<br />
-Building native extensions. This could take a while…<br />
-mysql.c: In function Ã¢Init_mysqlÃ¢:<br />
-mysql.c:2015: error: Ã¢ulongÃ¢ undeclared (first use in this function)<br />
-mysql.c:2015: error: (Each undeclared identifier is reported only once<br />
-mysql.c:2015: error: for each function it appears in.)<br />
-mysql.c:2015: error: parse error before numeric constant<br />
-mysql.c:2018: error: parse error before numeric constant<br />
-<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</li>
-</ol>
-
-<p>Googling around helped, and <a href="http://i.nfectio.us/articles/2006/09/12/running-rails-on-os-x-with-mysql-5-0-24">Bob Silva came to the rescue</a>: you can fix the errors by adding the following line to the mysql.c file of the mysql gem (/opt/local/lib/ruby/gems/1.8/gems/mysql-2.7/mysql.c for me):</p>
-
-<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}#define ulong unsigned long<br />
-<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
-
-<p>However, just adding it and re-running the gem install command doesn’t work. It turns out the mysql.c file is recreated by the extconf.rb configuration, so you need to do a bit of handiwork:</p>
-
-<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}cd /opt/local/lib/ruby/gems/1.8/gems/mysql-2.7<br />
-sudo ruby extconf.rb install mysql — —with-mysql-dir=/usr/local/mysql/<br />
-<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
-
-<p>Now add the line above to the created mysql.c file, and after that compile and install the driver by hand:</p>
-
-<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}sudo make<br />
-sudo make install<br />
-<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
-
-<p>That’s it, the driver should be installed. You can check it by running the gem list command:</p>
-
-<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}$ gem list</p>
-
-<p>* LOCAL GEMS *</p>
-
-<p>…</p>
-
-<p>mysql (2.7)<br />
-MySQL/Ruby provides the same functions for Ruby programs that the<br />
-MySQL C API provides for C programs.</p>
-
-<p>…<br />
-<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
-
-<p>Note that you might have the native driver installed even if you don’t have the gem (e.g. via darwinports). You can check whether the library is installed in irb:</p>
-
-<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}$ irb<br />
-irb(main):001:0&gt; require ‘mysql’<br />
-=&gt; true<br />
-<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
-
-<p>If it’s not installed, you will get something like this:</p>
-
-<p><code class="language-plaintext highlighter-rouge">&lt;filter:code&gt;</code>{=html}$ irb<br />
-irb(main):001:0&gt; require ‘rubygems’<br />
-=&gt; true<br />
-irb(main):002:0&gt; require ‘mysql’<br />
-LoadError: no such file to load — mysql<br />
-from /opt/local/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:21:in `require__’<br />
-from /opt/local/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:21:in `require’<br />
-from (irb):2<br />
-<code class="language-plaintext highlighter-rouge">&lt;/filter:code&gt;</code>{=html}</p>
 </div>
   
 

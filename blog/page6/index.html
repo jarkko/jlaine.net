@@ -47,6 +47,189 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2007/08/03/from-rails-ajax-helpers-to-low-pro-part-i/">From Rails Ajax Helpers to Low Pro, Part I</a></h1>
+    
+    
+      <p class="meta">
+        
+
+  <time datetime="2007-08-03T00:00:00+00:00" pubdate>August 3, 2007</time>
+
+
+        
+
+  
+  
+  
+  <span class="meta-sep" aria-hidden="true"> &middot; </span><span class="reading-time">1728 words &middot; 9 min read</span>
+
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>[]{lang=”UPDATE”}</strong> Links to the latter parts of the series:</p>
+
+<ul>
+  <li><a href="http://jlaine.net/2007/8/6/from-rails-ajax-helpers-to-low-pro-part-2">Part 2</a></li>
+  <li><a href="http://jlaine.net/2008/9/9/from-rails-ajax-helpers-to-low-pro-part-3-some-announcements">Part 3</a></li>
+</ul>
+
+<p>In a recent Ruby on Rails podcast interview, Dan Webb stated he’d rather see the Javascript and Ajax helpers removed from the Rails core. What was the reason a prominent Rails figure like Dan holds such a radical view on the helpers?</p>
+
+<p>When Rails was young and only gaining popularity, its ability to help in quickly building Ajax-equipped web applications was one of the biggest selling points for the framework. In this, helpers such as <code class="language-plaintext highlighter-rouge">link_to_remote</code> and <code class="language-plaintext highlighter-rouge">remote_form_tag</code> played a big role. However, there are two problems looming with the Rails helpers. While the helpers did manage to make writing Ajax applications as easy as not to, they also made it very easy to fall into the two major culprits of Javascript development: writing inaccessible web applications and obtrusive JS code.</p>
+
+<h3 id="accessibility">Accessibility</h3>
+
+<p>Accessibility in the scope of Javascript can be capped with a single sentence: Can users use the web page if Javascript is not working in their browser? For the longest amount of time, Javascript was considered synonymous to inaccessible web sites. It took a lot of evangelizing (including <a href="http://domscripting.com/">a book</a> by <a href="http://adactio.com/">Jeremy Keith</a>) to convince people that peppering your pages with Javascript doesn’t inherently mean they’re inaccessible.</p>
+
+<p>The technique to create sites that worked both with and without Javascript was originally called <a href="http://www.cs.tut.fi/~jkorpela/html/augm.html">graceful degradation</a>. The page would degrade gracefully to a less advanced one if Javascript wasn’t enabled in the browser. However, people weren’t happy with the success of graceful degradation in the larger web design circles. Therefore the strategy was basically reversed and the newcomer was labeled <a href="http://en.wikipedia.org/wiki/Progressive_enhancement">Progressive enhancement</a>. The idea behind progressive enhancement is that you first build the basic functionality of the page that is available to all users, and only after that build more advanced features on that foundation.</p>
+
+<p>Code produced by Rails Javascript helpers isn’t necessarily inaccessible. <code class="language-plaintext highlighter-rouge">remote_form_tag</code> sets the action of the form tag to the same url as the target of the Ajax call, so even if the browser doesn’t support Javascript, the form should work fine:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="html"&gt;&lt;form action="/items" id="add_form" method="post"
+onsubmit="new Ajax.Request('/items', {asynchronous:true,
+  evalScripts:true, parameters:Form.serialize(this)});
+  return false;"
+style="display: none;"&gt;
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>Even <code class="language-plaintext highlighter-rouge">link_to_remote</code> and <code class="language-plaintext highlighter-rouge">link_to_function</code> give you the option to specify the href attribute manually and thus make the link accessible:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&lt;%= link_to_function "Add new item",
+    "$('add_form').toggle()", :href =&gt; "/foo" %&gt;
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>âž¥</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="html"&gt;&lt;a href="/foo"
+   onclick="$('add_form').toggle(); return false;"&gt;
+  Add new item
+&lt;/a&gt;
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>However, the problem is that by default the href attribute is set to “#” (which leads nowhere), which provides an easy way to the developer to cut corners and leave the Javascript-disabled out in the cold:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&lt;%= link_to_function "Add new item",
+    "$('add_form').toggle()" %&gt;
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>âž¥</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="html"&gt;&lt;a href="#" onclick="$('add_form').toggle(); return false;"&gt;
+  Add new item
+&lt;/a&gt;
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>Not surprisingly, many if not most Rails developers take the easy way out and just go with the default.</p>
+
+<h3 id="obtrusiveness">Obtrusiveness</h3>
+
+<p>Web evangelists have for long touted the wonders of separating the structure and presentation of web pages by using semantic HTML for structure and CSS stylesheets for styling the presentation. There is, however, a third part belonging to that separation equation, <a href="http://www.alistapart.com/articles/behavioralseparation">the behaviour</a>. Behaviour is what Javascript is taking care of in web sites.</p>
+
+<p>The separation of concerns is <a href="http://en.wikipedia.org/wiki/Model-view-controller">nothing new in the software world</a>, and is fairly far even in the case of CSS. However, many still cobble their HTML views up with smaller or (more often) larger chunks of Javascript. This kind of Javascript usage is called obtrusive.</p>
+
+<p>In unobtrusive Javascript, the HTML view should be left clean of Javascript. Instead, the elements are given id and class attributes that can then be used in separate Javascript files to attach behaviour to the elements. Consider the following bit of code:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="html"&gt;&lt;a href="/foo"
+   onclick="$('add_form').toggle(); return false;"&gt;
+  Add new item
+&lt;/a&gt;
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>Using Low Pro, this could easily be made unobtrusive:</p>
+
+<p>HTML file</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="html"&gt;&lt;a href="/foo" id="add_item_link"&gt;
+  Add new item
+&lt;/a&gt;
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>Javascript file</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="javascript"&gt;Event.addBehavior({
+  '#add_new_link:click' : function() {
+    $('add_form').toggle();
+    return false;
+  }
+});
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>This not only makes the code cleaner and puts the behaviour code where it should be, it also makes it a lot more natural to begin by making the pure-HTML version work before starting to attach behaviours to it.</p>
+
+<h3 id="the-path-to-enlightenment">The path to enlightenment</h3>
+
+<p>Ever since the beginning of Ajax support in Rails, people wanted a way to make their apps more accessible (read the comments in my post <a href="http://jlaine.net/2005/8/25/using-rails-ajax-helpers-to-create-safe-state-changing-links">Using Rails AJAX helpers to create safe state-changing links</a> for discussion about making the href attribute default to the url given to link_to_remote) and unobtrusive.</p>
+
+<p>In 2006 <a href="http://www.danwebb.net/">Dan Webb</a> and <a href="http://www.lukeredpath.co.uk/">Luke Redpath</a> came out with the <a href="http://www.ujs4rails.com/">Unobtrusive Javascript for Rails</a> plugin. The plugin did a bunch of things:</p>
+
+<ul>
+  <li>It modified the Rails Ajax helpers so that they won’t just add inline event handlers to the HTML code but instead add a dom id to the element (if one didn’t already exist) and attach an event to the element in an external Javascript file that is created and cached on the fly.</li>
+  <li>It added a helper called <code class="language-plaintext highlighter-rouge">apply_behaviour</code> that you could use to attach behaviour to elements by hand, using either pure Javascript or the domain-specific Ruby language familiar from the RJS templates. The helper used a CSS3 selector-like syntax (also familiar from the <a href="http://prototypejs.org/api/utility/dollar-dollar"><code class="language-plaintext highlighter-rouge">$$</code></a> prototype method and <a href="http://api.rubyonrails.org/classes/ActionController/Assertions/SelectorAssertions.html#M000208"><code class="language-plaintext highlighter-rouge">assert_select</code></a> Rails test assertion) to select to which elements certain behaviours should be attached.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&lt;% apply_behaviour "#add_item_link:click", "alert('Foo clicked!')" %&gt;
+
+&lt;% apply_behaviour "#another_link:click" do |page|
+    page.alert "Ah, you clicked me again"
+  end %&gt;
+&lt;/code&gt;
+</code></pre></div></div>
+
+<ul>
+  <li>It added a couple of helpers to be used with <code class="language-plaintext highlighter-rouge">apply_behaviour</code> to call the most common <a href="http://prototypejs.org/">prototype</a> and <a href="http://script.aculo.us/">script.aculo.us</a> effects:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="ruby"&gt;&lt;% apply_behaviour "#sort_list", make_sortable %&gt;
+
+&lt;% apply_behaviour ".ajax_link", make_remote_link %&gt;
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>Under the hood of the plugin was Dan’s Low Pro Javascript library, a light set of Javascript that makes it easier to produce accessible and unobtrusive Javascript using prototype and script.aculo.us. Low Pro introduced a few additions to the prototype element accessor methods (many of which have later been brought into prototype itself), a DOM builder, and, most important, event handling code that include declarative behaviours:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;code class="javascript"&gt;Event.addBehavior({
+  'a.todo:click' : Link.Remote,
+  'div.feature:mouseover' : function(e) {
+    this.hide();
+  }
+});
+&lt;/code&gt;
+</code></pre></div></div>
+
+<p>As you can see, the first part of the elements in the array is the same kind of selector used in <code class="language-plaintext highlighter-rouge">apply_behaviour</code> — actually <code class="language-plaintext highlighter-rouge">apply_behaviour</code> builds this kind of Javascript calls from the Ruby code it receives. After the colon you specify either a function to be called upon the event or a <em>behaviour</em> class to be used (we will talk more about them in part 2). With <code class="language-plaintext highlighter-rouge">addBehaviour</code>, you ““hijack”:http://domscripting.com/presentations/xtech2006/” the basic functionality of the page and spice it with more advanced behaviour that wouldn’t be possible without Javascript.</p>
+
+<p>While UJS was (and still is) a great step forward in making Javascript in Rails apps more unobtrusive - we still use it heavily on dotherightthing.com - it also has it problems. My biggest gripe with it is that while the produced HTML is clean of any Javascript, the <code class="language-plaintext highlighter-rouge">apply_behaviour</code> calls were still in the view code, polluting the RHTML views <em>I</em> was looking at days in days out. In June Dan posted a blog article titled <a href="http://www.danwebb.net/2007/6/16/the-state-and-future-of-the-ujs-plugin">The State (And Future) Of The UJS Plugin</a>. In the article he writes that he’s lately not used the plugin at all and that he’s found it much better to just use Low Pro on its own without the Ruby scaffolding:</p>
+
+<blockquote>
+  <p>Essentially, the status is that, of late, I personally have not used UJS at all and have found a much better process by using Low Pro on its own without all the Ruby scaffolding of the UJS plugin. Secondarily, after talking to lots of developers at RailsConf it seems that the UJS plugin has failed to truly achieve itâ€™s main goal which is to get Rails developers to write JavaScript using progressive enhancement. Many people seem to mainly use the plugin to get their JavaScript in to a separate file which is actually not even essential to progressive enhancement and I think this is a failing in the design of UJS itself. To achieve progressive enhancement you really need to think of JavaScript as a separate layer on top of a working HTML application but UJS lets you get away with keeping behavior in your views and hence leads many developers to think in the same way as they did before but think they are unobtrusive because they donâ€™t see any JavaScript in their HTML â€” which is obviously not what we wanted to achieve. While many people can and do successfully use UJS for progressive enhancement even more seem not to â€” UJS has not been the â€˜angel on your shoulderâ€™ that I originally wanted it to be.</p>
+</blockquote>
+
+<p>That single paragraph pretty much sums up my thoughts as well. And as many other people noted in the comments of the article that they, too, were mostly using just plain Low Pro instead of the plugin, I decided to give it a serious go as well. So for a recent project (a heavily Ajax-driven system) I just started writing everything without Javascript at first and then using Low Pro to progressively enhance the user experience with Ajax and other Javascript behaviours. Guess what - it’s worked wonderfully. I’m inclined to say I will never use a Rails Javascript or Ajax helper anymore. It was always more work to make them accessible than to just start with the barebones functionality and add the Javascript with Low Pro afterwards.</p>
+
+<p>One initial fear I had was about dynamic serverside data that I could use with the UJS plugin. But that turned out not to be a problem at all. The cool thing about the Low Pro behaviours is that they have access to all the data on the page (even after updated by Ajax). That means you can use element id and class attribute values and the actual dynamic element content to your heart’s content. And if you really need to pass something special to the JS script alone, you can always set response headers that are then read by the Javascript code.</p>
+
+<p>That’s it for part 1. Next week, in <a href="http://jlaine.net/2007/8/6/from-rails-ajax-helpers-to-low-pro-part-2">part 2</a>, we’ll dissect an Ajax-driven, fairly inaccesible Rails page, and see how we can easily make it both accessible and unobtrusive with a few simple steps. Stay tuned!</p>
+</div>
+  
+
+
+    </article>
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2007/07/31/dubbing-of-the-simpsons-movie/">Dubbing of the Simpsons Movie</a></h1>
     
     
@@ -428,41 +611,6 @@ uninitialized constant CachedModel
 <p>The weird thing about this is that actually, the code in environment.rb after the <code class="language-plaintext highlighter-rouge">Rails::Initializer.run</code> block should <em>also</em> be run before the observers are loaded. However, for whatever reason that didn’t happen in our case, so I’m happy that using a dummy plugin helped.</p>
 
 <p>With the new <a href="http://dev.rubyonrails.org/changeset/6212">config/initializers</a> in Rails Edge this hack should become history, but until we update beyond 1.2.X, we’ll be camping happily with my plugin.</p>
-</div>
-  
-
-
-    </article>
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/03/22/a-tumblin-down/">A Tumblin' Down</a></h1>
-    
-    
-      <p class="meta">
-        
-
-  <time datetime="2007-03-22T00:00:00+00:00" pubdate>March 22, 2007</time>
-
-
-        
-
-  
-  
-  
-  <span class="meta-sep" aria-hidden="true"> &middot; </span><span class="reading-time">68 words &middot; 1 min read</span>
-
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Since blogging is now considered unfashionable, I <a href="http://project.ioni.st/">followed</a> <a href="http://technoweenie.tumblr.com/">the</a> <a href="http://tumble.toolmantim.com/">pack</a> and started my own tumblelog, <a href="http://forest.jlaine.net/">Forest for the Trees</a>. OK, the main reason was probably how goddamn easy the peeps at <a href="http://www.tumblr.com/">tumblr.com</a> have made everything. Kudos to them!</p>
-
-<p>If you’d rather read more sports-oriented tumbling (and don’t have problems with the Nordic languages), head on over to the <a href="http://mylly.punakone.fi/">Moulin Rouge</a> brought to you by the mighty Red Machine.</p>
 </div>
   
 
