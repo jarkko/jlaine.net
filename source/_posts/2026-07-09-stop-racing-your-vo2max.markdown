@@ -82,6 +82,8 @@ None of these fit neatly into a wrist notification, which is precisely why they'
 
 So keep glancing at the VO2max if you like — as a rough, private line on whether your base is trending the right way over a season. Just stop treating it as a verdict, a ranking, or a plan. It's an error-prone guess at a ceiling you don't train by, biased against you the fitter you get. The number was never the point. The running is.
 
+## References
+
 [^polar]: Polar. *VO2max: the ultimate training blueprint.* <https://www.polar.com/us-en/guide/what-is-a-good-vo2max>
 [^attia]: Attia, P. *Why VO2 max is the greatest predictor of lifespan.* <https://www.youtube.com/watch?v=KpCkJs6DKCw>
 [^topol]: Topol, E. (2024). The flawed VO2 max craze. *Ground Truths.* <https://erictopol.substack.com/p/the-flawed-v02-max-craze>
