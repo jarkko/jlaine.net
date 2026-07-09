@@ -25,7 +25,7 @@ Three engines, none of them about running faster.
 
 **Wearables compute it by default and gamify it.** Garmin puts a VO2max on essentially every running watch and stacks a whole tower of features on top of it. Polar literally titles its guide ["VO2max: The Ultimate Training Blueprint"](https://www.polar.com/us-en/guide/what-is-a-good-vo2max), calls it "the 'gold standard' of cardiorespiratory fitness," and slots you onto a colour-coded ladder toward "Elite." Apple Watch shows a "Cardio Fitness" number and will actively *notify* you that it's low. When a number appears, unbidden, after every workout, on a hundred million wrists, it becomes important by sheer repetition.
 
-**The longevity crowd moralised it.** Peter Attia's line that VO2max is ["the single greatest predictor of your lifespan"](https://www.youtube.com/watch?v=KpCkJs6DKCw) turned a training-lab variable into a memento mori. (Cardiologist Eric Topol, it's worth noting, [calls that specific claim false](https://erictopol.substack.com/p/the-flawed-v02-max-craze) — the mortality evidence is largely observational, and a 2025 causal-inference study didn't support a simple "raise VO2max, live longer" story.)
+**The longevity crowd moralised it.** Peter Attia's line that VO2max is ["the single greatest predictor of your lifespan"](https://www.youtube.com/watch?v=KpCkJs6DKCw) turned a training-lab variable into a memento mori. (Cardiologist Eric Topol, it's worth noting, [calls that specific claim false](https://erictopol.substack.com/p/the-flawed-v02-max-craze) — the mortality evidence is largely observational, and a 2025 [causal-inference study](https://doi.org/10.1210/clinem/dgae393) found that genetically-predicted VO2max is "not causally associated with… longevity.")
 
 **Strava turned it into a scoreboard.** As one coaching site puts it, VO2max is now ["the ultimate 'bragging rights' number… thrown around on club runs and Strava comments like a badge of honour."](https://www.total-endurance.co.uk/blog/what-is-vo2-max) Or, more bluntly, [the metric has become the measure of the runner](https://cultofrunning.com/writings/articles/the-vo2-max-myth).
 
@@ -112,3 +112,7 @@ So keep glancing at the VO2max if you like — as a rough, private line on wheth
 - Attia, P. VO₂ max is the single greatest predictor of lifespan. <https://www.youtube.com/watch?v=KpCkJs6DKCw>
 - Total Endurance. What is VO₂ max? <https://www.total-endurance.co.uk/blog/what-is-vo2-max>
 - Cult of Running. The VO₂ max myth. <https://cultofrunning.com/writings/articles/the-vo2-max-myth>
+
+**VO2max and longevity**
+
+- Kjærgaard, A. D., Ellervik, C., Jessen, N., & Lessard, S. J. (2025). Cardiorespiratory fitness, body composition, diabetes, and longevity: a 2-sample Mendelian randomization study. *Journal of Clinical Endocrinology & Metabolism, 110*(5), 1451–1459. <https://doi.org/10.1210/clinem/dgae393>
