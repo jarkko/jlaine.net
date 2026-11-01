@@ -66,11 +66,28 @@ Ikäluokat ovat nyt U-nimisiä (NSM §2). Vanhat kirjaimet ovat suluissa.
 
 | Ikäluokka (ent.) | Pelaajia / puoli | Kenttä | Verkko | Huomioita |
 |---|---|---|---|---|
-| U9 (F) | 2 | 9 × 4,5 m (Mini §6.1.1) | 160 cm ±10 | Tiikeri: 1. ja 2. kosketus saa olla koppi. Super: 1. kosketus pelataan suoraan, 2. kosketus saa olla koppi. |
-| U11 (E) | 3 | sulkapallon nelinpelikenttä 13,4 × 6,1 m (uusi 2026–27) | 180 cm | Vapaa aloitus ja vapaa vastaanotto (hihalla tai sormilla). Tiikeri-tasolla Triplapallo. |
-| U13 (D) | 3 | sulkapallon nelinpelikenttä 13,4 × 6,1 m | 200 cm | Vapaa aloitus ja vastaanotto. Tiikeri-tasolla Triplapallo. Länsi-Suomen alueella myös U13 6v6 -sekasarja täydellä kentällä. |
+| U9 (F) | 2 | 9 × 4,5 m (Mini §6.1.1) | 160 cm ±10 | Liiton sarja kaikilla alueilla. Tiikeri: 1. ja 2. kosketus saa olla koppi. Super: 1. kosketus pelataan suoraan, 2. kosketus saa olla koppi. |
+| U11 (E) | 3 | sulkapallon nelinpelikenttä 13,4 × 6,1 m (uusi 2026–27); Etelässä ja Pohjoisessa lyhyempi, ks. alla | 180 cm | Vapaa aloitus ja vapaa vastaanotto (hihalla tai sormilla). Tiikeri-tasolla Triplapallo. |
+| U13 (D) | 3 | sulkapallon nelinpelikenttä 13,4 × 6,1 m | 200 cm | Vapaa aloitus ja vastaanotto. Tiikeri-tasolla Triplapallo. Neljällä alueella myös 6v6-sarja, ks. *U13 6v6*. |
 
-Kaikissa U9–U13-ikäluokissa:
+Neljän pelaajan pelejä ei kaudella 2026–27 pelata missään U9–U13-sarjassa.
+
+### Alueiden pelimuodot
+
+Pelikirja kattaa kaikkien alueiden pelimuodot. Lähteet: alueiden
+sarjatiedotteet syys–lokakuussa 2026 (`research/regional-formats-2026-27.md`).
+
+| Alue | U13 ja U11, 3v3 | Triplapallon pelimuoto | U13 6v6 | Muuta |
+|---|---|---|---|---|
+| Etelä | AM ja Tiikeri; U13-pojat pelaavat tyttöjen kanssa, U11 sekasarjana | 1. Tripla, ei koppeja; jatkopallon 1. kosketus suoraan yli on virhe | U14 6v6 -opetussarja, johon U13-pelaajat voivat osallistua | U11:n takarajana sulkapallokentän lyhyempi raja |
+| Lounais | AM tytöt ja pojat erikseen; Tiikeri | 1. Tripla; jatkopallon 1. kosketus ei saa palata suoraan yli | Lounalentis 6v6: iso kenttä, minipallo | – |
+| Länsi | AM ("Mini-lentis") ja Tiikeri; pojat, tytöt, sekajoukkueet poikien sarjassa | ei kerrottu | U13 6v6 -sekasarja, viisi viikonloppua | – |
+| Itä | aluesarja tytöt ja pojat; Tiikeri sekasarjana | ei kerrottu | U13–U17 6v6 -harrastesarja U15-säännöillä | tyttöjen sarjassa yksi poika/erä, jos seuralla ei poikajoukkuetta |
+| Pohjois | aluesarja ja maakunnittainen Tiikeri, sekasarjat | U11 Tiikeri 1. Tripla; U11 aluesarja syksyllä 2. (3 kosketuksen tripla), keväällä normaali peli; U13 Tiikeri syksyllä 1., keväällä 2. | U13 6v6 keväällä 2027 (Triplapallo 6v6, verkko 220 cm); lisäksi U13–U17 6v6 -harrastesarja | U11-kentän puolisko 6,1 × 5,94 m |
+
+Kolmatta pelimuotoa (*Hiha-Tripla*) ei mikään alue ilmoita käyttävänsä.
+
+### Kaikissa U9–U13-ikäluokissa
 
 - **Liberoa ei käytetä** (NSM §7.9.1).
 - **Jokainen pelaaja saa turnauksessa tasapuolisesti peliaikaa** (Mini §3.1–3.2).
@@ -86,17 +103,17 @@ Kaikissa U9–U13-ikäluokissa:
     (Mini §3.5, §5.6).
   - U9 (2v2): pelaajat saavat sijoittua vapaasti, rinnakkain tai peräkkäin
     (Mini §6.1.6).
+- **Kierto:** kun joukkue saa syöttövuoron, II-paikan pelaaja siirtyy pois
+  kentältä, III siirtyy II-paikalle ja syöttää, IV siirtyy III-paikalle ja
+  vaihtopelaaja tulee IV-paikalle. Kaikki kiertävät kaikki paikat (Mini).
 
 **Triplapallo** (Mini §5): kolmen pallon sykli, eli aloitussyöttö, sitten
 jatkopallo vastaanottavalle joukkueelle ja jatkopallo syöttävälle joukkueelle.
 Jatkopallo heitetään IV-paikan pelaajalle, ja se pelataan hyökkäysrajan takaa.
 Jos jatkopallo menee ensimmäisellä kosketuksella suoraan yli, vastustaja saa
-pisteen (uusi 2026–27). Alue valitsee pelimuodon: *Tripla* (vapaat
-kosketukset), *3 kosketuksen tripla* tai *Hiha-Tripla* (1. kosketus hihalla).
-
-[JARKKO: Kumpaan alueeseen LP Kangasalan juniorijoukkueet kuuluvat, ja mitä
-pelimuotoa ja U13 6v6 -sarjaa se koskee? Lähteenä oli vain Länsi-Suomen
-tiedote 8/2026.]
+pisteen (uusi 2026–27). Pelimuodot: *1. Tripla* (vapaat kosketukset),
+*2. 3 kosketuksen tripla* tai *3. Hiha-Tripla* (1. kosketus hihalla). Alue
+valitsee pelimuodon (ks. taulukko yllä).
 
 [JARKKO: Säännöissä on ristiriitoja, jotka sarjanhoitaja ratkaisee:
 U9-kentän koko (4,5 × 4,5 vai 9 × 4,5 m), U9 Super -sarjan koppisääntö, U13:n
@@ -126,9 +143,44 @@ Kentänjako kahdelle pelaajalle (pelaajat saavat sijoittua vapaasti):
 aloittavat F:t ja hihalla toisen vuoden F:t. Pidetäänkö tämä seuran omana
 etenemisenä Tiikeri/Super-jaon rinnalla?]
 
-### U11 (ent. E-juniorit), 3v3
+### 3v3: U11 ja U13 (ent. E- ja D-juniorit)
 
-Syöttöhetkellä järjestys vasemmalta oikealle on IV–III–II.
+U11 ja U13 pelaavat samaa peliä, U13 korkeammalla verkolla (200 cm).
+**Kiinteitä pelipaikkoja ei ole.** Jokainen pelaaja kiertää kaikki paikat, ja
+tehtävä kuuluu sille, joka on vuorollaan paikalla: esimerkiksi kun
+muodostelmassa passaa III-paikka, passaa se pelaaja, joka on kierrossa
+III-paikalla.
+
+Syöttöhetkellä järjestys vasemmalta oikealle on IV–III–II. Etäisyyttä
+verkosta ei ole määrätty, joten kaikki alla olevat muodostelmat ovat sallittuja,
+kunhan tämä järjestys pitää.
+
+Suomalaista liiton aineistoa 3v3-taktiikasta ei löytynyt. Muodostelmat ovat
+Sveitsin liiton minilentopallomateriaalista (sama 13,4 × 6,1 m kenttä), ja
+niitä tukevat Saksan (NRW) ja Norjan liittojen aineistot
+(`research/3v3-tactics.md`).
+
+[JARKKO: Muodostelmien suomenkieliset nimet (kärki takana / kärki edessä /
+kaksi verkolla) ovat työnimiä. Mitä seurassa sanotaan?]
+
+#### Vastaanotto
+
+| Muodostelma | Kenelle | Sijoittuminen | Kuka passaa | 2018 |
+|---|---|---|---|---|
+| **Kärki takana** (avoin kolmio) | aloittelijat; Sveitsin aineiston mukaan sopivin U13:lle | IV ja II edessä laidoilla, III takana keskellä | se, jolle tilanne antaa; nosto korkealle kentän keskelle | D (lähin passaa) |
+| **Kärki edessä** | kun vastaanotto on jo jotenkin hallussa | III verkolla keskellä, IV ja II vastaanotossa takana | III (verkkoa lähin pelaaja) | A |
+| **Kaksi verkolla, passari oikealla** | taitavat | II verkolla oikealla, IV ja III vastaanotossa | II | B |
+
+- Sveitsin aineisto: "Wenn die Kinder den Ball in der Annahme einigermassen
+  kontrollieren, ist es sinnvoll, vorne am Netz einen Zuspieler zu
+  positionieren." Siihen asti avoin kolmio toimii paremmin.
+- Norjan liitto käyttää kolmiota, jossa kaksi takana ottaa suurimman osan
+  palloista ja verkolla oleva pelaa toisen kosketuksen, jo pienimmistä alkaen.
+  Lähteet eroavat tässä.
+- Kaksi verkolla -muodostelma vaatii Sveitsin aineiston mukaan tavallista
+  minikenttää pidemmän kentän, joten sulkapallokentällä se on vaikea.
+
+Vuoden 2018 vaihtoehdot:
 
 - vaihtoehto A
   - omat alueet nostossa sekä hyökkäyksessä
@@ -154,16 +206,73 @@ Syöttöhetkellä järjestys vasemmalta oikealle on IV–III–II.
 kakkospaikan pelaaja verkolla oikealla. Tarkista, että III on syöttöhetkellä
 II:n vasemmalla puolella.]
 
-### U13 (ent. D-juniorit), 3v3
+#### Puolustus
 
-Vuoden 2018 D-juniorien vastaanotto- ja puolustusvaihtoehdot olivat **neljälle
-pelaajalle (4v4)**. U13 pelaa kaudella 2026–27 kolme vastaan kolme, joten ne on
-jätetty tästä laitoksesta pois. U13 käyttää samoja 3v3-vaihtoehtoja kuin U11, ja
-verkko on korkeammalla (200 cm).
+- **Kärki takana:** ei torjuntaa. Kaksi pelaajaa edessä laidoilla, yksi
+  takana keskellä.
+- **Kärki edessä:** verkkopelaaja keskellä, kaksi takana laidoilla.
+  Verkkopelaaja liikkuu verkon suuntaisesti aina pallon kohdalle ja hyppää
+  torjuntaan, kun vastustaja hyökkää laidasta.
+- **Kaksi verkolla:** se verkkopelaaja, joka ei torju, irtoaa verkolta
+  puolustamaan.
+- Sveitsin aineisto: oikea torjunta on järkevä vasta, kun vastustaja pystyy
+  hyökkäämään kovaa, mutta verkkoalueen vastuu kannattaa antaa yhdelle
+  pelaajalle jo varhain.
 
-[JARKKO: Tarvitaanko U13:lle omat 3v3-vaihtoehdot (esim. takapassari), vai
-riittävätkö U11:n vaihtoehdot? Entä U13 6v6 -sarja: millä sijoittumissäännöllä
-se pelataan? Lähteistä ei löytynyt vastausta.]
+[JARKKO: Lähteistä ei löytynyt, kuka ottaa peipit 3v3-pelissä, eikä
+puolustuskaavioita hyökkäyssuunnan mukaan. Seuran linjaus vai jätetäänkö
+pois?]
+
+#### Hyökkäys ja passi
+
+- Kärki edessä: käytetään koko verkon leveyttä.
+- Harjoitusrajoite: passari passaa sille, joka teki ensimmäisen kosketuksen.
+- Noston kohde on noin 1,5 metriä irti verkosta passarin edessä. Kun passin
+  tekee muu kuin passari, pallo laskeutuu omalle puolelle noin metrin päähän
+  verkosta (Lentopalloliiton lajilinjaukset 2025).
+- U11-sarjoissa kaikki pelaajat saavat hyökätä verkolta (Mini).
+
+#### Varmistus ja helppo pallo
+
+- Noston jälkeen jokainen paitsi passari valmistautuu hyökkäämään ja tarjoutuu
+  passattavaksi. Passin jälkeen passari menee varmistamaan.
+- Syötön jälkeen syöttäjä menee heti kentälle perussijoittumiseen.
+- Torjuntahypyn jälkeen käännytään heti pelaamaan palloa.
+- Helppo pallo: Triplapallossa jatkopallo heitetään IV-paikan pelaajalle ja
+  pelataan hyökkäysrajan takaa (Mini §5). Muuta 3v3-muodostelmaa helpolle
+  pallolle ei lähteistä löytynyt.
+
+#### Eteneminen U11 → U13
+
+- Lentopalloliiton seminaari (2025): "E-junnuissa opetellaan ensimmäinen vuosi
+  nostamaan. Toisena vuonna opetellaan passaamaan… D-junnuissa… hyökkäyksen
+  opetteluun."
+- Koppien määrää vähennetään vähitellen, muodostelma pysyy samana (Norja:
+  kolmesta kopista nollaan). Sveitsin välivaihe: kärki edessä, ensimmäinen
+  kosketus kopataan ja heitetään korkealle passarille.
+- Lähteistä ei löytynyt eroa muodostelmissa U11:n (180 cm) ja U13:n (200 cm)
+  välillä.
+
+### U13 6v6
+
+Neljällä alueella on 6v6-sarja, johon U13-pelaajat voivat osallistua. Ne
+pelataan isolla kentällä (9 × 18 m) ilman liberoa (NSM §7.9.1), vapaalla
+aloituksella ja vastaanotolla. Sisältö on ison kentän luvuissa 3–8, mutta
+U13-sarjoissa ei ole kiinteitä rooleja.
+
+| Alue | Sarja | Erityistä |
+|---|---|---|
+| Etelä | U14 6v6 -opetussarja | U13-säännöt verkon korkeudessa, tie-break-syötössä ja keskirajassa; syöttöraja voidaan sopia lähemmäs |
+| Lounais | Lounalentis | minipallo; muut säännöt ei kerrottu |
+| Länsi | U13 6v6 -sekasarja | ei liberoa, vapaa aloitus ja vastaanotto; muut säännöt ei kerrottu |
+| Itä | U13–U17 6v6 -harrastesarja | U15-säännöt; U13-syöttöraja ja -syöttösääntö sallittu, verkkoa voi laskea, neljä aikalisää erässä |
+| Pohjois | U13 6v6 (kevät 2027) | Triplapallo 6v6: jatkopallo 6-paikan pelaajalle noin 2 m hyökkäysrajan taakse; verkko 220 cm; rajattomat vaihdot; erikoistuneita rooleja ei ole tarkoitus käyttää |
+
+Sijoittumissääntö: mikään lähde ei kerro, mitä sääntöä U13 6v6 -sarjoissa
+noudatetaan. Todennäköisesti sama kuin isolla kentällä (FIVB 7.4 ja SM
+§16.5.3, ks. luku 3), koska yleiset sarjamääräykset koskevat myös
+U9–U13-sarjoja. Pohjoisen säännöissä joukkueet kiertävät "normaalin 6v6
+rotaation" mukaan.
 
 ---
 
@@ -615,6 +724,7 @@ ja kuutonen jää takakentälle (mechanics.md: *Attack coverage*; John Forman,
 | 4 | Sama | "täytyvät", "taimpana" korjattu | Kirjoitusvirheet | – |
 | 5 | Pienen kentän pelaaminen | F/E/D → U9/U11/U13; kenttä, verkko, koppi, Triplapallo, ei liberoa, tasapuolinen peliaika, keskiraja | Ikäluokat ja pelimuodot muuttuneet | NSM §2, §7.9.1; Mini 2026–27; SM §16.1 |
 | 6 | D-juniorit (2018 diat 6–7) | 4v4-aineisto poistettu (tallessa tiedostossa pelikirja-2018.md) | U13 pelaa 3v3 | Mini 2026–27 |
+| 6b | Pienen kentän pelaaminen | Lisätty alueiden pelimuodot, 3v3-muodostelmat (vastaanotto, puolustus, hyökkäys, varmistus, eteneminen) ja U13 6v6 | Pelikirja kattaa kaikki alueet; U11 ja U13 pelaavat samaa roolitonta 3v3-peliä | research/regional-formats-2026-27.md; research/3v3-tactics.md |
 | 7 | E-juniorit | "omat puoliskot" → "omat alueet" | Termibase ei käytä sanaa *puolisko*; joukkueen puoli on *kenttäpuoli* | termbase.tsv |
 | 8 | Lukeva torjunta (dia 18) | "tytöillä puolustajat ovat metrin lähempänä" → syvyys vastustajan hyökkäyksen mukaan | Lähteet sitovat syvyyden hyökkäykseen ja järjestelmään, eivät sukupuoleen | mechanics.md (Reynaud; AVCA) |
 | 9 | Sama | Etäisyydet merkitty seuran lähtöpaikaksi | Lähteissä ei yhtä vakiota | mechanics.md |
