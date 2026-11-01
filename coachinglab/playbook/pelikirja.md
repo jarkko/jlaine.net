@@ -117,7 +117,7 @@ valitsee pelimuodon (ks. taulukko yllä).
 
 ### U9 (ent. F-juniorit)
 
-- koppi – itselle heitto, josta sormilla ja hihalla toiselle
+- koppi – itselle heitto, josta sormilla (ensimmäisen vuoden U9) ja hihalla (toisen vuoden U9) toiselle
   - Tiikeri: ensimmäinen ja toinen kosketus saavat olla koppeja
   - Super: ensimmäinen kosketus pelataan suoraan sormilla tai hihalla, toinen saa olla koppi
 - passari ottaa kopin ylhäältä ja itselleen heitto ja sormilla passi toiselle
@@ -134,48 +134,12 @@ Kentänjako kahdelle pelaajalle (pelaajat saavat sijoittua vapaasti):
 | c | oikea takaosa (vino jako) | vasen etuosa |
 | d | oikea etuosa (vino jako) | vasen takaosa |
 
-[JARKKO: Vuoden 2018 teksti jakoi kopit ikävuoden mukaan: sormilla
-aloittavat F:t ja hihalla toisen vuoden F:t. Pidetäänkö tämä seuran omana
-etenemisenä Tiikeri/Super-jaon rinnalla?]
-
 ### 3v3: U11 ja U13 (ent. E- ja D-juniorit)
 
 U11 ja U13 pelaavat samaa peliä, U13 korkeammalla verkolla (200 cm).
-**Kiinteitä pelipaikkoja ei ole.** Jokainen pelaaja kiertää kaikki paikat, ja
-tehtävä kuuluu sille, joka on vuorollaan paikalla: esimerkiksi kun
-muodostelmassa passaa III-paikka, passaa se pelaaja, joka on kierrossa
-III-paikalla.
-
-Syöttöhetkellä järjestys vasemmalta oikealle on IV–III–II. Etäisyyttä
-verkosta ei ole määrätty, joten kaikki alla olevat muodostelmat ovat sallittuja,
-kunhan tämä järjestys pitää.
-
-Suomalaista liiton aineistoa 3v3-taktiikasta ei löytynyt. Muodostelmat ovat
-Sveitsin liiton minilentopallomateriaalista (sama 13,4 × 6,1 m kenttä), ja
-niitä tukevat Saksan (NRW) ja Norjan liittojen aineistot
-(`research/3v3-tactics.md`).
-
-[JARKKO: Muodostelmien suomenkieliset nimet (kärki takana / kärki edessä /
-kaksi verkolla) ovat työnimiä. Mitä seurassa sanotaan?]
-
-#### Vastaanotto
-
-| Muodostelma | Kenelle | Sijoittuminen | Kuka passaa | 2018 |
-|---|---|---|---|---|
-| **Kärki takana** (avoin kolmio) | aloittelijat; Sveitsin aineiston mukaan sopivin U13:lle | IV ja II edessä laidoilla, III takana keskellä | se, jolle tilanne antaa; nosto korkealle kentän keskelle | D (lähin passaa) |
-| **Kärki edessä** | kun vastaanotto on jo jotenkin hallussa | III verkolla keskellä, IV ja II vastaanotossa takana | III (verkkoa lähin pelaaja) | A |
-| **Kaksi verkolla, passari oikealla** | taitavat | II verkolla oikealla, IV ja III vastaanotossa | II | B |
-
-- Sveitsin aineisto: "Wenn die Kinder den Ball in der Annahme einigermassen
-  kontrollieren, ist es sinnvoll, vorne am Netz einen Zuspieler zu
-  positionieren." Siihen asti avoin kolmio toimii paremmin.
-- Norjan liitto käyttää kolmiota, jossa kaksi takana ottaa suurimman osan
-  palloista ja verkolla oleva pelaa toisen kosketuksen, jo pienimmistä alkaen.
-  Lähteet eroavat tässä.
-- Kaksi verkolla -muodostelma vaatii Sveitsin aineiston mukaan tavallista
-  minikenttää pidemmän kentän, joten sulkapallokentällä se on vaikea.
-
-Vuoden 2018 vaihtoehdot:
+Kiinteitä pelipaikkoja ei ole: jokainen kiertää kaikki paikat, ja tehtävä
+kuuluu sille, joka on vuorollaan paikalla. Syöttöhetkellä järjestys
+vasemmalta oikealle on IV–III–II. Etäisyyttä verkosta ei ole määrätty.
 
 - vaihtoehto A
   - omat alueet nostossa sekä hyökkäyksessä
@@ -197,56 +161,19 @@ Vuoden 2018 vaihtoehdot:
 | C | IV aloittaa verkolta vasemmalta ja juoksee passarin paikalle oikealle | III vasen puoli, II oikea puoli |
 | D | ei kiinteää passaria | IV, III ja II kukin oma linjansa koko syvyydeltä |
 
-[JARKKO: Vaihtoehdossa B kolmospaikan pelaaja seisoo oikealla puolella ja
-kakkospaikan pelaaja verkolla oikealla. Tarkista, että III on syöttöhetkellä
-II:n vasemmalla puolella.]
+Muutama perusasia:
 
-#### Puolustus
-
-- **Kärki takana:** ei torjuntaa. Kaksi pelaajaa edessä laidoilla, yksi
-  takana keskellä.
-- **Kärki edessä:** verkkopelaaja keskellä, kaksi takana laidoilla.
-  Verkkopelaaja liikkuu verkon suuntaisesti aina pallon kohdalle ja hyppää
-  torjuntaan, kun vastustaja hyökkää laidasta.
-- **Kaksi verkolla:** se verkkopelaaja, joka ei torju, irtoaa verkolta
-  puolustamaan.
-- Sveitsin aineisto: oikea torjunta on järkevä vasta, kun vastustaja pystyy
-  hyökkäämään kovaa, mutta verkkoalueen vastuu kannattaa antaa yhdelle
-  pelaajalle jo varhain.
-
-[JARKKO: Lähteistä ei löytynyt, kuka ottaa peipit 3v3-pelissä, eikä
-puolustuskaavioita hyökkäyssuunnan mukaan. Seuran linjaus vai jätetäänkö
-pois?]
-
-#### Hyökkäys ja passi
-
-- Kärki edessä: käytetään koko verkon leveyttä.
-- Harjoitusrajoite: passari passaa sille, joka teki ensimmäisen kosketuksen.
-- Noston kohde on noin 1,5 metriä irti verkosta passarin edessä. Kun passin
-  tekee muu kuin passari, pallo laskeutuu omalle puolelle noin metrin päähän
-  verkosta (Lentopalloliiton lajilinjaukset 2025).
-- U11-sarjoissa kaikki pelaajat saavat hyökätä verkolta (Mini).
-
-#### Varmistus ja helppo pallo
-
-- Noston jälkeen jokainen paitsi passari valmistautuu hyökkäämään ja tarjoutuu
-  passattavaksi. Passin jälkeen passari menee varmistamaan.
-- Syötön jälkeen syöttäjä menee heti kentälle perussijoittumiseen.
-- Torjuntahypyn jälkeen käännytään heti pelaamaan palloa.
-- Helppo pallo: Triplapallossa jatkopallo heitetään IV-paikan pelaajalle ja
-  pelataan hyökkäysrajan takaa (Mini §5). Muuta 3v3-muodostelmaa helpolle
-  pallolle ei lähteistä löytynyt.
-
-#### Eteneminen U11 → U13
-
-- Lentopalloliiton seminaari (2025): "E-junnuissa opetellaan ensimmäinen vuosi
-  nostamaan. Toisena vuonna opetellaan passaamaan… D-junnuissa… hyökkäyksen
-  opetteluun."
-- Koppien määrää vähennetään vähitellen, muodostelma pysyy samana (Norja:
-  kolmesta kopista nollaan). Sveitsin välivaihe: kärki edessä, ensimmäinen
-  kosketus kopataan ja heitetään korkealle passarille.
-- Lähteistä ei löytynyt eroa muodostelmissa U11:n (180 cm) ja U13:n (200 cm)
-  välillä.
+- Kun vastaanotto ei vielä pysy hallussa, pelataan ilman kiinteää passaria
+  (D). Kun nosto onnistuu, passari verkolle (A tai B).
+- Verkkopelaaja liikkuu verkon suuntaisesti pallon kohdalle ja torjuu, kun
+  vastustaja pystyy hyökkäämään. Kaksi muuta puolustaa, ja peipit ottaa se,
+  joka ehtii.
+- Noston jälkeen kaikki paitsi passari valmistautuvat hyökkäämään. Passin
+  jälkeen passari varmistaa.
+- Koppeja vähennetään vähitellen. Lentopalloliiton linjaus: "E-junnuissa
+  opetellaan ensimmäinen vuosi nostamaan. Toisena vuonna opetellaan
+  passaamaan… D-junnuissa… hyökkäyksen opetteluun." (Mäkihannu & Tuominen
+  2025.)
 
 ### U13 6v6
 
@@ -312,10 +239,6 @@ Pelaajat saavat poistua oikeilta pelipaikoiltaan sillä hetkellä, kun
 syöttäjän liike alkaa (Lentopalloliitto 3.4.2026). Vastaanoton muodostelma
 voi siis rakentua vasta syöttäjän liikkeen aikana. Syöttölyönnin hetkellä
 kaikkien pitää silti olla oman kenttäpuolen sisällä.
-
-[JARKKO: Otetaanko tämä vastaanottomuodostelmiin, esim. muodostelma, jossa
-pelaajat vaihtavat paikkaa syöttäjän liikkeen aikana? Liiton
-valmennusmateriaalissa ei ole tästä vielä mitään.]
 
 ### Eteneminen
 
@@ -530,8 +453,7 @@ nuolet).
 - 2-paikan pelaaja on vastuussa 4-paikan hyökkäyksestä, avustaa 6-paikan hyökkäyksessä sekä siirrossa
 - takakentän pelaajat reagoivat passiin ja siirtyvät puolustuspaikoille
 
-[JARKKO: Etu- ja takapassaritilanteen torjuntavastuille ei löytynyt
-lähdettä. Ne ovat seuran linjaus, ellei sinulla ole lähdettä.]
+Etu- ja takapassaritilanteen torjuntavastuut ovat **seuran linjaus**.
 
 ### Raja auki vai kiinni: kumpi käsi pallon kohdalle
 
@@ -605,9 +527,8 @@ nousee torjunnan taakse hakemaan peipit (mechanics.md: *Defensive systems*).
 - Hyökkäys 1- ja 6-paikoilta
   - takapelaajat puolustavat samassa linjassa, etupelaajat hakevat pienet
 
-[JARKKO: Rikkonaisen torjunnan ja takakentän hyökkäyksen puolustukselle ei
-löytynyt luettavaa lähdettä (osa lähteistä oli maksumuurin takana). Ne ovat
-seuran linjaus.]
+Rikkonaisen torjunnan ja takakentän hyökkäyksen puolustus on **seuran
+linjaus**.
 
 ### Kuutospaikan puolustus vaihtoehtona (kuutonen ylhäällä)
 
@@ -719,7 +640,7 @@ ja kuutonen jää takakentälle (mechanics.md: *Attack coverage*; John Forman,
 | 4 | Sama | "täytyvät", "taimpana" korjattu | Kirjoitusvirheet | – |
 | 5 | Pienen kentän pelaaminen | F/E/D → U9/U11/U13; kenttä, verkko, koppi, Triplapallo, ei liberoa, tasapuolinen peliaika, keskiraja | Ikäluokat ja pelimuodot muuttuneet | NSM §2, §7.9.1; Mini 2026–27; SM §16.1 |
 | 6 | D-juniorit (2018 diat 6–7) | 4v4-aineisto poistettu (tallessa tiedostossa pelikirja-2018.md) | U13 pelaa 3v3 | Mini 2026–27 |
-| 6b | Pienen kentän pelaaminen | Lisätty alueiden pelimuodot, 3v3-muodostelmat (vastaanotto, puolustus, hyökkäys, varmistus, eteneminen) ja U13 6v6 | Pelikirja kattaa kaikki alueet; U11 ja U13 pelaavat samaa roolitonta 3v3-peliä | research/regional-formats-2026-27.md; research/3v3-tactics.md |
+| 6b | Pienen kentän pelaaminen | Lisätty alueiden pelimuodot, 3v3:n perusasiat ja U13 6v6 | Pelikirja kattaa kaikki alueet; U11 ja U13 pelaavat samaa roolitonta 3v3-peliä | research/regional-formats-2026-27.md; research/3v3-tactics.md |
 | 7 | E-juniorit | "omat puoliskot" → "omat alueet" | Termibase ei käytä sanaa *puolisko*; joukkueen puoli on *kenttäpuoli* | termbase.tsv |
 | 8 | Lukeva torjunta (dia 18) | "tytöillä puolustajat ovat metrin lähempänä" → syvyys vastustajan hyökkäyksen mukaan | Lähteet sitovat syvyyden hyökkäykseen ja järjestelmään, eivät sukupuoleen | mechanics.md (Reynaud; AVCA) |
 | 9 | Sama | Etäisyydet merkitty seuran lähtöpaikaksi | Lähteissä ei yhtä vakiota | mechanics.md |
