@@ -115,10 +115,17 @@ pisteen (uusi 2026–27). Pelimuodot: *1. Tripla* (vapaat kosketukset),
 *2. 3 kosketuksen tripla* tai *3. Hiha-Tripla* (1. kosketus hihalla). Alue
 valitsee pelimuodon (ks. taulukko yllä).
 
-[JARKKO: Säännöissä on ristiriitoja, jotka sarjanhoitaja ratkaisee:
-U9-kentän koko (4,5 × 4,5 vai 9 × 4,5 m), U9 Super -sarjan koppisääntö, U13:n
-alakautta käsialoitus (NSM §4.2 vs. Mini §3.4). Taulukossa on käytetty
-uusinta, punaisella merkittyä tekstiä.]
+Sääntötekstien epäselvät kohdat ja miten ne on tulkittu:
+
+- **U9-kentän koko:** Minisäännöissä mainittu 4,5 × 4,5 m on yhden joukkueen
+  kenttäpuoli. Koko kenttä on 9 × 4,5 m (Mini §6.1.1; SM §17).
+- **U9 Super:** ensimmäinen kosketus pelataan suoraan, ja ainoa koppi on
+  toinen kosketus. Uusi, punaisella merkitty kohta (Mini §6.1.3) on
+  vanhempaa sanamuotoa (§6.1.8) tarkempi.
+- **Käsialoitus ilman heittoa:** sallittu vain U11:ssä. Minisäännöt §3.4
+  sallii sen otsikon mukaan myös U13:ssa, mutta nuorten sarjamääräykset
+  (NSM §4.2, 26.10.2026) sallivat sen vain U11:ssä, ja sarjamääräykset
+  menevät minisääntöjen edelle (Mini §7).
 
 ### U9 (ent. F-juniorit)
 
