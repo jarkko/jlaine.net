@@ -20,7 +20,7 @@ LP Kangasala 2018"), and ask whether she wants to co-own the update.
 | # | Idea | Audience | Format | Effort | Quick win |
 |---|---|---|---|---|---|
 | 0 | **Text edition of the 2018 book, updated to current rules**: every slide transcribed, every diagram written out as positions, then the fixes in "Where it is outdated" applied | all (it is the source for everything else) | Markdown | M | — |
-| 1 | **Court + rotation model and overlap checker** (the engine everything else uses) | — | TypeScript module + data | M | — |
+| 1 | **Court + rotation model and overlap checker** (the engine everything else uses) | — | Model module + data | M | — |
 | 2 | **Serve-receive cards**, one per rotation, redrawn from the model | players, junior coaches | PDF page + 1080×1350 carousel | S once #1 exists | ✅ |
 | 3 | **"Paikkavirhe 30 sekunnissa"**: the overlap rule, including the 2025 change for the serving team | coaches, players, parents in the stands | 9:16 video + carousel | S | ✅ (after the rule check below) |
 | 4 | **Rotation learning centre, phase 1: serve-receive** (the centrepiece) | players first, then coaches | mobile web app, FI then EN | L | — |
@@ -59,12 +59,12 @@ drawing or code.
 
 | Item in 2018 book | Problem | What to do |
 |---|---|---|
-| Slide 9: all six players "täytyy olla tuossa järjestyksessä ennen syöttöä" | **FIVB 2025–2028 removed the positional fault for the serving team.** Only the receiving team must be in rotational order at the service hit. Several sources agree ([Coaching Volleyball](https://coachingvb.com/proposed-fivb-rules-changes), [visu.network](https://visu.network/blog/volleyball-rotations-explained/), [FIVB modification list](https://vbahk.org.hk/items/media/Refereeing/202528_Volleyball_Rules/VB/fivbvolleyball_rulesmodification20252028.pdf)). The latest Finnish translation linked from lentopallo.fi is [2021–2024](https://www.lentopallo.fi/wp-content/uploads/2022/08/FIVB-Lentopallon-saannot-2021-2024-SUOMENNOS.pdf). | **Verify before publishing anything about overlap.** Confirm the rule text in the [FIVB 2025–2028 rulebook](https://www.fivb.com/wp-content/uploads/2025/06/FIVB-Volleyball_Rules2025_2028-FR-v04.pdf) and whether Finnish national and junior series apply it. If the answer is yes, it is a news hook for idea #3. |
+| Slide 8: all six players "täytyvät olla tuossa järjestyksessä sivuttain ennen syöttöä" | **FIVB 2025–2028 removed the positional fault for the serving team.** Only the receiving team must be in rotational order at the service hit. Several sources agree ([Coaching Volleyball](https://coachingvb.com/proposed-fivb-rules-changes), [visu.network](https://visu.network/blog/volleyball-rotations-explained/), [FIVB modification list](https://vbahk.org.hk/items/media/Refereeing/202528_Volleyball_Rules/VB/fivbvolleyball_rulesmodification20252028.pdf)). The latest Finnish translation linked from lentopallo.fi is [2021–2024](https://www.lentopallo.fi/wp-content/uploads/2022/08/FIVB-Lentopallon-saannot-2021-2024-SUOMENNOS.pdf). | **Done in phase 0** (`research/rules-2026-27.md`): FIVB 7.4 confirmed, and Finland adds its own overlap timing from 1.11.2026 (SM §16.5.3). Rule text: the [FIVB 2025–2028 rulebook](https://www.fivb.com/wp-content/uploads/2025/01/FIVB-Volleyball_Rules2025_2028-EN-v05.pdf) . The Finnish timing change is a news hook for idea #3. |
 | F/E/D junior names and their court systems | The federation's formats have changed since 2018: U9 MiniLentis 2v2, U11/U13 3v3 on a badminton-width court, Tiikeri/Super levels, and in 2025–26 Triplapallo and free reception (see `finnish-volleyball-development-model-DRAFT.md`). | Rebuild the small-court section around the current formats and age names. Check the [Länsi-Suomi minituomari material (2025)](https://sivustot.lentopallo.fi/lansi-suomi/files/2025/09/Minituomarikoulutus_v_2_2025_08_31.pdf) and the current rules. Keep the 2018 variants only where they still fit a format that exists. |
 | "Tytöillä puolustajat ovat metrin lähempänä" | A blanket rule by gender. The real variable is how hard and deep the opponent hits. | Say instead that defenders stand deeper when the opponent hits harder. The court model takes a depth setting, not a gender. |
 | "kolmen metrin viiva" and other *viiva* forms | The Magistician termbase uses *raja* throughout (hyökkäysraja, sivuraja, päätyraja), following rule 1. | Share the termbase. One term per concept across both projects. |
 | Jargon: hakkuri, pateri, satanen, siirto, metri, tipu, tsekki, peippi | Fine inside the club. Parents and new players won't know it. | Write a glossary, and give each term a one-line animation in the learning centre. |
-| Defence slides 21–22: "laitatorjujan vasen käsi pallon kohdalla" for both the zone-4 attack (line closed) and the zone-2 attack (line open) | Probably a copy-paste. Hand reference against line closed/open needs checking. | **Flag, don't fix from first principles.** `mechanics.md` covers only beach. Add an **indoor section with sources** (FIVB rules, Gold Medal Squared, Volleyball Canada, Lebedew) before any block or defence content is published, and get Outi's or Jarkko's sign-off on each diagram. |
+| Defence slides 21–22: "laitatorjujan vasen käsi pallon kohdalla" for both the zone-4 attack (line closed) and the zone-2 attack (line open) | The same hand on the ball with opposite line calls. Phase 0 checked it: both are correct (left hand is the inside hand on the right side and the outside hand on the left side). The updated edition says inside/outside hand. | **Done:** `mechanics.md` now has an indoor section with sources. Keep extending it (FIVB rules, Gold Medal Squared, Volleyball Canada, Lebedew) before any block or defence content is published, and get Outi's or Jarkko's sign-off on each diagram. |
 | The tone throughout: "pelataan omat paikat", "tehdään mitä sovitaan" | The book is a set of instructions. Coachinglab's whole argument is that telling is the weakest tool (*Change the game, not the player*). | **Reframe the playbook as a map, not instructions.** The map gives the team shared words and a starting picture. Games teach the play itself. Each section ends with "Kokeile pelissä" and one constraint game (idea #5). The learning centre gets the map learned **at home, before practice**, which leaves practice time for play. That is the pitch to coaches. |
 | Static diagrams with arrows | A picture can't show *when* someone moves: at serve contact, on the pass, on the set. | That timing is what the animation is for. |
 
@@ -82,7 +82,7 @@ what their own job is.
 
 **Parents.** They want to know what is happening on court and how to talk about
 it at home.
-- Parents' guide (#6): the age ladder (2v2 → 3v3 → 4v4 → 6v6), why kids rotate
+- Parents' guide (#6): the age ladder (2v2 → 3v3 → 6v6), why kids rotate
   through every position, a glossary, and "älä huuda katsomosta paikkoja".
   That last one is the parent-side version of "change the game", a short and
   honest note.
@@ -171,9 +171,9 @@ the idea that the reader changes the model and sees the result.
   are, marked `[sic]`. This is the record of what the club had.
 - `coachinglab/playbook/pelikirja.md`: the updated edition. Same structure, with
   every row of "Where it is outdated" fixed:
-  - **Rules:** confirm the FIVB 2025–2028 text (rule 7.4 and the serving
-    team, overlap by feet, the diagonal question) and whether the Finnish
-    federation applies it in national and junior series. Cite the rule
+  - **Rules:** FIVB 2025–2028 rule 7.4 (receiving team only, judged by feet,
+    no diagonals) plus the Finnish 2026–27 changes (overlap timing, tip rule).
+    Done; see `research/rules-2026-27.md`. Cite the rule
     number at each point that depends on it.
   - **Junior formats:** replace F/E/D with the federation's current formats
     and age names (U9 MiniLentis 2v2, U11/U13 3v3, Tiikeri/Super,
@@ -201,23 +201,23 @@ the idea that the reader changes the model and sees the result.
   primary and its noted swaps ("hakkuri nostamaan, yleispelaaja pois
   nostosta"), a 4-receiver junior variant, and a 2-receiver variant for older
   teams. Every variant must pass the checker.
-- Then the ladder from slide 9: rotating setter (all six "S"), 4-2, 6-2. Then
-  the small-court formats (3v3 and 4v4 on their own court sizes) for the
+- Then the ladder from slide 8: rotating setter (all six "S"), 4-2, 6-2. Then
+  the small-court formats (2v2 and 3v3 on their own court sizes; the 2018 4v4 material is in an appendix) for the
   youngest.
 - Interactions 1–6 below.
 
 **Phase 2: attack and coverage**
 - From each receive formation: release paths (setter to target, hitters to
   their approach), and attack options for front-setter and back-setter
-  situations (slides 23–25), including back-row attack lanes.
-- Coverage (varmistus, slide 26) as a second layer on the same timeline.
+  situations (slide 26), including back-row attack lanes.
+- Coverage (varmistus, slide 28) as a second layer on the same timeline.
 
 **Phase 3: defence**
 - Input: **where the opponent sets** (zone 4, 3, 2, pipe/1, 6) plus **our block
   shape** (2, 1 or 0 blockers; line closed or open; broken block). Output: our
   block and defenders slide into place.
-- Reading-block base (slides 18–20), free ball (slide 25), and the zone-6
-  variant (slide 24) as alternatives.
+- Reading-block base (slides 18–20), broken block (slide 24), free ball (slide 27), and the zone-6
+  variant (slide 25) as alternatives.
 - Optional Magistician landing-map overlay (tie-in point 2).
 
 **Phase 4: clubs and teams**
@@ -231,10 +231,10 @@ dark, and fix breakage before showing it.
 
 ### The court and rotation model
 
-One TypeScript module with no UI dependencies. Web, PDF and video all use it.
+One module with no UI dependencies (language not decided; the sketch below uses TypeScript-like notation). Web, PDF and video all use it.
 
 ```
-Court      { width: 9, depth: 9, attackLine: 3 }        // metres; per format (6v6, 4v4, 3v3 badminton-width)
+Court      { width: 9, depth: 9, attackLine: 3 }        // metres; per format (6v6, 3v3 badminton court, 2v2)
 Coord      { x, y }                                      // metres, own half, origin = left sideline at the net,
                                                          // y grows towards own end line
 Role       S | OH | MB | OPP | L | DS | U  (U = universal, junior)
@@ -254,12 +254,9 @@ Context    (defence) { setTarget: zone, block: 0|1|2, line: open|closed, broken:
   Medal Squared, a coach's own) and must pass the checker in CI.
 - **Overlap checker:** a pure function `check(formation) → { legal, faults[] }`.
   It covers left-right order in the front row (4-3-2) and back row (5-6-1),
-  and front-back for the pairs 4-5, 3-6, 2-1. The "no diagonal overlap"
-  convention needs to be confirmed against the rulebook diagrams.
-  [Sources differ](https://coachingvb.com/volleyball-overlap-rule-please-teach-players),
-  so check the [FIVB rulebook](https://www.fivb.com/wp-content/uploads/2025/06/FIVB-Volleyball_Rules2025_2028-FR-v04.pdf)
+  and front-back for the pairs 4-5, 3-6, 2-1. No diagonal comparisons (confirmed in FIVB 7.4.3); "level with" is legal. See the [FIVB rulebook](https://www.fivb.com/wp-content/uploads/2025/01/FIVB-Volleyball_Rules2025_2028-EN-v05.pdf)
   and note that position is judged by the feet. It applies to the
-  **receiving team only** (pending the rule check). A fault is phrased in
+  **receiving team only**, and in Finland from the whistle until the server starts the service action (SM §16.5.3). A fault is phrased in
   plain words: "Nelonen on kolmosen oikealla puolella".
 - **Rotate** is a shift of the lineup. **Libero swap** is a rule on the
   system, not hand-placed per formation.
@@ -341,8 +338,8 @@ chat preview.
 
 ### Video pipeline
 
-The kit's video lane (`metamorphosis/kit/recipes/video/README.md`) fits
-directly:
+The kit's video lane (`metamorphosis/kit/recipes/video/README.md`) is one
+option. Tooling is not decided; these notes describe what it would look like:
 
 - **Remotion** for templated clips, because they are data-driven.
   Compositions read the same formation data:
@@ -377,14 +374,17 @@ directly:
 - One build makes the club edition (LP Kangasala theme, values page, logo) and
   a neutral coachinglab edition.
 
-### The forced decision: coachinglab's site stack
+### Deferred decision: coachinglab's site stack
+
+**Not decided.** Jarkko: no tech stack choices yet. The notes below are input
+for that decision, not a choice. Phase 0 (text editions) needs no stack.
 
 The README defers the stack (Astro / Hugo / 11ty / Zola), the domain and the
 host. The learning centre forces all three. A tool that clubs will link to
-needs a stable home, and the stack must let **one TypeScript court model and
-one court component** run in the web page, in Remotion (React) and in the PDF.
+needs a stable home, and whatever stack is chosen should let **one court model and one court
+component** run in the web page, in the video lane and in the PDF.
 
-**Recommendation: Astro, static output, on Cloudflare Pages.**
+One candidate, for reference: Astro, static output, on Cloudflare Pages.
 
 - Content collections for the Markdown pieces already in `coachinglab/`. They
   move as-is.
@@ -403,7 +403,7 @@ Trade-offs:
 
 | Option | For | Against |
 |---|---|---|
-| **Astro** (recommended) | Islands, MD collections, i18n, React/Preact interop, same TS everywhere | Node toolchain, and the framework moves fast (pin versions, Renovate) |
+| Astro | Islands, MD collections, i18n, React/Preact interop, same TS everywhere | Node toolchain, and the framework moves fast (pin versions, Renovate) |
 | 11ty | Simpler, stable, no framework | Islands and TS bundling wired by hand; no shared component with Remotion without extra build steps |
 | Hugo / Zola | Fastest builds, single binary | Templates in Go/Tera, so the court model can't be shared with Remotion; the interactive part becomes a separate app anyway |
 | Keep it in jlaine.net (Jekyll) | Nothing new to host | A personal blog is the wrong home for a club and Magistician lead magnet; Ruby + Node build mix; the 2008-era Octopress layout |
@@ -418,9 +418,9 @@ goes into a team chat. Decide the name before phase 1 ships. Phase 0 outputs
 
 ## Open questions for Jarkko
 
-1. **Rule check:** does the Finnish federation apply the FIVB 2025–2028
-   serving-team change in national and junior series? This blocks idea #3 and
-   the checker's scope.
+1. **Rule check (answered in phase 0):** yes. Lentopalloliitto applies FIVB
+   7.4 and adds its own overlap timing from 1.11.2026 (SM §16.5.3). See
+   `research/rules-2026-27.md`. Still open: explicit confirmation for U20–U15.
 2. **Outi:** credit only, or co-author of the update?
 3. **Indoor mechanics:** who signs off on block and defence diagrams? Adding an
    indoor section to `mechanics.md` comes first either way.
