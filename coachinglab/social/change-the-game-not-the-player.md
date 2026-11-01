@@ -26,6 +26,8 @@ I wrote a piece about why telling was the wrong tool, and what changes when you 
 
 [link]
 
+Let me know what you think. Would you like to read more about constraints-led coaching and nonlinear pedagogy? Maybe in Finnish, where there's a real gap in the material?
+
 ---
 
 ## Threads / Mastodon — 1/4
