@@ -19,6 +19,7 @@ LP Kangasala 2018"), and ask whether she wants to co-own the update.
 
 | # | Idea | Audience | Format | Effort | Quick win |
 |---|---|---|---|---|---|
+| 0 | **Text edition of the 2018 book, updated to current rules**: every slide transcribed, every diagram written out as positions, then the fixes in "Where it is outdated" applied | all (it is the source for everything else) | Markdown | M | — |
 | 1 | **Court + rotation model and overlap checker** (the engine everything else uses) | — | TypeScript module + data | M | — |
 | 2 | **Serve-receive cards**, one per rotation, redrawn from the model | players, junior coaches | PDF page + 1080×1350 carousel | S once #1 exists | ✅ |
 | 3 | **"Paikkavirhe 30 sekunnissa"**: the overlap rule, including the 2025 change for the serving team | coaches, players, parents in the stands | 9:16 video + carousel | S | ✅ (after the rule check below) |
@@ -31,7 +32,8 @@ LP Kangasala 2018"), and ask whether she wants to co-own the update.
 | 10 | **Embeddable club edition** (club colours, own lineup, iframe) | other clubs | web | M | — |
 | 11 | **Real match layer from Magistician**: clips and landing maps next to the diagrams | coaches | web | M, gated on data and consent | — |
 
-Order of work: 1 → 2 + 3 (ship and learn) → 6 → 4 → 5 → 7 → 8 → 9 → 10/11.
+Order of work: 0 → 1 → 2 + 3 (ship and learn) → 6 → 4 → 5 → 7 → 8 → 9 → 10/11.
+Nothing gets drawn, animated or published until phase 0 is done and checked.
 
 ---
 
@@ -51,6 +53,9 @@ Order of work: 1 → 2 + 3 (ship and learn) → 6 → 4 → 5 → 7 → 8 → 9 
   answer, which fits CLA: several solutions, each with a reason.
 
 ### Where it is outdated or conflicts with coachinglab
+
+Every row here gets fixed in phase 0, in the text edition, before any
+drawing or code.
 
 | Item in 2018 book | Problem | What to do |
 |---|---|---|
@@ -158,13 +163,40 @@ the idea that the reader changes the model and sees the result.
 
 ### Phases
 
-**Phase 0: the engine + first outputs (quick win, ~1–2 weeks of agent time)**
-- The court and rotation model (below), the overlap checker with unit tests,
-  and 5-1 three-receiver data taken from slides 12–17.
+**Phase 0: the 2018 book as text, updated to current rules (no code)**
+- `coachinglab/playbook/pelikirja-2018.md`: a faithful transcription of all
+  28 slides, in the original Finnish, in slide order. Every diagram is written
+  out as a table: player, role, zone, rough spot (for example "4 m from the
+  net, left third") and arrows as from → to. Errors and typos stay as they
+  are, marked `[sic]`. This is the record of what the club had.
+- `coachinglab/playbook/pelikirja.md`: the updated edition. Same structure, with
+  every row of "Where it is outdated" fixed:
+  - **Rules:** confirm the FIVB 2025–2028 text (rule 7.4 and the serving
+    team, overlap by feet, the diagonal question) and whether the Finnish
+    federation applies it in national and junior series. Cite the rule
+    number at each point that depends on it.
+  - **Junior formats:** replace F/E/D with the federation's current formats
+    and age names (U9 MiniLentis 2v2, U11/U13 3v3, Tiikeri/Super,
+    Triplapallo, free reception), checked against the current rules and
+    competition regulations.
+  - **Indoor mechanics:** add an indoor section to `mechanics.md` with
+    sources (block hand reference with line closed or open, reading block,
+    defensive spots by attack zone, coverage). Correct the defence slides
+    against it, and list anything still unresolved for Outi or Jarkko to
+    decide.
+  - **Wording:** depth by opponent's attack, not by gender; *raja* instead of
+    *viiva* (Magistician termbase); a glossary for the club jargon.
+- A change log at the end of `pelikirja.md`: each change, why, and its source.
+  Jarkko (and Outi, if she wants) signs off before phase 1.
+- The diagram tables become the formation data for phase 1, so the work is
+  not lost.
+
+**Phase 1: the engine, first outputs, then serve-receive (the centrepiece)**
+- The court and rotation model (below) and the overlap checker with unit
+  tests, fed with the 5-1 data from the phase 0 tables. Every 2018 formation
+  must pass the checker; any that fails goes back to phase 0.
 - Static SVG renders → serve-receive cards (#2) and the overlap explainer
   (#3). This proves the data and the look before any interaction work.
-
-**Phase 1: serve-receive (the centrepiece)**
 - System 5-1, six rotations, each with **alternative formations**: the 2018
   primary and its noted swaps ("hakkuri nostamaan, yleispelaaja pois
   nostosta"), a 4-receiver junior variant, and a 2-receiver variant for older
