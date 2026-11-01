@@ -4,8 +4,10 @@
 
 Pohjana Outi Munnukan pelikirja (LP Kangasala, 8/2018). Alkuperäinen teksti
 sellaisenaan: `pelikirja-2018.md`. Muutokset ja niiden lähteet ovat tämän
-tiedoston lopussa (Muutosloki). Taustaselvitykset: `research/rules-2026-27.md`
-ja `research/indoor-mechanics-check.md`. Mekaniikan lähteet ovat tiedostossa
+tiedoston lopussa (Muutosloki). Taustaselvitykset ovat kansiossa `research/`: säännöt (`rules-2026-27.md`,
+`rule-bulletins-2024-2026.md`), alueiden pelimuodot
+(`regional-formats-2026-27.md`), liiton valmennuslinjaukset
+(`fi-federation-coaching.md`) ja tekniikka (`indoor-mechanics-check.md`). Mekaniikan lähteet ovat tiedostossa
 `../mechanics.md`.
 
 Merkinnät:
@@ -16,8 +18,8 @@ Merkinnät:
 - **Seuran linjaus** tarkoittaa seuran omaa sopimusta. Se ei ole sääntö
   eikä lähteistä tarkistettu tekninen totuus.
 - Sääntöviitteet: **FIVB** = *Official Volleyball Rules 2025–2028* (EN v05),
-  **SM** = Lentopalloliiton Sarjamääräykset 2026–2027 (päivitys 30.9.2026),
-  **NSM** = Nuorten sarjamääräykset 2026–2027 (22.9.2026),
+  **SM** = Lentopalloliiton Sarjamääräykset 2026–2027 (päivitys 19.10.2026),
+  **NSM** = Nuorten sarjamääräykset 2026–2027 (26.10.2026),
   **Mini** = Minisäännöt 2026–2027 (24.8.2026).
 - Kaaviot luetaan aina omalta päätyrajalta katsottuna, verkko ylhäällä.
   Paikkanumerot (1–6) ovat pelaajan kiertopaikkoja syöttöhetkellä, eivät
@@ -196,13 +198,20 @@ sisällä syöttölyönnin hetkellä. Syöttävän joukkueen pelaajat eivät saa
 käsiä pään yläpuolelle syötön aikana, ennen kuin pallo on ylittänyt verkon
 (FIVB 12.5.3).
 
-[JARKKO: Koskeeko SM §16.5.3 nimenomaisesti myös U20–U15-sarjoja?
-Sanamuoto "kaikissa muissa sarjoissa" viittaa siihen, mutta nuorten
-sarjamääräykset (22.9.2026) ovat päätöstä vanhemmat eivätkä mainitse sitä.]
+Säädös koskee kaikkia Lentopalloliiton sarjoja, myös U20-, U17- ja
+U15-sarjoja: nuorten sarjamääräyksissä ei ole sijoittumisesta poikkeusta
+(SM §1, §16.5; NSM §1; tuomarijaoston tulkinta 31.7.2026).
 
-[JARKKO: Uusi ajoitus antaa vastaanottavalle joukkueelle mahdollisuuden
-liikkua jo syöttäjän aloittaessa. Muutetaanko vastaanottomuodostelmia tämän
-takia, vai pidetäänkö ne sellaisinaan? Tästä ei ole vielä lähteitä.]
+**Mitä tämä tarkoittaa vastaanotossa:** kun syöttäjä aloittaa
+syöttösuorituksen, vastaanottajat saavat liikkua ja vaihtaa paikkoja heti.
+Pelaajat saavat poistua oikeilta pelipaikoiltaan sillä hetkellä, kun
+syöttäjän liike alkaa (Lentopalloliitto 3.4.2026). Vastaanoton muodostelma
+voi siis rakentua vasta syöttäjän liikkeen aikana. Syöttölyönnin hetkellä
+kaikkien pitää silti olla oman kenttäpuolen sisällä.
+
+[JARKKO: Otetaanko tämä vastaanottomuodostelmiin, esim. muodostelma, jossa
+pelaajat vaihtavat paikkaa syöttäjän liikkeen aikana? Liiton
+valmennusmateriaalissa ei ole tästä vielä mitään.]
 
 ### Eteneminen
 
@@ -250,10 +259,10 @@ Molemmat täyttävät vastaanottavan joukkueen järjestyssäännön.
   nostamaan. Kolmen vastaanottajan malli (libero ja kaksi yleispelaajaa) on
   tavallisin. Kahden ja neljän vastaanottajan mallit ovat myös käytössä
   (mechanics.md: *Serve receive (5-1)*).
-- Pyritään nostamaan vaikea syöttö keskelle kenttää, helpot nostot passarin
-  paikalle 2- ja 3-paikan väliin, metri irti verkosta.
-  [JARKKO: Lähteissä tavallisin nostokohde on 1,2–1,5 m irti verkosta, ja
-  sopiva etäisyys riippuu tasosta. Pidetäänkö "metri" vai muutetaanko?]
+- Pyritään nostamaan vaikea syöttö keskelle kenttää. Helpot nostot passarin
+  kotipesään: noin 1,5 metriä irti verkosta, vähän kakkospaikan puolelle,
+  passarin eteen. Kun nostajan taso nousee, nostoa voi tuoda lähemmäs verkkoa
+  (Lentopalloliiton lajilinjaukset 2025).
 - Etupelaajat heti pallon lähdettyä liikkeelle valmiina vauhdin ottoon ja pienten syöttöjen nostossa.
 - Libero siirtyy jatkopalloissa aina vitospaikalle varmistaen samalla oman
   puolen hyökkäystä, ja yleispelaaja kuutospaikalle. **Seuran linjaus.**
@@ -614,7 +623,7 @@ ja kuutonen jää takakentälle (mechanics.md: *Attack coverage*; John Forman,
 | 12 | Puolustus | Järjestelmien nimet (kiertopuolustus, 6-up) | Helpottaa lähteiden käyttöä | mechanics.md |
 | 13 | Vastaanottokierrot (diat 15–16) | Selitetty, että "hakkuri ykköspaikalla" tarkoittaa hyökkäyspaikkaa vaihdon jälkeen | Teksti näytti ristiriitaiselta kierron kanssa | 2018 diat 15–17 |
 | 14 | Vastaanottokierrot (dia 14) | ⚠-merkintä tiukasta asettelusta | Tarkistetaan vaiheessa 1 | FIVB 7.4.3 |
-| 15 | Vastaanotto (dia 10) | 20/40/40, 5 m, libero vitosessa merkitty seuran linjaukseksi; nostokohde [JARKKO] | Lähteistä ei vahvistusta tai ne poikkeavat | mechanics.md |
+| 15 | Vastaanotto (dia 10) | Nostokohde "metri irti verkosta, 2–3-paikan väliin" → 1,5 m irti verkosta, vähän 2-puolella; 20/40/40, 5 m ja libero vitosessa merkitty seuran linjaukseksi | Liiton lajilinjaukset; muille ei suomalaista eikä kansainvälistä vahvistusta | Lentopalloliitto, Lajilinjaukset 2025; research/fi-federation-coaching.md |
 | 16 | Hyökkäys (dia 26) | "3m hyökkäys" → takakentän hyökkäys; lisätty takakenttähyökkäyksen ja peipin säännöt | Sääntöteksti; Suomen 2026–27 peippitulkinta | FIVB 13.2.2; SM §16.5.1 |
 | 17 | Varmistus (dia 28) | Lähdeviite lisätty | Malli vastaa lähdettä | Forman, *Hitter coverage strategy* |
 | 18 | Vastaanotto, puolustus, hyökkäys (diat 11–16, 19–20, 23–26, 28) | Hyökkäysnuolet ja osa sijoittumiskaavioista jätetty tekstistä pois | Piirretään vaiheessa 1; tiedot ovat tiedostossa pelikirja-2018.md | pelikirja-2018.md |

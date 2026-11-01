@@ -26,13 +26,14 @@ LP Kangasala 2018"), and ask whether she wants to co-own the update.
 | 4 | **Rotation learning centre, phase 1: serve-receive** (the centrepiece) | players first, then coaches | mobile web app, FI then EN | L | — |
 | 5 | **Pelikirja + pelit**: for each playbook concept, one game that teaches it | junior coaches | web page + PDF appendix | M | partly: the games exist in coachinglab already |
 | 6 | **Parents' guide**: what your child plays at each age, and the words the coach uses | parents | 1 web page + 2-page PDF | S | ✅ |
+| 6b | **Lentopallosanasto** (volleyball thesaurus): official rule terms, coaching terms and playing slang (peippi, tsekki, pateri, metri, siirto, satanen…), each with synonyms, English equivalent, a one-line definition and a source. Searchable page, one card per term for social, and a one-page PDF for the gym wall. Built from `coachinglab/sanasto.tsv`; feeds the Magistician termbase | players, parents, new coaches, commentators | web page + PDF + carousel | S–M | ✅ (once the terms are sourced) |
 | 7 | **Updated club PDF**, the 2018 book rebuilt from the same source | club | PDF | M (falls out of 1, 2, 5, 6) | — |
 | 8 | **Learning centre phase 2: attack and coverage maps** | players, coaches | web | L | — |
 | 9 | **Learning centre phase 3: defence by the opponent's set target** | players, coaches | web + video | L | — |
 | 10 | **Embeddable club edition** (club colours, own lineup, iframe) | other clubs | web | M | — |
 | 11 | **Real match layer from Magistician**: clips and landing maps next to the diagrams | coaches | web | M, gated on data and consent | — |
 
-Order of work: 0 → 1 → 2 + 3 (ship and learn) → 6 → 4 → 5 → 7 → 8 → 9 → 10/11.
+Order of work: 0 → 1 → 2 + 3 (ship and learn) → 6 + 6b → 4 → 5 → 7 → 8 → 9 → 10/11.
 Nothing gets drawn, animated or published until phase 0 is done and checked.
 
 ---
