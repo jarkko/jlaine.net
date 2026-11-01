@@ -16,6 +16,7 @@ Working name only. Rename when a real brand name lands.
 - `fieldstones.md` — raw material dump (Weinberg's fieldstone method): stories, anecdotes, observations from coaching. Stones get assembled into posts later.
 - `posts/` — blog posts, created when the first one is ready
 - `lessons/` — CLA / NLP lesson plans in Finnish (translated from `~/Dropbox/Lentopallo/Harjoitusmateriaalit/`)
+- `strength/` — strength & physical-preparation reference material (S&C). Finnish-first + English mirror; sourced. First entry: strength training demo for young orienteers (U14/U16/U18).
 
 Source lesson plans live in `~/Dropbox/Lentopallo/Harjoitusmateriaalit/`. As pieces get translated to Finnish for publication, the translations go here.
 
