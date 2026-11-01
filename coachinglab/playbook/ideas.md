@@ -202,7 +202,7 @@ the idea that the reader changes the model and sees the result.
   nostosta"), a 4-receiver junior variant, and a 2-receiver variant for older
   teams. Every variant must pass the checker.
 - Then the ladder from slide 8: rotating setter (all six "S"), 4-2, 6-2. Then
-  the small-court formats (2v2 and 3v3 on their own court sizes; the 2018 4v4 material is in an appendix) for the
+  the small-court formats (2v2 and 3v3 on their own court sizes; the 2018 4v4 material is dropped for now) for the
   youngest.
 - Interactions 1–6 below.
 

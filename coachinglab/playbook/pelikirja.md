@@ -156,7 +156,7 @@ II:n vasemmalla puolella.]
 
 Vuoden 2018 D-juniorien vastaanotto- ja puolustusvaihtoehdot olivat **neljälle
 pelaajalle (4v4)**. U13 pelaa kaudella 2026–27 kolme vastaan kolme, joten ne on
-siirretty liitteeseen A. U13 käyttää samoja 3v3-vaihtoehtoja kuin U11, ja
+jätetty tästä laitoksesta pois. U13 käyttää samoja 3v3-vaihtoehtoja kuin U11, ja
 verkko on korkeammalla (200 cm).
 
 [JARKKO: Tarvitaanko U13:lle omat 3v3-vaihtoehdot (esim. takapassari), vai
@@ -596,33 +596,6 @@ ja kuutonen jää takakentälle (mechanics.md: *Attack coverage*; John Forman,
 
 ---
 
-## Liite A. Neljän pelaajan pelit (2018 D-juniorit) – ei sarjamuoto 2026–27
-
-U13 pelaa 3v3 (Mini 2026–27). Alla on 2018-pelikirjan 4v4-aineisto
-sellaisenaan.
-
-[JARKKO: Pidetäänkö tämä harjoituspelien aineistona vai poistetaanko?]
-
-**Vastaanotto**
-
-| Vaihtoehto | Passari | Vastaanottajat | Hyökkäys |
-|---|---|---|---|
-| A | 3 verkolla keskellä | 4 vasen, 2 oikea, 1 takana keskellä (vinoneliö) | takapassi kakkospaikalle, laidasta nelospaikalla, ykköspaikan pelaaja takakentältä keskeltä |
-| B | 3 verkolla oikea-keski | 4, 1 ja 2 samassa linjassa | nelospaikka laidasta, ykköspaikan pelaaja takakentältä keskeltä, kakkospaikan pelaaja keskeltä edestä |
-| C | 2 etukenttä oikea | 4, 1 ja 3 samassa linjassa | nelospaikan pelaaja laidasta, ykköspaikan pelaaja takakentältä keskeltä tai reunasta, kolmospaikan pelaaja edestä keskeltä tai laidasta takaa |
-| D | 1 tulee takaa (2:n takaa) | 4, 3 ja 2 omissa linjoissaan | passit nelospaikalle laitaan, keskelle kolmoselle ja kakkospaikalle laitaan takapassi; passari passin jälkeen takaisin omalle paikalle puolustamaan, ja jos passari puolustaa, 3-paikka passaa |
-
-**Puolustus**
-
-| Vaihtoehto | Vastustajan hyökkäys | Torjunta | Puolustus |
-|---|---|---|---|
-| A | nelospaikalta (meidän oikealla) | passari yksin | kakkos- ja ykköspaikka puolustavat takakentän puoliksi, nelospaikka hakee lyhyet |
-| B | kakkospaikalta (meidän vasemmalla) | passari yksin | nelos- ja ykköspaikka puolustavat takakentän puoliksi, kakkospaikka hakee lyhyet |
-| C | nelospaikalta, torjunta kahdella | 3 + 2 | torjunnan takana oleva puolustaja hakee enemmän pitkiä, etupelaaja hakee lyhyet ja oman laitansa |
-| D | nelospaikalta, ilman torjuntaa | – | hyökkäyksen puoleinen etupelaaja ottaa lyhyet |
-
----
-
 ## Muutosloki (2018 → 2026–27)
 
 | # | Kohta | Muutos | Miksi | Lähde |
@@ -632,7 +605,7 @@ sellaisenaan.
 | 3 | Sama | Lisätty: paikan ratkaisevat jalat, ei vinottaisia pareja; käsien nosto kielletty syöttävältä joukkueelta | Sääntöteksti | FIVB 7.4.2–7.4.3, 12.5.3 |
 | 4 | Sama | "täytyvät", "taimpana" korjattu | Kirjoitusvirheet | – |
 | 5 | Pienen kentän pelaaminen | F/E/D → U9/U11/U13; kenttä, verkko, koppi, Triplapallo, ei liberoa, tasapuolinen peliaika, keskiraja | Ikäluokat ja pelimuodot muuttuneet | NSM §2, §7.9.1; Mini 2026–27; SM §16.1 |
-| 6 | D-juniorit (2018 diat 6–7) | 4v4-aineisto siirretty liitteeseen A | U13 pelaa 3v3 | Mini 2026–27 |
+| 6 | D-juniorit (2018 diat 6–7) | 4v4-aineisto poistettu (tallessa tiedostossa pelikirja-2018.md) | U13 pelaa 3v3 | Mini 2026–27 |
 | 7 | E-juniorit | "omat puoliskot" → "omat alueet" | Termibase ei käytä sanaa *puolisko*; joukkueen puoli on *kenttäpuoli* | termbase.tsv |
 | 8 | Lukeva torjunta (dia 18) | "tytöillä puolustajat ovat metrin lähempänä" → syvyys vastustajan hyökkäyksen mukaan | Lähteet sitovat syvyyden hyökkäykseen ja järjestelmään, eivät sukupuoleen | mechanics.md (Reynaud; AVCA) |
 | 9 | Sama | Etäisyydet merkitty seuran lähtöpaikaksi | Lähteissä ei yhtä vakiota | mechanics.md |
