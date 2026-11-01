@@ -604,6 +604,8 @@ ja kuutonen jää takakentälle (mechanics.md: *Attack coverage*; John Forman,
 
 ## 9. Sanasto
 
+Laajempi sanasto synonyymeineen ja lähteineen: `../sanasto.tsv`.
+
 | Sana | Merkitys tässä pelikirjassa |
 |---|---|
 | nosto | ensimmäinen kosketus: vastaanotto tai puolustuspallo |
@@ -621,12 +623,12 @@ ja kuutonen jää takakentälle (mechanics.md: *Attack coverage*; John Forman,
 | sisäkäsi / ulkokäsi | laitatorjujan kentän keskustan puoleinen / sivurajan puoleinen käsi |
 | tipu | lyhyt passi nelospaikalle (2018-pelikirjan oma määritelmä) |
 | jatkopallo | rallin jatkopallo; Triplapallossa valmentajan heittämä pallo |
-| peippi | [JARKKO: määritelmä] |
-| tsekki | [JARKKO: määritelmä] |
-| pateri, takapateri | [JARKKO: määritelmä] |
-| metri, takametri | [JARKKO: määritelmä] |
-| siirto | [JARKKO: määritelmä] |
-| satanen | [JARKKO: määritelmä] |
+| peippi | hyökkäys, jossa pallo pudotetaan kevyesti sormilla torjunnan yli tai taakse; säännöissä *juju* |
+| tsekki | kevennetty hyökkäys: iskulyönnin liike, mutta pallo rullataan kämmenellä kevyesti torjunnan yli |
+| pateri, takapateri | keskipelaajan nopea, matala hyökkäys passarin edestä / takaa |
+| metri, takametri | noin metrin korkuinen passi keskelle / passarin taakse |
+| siirto | keskipelaajan nopea hyökkäys, jossa nopea passi siirretään noin metrin passarista sivulle |
+| satanen | keskipelaajan nopea hyökkäys passarin takaa yhden jalan ponnistuksella sivuttain liikkuen (myös 100-hyökkäys) |
 
 ---
 
